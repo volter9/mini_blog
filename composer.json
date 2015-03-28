@@ -1,0 +1,12 @@
+{
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "/Users/Volter/Projects/FFFramework/Project"
+		}
+	],
+	
+	"require": {
+		"erusev/parsedown": "dev-master"
+	}
+}

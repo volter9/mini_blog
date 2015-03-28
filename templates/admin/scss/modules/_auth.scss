@@ -1,0 +1,89 @@
+body.auth {
+    .wrapper {
+        margin: 0px auto;
+        margin-top: 160px;
+        width: 350px;
+        
+        h1 {
+            font-weight: 100;
+            
+            margin-bottom: 10px;
+            padding: 0px 10px;
+        }
+        
+        p {
+            font-size: 12px;
+            text-align: center;
+            
+            a {
+                color: #aaa;
+                
+                &:hover > span {
+                    border-bottom: 1px solid #aaa;
+                }
+            }
+        }
+        
+        form {
+            @extend .clearfix;
+            
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 0px 2px 4px #999;
+            
+            margin-bottom: 15px;
+            padding: 20px;
+            
+            p {
+                line-height: 140%;
+                text-align: left;
+                
+                span.error {
+                    // background-color: #fcc;
+                    color: #b54343;
+                    font-size: 11px;
+                    
+                    display: block;
+                    margin-top: 4px;
+                    padding: 0px 4px;
+                }
+            }
+            
+            label {
+                display: block;
+                margin-bottom: 20px;
+            }
+            
+            input {
+                border: 1px solid #ddd;
+                font-size: 14px;
+                outline: none;
+                
+                box-sizing: border-box;
+                display: block;
+                padding: 8px;
+                width: 100%;
+                
+                &:focus {
+                    border: 1px solid #bbb;
+                }
+            }
+            
+            button {
+                background-color: #f8f8f8;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                color: #888;
+                font-size: 12px;
+                outline: none;
+                
+                float: right;
+                padding: 8px 16px;
+                
+                &:focus {
+                    border: 1px solid #bbb;
+                }
+            }
+        }
+    }
+}

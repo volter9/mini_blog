@@ -1,0 +1,95 @@
+body > article.view {
+    @extend .fluid;
+    
+    margin-top: 40px;
+    
+    > h1 {
+        font-weight: normal;
+        
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        
+        > .right .button {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+    }
+    
+    .columns div table {
+        td.edit {
+            text-align: right;
+            
+            .button {
+                display: inline-block;
+                max-width: 100px;
+            }
+        }
+        
+        border: 1px solid #e8e8e8;
+        border-bottom: 0px;
+        
+        width: 100%;
+        
+        tr:first-child {
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        th {
+            //background-color: #eee;
+            color: #000;
+            font-size: 14px;
+            font-weight: normal;
+            white-space: nowrap;
+            
+            padding: 20px 10px;
+            text-align: left;
+        }
+        
+        tr {
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        td {
+            color: #666;
+            font-size: 12px;
+            line-height: 160%;
+            padding: 10px;
+            
+            .button {
+                font-size: 12px;
+                
+                margin: 0px;
+                padding: 5px 10px;
+            }
+        }
+        
+        td.title,
+        td.url {
+            width: 15%;
+        }
+    }
+    
+    .pagination {
+        // font-size: 0px;
+        text-align: center;
+        
+        margin-top: 30px;
+        
+        .button {
+            display: inline-block;
+            width: auto;
+        }
+        
+        a, span {
+            
+        }
+    }
+    
+    .button {
+        font-size: 12px;
+        
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}

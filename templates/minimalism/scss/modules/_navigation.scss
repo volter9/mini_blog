@@ -1,0 +1,38 @@
+body > nav {
+    @extend .clearfix;
+    
+    background-color: #f8f8f8;
+    
+    padding: 10px 0px;
+    
+    .breadcrumbs {
+        @extend .clearfix;
+        
+        float: left;
+        
+        li {
+            font-size: 12px;
+            
+            float:left;
+            margin-right: 8px;
+            
+            a {
+                color: #888;
+            }
+            
+            span {
+                color: $link-color;
+            }
+            
+            &:after {
+                content: ">";
+                margin-left: 6px;
+            }
+            
+            &:last-child:after {
+                content: "";
+                margin: 0px;
+            }
+        }
+    }
+}

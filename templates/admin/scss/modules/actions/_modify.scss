@@ -1,0 +1,122 @@
+body > article.modify {
+    @extend .fluid;
+    
+    margin-top: 40px;
+    
+    > h1 {
+        font-weight: normal;
+        
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        
+        > .right .button {
+            font-size: 12px;
+        }
+    }
+    
+    form {
+        @extend .clearfix;
+        
+        input,
+        textarea,
+        select {
+            outline: none;
+        }
+        
+        p.error {
+            border: 1px solid #ddd;
+            border-bottom: 0px;
+            border-radius: 4px 4px 0px 0px;
+            color: #a00;
+            font-size: 12px;
+            
+            display: inline-block;
+            float: right;
+            padding: 6px;
+        }
+        
+        input, 
+        textarea {
+            border: 1px solid #ccc;
+            font-size: 14px;
+            
+            box-sizing: border-box;
+            display: block;
+            padding: 10px;
+            width: 100%;
+            
+            &:focus ~ div.tooltip {
+                opacity: 1;
+            }
+        }
+        
+        div.field-name {
+            border: 1px solid #ddd;
+            border-top: 0px;
+            border-radius: 0px 0px 4px 4px;
+            color: #888;
+            font-size: 12px;
+            
+            display: inline-block;
+            max-width: 20%;
+            padding: 6px;
+        }
+        
+        div.tooltip {
+            font-size: 12px;
+            color: #888;
+            transition: opacity 0.3s linear;
+            
+            display: inline-block;
+            opacity: 0;
+            padding: 6px;
+        }
+        
+        textarea {
+            line-height: 160%;
+            
+            height: 180px;
+            min-height: 180px;
+            max-width: 100%;
+        }
+        
+        .markdown {
+            font-family: Menlo, Monaco, monospace;
+            font-size: 12px;
+            
+            height: 400px;
+            min-height: 400px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        select {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            font-size: 12px;
+            
+            width: 25%;
+            
+            & + div.field-name {
+                display: none;
+            }
+            
+            &:hover ~ div.tooltip,
+            &:focus ~ div.tooltip {
+                opacity: 1;
+            }
+        }
+        
+        button {
+            @extend .button;
+            
+            font-size: 12px;
+            
+            float: right;
+            padding: 8px 20px;
+        }
+    }
+}

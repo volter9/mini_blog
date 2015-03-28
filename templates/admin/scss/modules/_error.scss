@@ -1,0 +1,60 @@
+article.error {
+    @extend .fluid, .clearfix;
+    
+    margin-top: 20px;
+    margin-bottom: 40px;
+    
+    > .left {
+        line-height: 140%;
+        word-break: break-all;
+        
+        box-sizing: border-box;
+        padding-right: 20px;
+        width: 72%;
+    }
+    
+    > .right {
+        word-break: break-all;
+        
+        width: 28%;
+    }
+    
+    p {
+        font-size: 15px;
+        line-height: 140%;
+        
+        margin-bottom: 15px;
+    }
+    
+    pre {
+        background-color: #f4f4f4;
+        border-left: 3px solid #ccc;
+        font-family: Menlo, Monaco, monospace;
+        font-size: 14px;
+        line-height: 130%;
+        
+        margin-bottom: $p-margin;
+        margin-left: 10px;
+        margin-right: 10px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 20px 0px;
+        padding-left: 20px;
+    }
+    
+    code {  
+        background-color: #e8e8e8;
+        border-radius: 3px;
+        font-size: 0.9em;
+        padding: 1px 2px;
+    }
+    
+    ul {
+        li {
+            font-size: 14px;
+            line-height: 130%;
+            
+            margin-bottom: 8px;
+        }
+    }
+}

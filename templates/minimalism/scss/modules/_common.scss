@@ -1,0 +1,45 @@
+html, body {
+    font-family: 'Open Sans';
+    
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    color: $link-color;
+    text-decoration: none;
+}
+
+.clearfix {
+    &:after {
+        content: "";
+        font-size: 0px;
+        visibility: hidden;
+        
+        clear: both;
+        display: block;
+        height: 0px;
+        width: 100%;
+    }
+    
+    .left {
+        float: left;
+    }
+    
+    .right {
+        float: right;
+    }
+}
+
+.fluid {
+    margin: 0px auto;
+    width: $wrapper-width;
+}
+
+body > article a {
+    color: #888;
+    
+    &:hover {
+        color: #000;
+    }
+}

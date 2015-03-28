@@ -1,0 +1,68 @@
+body > header {
+    @extend .clearfix;
+    
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1px solid #e8e8e8;
+    border-top: 0px;
+    
+    padding: 0px 20px;
+    
+    h1 {
+        font-size: 14px;
+        font-weight: normal;
+        
+        float: left;
+        padding: 20px;
+        padding-left: 0px;
+        
+        a {
+            color: #000;
+            
+            &:hover {
+                color: #aaa;
+                text-decoration: underline;
+            }
+        }
+        
+        small {
+            font-size: 50%;
+        }
+    }
+    
+    ul {
+        @extend .clearfix;
+        
+        float: right;
+        margin-left: 20px;
+        
+        li {
+            font-size: 14px;
+            
+            float: left;
+            margin: 5px 0px;
+            padding: 15px 20px;
+            
+            a {
+                color: #000;
+                
+                &:hover {
+                    color: #aaa;
+                    text-decoration: underline;
+                }
+            }
+            
+            &.separator + li {
+                border-left: 1px solid #eee;
+            }
+            
+            &:last-child {
+                padding-right: 0px;
+            }
+        }
+    }
+}

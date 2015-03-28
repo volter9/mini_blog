@@ -1,0 +1,32 @@
+body > nav {
+    @extend .clearfix;
+    
+    background-color: adjust-hue(darken(#c6afff, 8%), 6%);
+    
+    padding: 10px 0px;
+    
+    ul {
+        @extend .clearfix;
+        
+        float: left;
+        
+        li {
+            font-size: 12px;
+            
+            float:left;
+            margin-right: 24px;
+            
+            a {
+                color: #fff;
+                
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+            
+            span {
+                color: $link-color;
+            }
+        }
+    }
+}
