@@ -18,8 +18,7 @@ return [
     
     'templates' => [
         'directory' => FFF_BASEPATH . 'templates/',
-        'template' => 'minimalism',
-        'admin_template' => 'admin'
+        'template' => 'minimalism'
     ],
     
     'routing' => [
@@ -27,8 +26,7 @@ return [
         'symbols' => [
             '/:any' => '/?([\d\w\-_]+)',
             '/:num' => '/?(\d+)'
-        ],
-        'root' => 'mini_blog'
+        ]
     ],
     
     'hooks' => [
@@ -39,5 +37,9 @@ return [
     
     'autoload' => [
         'models' => ['users']
+    ],
+    
+    'i18n' => [
+        'default' => 'ru_RU'
     ]
 ];

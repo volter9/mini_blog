@@ -499,6 +499,7 @@ body.auth .wrapper {
       display: block;
       margin-bottom: 20px; }
     body.auth .wrapper form input {
+      background-color: #fff;
       border: 1px solid #ddd;
       font-size: 14px;
       outline: none;

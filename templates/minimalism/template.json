@@ -1,6 +1,11 @@
 {
+    "name": "minimalism",
 	"author": "volter9",
 	"description": "mini_blog default minimalistic template",
 	"version": "v1.0",
-	"require": ["admin"]
+	"type": "client",
+	
+	"require": [
+	    "admin"
+	]
 }

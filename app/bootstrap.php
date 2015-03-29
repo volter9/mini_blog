@@ -19,8 +19,8 @@ error_reporting(-defined('FFF_DEBUG'));
 date_default_timezone_set('America/Los_Angeles');
 mb_internal_encoding('UTF-8');
 
-load_api('i18n');
-load_language('app', 'app/i18n/en_US');
+$default = lang('settings.default');
+load_language('app', "app/i18n/$default");
 
 set_exception_handler(function ($e) {
     !defined('FFF_DEBUG') or show_error($e);

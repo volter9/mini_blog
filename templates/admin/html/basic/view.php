@@ -5,7 +5,7 @@
         <div class="right">
             <a class="button green"
                href="<?php echo url('#admin_add', [$module]) ?>">
-                Add
+                <?php echo lang('admin.admin.add') ?> 
             </a>
         </div>
     </h1>

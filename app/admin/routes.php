@@ -55,19 +55,13 @@ route(
  * Check for unauthorized users and set admin template
  */
 bind('router:found', function ($route) {
-    if (
-        strpos($route['id'], '#admin') !== false &&
-        !users('authorized')
-    ) {
-        header('Location: /mini_blog/admin/auth');
+    if (strpos($route['id'], '#admin_') !== false && !users('authorized')) {
+        redirect('#auth_admin');
     }
     
-    if (
-        strpos($route['id'], '#admin_') !== false ||
-        strpos($route['id'], '#auth_') !== false
-    ) {
-        load_language('admin', 'app/admin/i18n/en_US');
-        lang('current', 'app');
+    if (strpos($route['id'], '#admin_') !== false || strpos($route['id'], '#auth_') !== false) {
+        $default = lang('settings.default');
+        load_language('admin', "app/admin/i18n/$default");
         
         views('templates.template', 'admin');
     }

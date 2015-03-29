@@ -6,7 +6,7 @@
         <div class="right">
             <a class="button red"
                href="<?php echo url('#admin_remove', [$module, $data['input']['id']]) ?>">
-                Remove
+                <?php echo lang('admin.admin.remove') ?> 
             </a>
         </div>
         <?php endif; ?> 

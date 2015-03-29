@@ -17,7 +17,5 @@
                 </a>
             </p>
         </section>
-        
-        <?php view('blocks/footer') ?>
     </body>
 </html>

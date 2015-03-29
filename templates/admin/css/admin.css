@@ -492,6 +492,7 @@ body > header {
     margin-left: 20px; }
     body > header ul li {
       font-size: 14px;
+      text-transform: lowercase;
       float: left;
       margin: 5px 0px;
       padding: 15px 20px; }
@@ -544,7 +545,7 @@ body > article.view {
       text-align: right; }
       body > article.view .columns div table td.edit .button, body > article.view .columns div table td.edit body > article.modify form button, body > article.modify form body > article.view .columns div table td.edit button {
         display: inline-block;
-        max-width: 100px; }
+        max-width: 120px; }
     body > article.view .columns div table tr:first-child {
       border-bottom: 1px solid #e8e8e8; }
     body > article.view .columns div table th {
@@ -603,6 +604,7 @@ body > article.modify {
     padding: 6px; }
   body > article.modify form input,
   body > article.modify form textarea {
+    background-color: #fff;
     border: 1px solid #ccc;
     font-size: 14px;
     box-sizing: border-box;

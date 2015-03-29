@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Custom validation rules
+ */
+
 return [
     'rules' => [
         'auth' => [

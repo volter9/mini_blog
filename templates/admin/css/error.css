@@ -531,6 +531,7 @@ body > header {
     margin-left: 20px; }
     body > header ul li {
       font-size: 14px;
+      text-transform: lowercase;
       float: left;
       margin: 5px 0px;
       padding: 15px 20px; }

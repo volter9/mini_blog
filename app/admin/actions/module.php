@@ -39,10 +39,12 @@ function action_view ($module, $page = 1) {
         $page
     );
     
+    $title = lang("admin.$module.title");
+    
     view('main', [
         'view'   => 'basic/view',
-        'title'  => ucfirst($module),
-        'header' => ucfirst($module),
+        'title'  => $title,
+        'header' => $title,
         'module' => $module,
         'data'   => $items['items'],
         'pages'  => $items['pages']

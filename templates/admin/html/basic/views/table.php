@@ -21,7 +21,7 @@
         <td class="edit">
             <a class="button blue" 
                href="<?php echo url('#admin_edit', [$module, $field['id']]) ?>">
-                Edit
+                <?php echo lang('admin.admin.edit') ?> 
             </a>
         </td>
     </tr>

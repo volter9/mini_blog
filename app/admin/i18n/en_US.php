@@ -4,10 +4,22 @@ return [
     'admin' => [
         'add'    => 'Add',
         'edit'   => 'Edit',
-        'remove' => 'Remove'
+        'remove' => 'Remove',
+        'home'   => 'Home',
+        'title'  => 'mini_blog admin'
+    ],
+    
+    'auth' => [
+        'signout' => 'Sign out'
+    ],
+    
+    'footer' => [
+        'powered_by' => 'Powered by mini_blog',
+        'moto'       => 'Made for everyone'
     ],
     
     'posts' => [
+        'title'  => 'Posts',
         'add'    => 'Add a post',
         'edit'   => 'Edit the post',
         'remove' => 'Remove the post',
@@ -32,6 +44,7 @@ return [
     ],
     
     'categories' => [
+        'title'  => 'Categories',
         'add'    => 'Add a category',
         'edit'   => 'Edit the category',
         'remove' => 'Remove the category',
@@ -50,6 +63,7 @@ return [
     ],
     
     'users' => [
+        'title'  => 'Users',
         'add'    => 'Add a user',
         'edit'   => 'Edit the user',
         'remove' => 'Remove the user',
