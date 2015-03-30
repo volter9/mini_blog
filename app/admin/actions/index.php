@@ -19,9 +19,7 @@ function action_index () {
  * Admin authorization 
  */
 function action_auth () {
-    $config = config('app/admin/validation');
-    
-    view_auth_action($config);
+    view_auth_action(config('app/admin/validation'));
 }
 
 /**

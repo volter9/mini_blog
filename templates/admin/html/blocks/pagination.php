@@ -1,6 +1,5 @@
 <?php if (!empty($pagination)): ?> 
 <div class="pagination">
-    
     <?php if ($page > 1): ?> 
     <a class="button" href="<?php echo "$url/" . ($page - 1) ?>">&#8592;</a>
     <?php endif; ?> 
@@ -16,6 +15,5 @@
     <?php if ($page < $pages): ?> 
     <a class="button" href="<?php echo "$url/" . ($page + 1) ?>">&#8594;</a>
     <?php endif; ?> 
-    
 </div>
-<?php endif; ?>
+<?php endif; ?> 

@@ -1,3 +1,10 @@
+<?php
+/**
+ * Main admin layout
+ * 
+ * @var string $view
+ */
+?>
 <!DOCTYPE html>
 <html>
     <head>

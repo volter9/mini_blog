@@ -1,6 +1,6 @@
 <article class="posts">
     <?php if (!$posts['items']): ?> 
-        <p>No posts</p>
+        <p><?php echo i18n('posts.empty') ?></p>
     <?php else: ?>
         <?php foreach ($posts['items'] as $post): ?> 
             <div class="post">
@@ -12,12 +12,12 @@
                     </h2>
                     
                     <p class="info">
-                        Posted in 
+                        <?php echo i18n('posts.published') ?> 
                         <a href="<?php echo url('#category', [$post['category_url']]) ?>">
                             <?php echo $post['category'] ?> 
                         </a> 
-                        by <?php echo $post['username'] ?> 
-                        at <?php echo date('d.m.Y', strtotime($post['date'])) ?> 
+                        <?php echo i18n('posts.by') ?> <?php echo $post['username'] ?> 
+                        <?php echo i18n('posts.at') ?> <?php echo date('d.m.Y', strtotime($post['date'])) ?> 
                     </p>
                 
                     <p class="description">

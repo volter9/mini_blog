@@ -1,19 +1,46 @@
-# Welcome to mini_blog!
+# mini_blog CMS
 
-mini_blog is a simple blog CMS on PHP5.
+mini_blog это простая легкая бложная CMS написанная на процедурном PHP5 с использованием маленького процедурного фреймворка [FFFramework](https://github.com/Volter9/FFFramework).
 
-## Features
+## Особенности
 
-* Categories and articles
-* Templates
-* Simple admin panel (categories and articles)
-* Editing articles in Markdown
-* MVC
-* Procedural/Functional core
-* Hooks
+Так как CMS еще в альфе стадии, особенностей пока что немного:
 
-## Structure
+* Админка
+    * Добавление, редактирование, удаление
+        * Записей
+        * Категорий
+        * Пользователей
+* Главная страница с последними записями
+* Вывод записей по категориям
+* Вывод одной записи
 
-* api/ - Core MVC framework
-* app/ - Client and admin parts of the CMS
-* templates/ - Client and admin panel templates
+## Как установить
+
+Установить CMS можно двумя способами:
+
+### Скачать репозиторий и установить через Composer
+
+1. Скачиваете архив данного репозиторий
+2. Запускаете комманду `composer install`
+3. Заливаете дамп базы данных (`mini_blog.sql`)
+4. Правите конфиг (`app/config.php`) и устанавливаете данные о соеденения:
+```php
+'database' => [
+    'autoload' => true,
+    'default' => [
+        'host'     => 'localhost', // хост
+        'user'     => 'root',      // пользователь
+        'name'     => 'mini_blog', // база данных
+        'password' => '',          // пароль
+        'charset'  => 'utf8'
+    ]
+]
+```
+
+или же ...
+
+### Скачать готовый архив
+
+1. Скачиваете готовый архив ([тут](https://github.com/Volter9/mini_blog/releases))
+2. Повторяете пункты 3 и 4 "Скачать репозиторий и установить через Composer"

@@ -71,8 +71,14 @@ function action_add ($module, array $data = [], array $errors = []) {
  */
 function action_add_post ($module) {
     $input = input();
+    $data  = $input;
     
-    if (validate_module($module, $input) && db_insert($module, $input)) {
+    // Temporary ugly hack
+    if ($module === 'users') {
+        $data['password'] = md5($data['password']);
+    }
+    
+    if (validate_module($module, $input) && db_insert($module, $data)) {
         redirect('#admin_view', [$module]);
     }
     
@@ -91,6 +97,44 @@ function action_edit ($module, $id, array $data = [], array $errors = []) {
     $url  = url('#admin_edit_post', [$module, $id]);
     
     view_modify_page($module, 'edit', $url, $data, $errors);
+}
+
+/**
+ * Edit a row 
+ * In case of failure show form with filled data
+ * 
+ * @param string $module
+ */
+function action_edit_post ($module, $id) {
+    $input = input();
+    $data  = $input;
+    $data['id'] = $id;
+    $criteria   = ['id[=]' => $id];
+    
+    // Temporary ugly hack
+    if ($module === 'users') {
+        $input['password'] = md5($input['password']);
+    }
+    
+    if (validate_module($module, $data) && db_update($module, $input, $criteria)) {
+        redirect('#admin_view', [$module]);
+    }
+    
+    action_edit($module, $id, $data, validation_errors());
+}
+
+/**
+ * Validate input
+ * 
+ * @param string $module
+ * @param array $input
+ */
+function validate_module ($module, array $input) {
+    validation_init(load_app_file('validators'), i18n('messages'));
+    validation_rules(admin_module_rules($module));
+    validation_fields(lang("admin.$module.fields"));
+    
+    return validate($input);
 }
 
 /**
@@ -128,33 +172,6 @@ function view_modify_page ($module, $action, $url, array $data, array $errors) {
             'tooltip' => lang("admin.$module.tooltips")
         ]
     ]);
-}
-
-/**
- * Edit a row 
- * In case of failure show form with filled data
- * 
- * @param string $module
- */
-function action_edit_post ($module, $id) {
-    $input = input();
-    $data  = $input;
-    $data['id'] = $id;
-    $criteria   = ['id[=]' => $id];
-    
-    if (validate_module($module, $data) && db_update($module, $input, $criteria)) {
-        redirect('#admin_view', [$module]);
-    }
-    
-    action_edit($module, $id, $data, validation_errors());
-}
-
-function validate_module ($module, array $input) {
-    validation_init(load_app_file('validators'), i18n('messages'));
-    validation_rules(admin_module_rules($module));
-    validation_fields(lang("admin.$module.fields"));
-    
-    return validate($input);
 }
 
 /**

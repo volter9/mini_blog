@@ -15,7 +15,7 @@ function actions_init () {
 function action_list ($page = 1) {
     view('main', [
         'view'  => 'posts',
-        'title' => 'Main page',
+        'title' => i18n('main'),
         'url'   => url('#posts'),
         'posts' => posts_all($page)
     ]);

@@ -1,7 +1,24 @@
 <?php 
 
 return [
-    'test' => 'hello, is it me you looking for?',
+    'main' => 'Main page',
+    
+    'header' => [
+        'title' => 'mini_blog',
+        'home'  => 'Home',
+        'admin' => 'Admin'
+    ],
+    
+    'footer' => [
+        'all_rights' => 'All right reserved'
+    ],
+    
+    'posts' => [
+        'empty' => 'No posts',
+        'published' => 'Published',
+        'by' => 'by',
+        'at' => 'at'
+    ],
     
     'messages' => [
         /**

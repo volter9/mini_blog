@@ -1,3 +1,11 @@
+<?php
+/**
+ * Auth form page
+ * 
+ * @var array $scheme
+ * @var array $data
+ */
+?>
 <!DOCTYPE html>
 <html>
     <head>

@@ -1,3 +1,10 @@
+<?php 
+/**
+ * Exception view
+ * 
+ * @var \Exception $exception
+ */
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +13,7 @@
     </head>
     
     <body>
-        <?php view('blocks/header') ?>
+        <?php view('blocks/header') ?> 
         
         <article class="error">
             <div class="left">
@@ -21,7 +28,7 @@
                         <?php if (isset($trace['file'], $trace['line'])): ?> 
                         <li>
                             In <code><?php echo exclude(FFF_BASEPATH, $trace['file']) ?></code> <br/>
-                            on line <?php echo $trace['line'] ?>
+                            on line <?php echo $trace['line'] ?> 
                         </li>
                         <?php endif; ?> 
                     <?php endforeach; ?> 

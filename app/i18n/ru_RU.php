@@ -1,6 +1,8 @@
 <?php 
 
 return [
+    'main' => 'Главная страница',
+    
     'header' => [
         'title' => 'mini_blog',
         'home'  => 'Домой',
@@ -9,6 +11,13 @@ return [
     
     'footer' => [
         'all_rights' => 'Все права защищены'
+    ],
+    
+    'posts' => [
+        'empty' => 'Нету постов',
+        'published' => 'Опубликовано',
+        'by' => 'пользователем',
+        'at' => 'в'
     ],
     
     'messages' => [
