@@ -18,7 +18,7 @@ function users ($key = null, $value = null) {
  * Init users
  */
 function users_init () {
-    $user = user_by_id(+session('user_id'));
+    $user = user_by_id((int)session('user_id'));
     
     if ($user) {
         users('user', $user);
