@@ -1,4 +1,4 @@
 .DS_Store
 .sass-cache
-vendor/*
-./app
+vendor/
+./api
