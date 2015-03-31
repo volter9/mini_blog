@@ -1,6 +1,6 @@
 # mini_blog CMS
 
-mini_blog это простая легкая бложная CMS написанная на процедурном PHP5 с использованием маленького процедурного фреймворка [FFFramework](https://github.com/Volter9/FFFramework).
+mini_blog это простая легкая бложная CMS написанная на процедурном PHP5 с использованием маленького процедурного фреймворка [mini_framework](https://github.com/Volter9/mini_framework).
 
 ## Особенности
 

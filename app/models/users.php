@@ -86,7 +86,7 @@ function users_describe () {
 function users_rules () {
     return [
         'username' => 'required|max_length:20|min_length:6|alpha_dash|unique:users.username',
-        'password' => 'required|max_length:20|min_length:6|alpha_dash',
+        'password' => 'required|min_length:6|alpha_dash',
         'mail' => 'required|valid_mail|max_length:40|unique:users.mail',
         'group_id' => 'required|is_numeric'
     ];
