@@ -1,6 +1,6 @@
 {
 	"require": {
 		"erusev/parsedown": "dev-master",
-		"volter/ffframework": "1.0"
+		"volter/mini_framework": "1.0"
 	}
 }
