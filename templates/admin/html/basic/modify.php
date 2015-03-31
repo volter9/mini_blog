@@ -14,3 +14,13 @@
     
     <?php build_form($scheme, $data) ?> 
 </article>
+
+<script>
+    var form = document.forms[0];
+    
+    form.addEventListener('submit', function () {
+        var button = this.querySelector('button[type=submit]');
+        
+        button.setAttribute('disabled', 'disabled');
+    });
+</script>

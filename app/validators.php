@@ -34,7 +34,7 @@ return [
         return !$result || 
         (
             isset($array['id'], $result['id']) && 
-            $array['id'] === $result['id']
+            (int)$array['id'] === (int)$result['id']
         );
     },
 

@@ -116,7 +116,7 @@ function action_edit_post ($module, $id) {
         $input['password'] = md5($input['password']);
     }
     
-    if (validate_module($module, $data) && db_update($module, $input, $criteria)) {
+    if (validate_module($module, $data) && db_update($module, $data, $criteria)) {
         redirect('#admin_view', [$module]);
     }
     
