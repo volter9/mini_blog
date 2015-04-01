@@ -1,0 +1,13 @@
+- title: Основы
+  articles:
+    - getting-started
+    - install
+    - configure # Позже, позже
+
+- title: Темы оформления
+  articles:
+    - templates/structure
+    - templates/creation
+    - templates/manifest
+    - templates/advanced
+  

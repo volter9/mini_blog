@@ -1,0 +1,6 @@
+{% for section in site.data.articles %}
+<section>
+  <h4>{{ section.title }}</h4>
+  {% include sidebar_ul.html items=section.articles %}
+</section>
+{% endfor %}

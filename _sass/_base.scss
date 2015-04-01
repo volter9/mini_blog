@@ -110,10 +110,9 @@ a {
 blockquote {
     color: $grey-color;
     border-left: 4px solid $grey-color-light;
+    padding: $spacing-unit / 4 0px;
     padding-left: $spacing-unit / 2;
-    font-size: 18px;
-    letter-spacing: -1px;
-    font-style: italic;
+    font-size: 14px;
 
     > :last-child {
         margin-bottom: 0;
@@ -127,10 +126,11 @@ blockquote {
  */
 pre,
 code {
-    font-size: 15px;
+    background-color: #eef;
     border: 1px solid $grey-color-light;
     border-radius: 3px;
-    background-color: #eef;
+    font-size: 14px;
+    line-height: 160%;
 }
 
 code {

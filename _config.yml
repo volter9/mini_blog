@@ -1,12 +1,16 @@
 # Site settings
-title: Документация mini_blog
+title: mini_blog
 email: your-email@domain.com
 description: > # this means to ignore newlines until "baseurl:"
-  Документация легкой бложной CMS mini_blog
+  Документация mini_blog
 baseurl: "/mini_blog" # the subpath of your site, e.g. /blog/
 url: "http://volter9.github.io" # the base hostname & protocol for your site
 twitter_username: volter_9
 github_username:  Volter9
+timezone: Europe/Moscow
 
 # Build settings
 markdown: kramdown
+collections:
+  articles:
+    output: true
