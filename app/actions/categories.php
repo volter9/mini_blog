@@ -19,7 +19,7 @@ function action_view ($url, $page = 1) {
     }
     
     view('main', [
-        'view'  => 'posts',
+        'view'  => 'posts/index',
         'title' => $category['title'],
         'posts' => posts_by_category($category['id'], $page),
         'url'   => url('#category', [$category['url']])

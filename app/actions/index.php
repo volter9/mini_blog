@@ -15,7 +15,7 @@ function actions_init () {
  */
 function action_index () {
     view('main', [
-        'view'  => 'posts',
+        'view'  => 'posts/index',
         'title' => i18n('main'),
         'url'   => url('#posts'),
         'posts' => posts_all()
