@@ -14,8 +14,8 @@ permalink: /articles/install/
 3. Запускаете комманду `composer install` 
 4. Заливаете дамп базы данных (`mini_blog.sql`)
 5. Правите файл конфигурации (`app/config.php`) и устанавливаете данные о соеденения к MySQL базы данных:
-{% highlight php %}
-<?php /* app/config.php */
+{% highlight php startinline=true %}
+// app/config.php
 
 return [
     'database' => [

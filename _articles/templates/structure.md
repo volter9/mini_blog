@@ -6,15 +6,14 @@ permalink: /articles/templates/structure/
 Все темы находятся в папке `templates/` по умолчанию. Но если вас не устраивает нахождения тем, 
 Вы можете установить другую папку в конфигурационном файле (`app/config.php`) в разделе `templates`:
 
-{% highlight php %}
-<?php
-
+{% highlight php startinline=true %}
 return [
     'templates' => [
-        // тут можно поменять нахождение шаблонов
+        // тут можно поменять нахождение шаблонов и сам шаблон
         'directory' => FFF_BASEPATH . 'templates/',
-        'template' => 'minimalism'
+        'template'  => 'minimalism'
     ],
+    /* ... */
 ];
 {% endhighlight %}
 
