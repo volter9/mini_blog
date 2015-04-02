@@ -3,7 +3,7 @@ layout: post
 title: Создание темы
 permalink: /articles/templates/creation/
 ---
-Все что нужно для шаблона в данной версии, это пару шаблонов:
+Все что нужно для темы в данной версии (v1.0), это пару шаблонов:
 
 * `html/main.php` – главный макет темы
 * `html/posts/index.php` – отоброжение записей и пагинации
@@ -11,11 +11,9 @@ permalink: /articles/templates/creation/
 
 ## Создаем макет
 
-Перед тем как начать создавать шаблон, Вы должны иметь **базовые знания** HTML и PHP.
-
 Создайте папку `demo` в папке `templates`.
 
-Теперь нужно создать макет. Макет (`html/main.php`) это основа для темы. Макет должен содержать основу, т.е. DOCTYPE, html, head, body и отображение данного шаблона (в переменной `$view`). Простой пример:
+Теперь нужно создать макет. Макет (`html/main.php`) это основа для темы. Макет должен содержать основу, т.е. DOCTYPE, html, head, body и отображение данного шаблона (имя которого содержится в переменной `$view`). Пример:
 
 {% highlight html+php %}
 <!DOCTYPE html>
@@ -30,11 +28,11 @@ permalink: /articles/templates/creation/
 </html>
 {% endhighlight %}
 
-Для каждого шаблона передается две обязательных переменных: `$title` и `$view`. 
+Для каждого шаблона передается две переменных: `$title` и `$view`. 
 
-Переменная `$title` содержит в себе заголовок данного представления и переменная `$view` содержит в себе шаблон для данного шаблона.
+Переменная `$title` содержит в себе заголовок данной страницы. Переменная `$view` содержит в себе путь к шаблону для данной страницы.
 
-Функция `view()` отображает шаблон в данной теме оформление.
+Функция `view($view)` отобразит шаблон в данной теме.
 
 ## Отображаем записи 
 
@@ -42,7 +40,7 @@ permalink: /articles/templates/creation/
 
 В шаблоне `html/posts/index.php` доступны две переменных: `$url` и `$posts`.
 
-Переменная `$url` нужна для пагинации, а переменная `$posts` содержит два элемента: `pages` - информация о пагинации и `items` - сами записи. `$posts['items']` может содержать запили или `false` (если не существует записей по данному запросу). Простой пример:
+Переменная `$url` нужна для пагинации, а переменная `$posts` содержит два элемента: `pages` - информация о пагинации и `items` - сами записи. `$posts['items']` может содержать массив записей или `false` (если не существует записей по данному запросу). Простой пример:
 
 {% highlight html+php %}
 <!-- Если записи существуют -->
@@ -51,7 +49,12 @@ permalink: /articles/templates/creation/
         <!-- Проходимся через массив с записями -->
         <?php foreach ($posts['items'] as $post): ?> 
         <li class="post">
-            <h3><?php echo $post['title'] ?></h3>
+            <h3>
+                <!-- Ссылка на пост -->
+                <a href="<?php echo url('#post', [$post['url']]) ?>">
+                <?php echo $post['title'] ?>
+                </a>
+            </h3>
         
             <?php echo $post['description'] ?>
         </li>
@@ -61,13 +64,14 @@ permalink: /articles/templates/creation/
     <p>Нету постов :(</p>
 <?php endif; ?> 
 
-<!-- Выводим пагинацию -->
+<!-- Выводим пагинацию, пагинация находится в шаблоне admin -->
 <?php view('admin:blocks/pagination', array_merge(
     $posts['pages'], ['url' => $url]
 ), false) ?> 
 {% endhighlight %}
 
-Данный кусок кода выведет записи (если они существуют) и пагинацию (если записи существуют).
+Данный кусок кода выведет записи (если они существуют) и пагинацию.
+`url('#post', [$post['url']])` – кусок кода создает URL на страницу записи.
 
 Шаблон с выводом записью (`html/posts/page.php`) имеет всего одну переменную: `$post`.
 Переменная `$post` содержит в себе информацию о записи.
@@ -77,14 +81,20 @@ permalink: /articles/templates/creation/
 <!-- Заголовок статьи -->
 <h1><?php echo $post['title'] ?></h1>
 
-<blockquote><?php echo $post['category'] ?> |
+<blockquote>
+<?php echo $post['category'] ?> |
 <?php echo $post['date'] ?> |
 <?php echo $post['username'] ?>
 </blockquote>
 
-<?php echo $post['text'] ?>
+<!-- Преобразуем markdown в HTML -->
+<?php echo (new Parsedown)->text($post['text']) ?>
 {% endhighlight %}
 
-Теперь у нас есть простая тема.
+`(new Parsedown)->text($post['text'])` преобразует [markdown](https://ru.wikipedia.org/wiki/Markdown) в HTML, ну а `echo`, конечно же выводит.
 
-**Внимание**: данная инструкция написаны для mini_blog v1.0
+Теперь у нас есть простая тема. Энжой :)
+
+**Внимание**: данная инструкция написана для mini_blog v1.0
+
+Также, данная тема (которую мы только что создали) доступна [в репозитории](https://github.com/Volter9/mini_blog/tree/master/templates/demo).
