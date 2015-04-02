@@ -1,4 +1,10 @@
 {
+    "name": "volter/mini_blog",
+    "description": "light blog CMS",
+    "keywords": ["CMS", "lightweight", "mini"],
+    "license": "MIT",
+    "type": "project",
+    
 	"require": {
 		"erusev/parsedown": "dev-master",
 		"volter/mini_framework": "1.0.1"

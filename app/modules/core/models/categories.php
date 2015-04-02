@@ -1,13 +1,6 @@
 <?php
 
 /**
- * Initialize categories
- */
-function categories_module_init () {
-    
-}
-
-/**
  * Categories form description
  * 
  * @return array

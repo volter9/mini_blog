@@ -98,7 +98,7 @@ function module_init ($module) {
  * @param string $module
  * @param array $menu_info
  */
-function module_add_menu ($module, array $menu_info) {
+function module_menu ($module, array $menu_info) {
     if (!modules($module)) {
         return false;
     }

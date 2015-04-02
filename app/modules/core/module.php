@@ -14,6 +14,4 @@ function core_module_init () {
     module_register('posts', 'core/models/posts');
     module_register('categories', 'core/models/categories');
     module_register('users', 'core/models/users');
-    
-    module_add_menu('posts', []);
 }
