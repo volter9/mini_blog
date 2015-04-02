@@ -21,7 +21,7 @@
             
             <p>
                 <a href="<?php echo url('#index') ?>">
-                    <span>&#8592; go back</span>
+                    <span>&#8592; <?php echo lang('admin.admin.go_back') ?></span>
                 </a>
             </p>
         </section>

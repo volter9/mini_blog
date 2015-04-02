@@ -22,6 +22,8 @@ mb_internal_encoding('UTF-8');
 $default = lang('settings.default');
 load_language('app', "app/i18n/$default");
 
+modules_load();
+
 set_exception_handler(function ($e) {
     !defined('MB_DEBUG') or show_error($e);
 });

@@ -59,35 +59,3 @@ function user_for_auth ($username, $password) {
         [$username, $password], true
     );
 }
-
-/**
- * Users form description
- * 
- * @return array
- */
-function users_describe () {
-    return [
-        'fields' => 'username, mail',
-        'per_page' => 10,
-        'form' => [
-            'username' => 'input',
-            'password' => 'password',
-            'mail' => 'input',
-            'group_id' => 'select:groups',
-        ]
-    ];
-}
-
-/**
- * Users form validation rules
- * 
- * @return array
- */
-function users_rules () {
-    return [
-        'username' => 'required|max_length:20|min_length:6|alpha_dash|unique:users.username',
-        'password' => 'required|min_length:6|alpha_dash',
-        'mail' => 'required|valid_mail|max_length:40|unique:users.mail',
-        'group_id' => 'required|is_numeric'
-    ];
-}

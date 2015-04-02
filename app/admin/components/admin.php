@@ -11,8 +11,9 @@
  * @return bool
  */
 function admin_module_exists ($module) {
-    return function_exists("{$module}_rules") 
-        && function_exists("{$module}_describe");
+    return modules($module)
+        && function_exists("{$module}_module_rules") 
+        && function_exists("{$module}_module_describe");
 }
 
 /**
@@ -22,7 +23,7 @@ function admin_module_exists ($module) {
  * @return array
  */
 function admin_module_rules ($module) {
-    $function = "{$module}_rules";
+    $function = "{$module}_module_rules";
     
     return $function();
 }
@@ -34,7 +35,17 @@ function admin_module_rules ($module) {
  * @return array
  */
 function admin_describe_module ($module) {
-    $function = "{$module}_describe";
+    $function = "{$module}_module_describe";
     
     return $function();
+}
+
+function admin_filter_input ($module, array $data) {
+    $function = "{$module}_module_filter";
+    
+    if (function_exists($function)) {
+        return $function($data);
+    }
+    
+    return $data;
 }

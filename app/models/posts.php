@@ -76,39 +76,3 @@ function post_by_url ($url) {
         true
     );
 }
-
-/**
- * Posts form description
- * 
- * @return array
- */
-function posts_describe () {
-    return [
-        'fields' => 'title, url, description',
-        'per_page' => 5,
-        'form' => [
-            'title' => 'input',
-            'url' => 'input',
-            'description' => 'text',
-            'text' => 'markdown',
-            'user_id' => 'select:users',
-            'category_id' => 'select:categories'
-        ]
-    ];
-}
-
-/**
- * Users form validation rules
- * 
- * @return array
- */
-function posts_rules () {
-    return [
-        'title' => 'required|max_length:40|no_html',
-        'url' => 'required|alpha_dash|max_length:80|unique:posts.url',
-        'description' => 'required|max_length:500|html',
-        'text' => 'required|html',
-        'user_id' => 'required|is_numeric',
-        'category_id' => 'required|is_numeric'
-    ];
-}

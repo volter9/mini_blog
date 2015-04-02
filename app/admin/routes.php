@@ -59,7 +59,10 @@ bind('router:found', function ($route) {
         redirect('#auth_admin');
     }
     
-    if (strpos($route['id'], '#admin_') !== false || strpos($route['id'], '#auth_') !== false) {
+    if (
+        strpos($route['id'], '#admin_') !== false || 
+        strpos($route['id'], '#auth_') !== false
+    ) {
         $default = lang('settings.default');
         load_language('admin', "app/admin/i18n/$default");
         

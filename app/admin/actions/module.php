@@ -7,8 +7,6 @@ function actions_init () {
     $module = router('route.matches.0');
     
     load_model($module);
-    load_app_file('admin/components/loader');
-    load_component('admin');
     
     if (!admin_module_exists($module)) {
         return false;
@@ -71,12 +69,7 @@ function action_add ($module, array $data = [], array $errors = []) {
  */
 function action_add_post ($module) {
     $input = input();
-    $data  = $input;
-    
-    // Temporary ugly hack
-    if ($module === 'users') {
-        $data['password'] = md5($data['password']);
-    }
+    $data  = admin_filter_input($module, $input);
     
     if (validate_module($module, $input) && db_insert($module, $data)) {
         redirect('#admin_view', [$module]);
@@ -107,20 +100,16 @@ function action_edit ($module, $id, array $data = [], array $errors = []) {
  */
 function action_edit_post ($module, $id) {
     $input = input();
-    $data  = $input;
-    $data['id'] = $id;
-    $criteria   = ['id[=]' => $id];
+    $data  = admin_filter_input($module, $input);
     
-    // Temporary ugly hack
-    if ($module === 'users') {
-        $input['password'] = md5($input['password']);
-    }
+    $criteria = ['id[=]' => $id];
+    $input['id'] = $id;
     
-    if (validate_module($module, $data) && db_update($module, $data, $criteria)) {
+    if (validate_module($module, $input) && db_update($module, $data, $criteria)) {
         redirect('#admin_view', [$module]);
     }
     
-    action_edit($module, $id, $data, validation_errors());
+    action_edit($module, $id, $input, validation_errors());
 }
 
 /**

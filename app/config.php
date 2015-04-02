@@ -36,7 +36,12 @@ return [
     ],
     
     'autoload' => [
-        'models' => ['users']
+        'models' => ['users'],
+        'files'  => [
+            'app/admin/components/loader',
+            'app/admin/components/admin',
+            'app/admin/components/modules'
+        ]
     ],
     
     'i18n' => [

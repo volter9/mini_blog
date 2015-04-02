@@ -19,7 +19,7 @@ function action_index () {
  * Admin authorization 
  */
 function action_auth () {
-    view_auth_action(config('app/admin/validation'));
+    view_auth_action();
 }
 
 /**
@@ -29,7 +29,7 @@ function action_auth () {
  * @param array $errors
  * @param array $input
  */
-function view_auth_action (Closure $config, $errors = '', $input = []) {
+function view_auth_action ($errors = '', $input = []) {
     if (users('authorized')) {
         redirect('#admin_index');
     }
@@ -48,7 +48,7 @@ function view_auth_action (Closure $config, $errors = '', $input = []) {
         'data' => [
             'errors' => $errors,
             'input'  => $input,
-            'field'  => $config('fields')
+            'field'  => lang('admin.auth.fields')
         ]
     ]);
 }
@@ -57,12 +57,14 @@ function view_auth_action (Closure $config, $errors = '', $input = []) {
  * POST action of admin authorization
  */
 function action_login () {
-    $input  = input();
-    $config = config('app/admin/validation');
+    $input = input();
     
     validation_init(load_app_file('validators'), i18n('messages'));
-    validation_rules($config('rules.auth'));
-    validation_fields($config('fields'));
+    validation_rules([
+        'username' => 'required|min_length:4|max_length:20|alpha_dash',
+        'password' => 'required|min_length:4|max_length:20|alpha_dash'
+    ]);
+    validation_fields(lang('admin.auth.fields'));
     
     $username = $input['username'];
     $password = md5($input['password']);
@@ -75,7 +77,7 @@ function action_login () {
         redirect('#admin_index');
     }
     
-    view_auth_action($config, validation_errors(), $input);
+    view_auth_action(validation_errors(), $input);
 }
 
 /**

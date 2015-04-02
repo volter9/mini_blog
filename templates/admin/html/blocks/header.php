@@ -4,25 +4,17 @@
     </h1>
     
     <ul>
-        <li class="active">
-            <a href="<?php echo url('#admin_view', ['posts']) ?>">
-                <?php echo lang('admin.posts.title') ?> 
-            </a>
-        </li>
-        
-        <li>
-            <a href="<?php echo url('#admin_view', ['categories']) ?>">
-                <?php echo lang('admin.categories.title') ?> 
-            </a>
-        </li>
+        <?php if ($modules = modules()): ?> 
+            <?php foreach ($modules as $name => $module): ?> 
+            <li>
+                <a href="<?php echo url('#admin_view', [$name]) ?>">
+                    <?php echo lang("admin.$name.title") ?> 
+                </a>
+            </li>
+            <?php endforeach;  ?>
+        <?php endif; ?>
         
         <li class="separator">
-            <a href="<?php echo url('#admin_view', ['users']) ?>">
-                <?php echo lang('admin.users.title') ?> 
-            </a>
-        </li>
-        
-        <li>
             <a href="<?php echo url('#index') ?>">
                 <?php echo lang('admin.admin.home') ?> 
             </a>
