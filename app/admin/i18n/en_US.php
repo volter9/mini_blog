@@ -37,7 +37,7 @@ return [
             'title'       => 'Title of your post',
             'url'         => 'URL slug would be displayed in URL',
             'description' => 'Description of post, it is shown in category view and in meta tag information',
-            'text'        => 'Markdown friendly content of your post, share you thoughts here',
+            'text'        => '<a href="http://daringfireball.net/projects/markdown/" target="_blank">Markdown</a> friendly content of your post, share you thoughts here',
             'user_id'     => 'Post\'s author',
             'category_id' => 'Post\'s category'
         ]

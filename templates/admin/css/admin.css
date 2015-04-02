@@ -630,6 +630,11 @@ body > article.modify {
     display: inline-block;
     opacity: 0;
     padding: 6px; }
+    body > article.modify form div.tooltip a {
+      color: #88c;
+      text-decoration: underline; }
+      body > article.modify form div.tooltip a:hover {
+        color: #000; }
   body > article.modify form textarea {
     line-height: 160%;
     height: 180px;

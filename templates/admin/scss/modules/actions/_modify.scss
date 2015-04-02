@@ -71,6 +71,15 @@ body > article.modify {
             display: inline-block;
             opacity: 0;
             padding: 6px;
+            
+            a {
+                color: #88c;
+                text-decoration: underline;
+                
+                &:hover {
+                    color: #000;
+                }
+            }
         }
         
         textarea {
