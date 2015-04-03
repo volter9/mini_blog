@@ -34,6 +34,15 @@ function modules_load () {
 }
 
 /**
+ * Call all admin initiator module_functions
+ */
+function modules_admin_load () {
+    foreach (modules() as $module => $content) {
+        function_exists($function = "{$module}_module_admin_init") and $function();
+    }
+}
+
+/**
  * Get module's name from path
  * 
  * @param string $module_path
@@ -103,5 +112,5 @@ function module_menu ($module, array $menu_info) {
         return false;
     }
     
-    modules("$module.menu", $menu_info);
+    modules("menu.$module", $menu_info);
 }

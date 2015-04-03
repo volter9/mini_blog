@@ -34,13 +34,13 @@ body > header {
         }
     }
     
-    ul {
+    > ul {
         @extend .clearfix;
         
         float: right;
         margin-left: 20px;
         
-        li {
+        > li {
             font-size: 14px;
             text-transform: lowercase;
             
@@ -63,6 +63,25 @@ body > header {
             
             &:last-child {
                 padding-right: 0px;
+            }
+            
+            ul {
+                background-color: #fff;
+                border: 1px solid #eee;
+                
+                position: absolute;
+                bottom: -25px;
+                
+                display: none;
+                padding: 10px;
+                
+                li {
+                    font-size: 12px;
+                }
+            }
+            
+            &:hover > ul {
+                display: block;
             }
         }
     }

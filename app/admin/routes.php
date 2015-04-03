@@ -67,5 +67,6 @@ bind('router:found', function ($route) {
         load_language('admin', "app/admin/i18n/$default");
         
         views('templates.template', 'admin');
+        modules_admin_load();
     }
 });

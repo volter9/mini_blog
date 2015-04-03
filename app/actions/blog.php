@@ -27,7 +27,7 @@ function action_list ($page = 1) {
  * @param string $url
  */
 function action_view ($url = '') {
-    if (!($post = post_by_url($url))) {
+    if (!$post = post_by_url($url)) {
         return false;
     }
     

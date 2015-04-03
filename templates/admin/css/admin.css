@@ -414,7 +414,7 @@ a {
   color: #000;
   text-decoration: none; }
 
-.clearfix:after, body > header:after, body > header ul:after, body > nav:after, body > nav ul:after, body > footer:after, body > article.modify form:after {
+.clearfix:after, body > header:after, body > header > ul:after, body > nav:after, body > nav ul:after, body > footer:after, body > article.modify form:after {
   content: "";
   font-size: 0px;
   visibility: hidden;
@@ -422,9 +422,9 @@ a {
   display: block;
   height: 0px;
   width: 100%; }
-.clearfix .left, body > header .left, body > header ul .left, body > nav .left, body > nav ul .left, body > footer .left, body > article.modify form .left {
+.clearfix .left, body > header .left, body > header > ul .left, body > nav .left, body > nav ul .left, body > footer .left, body > article.modify form .left {
   float: left; }
-.clearfix .right, body > header .right, body > header ul .right, body > nav .right, body > nav ul .right, body > footer .right, body > article.modify form .right {
+.clearfix .right, body > header .right, body > header > ul .right, body > nav .right, body > nav ul .right, body > footer .right, body > article.modify form .right {
   float: right; }
 
 .fluid, body > article.view, body > article.modify {
@@ -487,24 +487,35 @@ body > header {
         text-decoration: underline; }
     body > header h1 small {
       font-size: 50%; }
-  body > header ul {
+  body > header > ul {
     float: right;
     margin-left: 20px; }
-    body > header ul li {
+    body > header > ul > li {
       font-size: 14px;
       text-transform: lowercase;
       float: left;
       margin: 5px 0px;
       padding: 15px 20px; }
-      body > header ul li a {
+      body > header > ul > li a {
         color: #000; }
-        body > header ul li a:hover {
+        body > header > ul > li a:hover {
           color: #aaa;
           text-decoration: underline; }
-      body > header ul li.separator {
+      body > header > ul > li.separator {
         border-left: 1px solid #eee; }
-      body > header ul li:last-child {
+      body > header > ul > li:last-child {
         padding-right: 0px; }
+      body > header > ul > li ul {
+        background-color: #fff;
+        border: 1px solid #eee;
+        position: absolute;
+        bottom: -25px;
+        display: none;
+        padding: 10px; }
+        body > header > ul > li ul li {
+          font-size: 12px; }
+      body > header > ul > li:hover > ul {
+        display: block; }
 
 body > nav {
   background-color: #b586ff;

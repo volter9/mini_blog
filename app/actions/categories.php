@@ -14,7 +14,7 @@ function actions_init () {
  * @param string $url
  */
 function action_view ($url, $page = 1) {
-    if (!($category = category_by_url($url))) {
+    if (!$category = category_by_url($url)) {
         return false;
     }
     
