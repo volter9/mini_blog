@@ -1,3 +1,10 @@
+<?php
+/**
+ * HTML head
+ * 
+ * @var string $title
+ */
+?>
 <meta charset="UTF-8"/>
 <title><?php echo $title ?> - <?php echo i18n('header.title') ?></title>
 

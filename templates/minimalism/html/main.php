@@ -1,3 +1,11 @@
+<?php 
+/**
+ * Main layout
+ * 
+ * @var string $title
+ * @var string $view
+ */
+?>
 <!DOCTYPE html>
 <html>
     <head>

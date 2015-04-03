@@ -2,6 +2,7 @@
 /**
  * Auth form page
  * 
+ * @var string $title
  * @var array $scheme
  * @var array $data
  */

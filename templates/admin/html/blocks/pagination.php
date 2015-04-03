@@ -1,3 +1,14 @@
+<?php
+/**
+ * Pagination view
+ * 
+ * @var array $pagination
+ * @var int $page
+ * @var int $pages
+ * @var int $limit
+ * @var int $offset
+ */
+?>
 <?php if (!empty($pagination)): ?> 
 <div class="pagination">
     <?php if ($page > 1): ?> 

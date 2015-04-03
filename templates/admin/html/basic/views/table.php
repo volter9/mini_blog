@@ -1,3 +1,10 @@
+<?php
+/**
+ * Table view
+ * 
+ * @var array $data
+ */
+?>
 <table>
     <tr>
         <?php $keys = array_slice(array_keys($data[0]), 1) ?> 
@@ -11,7 +18,7 @@
     
     <?php foreach ($data as $field): ?> 
     <tr>
-        <?php $filtered = $field; array_shift($filtered); ?> 
+        <?php $filtered = $field; unset($filtered['id']); ?> 
         <?php foreach ($filtered as $key => $value): ?> 
         <td class="<?php echo $key ?>">
             <?php echo $value ?> 

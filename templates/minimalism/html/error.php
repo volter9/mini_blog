@@ -1,3 +1,10 @@
+<?php
+/**
+ * Error page
+ * 
+ * @var \Exception $exception
+ */
+?>
 <!DOCTYPE html>
 <html>
     <head>

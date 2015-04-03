@@ -1,3 +1,10 @@
+<?php
+/**
+ * Page display view
+ * 
+ * @var array $post
+ */
+?>
 <article class="post">
     <div class="post">  
         <div class="content">

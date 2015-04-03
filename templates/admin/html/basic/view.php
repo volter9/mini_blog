@@ -1,4 +1,14 @@
-<article class="view">
+<?php
+/**
+ * View page
+ * 
+ * @var string $header
+ * @var string $module
+ * @var array $data
+ * @var array $pages
+ */
+?>
+<article class="view view-<?php echo $module ?>">
     <h1 class="clearfix">
         <?php echo $header ?> 
         
