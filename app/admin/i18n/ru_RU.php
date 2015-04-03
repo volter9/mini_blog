@@ -12,7 +12,8 @@ return [
     
     'auth' => [
         'signout' => 'Выйти',
-        'fields' => [
+        'login'   => 'Войти',
+        'fields'  => [
             'username' => 'Имя пользователя',
             'password' => 'Пароль'
         ]

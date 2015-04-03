@@ -12,7 +12,8 @@ return [
     
     'auth' => [
         'signout' => 'Sign out',
-        'fields' => [
+        'login'   => 'Log in',
+        'fields'  => [
             'username' => 'Username',
             'password' => 'Password'
         ]

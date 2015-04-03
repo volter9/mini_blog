@@ -27,7 +27,7 @@
                     <?php foreach ($exception->getTrace() as $trace): ?> 
                         <?php if (isset($trace['file'], $trace['line'])): ?> 
                         <li>
-                            In <code><?php echo exclude(FFF_BASEPATH, $trace['file']) ?></code> <br/>
+                            In <code><?php echo exclude(MF_BASEPATH, $trace['file']) ?></code> <br/>
                             on line <?php echo $trace['line'] ?> 
                         </li>
                         <?php endif; ?> 

@@ -22,7 +22,7 @@ function modules ($key = null, $value = null) {
  * Load all modules
  */
 function modules_load () {
-    $modules = glob(FFF_APP_DIR . 'modules/*/module.php');
+    $modules = glob(MF_APP_DIR . 'modules/*/module.php');
     
     foreach ($modules as $module) {
         if (module_load($module)) {

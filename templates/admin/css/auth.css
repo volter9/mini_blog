@@ -481,26 +481,26 @@ body.auth .wrapper {
       body.auth .wrapper p a:hover > span {
         border-bottom: 1px solid #aaa; }
   body.auth .wrapper form {
-    background-color: #f4f4f4;
-    border-radius: 10px;
-    box-shadow: 0px 2px 4px #999;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     margin-bottom: 15px;
     padding: 20px; }
     body.auth .wrapper form p {
       line-height: 140%;
       text-align: left; }
       body.auth .wrapper form p span.error {
-        color: #b54343;
+        color: #e87373;
         font-size: 11px;
         display: block;
         margin-top: 4px;
-        padding: 0px 4px; }
+        padding: 0px 9px; }
     body.auth .wrapper form label {
       display: block;
       margin-bottom: 20px; }
     body.auth .wrapper form input {
       background-color: #fff;
       border: 1px solid #ddd;
+      border-radius: 4px;
       font-size: 14px;
       outline: none;
       box-sizing: border-box;
@@ -510,15 +510,10 @@ body.auth .wrapper {
       body.auth .wrapper form input:focus {
         border: 1px solid #bbb; }
     body.auth .wrapper form button {
-      background-color: #f8f8f8;
-      border: 1px solid #ddd;
       border-radius: 4px;
-      color: #888;
       font-size: 12px;
       outline: none;
       float: right;
       padding: 8px 16px; }
-      body.auth .wrapper form button:focus {
-        border: 1px solid #bbb; }
 
 /*# sourceMappingURL=auth.css.map */

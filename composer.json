@@ -5,8 +5,8 @@
     "license": "MIT",
     "type": "project",
     
-	"require": {
-		"erusev/parsedown": "dev-master",
-		"volter/mini_framework": "1.0.1"
-	}
+    "require": {
+        "erusev/parsedown": "dev-master",
+        "volter/mini_framework": "1.0.2"
+    }
 }

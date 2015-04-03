@@ -17,7 +17,7 @@ return [
     ],
     
     'templates' => [
-        'directory' => FFF_BASEPATH . 'templates/',
+        'directory' => MF_BASEPATH . 'templates/',
         'template' => 'minimalism'
     ],
     
@@ -30,9 +30,9 @@ return [
     ],
     
     'hooks' => [
-        FFF_APP_DIR . 'bootstrap',
-        FFF_APP_DIR . 'routes',
-        FFF_APP_DIR . 'admin/routes'
+        MF_APP_DIR . 'bootstrap',
+        MF_APP_DIR . 'routes',
+        MF_APP_DIR . 'admin/routes'
     ],
     
     'autoload' => [

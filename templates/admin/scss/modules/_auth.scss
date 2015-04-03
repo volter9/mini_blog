@@ -27,9 +27,8 @@ body.auth {
         form {
             @extend .clearfix;
             
-            background-color: #f4f4f4;
-            border-radius: 10px;
-            box-shadow: 0px 2px 4px #999;
+            border: 1px solid #ddd;
+            border-radius: 4px;
             
             margin-bottom: 15px;
             padding: 20px;
@@ -39,13 +38,12 @@ body.auth {
                 text-align: left;
                 
                 span.error {
-                    // background-color: #fcc;
-                    color: #b54343;
+                    color: #e87373;
                     font-size: 11px;
                     
                     display: block;
                     margin-top: 4px;
-                    padding: 0px 4px;
+                    padding: 0px 9px;
                 }
             }
             
@@ -57,6 +55,7 @@ body.auth {
             input {
                 background-color: #fff;
                 border: 1px solid #ddd;
+                border-radius: 4px;
                 font-size: 14px;
                 outline: none;
                 
@@ -71,19 +70,12 @@ body.auth {
             }
             
             button {
-                background-color: #f8f8f8;
-                border: 1px solid #ddd;
                 border-radius: 4px;
-                color: #888;
                 font-size: 12px;
                 outline: none;
                 
                 float: right;
                 padding: 8px 16px;
-                
-                &:focus {
-                    border: 1px solid #bbb;
-                }
             }
         }
     }

@@ -37,9 +37,9 @@ function view_auth_action ($errors = '', $input = []) {
     view('auth', [
         'title' => 'Login',
         'scheme' => [
-            'view' => 'forms/simple',
+            'view'   => 'forms/simple',
             'action' => url('#auth_login'),
-            'submit' => 'Login',
+            'submit' => lang('admin.auth.login'),
             'form' => [
                 'username' => 'input',
                 'password' => 'password'
