@@ -24,14 +24,12 @@ function core_module_admin_init () {
     
     foreach ($modules as $module) {
         module_menu($module, [
-            'title'   => lang("admin.$module.title"),
-            'url'     => url('#admin_view', [$module]),
-            'submenu' => [
-                [
-                    'url'   => url('#admin_add', [$module]),
-                    'title' => lang('admin.admin.add')
-                ]
-            ]
+            'title' => lang("admin.$module.title"),
+            'url'   => url('#admin_view', [$module]),
+            'submenu' => [[
+                'url'   => url('#admin_add', [$module]),
+                'title' => lang("admin.$module.add")
+            ]]
         ]);
     }
 }

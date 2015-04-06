@@ -35,7 +35,5 @@ function db_find ($table, $id) {
  * @return bool
  */
 function db_remove ($table, $id) {
-    return db_delete($table, [
-        'id[=]' => $id
-    ]);
+    return db_delete($table, ['id[=]' => $id]);
 }

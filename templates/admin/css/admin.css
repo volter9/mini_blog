@@ -509,11 +509,17 @@ body > header {
         background-color: #fff;
         border: 1px solid #eee;
         position: absolute;
-        bottom: -25px;
         display: none;
-        padding: 10px; }
+        margin-top: 10px;
+        padding: 0px 10px; }
         body > header > ul > li ul li {
+          border-bottom: 1px solid #eee;
           font-size: 12px; }
+          body > header > ul > li ul li:last-child {
+            border-bottom: 0px; }
+          body > header > ul > li ul li > a {
+            display: block;
+            padding: 10px 0px; }
       body > header > ul > li:hover > ul {
         display: block; }
 

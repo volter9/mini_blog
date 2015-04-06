@@ -17,8 +17,14 @@
 define('MF_BASEPATH', __DIR__ . '/');
 define('MF_APP_DIR' , __DIR__ . '/app/');
 
-define('MB_DEBUG'   , true);
+/**
+ * mini_blog constants
+ * 
+ * @const string MB_VERSION Version string
+ * @const bool MB_DEBUG Debug flag
+ */
 define('MB_VERSION', 'v1.0');
+define('MB_DEBUG'  , true);
 
 $time = microtime(true);
 

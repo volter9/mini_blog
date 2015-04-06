@@ -45,7 +45,10 @@ function action_view ($module, $page = 1) {
         'header' => $title,
         'module' => $module,
         'data'   => $items['items'],
-        'pages'  => $items['pages']
+        'pages'  => $items['pages'],
+        'template' => isset($description['template'])
+            ? $description['template']
+            : 'basic/views/table'
     ]);
 }
 
@@ -139,7 +142,7 @@ function view_modify_page ($module, $action, $url, array $data, array $errors) {
     load_api('forms');
     forms('providers', load_app_file('admin/providers'));
     
-    $title       = lang("admin.$module.$action");
+    $title = lang("admin.$module.$action");
     $description = admin_describe_module($module);
     
     view('main', [

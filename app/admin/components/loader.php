@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Admin load component
+ * Load admin component
  * 
  * @param string $component
  */

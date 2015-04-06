@@ -18,7 +18,7 @@ return [
     
     'templates' => [
         'directory' => MF_BASEPATH . 'templates/',
-        'template' => 'minimalism'
+        'template'  => 'minimalism'
     ],
     
     'routing' => [

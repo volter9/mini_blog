@@ -40,12 +40,15 @@ function admin_describe_module ($module) {
     return $function();
 }
 
+/**
+ * Filter input for module insert or edit
+ * 
+ * @param string $module
+ * @param array $data
+ * @return array
+ */
 function admin_filter_input ($module, array $data) {
     $function = "{$module}_module_filter";
     
-    if (function_exists($function)) {
-        return $function($data);
-    }
-    
-    return $data;
+    return function_exists($function) ? $function($data) : $data;
 }

@@ -22,7 +22,7 @@
     
     <div class="columns">
         <div class="left">
-            <?php view('basic/views/table') ?> 
+            <?php view($template) ?> 
             
             <?php view('blocks/pagination', array_merge($pages, [
                 'url' => url('#admin_view', [$module])
