@@ -20,7 +20,7 @@ return [
     ],
     
     'footer' => [
-        'powered_by' => 'Powered by mini_blog',
+        'powered_by' => 'mini_blog',
         'moto'       => 'Made for everyone'
     ]
 ];

@@ -28,6 +28,13 @@ body > article {
                 }
             }
             
+            iframe {
+                display: block;
+                margin: 0px auto;
+                margin-bottom: 1em;
+                max-width: 95%;
+            }
+            
             ul {
                 list-style-type: square;
                 

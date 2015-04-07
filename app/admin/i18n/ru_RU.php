@@ -20,7 +20,7 @@ return [
     ],
     
     'footer' => [
-        'powered_by' => 'Создано с помощью mini_blog',
+        'powered_by' => 'mini_blog',
         'moto'       => 'Блогинг для каждого'
     ]
 ];

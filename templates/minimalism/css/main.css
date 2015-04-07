@@ -540,6 +540,11 @@ body > article.post .post ul {
   body > article.post .post blockquote:last-child,
   body > article.post .post ul:last-child {
     margin-bottom: 0px; }
+body > article.post .post iframe {
+  display: block;
+  margin: 0px auto;
+  margin-bottom: 1em;
+  max-width: 95%; }
 body > article.post .post ul {
   list-style-type: square;
   padding-left: 25px; }
