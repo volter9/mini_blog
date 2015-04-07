@@ -7,10 +7,7 @@ body > header {
     right: 0px;
     
     background-color: rgba(255, 255, 255, 0.85);
-    border: 1px solid #e8e8e8;
-    border-top: 0px;
-    
-    padding: 0px 20px;
+    border-bottom: 1px solid #e8e8e8;
     
     h1 {
         font-size: 14px;
@@ -18,7 +15,6 @@ body > header {
         
         float: left;
         padding: 20px;
-        padding-left: 0px;
         
         a {
             color: #000;
@@ -45,24 +41,20 @@ body > header {
             text-transform: lowercase;
             
             float: left;
-            margin: 5px 0px;
-            padding: 15px 20px;
             
             a {
                 color: #000;
                 
+                display: block;
+                padding: 20px 20px;
+                
                 &:hover {
                     color: #aaa;
-                    text-decoration: underline;
                 }
             }
             
             &.separator {
                 border-left: 1px solid #eee;
-            }
-            
-            &:last-child {
-                padding-right: 0px;
             }
             
             ul {
@@ -72,7 +64,7 @@ body > header {
                 position: absolute;
                 
                 display: none;
-                margin-top: 10px;
+                // margin-top: 10px;
                 padding: 0px 10px;
                 
                 li {
@@ -90,8 +82,12 @@ body > header {
                 }
             }
             
-            &:hover > ul {
-                display: block;
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.0125);
+                
+                > ul {
+                    display: block;
+                }
             }
         }
     }

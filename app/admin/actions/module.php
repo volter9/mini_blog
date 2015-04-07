@@ -6,8 +6,6 @@
 function actions_init () {
     $module = router('route.matches.0');
     
-    load_model($module);
-    
     if (!admin_module_exists($module)) {
         return false;
     }
@@ -29,7 +27,7 @@ function action_view ($module, $page = 1) {
     load_api('pagination');
     
     $description = admin_describe_module($module);
-    $fields      = "id, {$description['fields']}";
+    $fields = "id, {$description['fields']}";
     
     $items = db_browse(
         $module, $fields, 
@@ -72,7 +70,7 @@ function action_add ($module, array $data = [], array $errors = []) {
  */
 function action_add_post ($module) {
     $input = input();
-    $data  = admin_filter_input($module, $input);
+    $data = admin_filter_input($module, $input);
     
     if (validate_module($module, $input) && db_insert($module, $data)) {
         redirect('#admin_view', [$module]);
@@ -102,17 +100,65 @@ function action_edit ($module, $id, array $data = [], array $errors = []) {
  * @param string $module
  */
 function action_edit_post ($module, $id) {
+    $item  = db_find($module, $id);
     $input = input();
-    $data  = admin_filter_input($module, $input);
     
-    $criteria = ['id[=]' => $id];
-    $input['id'] = $id;
+    $keys  = extract_keys($item, $input);
+    $data  = limit_keys(admin_filter_input($module, $input), $keys);
+    $input = limit_keys($input, $keys);
     
-    if (validate_module($module, $input) && db_update($module, $data, $criteria)) {
+    $original_input['id'] = $input['id'] = $id;
+    
+    if (
+        empty($keys) ||
+        validate_module($module, $input) && 
+        db_update($module, $data, ['id[=]' => $id])
+    ) {
         redirect('#admin_view', [$module]);
     }
     
-    action_edit($module, $id, $input, validation_errors());
+    action_edit($module, $id, array_merge($item, $input), validation_errors());
+}
+
+/**
+ * Get matched keys and values from $item
+ * to $input
+ * 
+ * @param array $item
+ * @param array $input
+ * @return array
+ */
+function extract_keys (array $item, array $input) {
+    $keys = [];
+    
+    foreach ($input as $key => $value) {
+        if (isset($item[$key]) && (string)$item[$key] !== $value) {
+            $keys[] = $key;
+        }
+    }
+    
+    return $keys;
+}
+
+/**
+ * Leave only provided keys in input array
+ * 
+ * @param array $array
+ * @param array $keys
+ * @return array
+ */
+function limit_keys (array $array, array $keys) {
+    if (empty($keys)) {
+        return $array;
+    }
+    
+    foreach ($array as $key => $value) {
+        if (!in_array($key, $keys)) {
+            unset($array[$key]);
+        }
+    }
+    
+    return $array;
 }
 
 /**
@@ -122,8 +168,11 @@ function action_edit_post ($module, $id) {
  * @param array $input
  */
 function validate_module ($module, array $input) {
+    $rules = admin_module_rules($module);
+    $rules = limit_keys($rules, array_keys($input));
+    
     validation_init(load_app_file('validators'), i18n('messages'));
-    validation_rules(admin_module_rules($module));
+    validation_rules($rules);
     validation_fields(lang("admin.$module.fields"));
     
     return validate($input);

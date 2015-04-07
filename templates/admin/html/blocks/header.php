@@ -1,4 +1,4 @@
-<header class="fluid">
+<header>
     <h1>
         <a href="<?php echo url('#admin_index') ?>">mini_blog</a>
     </h1>

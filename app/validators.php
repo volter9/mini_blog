@@ -51,7 +51,7 @@ return [
     },
     
     'html' => function ($value) {
-        $stripped = strip_tags($value, '<a><b><strong><blockquote><i><em><br><br/><hr><hr/><ul><ol><li><h1><h2><h3><h4><h5><h6><img><img/><del><s><u>');
+        $stripped = strip_tags($value, '<a><b><strong><blockquote><i><em><br><br/><hr><hr/><ul><ol><li><h1><h2><h3><h4><h5><h6><img><img/><iframe><del><s><u>');
         
         return strlen($stripped) === strlen($value)
             && !preg_match('<\w+[^\>]+(on\w+\s*=|style\s*=)[^\>]+>', $value);

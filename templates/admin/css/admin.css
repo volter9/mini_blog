@@ -471,15 +471,12 @@ body > header {
   left: 0px;
   right: 0px;
   background-color: rgba(255, 255, 255, 0.85);
-  border: 1px solid #e8e8e8;
-  border-top: 0px;
-  padding: 0px 20px; }
+  border-bottom: 1px solid #e8e8e8; }
   body > header h1 {
     font-size: 14px;
     font-weight: normal;
     float: left;
-    padding: 20px;
-    padding-left: 0px; }
+    padding: 20px; }
     body > header h1 a {
       color: #000; }
       body > header h1 a:hover {
@@ -493,24 +490,20 @@ body > header {
     body > header > ul > li {
       font-size: 14px;
       text-transform: lowercase;
-      float: left;
-      margin: 5px 0px;
-      padding: 15px 20px; }
+      float: left; }
       body > header > ul > li a {
-        color: #000; }
+        color: #000;
+        display: block;
+        padding: 20px 20px; }
         body > header > ul > li a:hover {
-          color: #aaa;
-          text-decoration: underline; }
+          color: #aaa; }
       body > header > ul > li.separator {
         border-left: 1px solid #eee; }
-      body > header > ul > li:last-child {
-        padding-right: 0px; }
       body > header > ul > li ul {
         background-color: #fff;
         border: 1px solid #eee;
         position: absolute;
         display: none;
-        margin-top: 10px;
         padding: 0px 10px; }
         body > header > ul > li ul li {
           border-bottom: 1px solid #eee;
@@ -520,8 +513,10 @@ body > header {
           body > header > ul > li ul li > a {
             display: block;
             padding: 10px 0px; }
-      body > header > ul > li:hover > ul {
-        display: block; }
+      body > header > ul > li:hover {
+        background-color: rgba(0, 0, 0, 0.0125); }
+        body > header > ul > li:hover > ul {
+          display: block; }
 
 body > nav {
   background-color: #b586ff;

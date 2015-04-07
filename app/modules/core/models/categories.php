@@ -24,8 +24,8 @@ function categories_module_describe () {
  */
 function categories_module_rules () {
     return [
-        'title' => 'required|max_length:40',
+        'title' => 'required|max_length:40|no_html',
         'url' => 'required|max_length:80|alpha_dash|unique:categories.url',
-        'description' => 'required|max_length:500'
+        'description' => 'required|max_length:500|html'
     ];
 }
