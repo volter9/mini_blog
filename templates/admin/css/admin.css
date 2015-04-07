@@ -598,22 +598,28 @@ body > article.modify {
   body > article.modify > h1 {
     font-weight: normal;
     margin-bottom: 20px;
+    margin-left: 15%;
     padding-bottom: 16px; }
     body > article.modify > h1 > .right .button, body > article.modify > h1 > .right form button {
-      font-size: 12px; }
+      font-size: 12px;
+      vertical-align: top; }
+  body > article.modify form > .clearfix, body > article.modify body > nav form > ul, body > nav body > article.modify form > ul, body > article.modify form > form {
+    margin-bottom: 20px; }
+  body > article.modify form .clearfix .left, body > article.modify form body > header .left, body > article.modify form body > header > ul .left, body > article.modify form body > nav .left, body > article.modify form body > nav ul .left, body > nav body > article.modify form ul .left, body > article.modify form body > footer .left, body > article.modify form form .left {
+    width: 15%; }
+  body > article.modify form .clearfix .right, body > article.modify form body > header .right, body > article.modify form body > header > ul .right, body > article.modify form body > nav .right, body > article.modify form body > nav ul .right, body > nav body > article.modify form ul .right, body > article.modify form body > footer .right, body > article.modify form form .right {
+    width: 85%; }
   body > article.modify form input,
   body > article.modify form textarea,
   body > article.modify form select {
     outline: none; }
   body > article.modify form p.error {
-    border: 1px solid #ddd;
-    border-bottom: 0px;
-    border-radius: 4px 4px 0px 0px;
-    color: #a00;
+    color: #e87373;
     font-size: 12px;
-    display: inline-block;
+    line-height: 160%;
+    display: block;
     float: right;
-    padding: 6px; }
+    padding: 5px 11px; }
   body > article.modify form input,
   body > article.modify form textarea {
     background-color: #fff;
@@ -627,21 +633,17 @@ body > article.modify {
     body > article.modify form textarea:focus ~ div.tooltip {
       opacity: 1; }
   body > article.modify form div.field-name {
-    border: 1px solid #ddd;
-    border-top: 0px;
-    border-radius: 0px 0px 4px 4px;
     color: #888;
     font-size: 12px;
-    display: inline-block;
-    max-width: 20%;
-    padding: 6px; }
+    line-height: 19px;
+    text-align: right;
+    padding: 11px; }
   body > article.modify form div.tooltip {
-    font-size: 12px;
     color: #888;
-    transition: opacity 0.3s linear;
-    display: inline-block;
-    opacity: 0;
-    padding: 6px; }
+    font-size: 12px;
+    line-height: 160%;
+    display: block;
+    padding: 5px 11px; }
     body > article.modify form div.tooltip a {
       color: #88c;
       text-decoration: underline; }
@@ -654,21 +656,15 @@ body > article.modify {
     max-width: 100%; }
   body > article.modify form .markdown {
     font-family: Menlo, Monaco, monospace;
-    font-size: 12px;
+    font-size: 14px;
     height: 400px;
     min-height: 400px; }
-  body > article.modify form label {
-    display: block;
-    margin-bottom: 20px; }
   body > article.modify form select {
     background-color: #fff;
     border: 1px solid #ccc;
     font-size: 12px;
+    margin-top: 11px;
     width: 25%; }
-    body > article.modify form select + div.field-name {
-      display: none; }
-    body > article.modify form select:hover ~ div.tooltip, body > article.modify form select:focus ~ div.tooltip {
-      opacity: 1; }
   body > article.modify form button {
     font-size: 12px;
     float: right;

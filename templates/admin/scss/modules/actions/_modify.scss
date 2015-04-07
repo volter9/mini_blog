@@ -7,15 +7,31 @@ body > article.modify {
         font-weight: normal;
         
         margin-bottom: 20px;
+        margin-left: 15%;
         padding-bottom: 16px;
         
         > .right .button {
             font-size: 12px;
+            vertical-align: top;
         }
     }
     
     form {
         @extend .clearfix;
+        
+        > .clearfix {
+            margin-bottom: 20px;
+        }
+        
+        .clearfix {
+            .left {
+                width: 15%;
+            }
+            
+            .right {
+                width: 85%;
+            }
+        }
         
         input,
         textarea,
@@ -24,15 +40,13 @@ body > article.modify {
         }
         
         p.error {
-            border: 1px solid #ddd;
-            border-bottom: 0px;
-            border-radius: 4px 4px 0px 0px;
-            color: #a00;
+            color: #e87373;
             font-size: 12px;
+            line-height: 160%;
             
-            display: inline-block;
+            display: block;
             float: right;
-            padding: 6px;
+            padding: 5px 11px;
         }
         
         input, 
@@ -52,25 +66,21 @@ body > article.modify {
         }
         
         div.field-name {
-            border: 1px solid #ddd;
-            border-top: 0px;
-            border-radius: 0px 0px 4px 4px;
             color: #888;
             font-size: 12px;
+            line-height: 19px;
+            text-align: right;
             
-            display: inline-block;
-            max-width: 20%;
-            padding: 6px;
+            padding: 11px;
         }
         
         div.tooltip {
-            font-size: 12px;
             color: #888;
-            transition: opacity 0.3s linear;
+            font-size: 12px;
+            line-height: 160%;
             
-            display: inline-block;
-            opacity: 0;
-            padding: 6px;
+            display: block;
+            padding: 5px 11px;
             
             a {
                 color: #88c;
@@ -92,15 +102,10 @@ body > article.modify {
         
         .markdown {
             font-family: Menlo, Monaco, monospace;
-            font-size: 12px;
+            font-size: 14px;
             
             height: 400px;
             min-height: 400px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 20px;
         }
         
         select {
@@ -108,16 +113,8 @@ body > article.modify {
             border: 1px solid #ccc;
             font-size: 12px;
             
+            margin-top: 11px;
             width: 25%;
-            
-            & + div.field-name {
-                display: none;
-            }
-            
-            &:hover ~ div.tooltip,
-            &:focus ~ div.tooltip {
-                opacity: 1;
-            }
         }
         
         button {
