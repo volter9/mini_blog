@@ -1,0 +1,3 @@
+[submodule "app/install"]
+	path = app/install
+	url = /Users/Volter/Projects/Sandbox/Project/mini_blog_install/
