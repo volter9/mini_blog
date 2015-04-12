@@ -26,6 +26,12 @@ define('MF_APP_DIR' , __DIR__ . '/app/');
 define('MB_VERSION', 'v1.1');
 define('MB_DEBUG'  , true);
 
+if (file_exists($install = MF_BASEPATH . 'install/index.php')) {
+    require $install;
+    
+    exit;
+}
+
 $time = microtime(true);
 
 require 'vendor/autoload.php';
