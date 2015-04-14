@@ -7,7 +7,8 @@ return [
         'remove'  => 'Удалить',
         'home'    => 'Домой',
         'title'   => 'mini_blog админка',
-        'go_back' => 'назад'
+        'go_back' => 'назад',
+        'empty'   => 'Тут пока что ничего нету'
     ],
     
     'auth' => [

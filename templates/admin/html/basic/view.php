@@ -20,6 +20,7 @@
         </div>
     </h1>
     
+    <?php if (!empty($data)): ?> 
     <div class="columns">
         <div class="left">
             <?php view($template) ?> 
@@ -29,4 +30,7 @@
             ])) ?> 
         </div>
     </div>
+    <?php else: ?>
+    <p><?php echo lang('admin.admin.empty') ?></p>
+    <?php endif; ?> 
 </article>

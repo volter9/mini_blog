@@ -7,7 +7,8 @@ return [
         'remove'  => 'Remove',
         'home'    => 'Home',
         'title'   => 'mini_blog admin',
-        'go_back' => 'go back'
+        'go_back' => 'go back',
+        'empty'   => 'Nothing yet here'
     ],
     
     'auth' => [
