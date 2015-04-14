@@ -23,7 +23,7 @@ define('MF_APP_DIR' , __DIR__ . '/app/');
  * @const string MB_VERSION Version string
  * @const bool MB_DEBUG Debug flag
  */
-define('MB_VERSION', 'v1.1');
+define('MB_VERSION', 'v1.1.1');
 define('MB_DEBUG'  , true);
 
 if (file_exists($install = MF_BASEPATH . 'install/index.php')) {
