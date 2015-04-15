@@ -25,9 +25,9 @@ function core_module_admin_init () {
     foreach ($modules as $module) {
         module_menu($module, array(
             'title' => lang("admin.$module.title"),
-            'url'   => url('#admin_view', [$module]),
+            'url'   => url('#admin_view', array($module)),
             'submenu' => array(array(
-                'url'   => url('#admin_add', [$module]),
+                'url'   => url('#admin_add', array($module)),
                 'title' => lang("admin.$module.add")
             ))
         ));
