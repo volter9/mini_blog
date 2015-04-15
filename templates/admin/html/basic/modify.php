@@ -16,7 +16,7 @@
         <?php if (!empty($edit)): ?> 
         <div class="right">
             <a class="button red"
-               href="<?php echo url('#admin_remove', [$module, $data['input']['id']]) ?>">
+               href="<?php echo url('#admin_remove', array($module, $data['input']['id'])) ?>">
                 <?php echo lang('admin.admin.remove') ?> 
             </a>
         </div>

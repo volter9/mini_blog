@@ -1,26 +1,26 @@
 <?php 
 
-return [
+return array(
     'main' => 'Main page',
     
-    'header' => [
+    'header' => array(
         'title' => 'mini_blog',
         'home'  => 'Home',
         'admin' => 'Admin'
-    ],
+    ),
     
-    'footer' => [
+    'footer' => array(
         'all_rights' => 'All right reserved'
-    ],
+    ),
     
-    'posts' => [
+    'posts' => array(
         'empty' => 'No posts',
         'published' => 'Published',
         'by' => 'by',
         'at' => 'at'
-    ],
+    ),
     
-    'messages' => [
+    'messages' => array(
         /**
          * Regular plain text messages
          */
@@ -36,9 +36,13 @@ return [
          * Complex messages
          */
         'compare' => function ($field, $to) {
-            $to = validation("fields.$to") ?: $to;
+            $field_to = validation("fields.$to");
+            
+            $to = $field_to ? $field_to : $to;
             
             return sprintf('Field "%s" should be same as field "%s"', $field, $to);
-        }
-    ],
-];
+        },
+        
+        'no_user' => 'User does not exists or password does not matches'
+    ),
+);

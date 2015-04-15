@@ -18,10 +18,10 @@ function action_view ($url, $page = 1) {
         return false;
     }
     
-    view('main', [
+    view('main', array(
         'view'  => 'posts/index',
         'title' => $category['title'],
         'posts' => posts_by_category($category['id'], $page),
-        'url'   => url('#category', [$category['url']])
-    ]);
+        'url'   => url('#category', array($category['url']))
+    ));
 }

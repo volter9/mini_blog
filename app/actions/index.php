@@ -14,10 +14,10 @@ function actions_init () {
  * There's last few blog posts
  */
 function action_index () {
-    view('main', [
+    view('main', array(
         'view'  => 'posts/index',
         'title' => i18n('main'),
         'url'   => url('#posts'),
         'posts' => posts_all()
-    ]);
+    ));
 }

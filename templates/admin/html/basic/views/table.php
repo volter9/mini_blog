@@ -10,7 +10,7 @@
         <?php $keys = array_slice(array_keys($data[0]), 1) ?> 
         <?php foreach ($keys as $field): ?> 
         <th class="<?php echo $field ?>">
-            <?php echo lang("admin.$module.fields.$field") ?: $field ?> 
+            <?php echo lang("admin.$module.fields.$field") ?> 
         </th>
         <?php endforeach; ?> 
         <th></th>
@@ -27,7 +27,7 @@
         
         <td class="edit">
             <a class="button blue" 
-               href="<?php echo url('#admin_edit', [$module, $field['id']]) ?>">
+               href="<?php echo url('#admin_edit', array($module, $field['id'])) ?>">
                 <?php echo lang('admin.admin.edit') ?> 
             </a>
         </td>

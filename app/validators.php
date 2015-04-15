@@ -6,7 +6,7 @@
  * @package mini_blog
  */
 
-return [
+return array(
     'required' => function ($value) {
         return !!$value;
     },
@@ -29,7 +29,7 @@ return [
         $query = 'SELECT id, %1$s FROM %2$s WHERE %1$s = ?';
         $query = sprintf($query, $column, $table);
         
-        $result = db_select($query, [$value], true);
+        $result = db_select($query, array($value), true);
         
         return !$result || 
         (
@@ -60,4 +60,4 @@ return [
     'no_html' => function ($value) {
         return strlen(strip_tags($value)) === strlen($value);
     }
-];
+);

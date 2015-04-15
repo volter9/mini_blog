@@ -37,7 +37,7 @@ function action_view ($module, $page = 1) {
     
     $title = lang("admin.$module.title");
     
-    view('main', [
+    view('main', array(
         'view'   => 'basic/view',
         'title'  => $title,
         'header' => $title,
@@ -47,7 +47,7 @@ function action_view ($module, $page = 1) {
         'template' => isset($description['template'])
             ? $description['template']
             : 'basic/views/table'
-    ]);
+    ));
 }
 
 /**
@@ -56,8 +56,8 @@ function action_view ($module, $page = 1) {
  * @param string $module
  * @param array $data
  */
-function action_add ($module, array $data = [], array $errors = []) {
-    $url = url('#admin_add_post', [$module]);
+function action_add ($module, array $data = array(), array $errors = array()) {
+    $url = url('#admin_add_post', array($module));
     
     view_modify_page($module, 'add', $url, $data, $errors);
 }
@@ -73,7 +73,7 @@ function action_add_post ($module) {
     $data = admin_filter_input($module, $input);
     
     if (validate_module($module, $input) && db_insert($module, $data)) {
-        redirect('#admin_view', [$module]);
+        redirect('#admin_view', array($module));
     }
     
     action_add($module, $input, validation_errors());
@@ -86,9 +86,10 @@ function action_add_post ($module) {
  * @param int $id
  * @param array $data
  */
-function action_edit ($module, $id, array $data = [], array $errors = []) { 
-    $data = $data ?: db_find($module, $id);
-    $url  = url('#admin_edit_post', [$module, $id]);
+function action_edit ($module, $id, array $data = array(), array $errors = array()) { 
+    $data = $data ? $data : db_find($module, $id);
+    
+    $url = url('#admin_edit_post', array($module, $id));
     
     view_modify_page($module, 'edit', $url, $data, $errors);
 }
@@ -112,9 +113,9 @@ function action_edit_post ($module, $id) {
     if (
         empty($keys) ||
         validate_module($module, $input) && 
-        db_update($module, $data, ['id[=]' => $id])
+        db_update($module, $data, array('id[=]' => $id))
     ) {
-        redirect('#admin_view', [$module]);
+        redirect('#admin_view', array($module));
     }
     
     action_edit($module, $id, array_merge($item, $input), validation_errors());
@@ -129,7 +130,7 @@ function action_edit_post ($module, $id) {
  * @return array
  */
 function extract_keys (array $item, array $input) {
-    $keys = [];
+    $keys = array();
     
     foreach ($input as $key => $value) {
         if (isset($item[$key]) && (string)$item[$key] !== $value) {
@@ -169,13 +170,10 @@ function limit_keys (array $array, array $keys) {
  */
 function validate_module ($module, array $input) {
     $rules = admin_module_rules($module);
-    $rules = limit_keys($rules, array_keys($input));
     
-    validation_init(load_app_file('validators'), i18n('messages'));
-    validation_rules($rules);
-    validation_fields(lang("admin.$module.fields"));
+    validation_init(lang("admin.$module.fields"), i18n('messages'));
     
-    return validate($input);
+    return validate($input, limit_keys($rules, array_keys($input)));
 }
 
 /**
@@ -194,25 +192,25 @@ function view_modify_page ($module, $action, $url, array $data, array $errors) {
     $title = lang("admin.$module.$action");
     $description = admin_describe_module($module);
     
-    view('main', [
+    view('main', array(
         'title'  => $title,
         'header' => $title,
         'view'   => 'basic/modify',
         'module' => $module,
         'edit'   => $action === 'edit',
-        'scheme' => [
+        'scheme' => array(
             'view'   => 'forms/admin',
             'submit' => lang("admin.admin.$action"),
             'action' => $url,
             'form'   => $description['form']
-        ],
-        'data' => [
+        ),
+        'data' => array(
             'errors' => $errors,
             'input'  => $data,
             'field'   => lang("admin.$module.fields"),
             'tooltip' => lang("admin.$module.tooltips")
-        ]
-    ]);
+        )
+    ));
 }
 
 /**
@@ -224,5 +222,5 @@ function view_modify_page ($module, $action, $url, array $data, array $errors) {
 function action_remove ($module, $id) {
     db_remove($module, $id);
     
-    redirect('#admin_view', [$module]);
+    redirect('#admin_view', array($module));
 }

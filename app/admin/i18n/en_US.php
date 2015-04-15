@@ -1,7 +1,7 @@
 <?php
 
-return [
-    'admin' => [
+return array(
+    'admin' => array(
         'add'     => 'Add',
         'edit'    => 'Edit',
         'remove'  => 'Remove',
@@ -9,19 +9,19 @@ return [
         'title'   => 'mini_blog admin',
         'go_back' => 'go back',
         'empty'   => 'Nothing yet here'
-    ],
+    ),
     
-    'auth' => [
+    'auth' => array(
         'signout' => 'Sign out',
         'login'   => 'Log in',
-        'fields'  => [
+        'fields'  => array(
             'username' => 'Username',
             'password' => 'Password'
-        ]
-    ],
+        )
+    ),
     
-    'footer' => [
+    'footer' => array(
         'powered_by' => 'mini_blog',
         'moto'       => 'Made for everyone'
-    ]
-];
+    )
+);

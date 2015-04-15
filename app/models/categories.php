@@ -19,6 +19,6 @@ function category_by_url ($url) {
     return db_select('
         SELECT * FROM categories 
         WHERE url = ?', 
-        [$url], true
+        array($url), true
     );
 }

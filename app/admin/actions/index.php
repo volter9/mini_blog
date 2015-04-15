@@ -12,7 +12,7 @@ function actions_init () {
  * Main dashboard
  */
 function action_index () {
-    redirect('#admin_view', ['posts']);
+    redirect('#admin_view', array('posts'));
 }
 
 /**
@@ -29,28 +29,28 @@ function action_auth () {
  * @param array $errors
  * @param array $input
  */
-function view_auth_action ($errors = '', $input = []) {
+function view_auth_action ($errors = '', array $input = array()) {
     if (users('authorized')) {
         redirect('#admin_index');
     }
     
-    view('auth', [
+    view('auth', array(
         'title' => 'Login',
-        'scheme' => [
-            'view'   => 'forms/simple',
+        'scheme' => array(
+            'view'   => 'forms/auth',
             'action' => url('#auth_login'),
             'submit' => lang('admin.auth.login'),
-            'form' => [
+            'form' => array(
                 'username' => 'input',
                 'password' => 'password'
-            ]
-        ],
-        'data' => [
+            )
+        ),
+        'data' => array(
             'errors' => $errors,
             'input'  => $input,
             'field'  => lang('admin.auth.fields')
-        ]
-    ]);
+        )
+    ));
 }
 
 /**
@@ -59,32 +59,43 @@ function view_auth_action ($errors = '', $input = []) {
 function action_login () {
     $input = input();
     
-    validation_init(load_app_file('validators'), i18n('messages'));
-    validation_rules([
-        'username' => 'required|min_length:4|max_length:20|alpha_dash',
-        'password' => 'required|min_length:4|max_length:20|alpha_dash'
-    ]);
-    validation_fields(lang('admin.auth.fields'));
+    validation_init(lang('admin.auth.fields'), i18n('messages'));
     
-    $username = $input['username'];
-    $password = md5($input['password']);
+    $user = user_for_auth(
+        md_get($input, 'username'), 
+        md5(md_get($input, 'password'))
+    );
     
-    $user = user_for_auth($username, $password);
-    
-    if (validate($input) && $user) {
+    if (validate($input, auth_rules()) && $user) {
         session('user_id', $user['id']);
         
         redirect('#admin_index');
     }
     
-    view_auth_action(validation_errors(), $input);
+    $errors = validation_errors();
+    
+    if (!$errors && !$user) {
+        $errors['error'] = !$user ? i18n('messages.no_user') : false;
+    }
+    
+    view_auth_action($errors, $input);
+}
+
+/**
+ * Get authorization rules
+ * 
+ * @return array
+ */
+function auth_rules () {
+    return array(
+        'username' => 'required|min_length:4|max_length:20|alpha_dash',
+        'password' => 'required|min_length:4|max_length:20|alpha_dash'
+    );
 }
 
 /**
  * Signout
  */
 function action_signout () {
-    session_destroy();
-    
-    redirect('#index');
+    session_destroy() and redirect('#index');
 }

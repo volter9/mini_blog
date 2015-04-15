@@ -1,26 +1,26 @@
 <?php 
 
-return [
+return array(
     'main' => 'Главная страница',
     
-    'header' => [
+    'header' => array(
         'title' => 'mini_blog',
         'home'  => 'Домой',
         'admin' => 'Админка'
-    ],
+    ),
     
-    'footer' => [
+    'footer' => array(
         'all_rights' => 'Все права защищены'
-    ],
+    ),
     
-    'posts' => [
+    'posts' => array(
         'empty' => 'Нету постов',
         'published' => 'Опубликовано в раздел',
         'by' => 'пользователем',
         'at' => 'в'
-    ],
+    ),
     
-    'messages' => [
+    'messages' => array(
         /**
          * Regular plain text messages
          */
@@ -37,9 +37,14 @@ return [
          * Complex messages
          */
         'compare' => function ($field, $to) {
-            $to = validation("fields.$to") ?: $to;
+            $field_to = validation("fields.$to");
+            $message  = 'Значение поля "%s" должно быть разным значению поле "%s"';
             
-            return sprintf('Значение поля "%s" должно быть разным значению поле "%s"', $field, $to);
-        }
-    ],
-];
+            $to = $field_to ? $field_to : $to;
+            
+            return sprintf($message, $field, $to);
+        },
+        
+        'no_user' => 'Такого пользователя не существует или неверный пароль'
+    ),
+);

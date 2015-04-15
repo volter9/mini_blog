@@ -7,7 +7,7 @@
  * @package mini_blog
  */
 
-return [
+return array(
     'groups' => function () {
         return db_select('
             SELECT id AS value, name AS title 
@@ -31,4 +31,4 @@ return [
             ORDER BY value DESC
         ');
     }
-];
+);

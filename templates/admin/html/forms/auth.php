@@ -1,4 +1,10 @@
 <form action="<?php echo $scheme['action'] ?>" method="POST">
+    <?php if (!empty($data['errors']['error'])): ?> 
+    <div class="errors">
+        <p><?php echo $data['errors']['error'] ?></p>
+    </div>
+    <?php endif; ?> 
+    
     <?php foreach ($scheme['form'] as $field => $type): ?>
         <label>
             <?php build_element(

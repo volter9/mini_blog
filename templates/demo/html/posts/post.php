@@ -6,4 +6,4 @@
 <?php echo $post['username'] ?>
 </blockquote>
 
-<?php echo (new Parsedown)->text($post['text']) ?>
+<?php $parse = new Parsedown; echo $parse->text($post['text']) ?>

@@ -68,9 +68,9 @@ function module_register ($module, $path) {
     
     function_exists($init = "{$module}_module_init") and $init();
     
-    modules($module, [
+    modules($module, array(
         'path' => $path
-    ]);
+    ));
 }
 
 /**

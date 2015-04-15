@@ -4,47 +4,51 @@
  * App's config
  */
 
-return [
-    'database' => [
+return array(
+    'database' => array(
         'autoload' => true,
-        'default' => [
+        'default'  => array(
             'host'     => 'localhost',
             'user'     => 'root',
             'name'     => 'mini_blog',
             'password' => '',
             'charset'  => 'utf8'
-        ]
-    ],
+        )
+    ),
     
-    'templates' => [
+    'templates' => array(
         'directory' => MF_BASEPATH . 'templates/',
         'template'  => 'minimalism'
-    ],
+    ),
     
-    'routing' => [
+    'routing' => array(
         'base_url' => 'http://php.sandbox/',
-        'symbols' => [
+        'symbols' => array(
             '/:any' => '/?([\d\w\-_]+)',
             '/:num' => '/?(\d+)'
-        ]
-    ],
+        )
+    ),
     
-    'hooks' => [
+    'hooks' => array(
         MF_APP_DIR . 'bootstrap',
         MF_APP_DIR . 'routes',
         MF_APP_DIR . 'admin/routes'
-    ],
+    ),
     
-    'autoload' => [
-        'models' => ['users'],
-        'files'  => [
+    'autoload' => array(
+        'models' => array('users'),
+        'files'  => array(
             'app/admin/components/loader',
             'app/admin/components/admin',
             'app/admin/components/modules'
-        ]
-    ],
+        )
+    ),
     
-    'i18n' => [
+    'i18n' => array(
         'default' => 'ru_RU'
-    ]
-];
+    ),
+    
+    'validation' => array(
+        'validators' => 'validators'
+    )
+);

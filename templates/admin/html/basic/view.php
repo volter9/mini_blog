@@ -14,7 +14,7 @@
         
         <div class="right">
             <a class="button green"
-               href="<?php echo url('#admin_add', [$module]) ?>">
+               href="<?php echo url('#admin_add', array($module)) ?>">
                 <?php echo lang('admin.admin.add') ?> 
             </a>
         </div>
@@ -25,9 +25,9 @@
         <div class="left">
             <?php view($template) ?> 
             
-            <?php view('blocks/pagination', array_merge($pages, [
-                'url' => url('#admin_view', [$module])
-            ])) ?> 
+            <?php view('blocks/pagination', array_merge($pages, array(
+                'url' => url('#admin_view', array($module))
+            ))) ?> 
         </div>
     </div>
     <?php else: ?>

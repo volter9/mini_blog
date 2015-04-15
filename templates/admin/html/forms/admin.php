@@ -12,7 +12,7 @@
             
                 <div class="right">
                     <?php build_element(
-                        $type, array_merge(['name' => $field], pluck($data, $field))
+                        $type, array_merge(array('name' => $field), pluck($data, $field))
                     ) ?> 
                     
                     <?php if (isset($data['errors'][$field])): ?> 

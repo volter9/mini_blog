@@ -1,3 +1,18 @@
+.errors {
+    border: 1px solid #fcc8c8;
+    border-radius: 4px;
+    
+    margin-bottom: 1em;
+    padding: 10px;
+    
+    p {
+        color: #e87373;
+        font-size: 12px !important;
+    
+        margin: 0px !important;
+    }
+}
+
 body.auth {
     .wrapper {
         margin: 0px auto;

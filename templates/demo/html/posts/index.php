@@ -6,7 +6,7 @@
         <li class="post">
             <h3>
                 <!-- Ссылка на пост -->
-                <a href="<?php echo url('#post', [$post['url']]) ?>">
+                <a href="<?php echo url('#post', array($post['url'])) ?>">
                 <?php echo $post['title'] ?>
                 </a>
             </h3>
@@ -21,5 +21,5 @@
 
 <!-- Выводим пагинацию -->
 <?php view('admin:blocks/pagination', array_merge(
-    $posts['pages'], ['url' => $url]
+    $posts['pages'], array('url' => $url)
 ), false) ?>

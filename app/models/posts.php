@@ -28,7 +28,7 @@ function posts_all ($page = 1) {
             LEFT JOIN users u ON (p.user_id = u.id)
             LEFT JOIN categories c ON (p.category_id = c.id)
         ORDER BY p.date DESC',
-        [], POSTS_PER_PAGE, $page
+        array(), POSTS_PER_PAGE, $page
     );
 }
 
@@ -50,7 +50,7 @@ function posts_by_category ($id, $page = 1) {
             LEFT JOIN categories c ON (p.category_id = c.id)
         WHERE p.category_id = ?
         ORDER BY p.date DESC',
-        [$id], POSTS_PER_PAGE, $page
+        array($id), POSTS_PER_PAGE, $page
     );
 }
 
@@ -72,7 +72,6 @@ function post_by_url ($url) {
             LEFT JOIN categories c ON (p.category_id = c.id)
         WHERE p.url = ?
         ORDER BY p.date DESC', 
-        [$url], 
-        true
+        array($url), true
     );
 }

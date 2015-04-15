@@ -40,7 +40,7 @@ function user_by_id ($id) {
         SELECT * 
         FROM users
         WHERE id = ?',
-        [$id], true
+        array($id), true
     );
 }
 
@@ -56,6 +56,6 @@ function user_for_auth ($username, $password) {
         SELECT id, username, password
         FROM users
         WHERE username = ? AND password = ?',
-        [$username, $password], true
+        array($username, $password), true
     );
 }

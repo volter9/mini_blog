@@ -20,14 +20,14 @@
         <div class="post">
             <div class="content">
                 <h2>
-                    <a href="<?php echo url('#post', $post['url']) ?>">
+                    <a href="<?php echo url('#post', array($post['url'])) ?>">
                         <?php echo $post['title'] ?> 
                     </a>
                 </h2>
                 
                 <p class="info">
                     <?php echo i18n('posts.published') ?> 
-                    <a href="<?php echo url('#category', [$post['category_url']]) ?>">
+                    <a href="<?php echo url('#category', array($post['category_url'])) ?>">
                         <?php echo $post['category'] ?> 
                     </a> 
                     <?php echo i18n('posts.by') ?> <?php echo $post['username'] ?> 
@@ -42,7 +42,7 @@
         <?php endforeach; ?> 
         
         <?php view('admin:blocks/pagination', array_merge(
-            $posts['pages'], ['url' => $url]
+            $posts['pages'], array('url' => $url)
         ), false) ?> 
     <?php endif; ?> 
 </article>
