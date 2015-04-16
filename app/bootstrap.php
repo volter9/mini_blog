@@ -19,9 +19,6 @@ error_reporting(-defined('MB_DEBUG'));
 date_default_timezone_set('America/Los_Angeles');
 mb_internal_encoding('UTF-8');
 
-$default = lang('settings.default');
-load_language('app', "app/i18n/$default");
-
 modules_load();
 
 set_exception_handler(function ($e) {

@@ -30,17 +30,15 @@ return array(
     ),
     
     'hooks' => array(
-        MF_APP_DIR . 'bootstrap',
-        MF_APP_DIR . 'routes',
-        MF_APP_DIR . 'admin/routes'
+        MF_APP_DIR . 'bootstrap'
     ),
     
     'autoload' => array(
         'models' => array('users'),
         'files'  => array(
-            'app/admin/components/loader',
-            'app/admin/components/admin',
-            'app/admin/components/modules'
+            'app/components/loader',
+            'app/components/admin',
+            'app/components/modules'
         )
     ),
     

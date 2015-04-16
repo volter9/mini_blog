@@ -187,7 +187,7 @@ function validate_module ($module, array $input) {
  */
 function view_modify_page ($module, $action, $url, array $data, array $errors) {
     load_api('forms');
-    forms('providers', load_app_file('admin/providers'));
+    forms('providers', load_php(module_path('admin') . 'providers'));
     
     $title = lang("admin.$module.$action");
     $description = admin_describe_module($module);

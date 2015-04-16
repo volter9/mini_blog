@@ -6,5 +6,5 @@
  * @param string $component
  */
 function load_component ($component) {
-    load_app_file("admin/components/$component");
+    load_app_file("components/$component");
 }

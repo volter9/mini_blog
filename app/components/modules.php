@@ -114,3 +114,13 @@ function module_menu ($module, array $menu_info) {
     
     modules("menu.$module", $menu_info);
 }
+
+/**
+ * Get path to a module
+ * 
+ * @param string $module
+ * @return string
+ */
+function module_path ($module) {
+    return sprintf('app/modules/%s/', $module);
+}

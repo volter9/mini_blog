@@ -6,13 +6,15 @@
  * @package mini_blog
  */
 
+$path = module_path('admin') . 'actions';
+
 /**
  * Index and auth
  */
-route('GET #admin_index /admin', 'app/admin/actions/index');
-route('GET #auth_admin /admin/auth', 'app/admin/actions/index:auth');
-route('POST #auth_login /admin/login', 'app/admin/actions/index:login');
-route('GET #auth_signout /admin/auth/signout', 'app/admin/actions/index:signout');
+route('GET #admin_index /admin', "$path/index");
+route('GET #auth_admin /admin/auth', "$path/index:auth");
+route('POST #auth_login /admin/login', "$path/index:login");
+route('GET #auth_signout /admin/auth/signout', "$path/index:signout");
 
 /**
  * Routes to admin sections.
@@ -25,30 +27,30 @@ route('GET #auth_signout /admin/auth/signout', 'app/admin/actions/index:signout'
  */
 route(
     'GET #admin_view /admin/:any/:num?', 
-    'app/admin/actions/module:view'
+    "$path/module:view"
 );
 
 route(
     'GET #admin_add /admin/:any/add', 
-    'app/admin/actions/module:add'
+    "$path/module:add"
 );
 route(
     'POST #admin_add_post /admin/:any/add', 
-    'app/admin/actions/module:add_post'
+    "$path/module:add_post"
 );
 
 route(
     'GET #admin_edit /admin/:any/edit/:num', 
-    'app/admin/actions/module:edit'
+    "$path/module:edit"
 );
 route(
     'POST #admin_edit_post /admin/:any/edit/:num', 
-    'app/admin/actions/module:edit_post'
+    "$path/module:edit_post"
 );
 
 route(
     'GET #admin_remove /admin/:any/remove/:num', 
-    'app/admin/actions/module:remove'
+    "$path/module:remove"
 );
 
 /**
@@ -64,7 +66,7 @@ bind('router:found', function ($route) {
         strpos($route['id'], '#auth_')  === 0
     ) {
         $default = lang('settings.default');
-        load_language('admin', "app/admin/i18n/$default");
+        load_language('admin', "app/modules/admin/i18n/$default");
         
         views('templates.template', 'admin');
         modules_admin_load();
