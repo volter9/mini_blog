@@ -15,7 +15,11 @@
     <body>
         <?php view('blocks/header') ?>
         
-        <?php view($view) ?>
+        <div class="fluid" id="wrapper">
+            <?php view('blocks/navigation') ?>
+            
+            <?php view($view) ?>
+        </div>
         
         <?php view('blocks/footer') ?>
     </body>

@@ -24,6 +24,10 @@
                         <?php echo $post['title'] ?> 
                     </a>
                 </h2>
+            
+                <p class="description">
+                    <?php echo $post['description'] ?> 
+                </p>
                 
                 <p class="info">
                     <?php echo i18n('posts.published') ?> 
@@ -32,10 +36,6 @@
                     </a> 
                     <?php echo i18n('posts.by') ?> <?php echo $post['username'] ?> 
                     <?php echo i18n('posts.at') ?> <?php echo date('d.m.Y', strtotime($post['date'])) ?> 
-                </p>
-            
-                <p class="description">
-                    <?php echo $post['description'] ?> 
                 </p>
             </div>
         </div>

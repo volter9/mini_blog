@@ -1,45 +1,18 @@
 body > header {
-    @extend .clearfix;
-    
-    // background-color: #f8f8f8;
-    border-bottom: 1px solid $secondary-color;
-    
-    padding: 30px 0px;
-    
-    h1 {
-        font-size: 14px;
-        font-weight: normal;
-        
-        float: left;
-        
-        a {
-            color: #aaa;
-            
-            &:hover {
-                color: #000;
-            }
-        }
-        
-        small {
-            font-size: 50%;
-        }
+    > div {
+        box-sizing: border-box;
+        padding: 15px 10px;
     }
     
-    ul {
-        @extend .clearfix;
+    h1 {
+        font-size: 32px;
+        font-weight: 100;
         
-        float: right;
-        margin-left: 20px;
-        
-        li {
-            font-size: 14px;
-            text-transform: lowercase;
+        a {
+            color: #000;
             
-            float: left;
-            margin-left: 20px;
-            
-            a:hover {
-                color: #888;
+            &:hover {
+                text-decoration: none;
             }
         }
     }

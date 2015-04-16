@@ -1,5 +1,5 @@
 html, body {
-    font-family: 'Open Sans';
+    font-family: sans-serif;
     
     margin: 0px;
     padding: 0px;
@@ -8,6 +8,10 @@ html, body {
 a {
     color: $link-color;
     text-decoration: none;
+    
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .clearfix {
@@ -34,12 +38,4 @@ a {
 .fluid {
     margin: 0px auto;
     width: $wrapper-width;
-}
-
-body > article a {
-    color: #888;
-    
-    &:hover {
-        color: #000;
-    }
 }

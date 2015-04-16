@@ -1,0 +1,132 @@
+.post {
+    @extend .clearfix;
+    
+    .content {
+        padding: 20px 0px;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4, 
+    h5,
+    h6 {
+        color: #484848;
+        font-family: Trebuchet MS;
+        font-weight: bold;
+        line-height: 100%;
+        
+        margin-bottom: $p-margin;
+        
+        padding: 0px 20px;
+        
+        a {
+            color: #444;
+        }
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 22px;
+    }
+    
+    h3 {
+        font-size: 18px;
+    }
+    
+    & > *:last-child {
+        margin-bottom: 0px;
+    }
+    
+    p {
+        color: #333;
+        font-size: 16px;
+        line-height: 150%;
+    }
+    
+    p.info {
+        font-size: 14px;
+        color: #ccc;
+    }
+    
+    p, 
+    blockquote,
+    ul {
+        margin-bottom: $p-margin;
+        
+        padding: 0px 20px;
+        
+        &:last-child {
+            margin-bottom: 0px;
+        }
+    }
+    
+    p code {
+        border: 1px solid #ccf;
+        border-radius: 2px;
+        color: #08e;
+        font-size: 80%;
+        
+        padding: 2px 4px;
+    }
+    
+    iframe {
+        display: block;
+        margin: 0px auto;
+        margin-bottom: 1em;
+        max-width: 95%;
+    }
+    
+    ul {
+        list-style-type: square;
+        
+        padding-left: 45px;
+        
+        li {
+            font-size: 14px;
+            line-height: 150%;
+        }
+    }
+    
+    blockquote {
+        border-left: 3px solid #ccc;
+        color: #666;
+        line-height: 140%;
+        
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 0px 10px;
+        
+        p {
+            font-size: 14px;
+            padding: 5px 0px;
+        }
+    }
+    
+    pre {
+        border: 1px solid #eee;
+        border-left: 0px;
+        border-right: 0px;
+        font-family: Menlo, Monaco, monospace;
+        font-size: 14px;
+        line-height: 130%;
+        
+        margin-bottom: $p-margin;
+        overflow-x: auto;
+        overflow-y: hidden;
+        
+        code {
+            font-family: inherit;
+            
+            padding: 10px 20px;
+        }
+    }
+    
+    img {
+        margin: 20px;
+        margin-top: 0px;
+    }
+}

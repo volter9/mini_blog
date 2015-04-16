@@ -1,37 +1,32 @@
-body > nav {
+#wrapper > nav {
     @extend .clearfix;
     
-    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
     
-    padding: 10px 0px;
+    padding: 0px 0px;
     
-    .breadcrumbs {
-        @extend .clearfix;
+    ul {
+        @extends .clearfix;
         
-        float: left;
+        padding: 0px 10px;
         
         li {
-            font-size: 12px;
+            border-right: 1px solid #eee;
+            font-size: 14px;
             
             float:left;
-            margin-right: 8px;
             
             a {
+                display: block;
+                padding: 10px 15px;
                 color: #888;
-            }
-            
-            span {
-                color: $link-color;
-            }
-            
-            &:after {
-                content: ">";
-                margin-left: 6px;
-            }
-            
-            &:last-child:after {
-                content: "";
-                margin: 0px;
+                
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.017);
+                    
+                    color: #aaa;
+                    text-decoration: none;
+                }
             }
         }
     }
