@@ -25,21 +25,68 @@ function modules_load () {
     $modules = glob(MF_APP_DIR . 'modules/*/module.php');
     
     foreach ($modules as $module) {
-        if (module_load($module)) {
-            $name = module_name($module);
-            
-            module_init($name);
-        }
+        $name = module_name($module);
+        
+        module_load($module) and module_register($name, $module);
     }
 }
 
 /**
- * Call all admin initiator module_functions
+ * Initialize all loaded modules
  */
-function modules_admin_load () {
+function modules_init () {
+    foreach (array_keys(modules()) as $module) {
+        $name = module_name($module);
+        
+        module_init($name);
+    }
+}
+
+/**
+ * Call all admin initiator functions for modules
+ */
+function modules_admin_init () {
     foreach (modules() as $module => $content) {
         function_exists($function = "{$module}_module_admin_init") and $function();
     }
+}
+
+/**
+ * Register module
+ * 
+ * @param string $module
+ */
+function module_register ($module, $path) {
+    function_exists($init = "{$module}_module_init") and $init();
+    
+    modules($module, array('path' => $path));
+}
+
+/**
+ * Load module
+ * 
+ * @param string $module
+ */
+function module_load ($module) {
+    if (!file_exists($module)) {
+        throw new Exception("Module '$module' not found!");
+    }
+    
+    require $module;
+    
+    return true;
+}
+
+/**
+ * Call modules init and routes functions
+ * 
+ * @param string $module
+ */
+function module_init ($module) {
+    $name = "{$module}_module_";
+    $init = "{$name}init";
+    
+    function_exists($init) and $init();
 }
 
 /**
@@ -50,77 +97,16 @@ function modules_admin_load () {
 function module_name ($module_path) {
     $directory = dirname($module_path);
     
-    // Forgot function's name, which is like 
-    // strpos, but works on the last occurence
-    $reversed = strrev($directory);
-    $stripped = substr($reversed, 0, strpos($reversed, '/'));
-    
-    return strrev($stripped);
-}
-
-/**
- * Register module
- * 
- * @param string $module
- */
-function module_register ($module, $path) {
-    load_app_file("modules/$path");
-    
-    function_exists($init = "{$module}_module_init") and $init();
-    
-    modules($module, array(
-        'path' => $path
-    ));
-}
-
-/**
- * Load module
- * 
- * @param string $module
- */
-function module_load ($module) {
-    if ($found = file_exists($module)) {
-        require $module;
-    }
-    
-    return $found;
-}
-
-/**
- * Call modules init and routes functions
- * 
- * @param string $module
- */
-function module_init ($module) {
-    $name = "{$module}_module_";
-    
-    $init = "{$name}init";
-    $routes = "{$name}routes";
-    
-    function_exists($init) and $init();
-    function_exists($routes) and $routes();
-}
-
-/**
- * Add module to header admin menu
- * 
- * @param string $module
- * @param array $menu_info
- */
-function module_menu ($module, array $menu_info) {
-    if (!modules($module)) {
-        return false;
-    }
-    
-    modules("menu.$module", $menu_info);
+    return substr($directory, strrpos($directory, '/') + 1);
 }
 
 /**
  * Get path to a module
  * 
  * @param string $module
+ * @param string $file
  * @return string
  */
-function module_path ($module) {
-    return sprintf('app/modules/%s/', $module);
+function module_path ($module, $file = '') {
+    return sprintf('app/modules/%s/%s', $module, $file);
 }

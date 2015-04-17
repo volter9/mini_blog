@@ -40,10 +40,7 @@ function view_auth_action ($errors = '', array $input = array()) {
             'view'   => 'forms/auth',
             'action' => url('#auth_login'),
             'submit' => lang('admin.auth.login'),
-            'form' => array(
-                'username' => 'input',
-                'password' => 'password'
-            )
+            'form'   => auth_form()
         ),
         'data' => array(
             'errors' => $errors,
@@ -90,6 +87,18 @@ function auth_rules () {
     return array(
         'username' => 'required|min_length:4|max_length:20|alpha_dash',
         'password' => 'required|min_length:4|max_length:20|alpha_dash'
+    );
+}
+
+/**
+ * Get auth form description
+ * 
+ * @return array
+ */
+function auth_form () {
+    return array(
+        'username' => 'input',
+        'password' => 'password'
     );
 }
 

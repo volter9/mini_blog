@@ -2,7 +2,7 @@
 
 /**
  * mini_blog is a simple blog CMS written in procedural/functional PHP5 
- * using FFFramework
+ * using mini_framework
  *
  * @author volter9
  * @package mini_blog
@@ -26,11 +26,8 @@ define('MF_APP_DIR' , __DIR__ . '/app/');
 define('MB_VERSION', 'v1.1.1');
 define('MB_DEBUG'  , true);
 
-if (file_exists($install = MF_BASEPATH . 'install/index.php')) {
-    require $install;
-    
-    exit;
-}
+/** Checking if installer exists, if it exists, require it */
+file_exists($install = MF_BASEPATH . 'install/index.php') and (require $install) and exit;
 
 $time = microtime(true);
 

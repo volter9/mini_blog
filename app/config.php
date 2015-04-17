@@ -8,7 +8,7 @@ return array(
     'database' => array(
         'autoload' => true,
         'default'  => array(
-            'host'     => 'localhost',
+            'host'     => '127.0.0.1',
             'user'     => 'root',
             'name'     => 'mini_blog',
             'password' => '',
@@ -37,7 +37,6 @@ return array(
         'models' => array('users'),
         'files'  => array(
             'app/components/loader',
-            'app/components/admin',
             'app/components/modules'
         )
     ),

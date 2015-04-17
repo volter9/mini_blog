@@ -4,7 +4,7 @@
     </h1>
     
     <ul>
-    <?php if ($modules = modules('menu')): ?> 
+    <?php if ($modules = menu()): ?> 
         <?php foreach ($modules as $module): ?> 
         <li>
             <a href="<?php echo $module['url'] ?>">

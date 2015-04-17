@@ -11,8 +11,7 @@
  * @return bool
  */
 function admin_module_exists ($module) {
-    return modules($module)
-        && function_exists("{$module}_module_rules") 
+    return function_exists("{$module}_module_rules") 
         && function_exists("{$module}_module_describe");
 }
 

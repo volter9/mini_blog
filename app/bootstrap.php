@@ -19,8 +19,9 @@ error_reporting(-defined('MB_DEBUG'));
 date_default_timezone_set('America/Los_Angeles');
 mb_internal_encoding('UTF-8');
 
-modules_load();
-
 set_exception_handler(function ($e) {
     !defined('MB_DEBUG') or show_error($e);
 });
+
+modules_load();
+modules_init();
