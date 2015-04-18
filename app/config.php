@@ -8,7 +8,7 @@ return array(
     'database' => array(
         'autoload' => true,
         'default'  => array(
-            'host'     => '127.0.0.1',
+            'host'     => 'localhost',
             'user'     => 'root',
             'name'     => 'mini_blog',
             'password' => '',
@@ -17,7 +17,7 @@ return array(
     ),
     
     'templates' => array(
-        'directory' => MF_BASEPATH . 'templates/',
+        'directory' => base_path('templates/'),
         'template'  => 'minimalism',
         'layout'    => 'main'
     ),
@@ -31,7 +31,7 @@ return array(
     ),
     
     'hooks' => array(
-        MF_APP_DIR . 'bootstrap'
+        app_path('bootstrap')
     ),
     
     'autoload' => array(
