@@ -39,9 +39,6 @@ mini_blog это простая легкая бложная CMS написанн
 
 Также есть второй способ установки mini_blog (ручками). Что бы установить через composer и git, требуеться выполнить следующие шаги:
 
-1. Склонировать данный репозиторий (с флагом --recursive):
-```sh
-git clone --recursive https://github.com/Volter9/mini_blog.git
-```
+1. Склонировать данный репозиторий (с флагом --recursive): `git clone --recursive https://github.com/Volter9/mini_blog.git`
 2. Запустить команду `composer install`
 3. Следовать пунктам 3-5 в секции "Через инсталятор"
