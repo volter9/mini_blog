@@ -11,7 +11,9 @@
 <html>
     <head>
         <?php view('blocks/head') ?>
-        <link href="<?php echo template_path('css/auth.css') ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo asset_path('css/auth.css') ?>" 
+              rel="stylesheet" 
+              type="text/css"/>
     </head>
     
     <body class="auth">

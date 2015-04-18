@@ -1,5 +1,11 @@
+# Waste
 .DS_Store
 .sass-cache
+
+# Composer stuff
 vendor/
 composer.lock
-./api
+
+# Local symlink to
+# mini_framework
+src

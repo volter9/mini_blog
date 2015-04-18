@@ -13,9 +13,6 @@
 ob_start();
 session_start();
 
-ini_set('display_errors', defined('MB_DEBUG'));
-error_reporting(-defined('MB_DEBUG'));
-
 date_default_timezone_set('America/Los_Angeles');
 mb_internal_encoding('UTF-8');
 

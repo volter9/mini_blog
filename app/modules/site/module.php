@@ -11,7 +11,7 @@
 function site_module_init () {
     $path = module_path('site');
     
-    load_language('app', sprintf('%si18n/%s', $path, lang('settings.default')));
+    load_language('app', module_path('site', 'i18n'));
     
     route('GET #index /', "{$path}actions/index");
     route('GET #posts /blog/all/:num?', "{$path}actions/blog:list");

@@ -13,8 +13,7 @@ function view_browse_page ($module, $page) {
     $items = db_browse($module, $fields, $description['per_page'], $page);
     $title = lang("admin.$module.title");
     
-    view('main', array(
-        'view'   => 'basic/view',
+    layout('basic/view', array(
         'title'  => $title,
         'header' => $title,
         'module' => $module,
@@ -43,10 +42,9 @@ function view_modify_page ($module, $action, $url, array $data, array $errors) {
     $title = lang("admin.$module.$action");
     $description = admin_describe_module($module);
     
-    view('main', array(
+    layout('basic/modify', array(
         'title'  => $title,
         'header' => $title,
-        'view'   => 'basic/modify',
         'module' => $module,
         'edit'   => $action === 'edit',
         'scheme' => array(

@@ -18,7 +18,8 @@ return array(
     
     'templates' => array(
         'directory' => MF_BASEPATH . 'templates/',
-        'template'  => 'minimalism'
+        'template'  => 'minimalism',
+        'layout'    => 'main'
     ),
     
     'routing' => array(

@@ -18,8 +18,7 @@ function action_view ($url, $page = 1) {
         return false;
     }
     
-    view('main', array(
-        'view'  => 'posts/index',
+    layout('posts/index', array(
         'title' => $category['title'],
         'posts' => posts_by_category($category['id'], $page),
         'url'   => url('#category', array($category['url']))

@@ -13,8 +13,7 @@ function actions_init () {
  * @param int $page
  */
 function action_list ($page = 1) {
-    view('main', array(
-        'view'  => 'posts/index',
+    layout('posts/index', array(
         'title' => i18n('main'),
         'url'   => url('#posts'),
         'posts' => posts_all($page)
@@ -31,8 +30,7 @@ function action_view ($url = '') {
         return false;
     }
     
-    view('main', array(
-        'view'  => 'posts/post',
+    layout('posts/post', array(
         'title' => $post['title'],
         'post'  => $post
     ));

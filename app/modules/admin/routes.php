@@ -6,7 +6,7 @@
  * @package mini_blog
  */
 
-$path = module_path('admin') . 'actions';
+$path = module_path('admin', 'actions');
 
 /**
  * Index and auth
@@ -65,8 +65,7 @@ bind('router:found', function ($route) {
         strpos($route['id'], '#admin_') === 0 || 
         strpos($route['id'], '#auth_')  === 0
     ) {
-        $default = lang('settings.default');
-        load_language('admin', "app/modules/admin/i18n/$default");
+        load_language('admin', module_path('admin', 'i18n'));
         
         views('templates.template', 'admin');
         modules_admin_init();

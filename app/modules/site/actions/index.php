@@ -14,8 +14,7 @@ function actions_init () {
  * There's last few blog posts
  */
 function action_index () {
-    view('main', array(
-        'view'  => 'posts/index',
+    layout('posts/index', array(
         'title' => i18n('main'),
         'url'   => url('#posts'),
         'posts' => posts_all()

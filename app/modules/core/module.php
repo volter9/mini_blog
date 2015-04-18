@@ -21,7 +21,7 @@ function core_modules () {
 function core_module_admin_init () {
     $default = lang('settings.default');
     
-    lang('admin', load_app_file("modules/core/i18n/$default"));
+    load_language('admin', module_path('core', 'i18n'));
     
     foreach (core_modules() as $module) {
         load_php(module_path('core', "models/$module"));

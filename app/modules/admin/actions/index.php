@@ -59,8 +59,8 @@ function action_login () {
     validation_init(lang('admin.auth.fields'), i18n('messages'));
     
     $user = user_for_auth(
-        md_get($input, 'username'), 
-        md5(md_get($input, 'password'))
+        array_get($input, 'username'), 
+        md5(array_get($input, 'password'))
     );
     
     if (validate($input, auth_rules()) && $user) {

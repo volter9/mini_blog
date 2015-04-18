@@ -2,20 +2,11 @@
 
 /**
  * mini_blog is a simple blog CMS written in procedural/functional PHP5 
- * using mini_framework
+ * using mini_framework framework
  *
  * @author volter9
  * @package mini_blog
  */
-
-/**
- * mini_framework constants
- * 
- * @const string MF_BASEPATH Base path of the CMS
- * @const string MF_APP_DIR Path of app dir (app/)
- */
-define('MF_BASEPATH', __DIR__ . '/');
-define('MF_APP_DIR' , __DIR__ . '/app/');
 
 /**
  * mini_blog constants
@@ -26,17 +17,27 @@ define('MF_APP_DIR' , __DIR__ . '/app/');
 define('MB_VERSION', 'v1.1.1');
 define('MB_DEBUG'  , true);
 
-/** Checking if installer exists, if it exists, require it */
-file_exists($install = MF_BASEPATH . 'install/index.php') and (require $install) and exit;
+/**
+ * mini_framework constants
+ * 
+ * @const string MF_BASEPATH Base path of the CMS
+ * @const string MF_APP_DIR Path of app dir (app/)
+ */
+define('MF_BASEPATH', __DIR__ . '/');
+define('MF_APP_DIR' , __DIR__ . '/app/');
+
+ini_set('display_errors', defined('MB_DEBUG'));
+error_reporting(-defined('MB_DEBUG'));
 
 $time = microtime(true);
+$install = MF_BASEPATH . 'install/index.php';
+
+file_exists($install) and (require $install) and exit;
 
 require 'vendor/autoload.php';
 
-/** Boot the app */
 app_boot(sprintf('%sconfig', MF_APP_DIR));
 
-/** Showing debug information */
 defined('MB_DEBUG') and printf(
     '<!-- Execution time: %.5f, Memory usage: %s, URL: %s -->', 
     microtime(true) - $time, 
