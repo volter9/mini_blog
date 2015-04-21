@@ -39,7 +39,7 @@ body.auth {
             }
         }
         
-        form {
+        #auth_form {
             @extend .clearfix;
             
             border: 1px solid #ddd;

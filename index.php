@@ -62,8 +62,9 @@ app_boot(sprintf('%sconfig', MF_APP_DIR));
  * - Current routing URL
  */
 defined('MB_DEBUG') and printf(
-    '<!-- Execution time: %.5f, Memory usage: %s, URL: %s -->', 
+    '<!-- Execution time: %.5f, Memory usage: %s, URL: %s, files: %s -->', 
     microtime(true) - $time, 
     memory_get_usage(true), 
-    get_url()
+    get_url(),
+    count(get_included_files())
 );

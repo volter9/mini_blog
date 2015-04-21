@@ -9,7 +9,7 @@
 $path = module_path('admin', 'actions');
 
 /**
- * Index and auth
+ * Index and login form page
  */
 route('GET #admin_index /admin', "$path/index");
 route('GET #auth_admin /admin/auth', "$path/index:auth");
@@ -57,14 +57,11 @@ route(
  * Check for unauthorized users and set admin template
  */
 bind('router:found', function ($route) {
-    if (strpos($route['id'], '#admin_') !== false && !users('authorized')) {
+    if (strpos($route['id'], '#admin_') === 0 && !users('authorized')) {
         redirect('#auth_admin');
     }
     
-    if (
-        strpos($route['id'], '#admin_') === 0 || 
-        strpos($route['id'], '#auth_')  === 0
-    ) {
+    if (in_array(substr($route['id'], 0, 6), array('#admin', '#auth_'))) {
         load_language('admin', module_path('admin', 'i18n'));
         
         views('templates.template', 'admin');

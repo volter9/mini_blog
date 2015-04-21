@@ -4,7 +4,7 @@
  * Initialize action
  */
 function actions_init () {
-    $path = module_path('site', 'models', true);
+    $path = module_path('blog', 'models/site', true);
     
     load_model('categories', $path);
     load_model('posts', $path);

@@ -57,16 +57,18 @@ function settings_view ($group, array $input = array(), array $errors = array())
     
     layout('settings/index', array(
         'title'  => lang('admin.settings.title'),
+        
         'scheme' => array(
             'view'   => 'forms/admin',
             'submit' => lang('admin.admin.add'),
             'action' => url('#admin_settings_post', array($group)),
             'form'   => settings($group)
         ),
+        
         'data' => array(
-            'errors'  => $errors,
-            'input'   => $input,
-            'field'   => lang("admin.settings.groups.$group")
+            'errors' => $errors,
+            'input'  => $input,
+            'field'  => lang("admin.settings.groups.$group")
         )
     ));
 }

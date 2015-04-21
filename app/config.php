@@ -67,7 +67,8 @@ return array(
         'models' => array(),
         'files'  => array(
             'app/components/loader',
-            'app/components/modules'
+            'app/components/modules',
+            'app/components/menu'
         )
     ),
     
@@ -98,9 +99,9 @@ return array(
          */
         'modules' => array(
             'admin', 
+            'users',
             'settings',
-            'core',
-            'site'
+            'blog'
         ),
         
         /**

@@ -4,7 +4,7 @@
  * Initialize action
  */
 function actions_init () {
-    load_model('posts', module_path('site', 'models', true));
+    load_model('posts', module_path('blog', 'models/site', true));
 }
 
 /**

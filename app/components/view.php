@@ -47,12 +47,14 @@ function view_modify_page ($module, $action, $url, array $data, array $errors) {
         'header' => $title,
         'module' => $module,
         'edit'   => $action === 'edit',
+        
         'scheme' => array(
             'view'   => 'forms/admin',
             'submit' => lang("admin.admin.$action"),
             'action' => $url,
             'form'   => $description['form']
         ),
+        
         'data' => array(
             'errors' => $errors,
             'input'  => $data,

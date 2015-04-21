@@ -25,23 +25,26 @@ function action_auth () {
 /**
  * Admin authorization view
  * 
- * @param Closure $config
  * @param array $errors
+ * @param array $error
  * @param array $input
  */
-function view_auth_action ($errors = '', array $input = array()) {
+function view_auth_action ($errors = '', $error = false, array $input = array()) {
     if (users('authorized')) {
         redirect('#admin_index');
     }
     
     view('auth', array(
         'title' => 'Login',
+        'error' => $error,
+        
         'scheme' => array(
-            'view'   => 'forms/auth',
+            'view'   => 'forms/simple',
             'action' => url('#auth_login'),
             'submit' => lang('admin.auth.login'),
             'form'   => auth_form()
         ),
+        
         'data' => array(
             'errors' => $errors,
             'input'  => $input,
@@ -70,12 +73,9 @@ function action_login () {
     }
     
     $errors = validation_errors();
+    $error = !$user && !$errors ? i18n('messages.no_user') : false;
     
-    if (!$errors && !$user) {
-        $errors['error'] = !$user ? i18n('messages.no_user') : false;
-    }
-    
-    view_auth_action($errors, $input);
+    view_auth_action($errors, $error, $input);
 }
 
 /**

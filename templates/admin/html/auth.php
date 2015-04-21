@@ -20,7 +20,15 @@
         <section class="wrapper">
             <h1>mini_blog</h1>
             
-            <?php build_form($scheme, $data) ?> 
+            <div id="auth_form">
+                <?php if ($error): ?>
+                <div class="errors">
+                    <p><?php echo $error ?></p>
+                </div>
+                <?php endif; ?>
+                
+                <?php build_form($scheme, $data) ?> 
+            </div>
             
             <p>
                 <a href="<?php echo url('#index') ?>">
