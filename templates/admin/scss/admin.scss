@@ -12,8 +12,5 @@
 // Admin modules
 
 @import 'modules/actions/view';
+@import 'modules/actions/settings';
 @import 'modules/actions/modify';
-
-body {
-    padding-top: 50px;
-}

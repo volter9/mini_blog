@@ -3,10 +3,8 @@
 /**
  * Module system
  * 
- * @indev
  * @package mini_blog
  */
-
 function modules ($key = null, $value = null) {
     static $repo = null;
     $repo or $repo = repo();
@@ -21,24 +19,17 @@ function modules ($key = null, $value = null) {
  * 
  * Load all modules
  */
-function modules_load () {
-    $modules = glob(MF_APP_DIR . 'modules/*/module.php');
-    
-    foreach ($modules as $module) {
-        $name = module_name($module);
+function modules_load (array $modules) {
+    foreach ($modules as $key => $module) {
+        $file = app_path("modules/$module/module");
         
-        module_load($module) and module_register($name, $module);
-    }
-}
-
-/**
- * Initialize all loaded modules
- */
-function modules_init () {
-    foreach (array_keys(modules()) as $module) {
-        $name = module_name($module);
+        if (!file_exists("$file.php")) {
+            continue;
+        }
         
-        module_init($name);
+        load_php($file);
+        module_register($module, $file);
+        module_init($module);
     }
 }
 
@@ -107,6 +98,8 @@ function module_name ($module_path) {
  * @param string $file
  * @return string
  */
-function module_path ($module, $file = '') {
-    return sprintf('app/modules/%s/%s', $module, $file);
+function module_path ($module, $file = '', $base = false) {
+    $path = sprintf('modules/%s/%s', $module, $file);
+    
+    return $base ? $path : app_path($path);
 }

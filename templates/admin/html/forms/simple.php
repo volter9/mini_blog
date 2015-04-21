@@ -1,4 +1,4 @@
-<form action="<?php echo $scheme['action'] ?>" method="POST">
+<form class="simple" action="<?php echo $scheme['action'] ?>" method="POST">
     <?php foreach ($scheme['form'] as $field => $type): ?>
         <label>
             <?php build_element(

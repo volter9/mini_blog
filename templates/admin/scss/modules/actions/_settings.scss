@@ -1,4 +1,4 @@
-article.modify {
+article.settings {
     @extend .fluid;
     
     margin-top: 20px;
@@ -7,11 +7,6 @@ article.modify {
         font-weight: normal;
         
         margin-bottom: 20px;
-        
-        > .right .button {
-            font-size: 12px;
-            vertical-align: top;
-        }
     }
     
     form {

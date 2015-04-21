@@ -32,6 +32,12 @@ function users_module_rules () {
     );
 }
 
+/**
+ * Filter user module
+ * 
+ * @param array $data
+ * @return array $data
+ */
 function users_module_filter (array $data) {
     $data['password'] = md5($data['password']);
     

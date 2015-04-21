@@ -8,10 +8,12 @@ return array(
         'home'    => 'Домой',
         'title'   => 'mini_blog админка',
         'go_back' => 'назад',
-        'empty'   => 'Тут пока что ничего нету'
+        'empty'   => 'Тут пока что ничего нету',
+        'none'    => 'Пусто'
     ),
     
     'auth' => array(
+        'hello'   => 'Привет',
         'signout' => 'Выйти',
         'login'   => 'Войти',
         'fields'  => array(

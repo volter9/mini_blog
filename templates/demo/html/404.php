@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>404 - Not Found</title>
-        <link href="<?php echo template_path('css/main.css') ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo asset_path('css/main.css') ?>" rel="stylesheet" type="text/css"/>
     </head>
     
     <body>

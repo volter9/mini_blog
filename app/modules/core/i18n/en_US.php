@@ -60,6 +60,7 @@ return array(
         
         'tooltips' => array(
             'username' => 'User name (login)',
+            'password' => 'User\'s password',
             'mail'     => 'User\'s e-mail',
             'group_id' => 'User\'s permission group'
         )

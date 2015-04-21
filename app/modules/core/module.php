@@ -31,6 +31,7 @@ function core_module_admin_init () {
             lang("admin.$module.title"), 
             url('#admin_view', array($module))
         );
+
         
         menu_add_subitem(
             $module, 

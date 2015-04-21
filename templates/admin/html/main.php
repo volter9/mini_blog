@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-<?php view('blocks/head') ?> 
+        <?php view('blocks/head') ?> 
         
         <link href="<?php echo asset_path('css/admin.css') ?>" 
               rel="stylesheet" 
@@ -16,10 +16,12 @@
     </head>
     
     <body>
-<?php view('blocks/header') ?> 
+        <?php view('blocks/header') ?> 
 
-<?php view($view) ?> 
+        <div id="content">
+            <?php view($view) ?> 
 
-<?php view('blocks/footer') ?> 
+            <?php view('blocks/footer') ?> 
+        </div>
     </body>
 </html>

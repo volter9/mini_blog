@@ -8,10 +8,12 @@ return array(
         'home'    => 'Home',
         'title'   => 'mini_blog admin',
         'go_back' => 'go back',
-        'empty'   => 'Nothing yet here'
+        'empty'   => 'Nothing yet here',
+        'none'    => 'None'
     ),
     
     'auth' => array(
+        'hello'   => 'Hello',
         'signout' => 'Sign out',
         'login'   => 'Log in',
         'fields'  => array(

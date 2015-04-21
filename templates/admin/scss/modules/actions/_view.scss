@@ -1,13 +1,12 @@
-body > article.view {
+article.view {
     @extend .fluid;
     
-    margin-top: 40px;
+    margin-top: 20px;
     
     > h1 {
         font-weight: normal;
         
         margin-bottom: 20px;
-        padding-bottom: 16px;
         
         > .right .button {
             margin-top: 0px;
@@ -69,7 +68,6 @@ body > article.view {
     }
     
     .pagination {
-        // font-size: 0px;
         text-align: center;
         
         margin-top: 30px;
@@ -90,5 +88,63 @@ body > article.view {
         display: block;
         margin-bottom: 10px;
         width: 100%;
+    }
+    
+    .posts {
+        font-size: 0px;
+        
+        li {
+            border: 1px solid #e8e8e8;
+            border-radius: 10px;
+            font-size: 14px;
+            vertical-align: top;
+            
+            display: inline-block;
+            margin-bottom: 15px;
+            width: 31%;
+            
+            &:nth-child(3n + 2) {
+                margin-left: 3.5%;
+                margin-right: 3.5%;
+            }
+            
+            .header {
+                border-bottom: 1px solid #ddd;
+                line-height: 20px;
+                
+                padding: 8px;
+                
+                .left {
+                    width: 70%;
+                    
+                    a {
+                        color: #888;
+                        
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+                
+                .button {
+                    font-size: 10px;
+                    line-height: 100%;
+                    
+                    margin: 0px;
+                    padding: 4px;
+                    width: auto;
+                }
+            }
+            
+            p {
+                color: #666;
+                font-size: 12px;
+                line-height: 160%;
+                
+                padding: 8px;
+                padding-bottom: 0px;
+                margin-bottom: 16px;
+            }
+        }
     }
 }

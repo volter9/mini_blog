@@ -4,68 +4,68 @@ body > header {
     position: fixed;
     top: 0px;
     left: 0px;
-    right: 0px;
+    bottom: 0px;
     
     background-color: rgba(255, 255, 255, 0.85);
-    border-bottom: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
+    
+    width: 280px;
     
     h1 {
-        font-size: 14px;
+        font-size: 28px;
         font-weight: normal;
+        text-align: center;
         
-        float: left;
         padding: 20px;
         
         a {
             color: #000;
             
+            padding-bottom: 4px;
+            
             &:hover {
                 color: #aaa;
-                text-decoration: underline;
             }
         }
+    }
+    
+    .profile {
+        color: #aaa;
+        font-size: 12px;
+        line-height: 140%;
+        text-transform: lowercase;
         
-        small {
-            font-size: 50%;
+        padding: 10px 20px;
+        
+        a {
+            color: #aaa;
         }
     }
     
     > ul {
         @extend .clearfix;
-        
-        float: right;
-        margin-left: 20px;
-        
+                
         > li {
-            font-size: 14px;
-            text-transform: lowercase;
+            background-color: #f9f9f9;
+            font-size: 12px;
+            // text-transform: lowercase;
             
-            float: left;
+            margin-bottom: 2px;
             
             a {
-                color: #000;
+                color: #777;
                 
                 display: block;
-                padding: 20px 20px;
+                padding: 18px;
                 
                 &:hover {
                     color: #aaa;
                 }
             }
             
-            &.separator {
-                border-left: 1px solid #eee;
-            }
-            
             ul {
                 background-color: #fff;
-                border: 1px solid #eee;
-                
-                position: absolute;
-                
-                display: none;
-                // margin-top: 10px;
-                padding: 0px 10px;
+                display: block;
                 
                 li {
                     border-bottom: 1px solid #eee;
@@ -77,17 +77,13 @@ body > header {
                     
                     > a {
                         display: block;
-                        padding: 10px 0px;
+                        padding: 10px 20px;
                     }
                 }
             }
             
             &:hover {
-                background-color: rgba(0, 0, 0, 0.0125);
-                
-                > ul {
-                    display: block;
-                }
+                background-color: rgba(0, 0, 0, 0.01);
             }
         }
     }

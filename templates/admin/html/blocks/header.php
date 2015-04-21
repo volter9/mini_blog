@@ -3,8 +3,27 @@
         <a href="<?php echo url('#admin_index') ?>">mini_blog</a>
     </h1>
     
+    <div class="clearfix profile">
+        <div class="left">
+            <?php echo lang('admin.auth.hello') ?>, 
+            <?php echo users('user.username') ?>
+        </div>
+        
+        <div class="right">
+            <a href="<?php echo url('#auth_signout') ?>">
+                <?php echo lang('admin.auth.signout') ?> 
+            </a>
+        </div>
+    </div>
+    
     <ul>
-    <?php if ($modules = menu()): ?> 
+        <li>
+            <a href="<?php echo url('#index') ?>">
+                <?php echo lang('admin.admin.home') ?> 
+            </a>
+        </li>
+    
+    <?php if (function_exists('menu') && $modules = menu()): ?> 
         <?php foreach ($modules as $module): ?> 
         <li>
             <a href="<?php echo $module['url'] ?>">
@@ -24,16 +43,5 @@
         </li>
         <?php endforeach; ?> 
     <?php endif; ?> 
-        
-        <li class="separator">
-            <a href="<?php echo url('#index') ?>">
-                <?php echo lang('admin.admin.home') ?> 
-            </a>
-        </li>
-        <li>
-            <a href="<?php echo url('#auth_signout') ?>">
-                <?php echo lang('admin.auth.signout') ?> 
-            </a>
-        </li>
     </ul>
 </header>

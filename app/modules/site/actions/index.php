@@ -4,8 +4,10 @@
  * Initialize action
  */
 function actions_init () {
-    load_model('categories');
-    load_model('posts');
+    $path = module_path('site', 'models', true);
+    
+    load_model('categories', $path);
+    load_model('posts', $path);
 }
 
 /**

@@ -36,9 +36,8 @@ a {
 }
 
 .fluid {
-    margin-left: auto;
-    margin-right: auto;
-    width: $wrapper-width;
+    margin-left: 300px;
+    margin-right: 20px;
 }
 
 body > article a {
@@ -92,4 +91,8 @@ body > article a {
             border-color: lighten(#f8547e, 10%);
         }
     }
+}
+
+#content {
+    padding: 20px;
 }

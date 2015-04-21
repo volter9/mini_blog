@@ -1,4 +1,4 @@
-<form action="<?php echo $scheme['action'] ?>" method="POST">
+<form class="auth" action="<?php echo $scheme['action'] ?>" method="POST">
     <?php if (!empty($data['errors']['error'])): ?> 
     <div class="errors">
         <p><?php echo $data['errors']['error'] ?></p>

@@ -12,6 +12,7 @@ function site_module_init () {
     $path = module_path('site');
     
     load_language('app', module_path('site', 'i18n'));
+    load_model('users', module_path('site', 'models', true));
     
     route('GET #index /', "{$path}actions/index");
     route('GET #posts /blog/all/:num?', "{$path}actions/blog:list");

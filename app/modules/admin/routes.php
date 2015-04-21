@@ -26,7 +26,7 @@ route('GET #auth_signout /admin/auth/signout', "$path/index:signout");
  * - Remove an item
  */
 route(
-    'GET #admin_view /admin/:any/:num?', 
+    'GET #admin_view /admin/:any/view/:num?', 
     "$path/module:view"
 );
 
