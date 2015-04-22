@@ -1,19 +1,4 @@
 article.view {
-    @extend .fluid;
-    
-    margin-top: 20px;
-    
-    > h1 {
-        font-weight: normal;
-        
-        margin-bottom: 20px;
-        
-        > .right .button {
-            margin-top: 0px;
-            margin-bottom: 0px;
-        }
-    }
-    
     .columns div table {
         td.edit {
             text-align: right;

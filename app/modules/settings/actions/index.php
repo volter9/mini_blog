@@ -66,9 +66,10 @@ function settings_view ($group, array $input = array(), array $errors = array())
         ),
         
         'data' => array(
-            'errors' => $errors,
-            'input'  => $input,
-            'field'  => lang("admin.settings.groups.$group")
+            'errors'  => $errors,
+            'input'   => $input,
+            'field'   => lang("admin.settings.groups.$group.fields"),
+            'tooltip' => lang("admin.settings.groups.$group.tooltips")
         )
     ));
 }

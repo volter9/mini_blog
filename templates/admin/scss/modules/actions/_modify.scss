@@ -1,19 +1,5 @@
-article.modify {
-    @extend .fluid;
-    
-    margin-top: 20px;
-    
-    > h1 {
-        font-weight: normal;
-        
-        margin-bottom: 20px;
-        
-        > .right .button {
-            font-size: 12px;
-            vertical-align: top;
-        }
-    }
-    
+article.modify,
+article.settings {
     form {
         @extend .clearfix;
         
@@ -27,13 +13,53 @@ article.modify {
             outline: none;
         }
         
-        p.error {
-            color: #e87373;
-            font-size: 12px;
-            line-height: 160%;
+        .field {
+            margin-bottom: 30px;
             
-            display: block;
-            padding: 5px 0px;
+            .field-name {
+                label {
+                    color: #444;
+                    font-size: 16px;
+                    line-height: 140%;
+                    
+                    display: block;
+                    margin-bottom: 10px;
+                    padding-top: 10px;
+                }
+                
+                padding-right: 10px;
+                width: 20%;
+                
+                .tooltip {
+                    color: #888;
+                    font-size: 12px;
+                    line-height: 140%;
+                    
+                    display: block;
+                    
+                    a {
+                        color: #88c;
+                        text-decoration: underline;
+                        
+                        &:hover {
+                            color: #000;
+                        }
+                    }
+                }
+            }
+            
+            .element {
+                width: 80%;
+                
+                p.error {
+                    color: #e87373;
+                    font-size: 12px;
+                    line-height: 160%;
+                    
+                    display: block;
+                    padding: 5px 0px;
+                }
+            }
         }
         
         input, 
@@ -49,28 +75,6 @@ article.modify {
             
             &:focus ~ div.tooltip {
                 opacity: 1;
-            }
-        }
-        
-        div.field-name {
-            color: #444;
-            font-size: 16px;
-            line-height: 19px;
-            
-            padding: 8px 0px;
-        }
-        
-        span.tooltip {
-            color: #888;
-            font-size: 12px;
-            
-            a {
-                color: #88c;
-                text-decoration: underline;
-                
-                &:hover {
-                    color: #000;
-                }
             }
         }
         
@@ -95,7 +99,8 @@ article.modify {
             border: 1px solid #ccc;
             font-size: 12px;
             
-            width: 25%;
+            margin-top: 10px;
+            width: 50%;
         }
         
         button {

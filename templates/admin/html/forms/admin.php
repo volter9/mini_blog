@@ -1,20 +1,19 @@
 <form class="admin" action="<?php echo $scheme['action'] ?>" method="POST">
     <?php foreach ($scheme['form'] as $field => $type): ?> 
-        <div class="clearfix">
-            <label for="form_<?php echo $field ?>">
-                <div class="field-name">
+        <div class="clearfix field">
+            <div class="left field-name">
+                <label for="form_<?php echo $field ?>">                
                     <?php echo $data['field'][$field] ?> 
-                    
-                    <?php if (isset($data['tooltip'][$field])): ?> 
-                    <span class="tooltip">
-                        &dash; 
-                        <?php echo $data['tooltip'][$field] ?> 
-                    </span>
-                    <?php endif; ?> 
-                </div>
-            </label>
+                </label>
+                
+                <?php if (isset($data['tooltip'][$field])): ?> 
+                <span class="tooltip">
+                    <?php echo $data['tooltip'][$field] ?> 
+                </span>
+                <?php endif; ?> 
+            </div>
             
-            <div class="element">
+            <div class="right element">
                 <?php build_element(
                     $type, array_merge(array('name' => $field), pluck($data, $field))
                 ) ?> 
