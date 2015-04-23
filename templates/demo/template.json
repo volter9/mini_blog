@@ -3,9 +3,7 @@
     "author": "volter9",
     "description": "mini_blog demo template",
     "version": "v1.0",
-    "type": "client",
+    "type": "template",
     
-    "require": [
-        "admin"
-    ]
+    "require": ["admin"]
 }

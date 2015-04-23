@@ -2,7 +2,7 @@
     <?php foreach ($scheme['form'] as $field => $type): ?> 
         <div class="clearfix field">
             <div class="left field-name">
-                <label for="form_<?php echo $field ?>">                
+                <label for="form_<?php echo $field ?>">
                     <?php echo $data['field'][$field] ?> 
                 </label>
                 
@@ -14,9 +14,10 @@
             </div>
             
             <div class="right element">
-                <?php build_element(
-                    $type, array_merge(array('name' => $field), pluck($data, $field))
-                ) ?> 
+                <?php build_element($type, array_merge(
+                    array('name' => $field), 
+                    array_transfer($data, $field)
+                )) ?> 
                 
                 <?php if (isset($data['errors'][$field])): ?> 
                 <p class="error">

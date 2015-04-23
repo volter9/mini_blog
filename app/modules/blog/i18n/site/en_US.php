@@ -31,6 +31,7 @@ return array(
         'valid_mail' => 'Field "%s" should be a valid email!',
         'alpha_dash' => 'Field "%s" should only contain letters, digits, dash and underscore!',
         'html'       => 'Field "%s" should only contain safe HTML tags!',
+        'no_html'    => 'Field "%s" should not contain any HTML tags!',
         
         /**
          * Complex messages

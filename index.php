@@ -46,7 +46,7 @@ file_exists($install) and (require $install) and exit;
  * Requiring composer's autoload and booting the
  * application
  */
-require 'vendor/autoload.php';
+require 'src/app.php';
 
 app_boot(sprintf('%sconfig', MF_APP_DIR));
 

@@ -9,7 +9,7 @@ function settings_module_init () {
     load_model('settings', module_path('settings', 'models', true));
     
     lang('settings.default', setting('default.language'));
-    views('templates.template', setting('default.template'));
+    views('templates.template', setting('default.template'));   
     
     route('GET #admin_settings /admin/settings/:any?', "$path/index");
     route('POST #admin_settings_post /admin/settings/:any?', "$path/index:save");

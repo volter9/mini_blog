@@ -9,6 +9,7 @@ function categories_module_describe () {
     return array(
         'fields' => 'title, url, description',
         'per_page' => 8,
+        
         'form' => array(
             'title' => 'input',
             'url' => 'input',

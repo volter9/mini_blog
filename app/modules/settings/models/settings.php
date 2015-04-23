@@ -9,11 +9,18 @@
  */
 function settings ($key = null, $value = null) {
     static $repo = null;
+    
     $repo or $repo = repo();
     
     return $repo($key, $value);
 }
 
+/**
+ * Get setting by key
+ * 
+ * @param string $key
+ * @return mixed
+ */
 function setting ($key) {
     return settings("all_settings.$key");
 }
@@ -28,7 +35,9 @@ function settings_init () {
         'language' => 'select:langauges'
     ));
     
-    settings('all_settings.default', settings_get('default'));
+    $default = settings_get('default');
+    
+    settings('all_settings.default', $default);
 }
 
 /**
@@ -38,6 +47,10 @@ function settings_init () {
  * @return array|bool
  */
 function settings_get ($group) {
+    if ($settings = setting($group)) {
+        return $settings;
+    }
+    
     $settings = db_select('
         SELECT id, name, `value`
         FROM settings
@@ -45,12 +58,15 @@ function settings_get ($group) {
         array($group)
     );
     
-    $settings = $settings ? $settings : array();
+    if ($settings) {
+        $settings = array_join($settings, 'name', 'value');
+        
+        settings("all_settings.$group", $settings);
+        
+        return $settings;
+    }
     
-    return array_combine(
-        pluck($settings, 'name'),
-        pluck($settings, 'value')
-    );
+    return array();
 }
 
 /**

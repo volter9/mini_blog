@@ -10,6 +10,7 @@ function posts_module_describe () {
         'fields' => 'title, url, description',
         'per_page' => 9,
         'template' => 'basic/views/posts',
+        
         'form' => array(
             'title' => 'input',
             'url' => 'input',

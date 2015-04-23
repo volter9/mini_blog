@@ -60,7 +60,7 @@ function settings_view ($group, array $input = array(), array $errors = array())
         
         'scheme' => array(
             'view'   => 'forms/admin',
-            'submit' => lang('admin.admin.add'),
+            'submit' => lang('admin.admin.save'),
             'action' => url('#admin_settings_post', array($group)),
             'form'   => settings($group)
         ),

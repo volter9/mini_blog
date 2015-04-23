@@ -14,14 +14,12 @@ function view_browse_page ($module, $page) {
     $title = lang("admin.$module.title");
     
     layout('basic/view', array(
-        'title'  => $title,
-        'header' => $title,
-        'module' => $module,
-        'data'   => $items['items'],
-        'pages'  => $items['pages'],
-        'template' => isset($description['template'])
-            ? $description['template']
-            : 'basic/views/table'
+        'title'    => $title,
+        'header'   => $title,
+        'module'   => $module,
+        'data'     => $items['items'],
+        'pages'    => $items['pages'],
+        'template' => array_get($description, 'template', 'basic/views/table')
     ));
 }
 

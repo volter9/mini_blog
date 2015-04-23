@@ -2,7 +2,7 @@
     <?php foreach ($scheme['form'] as $field => $type): ?>
         <label>
             <?php build_element(
-                $type, array_merge(array('name' => $field), pluck($data, $field))
+                $type, array_merge(array('name' => $field), array_transfer($data, $field))
             ) ?> 
             
             <?php if (isset($data['errors'][$field])): ?> 

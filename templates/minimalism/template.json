@@ -1,9 +1,9 @@
 {
-    "name": "minimalism",
+    "name": "mini_malism",
     "author": "volter9",
-    "description": "mini_blog default minimalistic template",
+    "description": "mini_blog default template",
     "version": "v1.0",
-    "type": "client",
+    "type": "template",
     
     "require": [
         "admin"

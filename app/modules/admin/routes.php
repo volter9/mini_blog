@@ -57,11 +57,13 @@ route(
  * Check for unauthorized users and set admin template
  */
 bind('router:found', function ($route) {
-    if (strpos($route['id'], '#admin_') === 0 && !users('authorized')) {
+    $id = $route['id'];
+    
+    if (starts_with($id, '#admin_') && !users('authorized')) {
         redirect('#auth_admin');
     }
     
-    if (in_array(substr($route['id'], 0, 6), array('#admin', '#auth_'))) {
+    if (starts_with($id, '#admin_') || starts_with($id, '#auth_')) {
         load_language('admin', module_path('admin', 'i18n'));
         
         views('templates.template', 'admin');

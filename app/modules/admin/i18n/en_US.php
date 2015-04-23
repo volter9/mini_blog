@@ -5,6 +5,7 @@ return array(
         'add'     => 'Add',
         'edit'    => 'Edit',
         'remove'  => 'Remove',
+        'save'    => 'Save',
         'home'    => 'Home',
         'title'   => 'mini_blog admin',
         'go_back' => 'go back',

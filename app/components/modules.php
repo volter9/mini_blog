@@ -28,6 +28,7 @@ function modules_load (array $modules) {
         }
         
         load_php($file);
+        
         module_register($module, $file);
         module_init($module);
     }
@@ -48,8 +49,6 @@ function modules_admin_init () {
  * @param string $module
  */
 function module_register ($module, $path) {
-    function_exists($init = "{$module}_module_init") and $init();
-    
     modules($module, array('path' => $path));
 }
 
@@ -74,10 +73,7 @@ function module_load ($module) {
  * @param string $module
  */
 function module_init ($module) {
-    $name = "{$module}_module_";
-    $init = "{$name}init";
-    
-    function_exists($init) and $init();
+    function_exists($init = "{$module}_module_init") and $init();
 }
 
 /**
@@ -88,7 +84,7 @@ function module_init ($module) {
 function module_name ($module_path) {
     $directory = dirname($module_path);
     
-    return substr($directory, strrpos($directory, '/') + 1);
+    return after($directory, '/');
 }
 
 /**

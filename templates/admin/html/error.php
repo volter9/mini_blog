@@ -9,7 +9,7 @@
 <html>
     <head>
         <title>Error - Exception was thrown</title>
-        <link href="<?php echo asset_path('css/error.css') ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo asset_url('css/error.css') ?>" rel="stylesheet" type="text/css"/>
     </head>
     
     <body>

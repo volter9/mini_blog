@@ -10,9 +10,11 @@
     <head>
         <?php view('blocks/head') ?> 
         
-        <link href="<?php echo asset_path('css/admin.css') ?>" 
+        <link href="<?php echo asset_url('css/admin.css') ?>" 
               rel="stylesheet" 
               type="text/css"/>
+        
+        <?php emit('admin:head') ?> 
     </head>
     
     <body>

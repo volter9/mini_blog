@@ -32,10 +32,10 @@ return array(
             );
         };
         
-        $templates = array_map($callback, $templates);
-        
-        return array_filter($templates, function ($v) {
-            return strpos($v['title'], '.') !== 0;
+        $templates = array_filter($templates, function ($v) {
+            return strpos($v, '.') !== 0;
         });
+        
+        return array_map($callback, $templates);
     }
 );
