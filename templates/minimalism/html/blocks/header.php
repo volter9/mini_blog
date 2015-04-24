@@ -2,7 +2,7 @@
     <div class="fluid">
         <h1>
             <a href="<?php echo url('#index') ?>">
-                <?php echo ($name = setting('default.sitename')) ? $name : i18n('header.title') ?> 
+                <?php echo storage('settings.default.sitename') ?> 
             </a>
         </h1>
     </div>

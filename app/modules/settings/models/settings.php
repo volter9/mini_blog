@@ -16,16 +16,6 @@ function settings ($key = null, $value = null) {
 }
 
 /**
- * Get setting by key
- * 
- * @param string $key
- * @return mixed
- */
-function setting ($key) {
-    return settings("all_settings.$key");
-}
-
-/**
  * Initalize settings
  */
 function settings_init () {
@@ -35,9 +25,7 @@ function settings_init () {
         'language' => 'select:langauges'
     ));
     
-    $default = settings_get('default');
-    
-    settings('all_settings.default', $default);
+    storage('settings.default', settings_get('default'));
 }
 
 /**
@@ -47,7 +35,7 @@ function settings_init () {
  * @return array|bool
  */
 function settings_get ($group) {
-    if ($settings = setting($group)) {
+    if ($settings = storage("settings.$group")) {
         return $settings;
     }
     
@@ -71,6 +59,10 @@ function settings_get ($group) {
 
 /**
  * Save settings
+ * 
+ * @param string $group
+ * @param array $data
+ * @return bool|int
  */
 function settings_save ($group, array $data) {
     $result = true;

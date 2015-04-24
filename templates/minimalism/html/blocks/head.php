@@ -6,7 +6,7 @@
  */
 ?>
 <meta charset="UTF-8"/>
-<title><?php echo $title ?> - <?php echo ($name = setting('default.sitename')) ? $name : i18n('header.title') ?></title>
+<title><?php echo $title ?> - <?php echo storage('settings.default.sitename') ?></title>
 
 <link href="<?php echo asset_url('css/main.css') ?>" rel="stylesheet" type="text/css"/>
 <link href="<?php echo asset_url('js/styles/github.css') ?>" rel="stylesheet" type="text/css"/>
