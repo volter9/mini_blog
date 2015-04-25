@@ -19,23 +19,5 @@ return array(
                 'value' => 'ru_RU'
             )
         );
-    },
-    
-    'templates' => function () {
-        $config = storage('config');
-        $templates = scandir($config('templates.directory'));
-        
-        $callback = function ($v) {
-            return array(
-                'title' => $v,
-                'value' => $v
-            );
-        };
-        
-        $templates = array_filter($templates, function ($v) {
-            return strpos($v, '.') !== 0;
-        });
-        
-        return array_map($callback, $templates);
     }
 );

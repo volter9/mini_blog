@@ -101,7 +101,9 @@ return array(
             'admin', 
             'users',
             'settings',
-            'blog'
+            'blog',
+            'landing',
+            'templates'
         ),
         
         /**

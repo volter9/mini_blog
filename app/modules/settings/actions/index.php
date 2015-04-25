@@ -55,7 +55,7 @@ function action_save ($group = 'default') {
 function settings_view ($group, array $input = array(), array $errors = array()) {
     forms('providers', load_php(module_path('settings', 'providers')));
     
-    layout('settings/index', array(
+    layout('modules/settings:index', array(
         'title'  => lang('admin.settings.title'),
         
         'scheme' => array(

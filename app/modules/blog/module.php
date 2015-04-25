@@ -1,22 +1,10 @@
 <?php
 
 /**
- * Blog routes.
- * Here are routes to:
- * 
- * Index page
- * Blog posts
- * Blog categories
+ * Blog module initialize
  */
 function blog_module_init () {
-    $path = module_path('blog');
-    
     load_language('app', module_path('blog', 'i18n/site'));
-    
-    route('GET #index /', "{$path}actions/index");
-    route('GET #posts /blog/all/:num?', "{$path}actions/blog:list");
-    route('GET #post /blog/:any', "{$path}actions/blog:view");
-    route('GET #category /categories/:any/:num?', "{$path}actions/categories:view");
 }
 
 /**

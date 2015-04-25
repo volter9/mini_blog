@@ -27,6 +27,8 @@ function actions_init () {
 function action_view ($module, $page = 1) {
     load_api('pagination');
     
+    
+    
     view_browse_page($module, $page);
 }
 

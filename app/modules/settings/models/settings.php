@@ -21,7 +21,6 @@ function settings ($key = null, $value = null) {
 function settings_init () {
     settings('default', array(
         'sitename' => 'input',
-        'template' => 'select:templates',
         'language' => 'select:langauges'
     ));
     
@@ -68,26 +67,34 @@ function settings_save ($group, array $data) {
     $result = true;
     
     foreach ($data as $key => $array) {
-        $value = array(
-            'group' => $group,
-            'name'  => $key,
-            'value' => $array['value']
-        );
-        
-        if ($array['exist']) {
-            unset($value['name'], $value['group']);
-            
-            $criteria = array(
-                'name[=]'  => $key,
-                'group[=]' => $group
-            );
-            
-            $result = $result && db_update('settings', $value, $criteria);
-        }
-        else {
-            $result = $result && db_insert('settings', $value);
-        }
+        $result = $result && setting_save($group, $key, $array['value'], $array['exist']);
     }
     
     return $result;
+}
+
+/**
+ * Save a setting into database
+ * 
+ * @param string $group
+ * @param string $name
+ * @param string $value
+ * @param bool $exists
+ */
+function setting_save ($group, $name, $value, $exists) {
+    $value = compact('group', 'name', 'value');
+    
+    if ($exists) {
+        unset($value['name'], $value['group']);
+        
+        $criteria = array(
+            'group[=]' => $group,
+            'name[=]'  => $name
+        );
+        
+        return db_update('settings', $value, $criteria);
+    }
+    else {
+        return db_insert('settings', $value);
+    }
 }

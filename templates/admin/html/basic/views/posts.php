@@ -1,6 +1,6 @@
 <?php
 /**
- * Table view
+ * Posts view
  * 
  * @var array $data
  */

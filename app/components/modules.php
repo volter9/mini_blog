@@ -31,6 +31,7 @@ function modules_load (array $modules) {
         
         module_register($module, $file);
         module_init($module);
+        module_routes($module);
     }
 }
 
@@ -53,27 +54,23 @@ function module_register ($module, $path) {
 }
 
 /**
- * Load module
- * 
- * @param string $module
- */
-function module_load ($module) {
-    if (!file_exists($module)) {
-        throw new Exception("Module '$module' not found!");
-    }
-    
-    require $module;
-    
-    return true;
-}
-
-/**
  * Call modules init and routes functions
  * 
  * @param string $module
  */
 function module_init ($module) {
     function_exists($init = "{$module}_module_init") and $init();
+}
+
+/**
+ * Load module routes, if they're exists
+ * 
+ * @param string $module
+ */
+function module_routes ($module) {
+    $file = module_path($module, 'routes.php');
+    
+    file_exists($file) and require $file;
 }
 
 /**
