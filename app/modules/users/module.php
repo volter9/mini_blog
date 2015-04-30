@@ -20,9 +20,5 @@ function users_module_admin_init () {
     load_php(module_path('users', 'models/admin/users'));
     load_language('admin', module_path('users', 'i18n'));
     
-    menu_add_item(
-        'users', 
-        lang("admin.users.title"), 
-        url('#admin_view', array('users'))
-    );
+    menu_add_item('users', 'admin.users.title', '#admin_view', array('users'));
 }

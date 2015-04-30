@@ -10,5 +10,7 @@
  * Landing module amin initialize
  */
 function landing_module_admin_init () {
-    menu_add_item('landing', 'Лэндинг', url('#admin_landing'));
+    load_language('admin', module_path('landing', 'i18n'));
+    
+    menu_add_item('landing', 'admin.landing.title', '#admin_landing');
 }

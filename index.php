@@ -33,13 +33,17 @@ define('MF_APP_DIR' , __DIR__ . '/app/');
 ini_set('display_errors', defined('MB_DEBUG'));
 error_reporting(-defined('MB_DEBUG'));
 
-$time    = microtime(true);
-$install = MF_BASEPATH . 'install/index.php';
+/**
+ * Capturing start time
+ */
+$time = microtime(true);
 
 /**
  * Requiring installer and exit, if installer exists 
  * and that's all in one line. Pretty smart, huh? :)
  */
+$install = MF_BASEPATH . 'install/index.php';
+
 file_exists($install) and (require $install) and exit;
 
 /**

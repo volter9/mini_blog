@@ -26,15 +26,15 @@
     <?php if (function_exists('menu') && $modules = menu()): ?> 
         <?php foreach ($modules as $module): ?> 
         <li>
-            <a href="<?php echo $module['url'] ?>">
-                <?php echo $module['title'] ?>  
+            <a href="<?php echo url($module['url'], $module['args']) ?>">
+                <?php echo lang($module['title']) ?>  
             </a>
-            <?php if (isset($module['submenu'])): ?> 
+            <?php if (!empty($module['submenu'])): ?> 
             <ul>
                 <?php foreach ($module['submenu'] as $item): ?> 
                 <li>
-                    <a href="<?php echo $item['url'] ?>">
-                        <?php echo $item['title'] ?> 
+                    <a href="<?php echo url($item['url'], $item['args']) ?>">
+                        <?php echo lang($item['title']) ?> 
                     </a>
                 </li>
                 <?php endforeach; ?> 

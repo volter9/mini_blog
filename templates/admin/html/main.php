@@ -9,7 +9,6 @@
 <html>
     <head>
         <?php view('blocks/head') ?> 
-        
         <link href="<?php echo asset_url('css/admin.css') ?>" 
               rel="stylesheet" 
               type="text/css"/>

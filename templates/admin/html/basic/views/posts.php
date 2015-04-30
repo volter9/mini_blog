@@ -12,7 +12,7 @@
             <div class="header clearfix">
                 <div class="left">
                     <a href="<?php echo url('#post', [$post['url']]) ?>">
-                        <?php echo $post['title'] ?>
+                        <?php echo $post['title'] ?> 
                     </a>
                 </div>
                 
@@ -22,7 +22,7 @@
                 </a>
             </div>
             
-            <p><?php echo $post['description'] ?></p>
+            <p><?php echo mb_substr($post['description'], 0, 120) ?>...</p>
         </section>
     </li>
     <?php endforeach; ?> 
