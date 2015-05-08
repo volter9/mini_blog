@@ -6,6 +6,6 @@
 vendor/
 composer.lock
 
-# Local symlink to
-# mini_framework
+# Local stuff
 src
+templates/mini_framework/

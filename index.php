@@ -40,7 +40,7 @@ $time = microtime(true);
 
 /**
  * Requiring installer and exit, if installer exists 
- * and that's all in one line. Pretty smart, huh? :)
+ * and that's all in two lines. Pretty smart, huh? :)
  */
 $install = MF_BASEPATH . 'install/index.php';
 
@@ -50,7 +50,7 @@ file_exists($install) and (require $install) and exit;
  * Requiring composer's autoload and booting the
  * application
  */
-require 'vendor/autoload.php';
+require 'src/app.php';
 
 app_boot(sprintf('%sconfig', MF_APP_DIR));
 
