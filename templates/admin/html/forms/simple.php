@@ -1,5 +1,5 @@
 <form class="simple" action="<?php echo $scheme['action'] ?>" method="POST">
-    <?php foreach ($scheme['form'] as $field => $type): ?>
+    <?php foreach ($scheme['form'] as $field => $type): ?> 
         <label>
             <?php build_element(
                 $type, array_merge(array('name' => $field), array_transfer($data, $field))

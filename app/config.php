@@ -98,9 +98,9 @@ return array(
          * Modules which should be loaded
          */
         'modules' => array(
+            'settings',
             'admin', 
             'users',
-            'settings',
             'blog',
             'landing',
             'templates'

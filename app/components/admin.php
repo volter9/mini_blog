@@ -47,7 +47,9 @@ function admin_describe_module ($module) {
  * @return array
  */
 function admin_filter_input ($module, array $data) {
-    $function = "{$module}_module_filter";
+    foreach (emit("admin:$module.filter", $data) as $value) {
+        $data = array_merge($data, $value);
+    }
     
-    return function_exists($function) ? $function($data) : $data;
+    return $data;
 }

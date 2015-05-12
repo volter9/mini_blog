@@ -1,6 +1,4 @@
 article.error {
-    @extend .fluid, .clearfix;
-    
     margin-top: 20px;
     margin-bottom: 40px;
     
@@ -49,12 +47,10 @@ article.error {
         padding: 1px 2px;
     }
     
-    ul {
-        li {
-            font-size: 14px;
-            line-height: 130%;
-            
-            margin-bottom: 8px;
-        }
+    ul li {
+        font-size: 14px;
+        line-height: 130%;
+        
+        margin-bottom: 8px;
     }
 }

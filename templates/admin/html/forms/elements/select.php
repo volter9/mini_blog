@@ -3,7 +3,7 @@
         <?php array_unshift($data, array(
             'title' => lang('admin.admin.none'),
             'value' => ''
-        )) ?>
+        )) ?> 
         
         <?php foreach ($data as $row): ?> 
         <option value="<?php echo $row['value'] ?>"

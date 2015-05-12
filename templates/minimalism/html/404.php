@@ -8,7 +8,7 @@
     </head>
     
     <body>
-        <?php view('blocks/header') ?>
+        <?php view('blocks/header') ?> 
         
         <article class="error">
             <p>Sorry, this page wasn't found!</p>

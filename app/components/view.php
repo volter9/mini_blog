@@ -19,7 +19,7 @@ function view_browse_page ($module, $page) {
         'module'   => $module,
         'data'     => $items['items'],
         'pages'    => $items['pages'],
-        'template' => array_get($description, 'template', 'basic/views/table')
+        'template' => array_get($description, 'template.view', 'basic/views/table')
     ));
 }
 
@@ -44,18 +44,17 @@ function view_modify_page ($module, $action, $url, array $data, array $errors) {
         'title'  => $title,
         'header' => $title,
         'module' => $module,
-        'edit'   => $action === 'edit',
         
         'scheme' => array(
-            'view'   => 'forms/admin',
+            'view'   => array_get($description, 'templates.modify','forms/admin'),
             'submit' => lang("admin.admin.$action"),
             'action' => $url,
             'form'   => $description['form']
         ),
         
         'data' => array(
-            'errors' => $errors,
-            'input'  => $data,
+            'errors'  => $errors,
+            'input'   => $data,
             'field'   => lang("admin.$module.fields"),
             'tooltip' => lang("admin.$module.tooltips")
         )

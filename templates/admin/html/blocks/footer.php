@@ -1,4 +1,4 @@
-<footer>
+<footer id="footer" class="clearfix">
     <div class="fluid">
         <p class="left">
             <?php echo lang('admin.footer.powered_by') ?> <?php echo MB_VERSION ?> 

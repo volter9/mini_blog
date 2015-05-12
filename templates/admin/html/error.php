@@ -15,7 +15,7 @@
     <body>
         <?php view('blocks/header') ?> 
         
-        <article class="error">
+        <article class="error clearfix fluid">
             <div class="left">
                 <?php echo $exception->getMessage() ?> 
             </div>
@@ -27,7 +27,7 @@
                     <?php foreach ($exception->getTrace() as $trace): ?> 
                         <?php if (isset($trace['file'], $trace['line'])): ?> 
                         <li>
-                            In <code><?php echo exclude(MF_BASEPATH, $trace['file']) ?></code> <br/>
+                            In <code><?php echo $trace['file'] ?></code> <br/>
                             on line <?php echo $trace['line'] ?> 
                         </li>
                         <?php endif; ?> 

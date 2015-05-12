@@ -15,25 +15,25 @@
     </head>
     
     <body>
-        <?php view('blocks/header') ?>
+        <?php view('blocks/header') ?> 
         
         <article class="error">
             <div class="left">
-                <?php echo $exception->getMessage() ?>
+                <?php echo $exception->getMessage() ?> 
             </div>
             
             <div class="right">
                 <p>Stack trace:</p>
             
                 <ul>
-                    <?php foreach ($exception->getTrace() as $trace): ?>
-                        <?php if (isset($trace['file'], $trace['line'])): ?>
+                    <?php foreach ($exception->getTrace() as $trace): ?> 
+                        <?php if (isset($trace['file'], $trace['line'])): ?> 
                         <li>
-                            In <code>/<?php echo exclude(MF_BASEPATH, $trace['file']) ?></code> 
-                            on line <?php echo $trace['line'] ?>
+                            In <code><?php echo exclude($trace['file'], MF_BASEPATH) ?></code> 
+                            on line <?php echo $trace['line'] ?> 
                         </li>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
+                        <?php endif; ?> 
+                    <?php endforeach; ?> 
                 </ul>
             </div>
         </article>

@@ -21,7 +21,7 @@ function modules ($key = null, $value = null) {
  */
 function modules_load (array $modules) {
     foreach ($modules as $key => $module) {
-        $file = app_path("modules/$module/module");
+        $file = base_path("modules/$module/module");
         
         if (!file_exists("$file.php")) {
             continue;
@@ -89,10 +89,24 @@ function module_name ($module_path) {
  * 
  * @param string $module
  * @param string $file
+ * @param bool $base
  * @return string
  */
 function module_path ($module, $file = '', $base = false) {
     $path = sprintf('modules/%s/%s', $module, $file);
     
-    return $base ? $path : app_path($path);
+    return $base ? $path : base_path($path);
+}
+
+/**
+ * Get url to module asset
+ * 
+ * @param string $module
+ * @param string $file
+ * @return string
+ */
+function module_url ($module, $file = '') {
+    $path = sprintf('modules/%s/%s', $module, $file);
+    
+    return path($path);
 }

@@ -1,16 +1,10 @@
-<form class="admin" action="<?php echo $scheme['action'] ?>" method="POST">
+<form class="modify" action="<?php echo $scheme['action'] ?>" method="POST">
     <?php foreach ($scheme['form'] as $field => $type): ?> 
         <div class="clearfix field">
             <div class="left field-name">
                 <label for="form_<?php echo $field ?>">
                     <?php echo $data['field'][$field] ?> 
                 </label>
-                
-                <?php if (isset($data['tooltip'][$field])): ?> 
-                <span class="tooltip">
-                    <?php echo $data['tooltip'][$field] ?> 
-                </span>
-                <?php endif; ?> 
             </div>
             
             <div class="right element">
@@ -18,12 +12,6 @@
                     array('name' => $field), 
                     array_transfer($data, $field)
                 )) ?> 
-                
-                <?php if (isset($data['errors'][$field])): ?> 
-                <p class="error">
-                    <?php echo $data['errors'][$field] ?> 
-                </p>
-                <?php endif; ?> 
             </div>
         </div>
     <?php endforeach; ?> 

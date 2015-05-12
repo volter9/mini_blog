@@ -14,6 +14,30 @@ a {
     text-decoration: none;
 }
 
+h1, h2, h3,
+h4, h5, h6 {
+    font-weight: normal;
+    
+    margin: 0px;
+    margin-bottom: 1em;
+}
+
+a.link {
+    text-decoration: underline;
+    
+    &.blue {
+        color: $blue-text;
+    }
+    
+    &.green {
+        color: $green-text;
+    }
+    
+    &.red {
+        color: $red-text;
+    }
+}
+
 .clearfix {
     &:after {
         content: "";
@@ -36,28 +60,21 @@ a {
 }
 
 .fluid {
-    margin-left: 300px;
-    margin-right: 20px;
-}
-
-body > article a {
-    color: #888;
-    
-    &:hover {
-        color: #000;
-    }
+    margin: 0px auto;
+    width: 900px;
 }
 
 .button {
-    background-color: #f8f8f8;
+    background-color: #fff;
     border: 1px solid #ccc;
+    border-radius: 4px;
     color: #777;
     font-size: 14px;
     text-align: center;
     
     box-sizing: border-box;
     display: inline-block;
-    padding: 10px;
+    padding: 5px 10px;
     
     &:hover,
     &.disabled {
@@ -66,29 +83,29 @@ body > article a {
     }
     
     &.blue {
-        border: 1px solid #7ea4f8;
-        color: #4ea6f8;
+        border: 1px solid $blue-color;
+        color: $blue-text;
         
         &:hover {
-            border-color: lighten(#7ea4f8, 10%);
+            border-color: $light-blue-color;
         }
     }
     
     &.green {
-        border: 1px solid #54cd20;
-        color: #54cd20;
+        border: 1px solid $green-color;
+        color: $green-text;
         
         &:hover {
-            border-color: lighten(#54cd20, 10%);
+            border-color: $light-green-color;
         }
     }
     
     &.red {
-        border: 1px solid #f8547e;
-        color: #f8547e;
+        border: 1px solid $red-color;
+        color: $red-text;
         
         &:hover {
-            border-color: lighten(#f8547e, 10%);
+            border-color: $light-red-color;
         }
     }
 }

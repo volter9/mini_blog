@@ -12,6 +12,9 @@
         <link href="<?php echo asset_url('css/admin.css') ?>" 
               rel="stylesheet" 
               type="text/css"/>
+        <link href="<?php echo asset_url('css/font-awesome.min.css') ?>" 
+              rel="stylesheet" 
+              type="text/css"/>
         
         <?php emit('admin:head') ?> 
     </head>

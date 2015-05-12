@@ -5,7 +5,7 @@
  * @var array $data
  */
 ?>
-<ul class="posts">
+<ul class="posts clearfix">
     <?php foreach ($data as $post): ?> 
     <li>
         <section>

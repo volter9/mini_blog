@@ -7,11 +7,11 @@
             <h3>
                 <!-- Ссылка на пост -->
                 <a href="<?php echo url('#post', array($post['url'])) ?>">
-                <?php echo $post['title'] ?>
+                <?php echo $post['title'] ?> 
                 </a>
             </h3>
         
-            <?php echo $post['description'] ?>
+            <?php echo $post['description'] ?> 
         </li>
         <?php endforeach; ?> 
     </ul>

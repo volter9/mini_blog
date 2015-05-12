@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php view('blocks/head') ?>
+        <?php view('blocks/head') ?> 
         <link href="<?php echo asset_url('css/auth.css') ?>" 
               rel="stylesheet" 
               type="text/css"/>
@@ -21,11 +21,11 @@
             <h1>mini_blog</h1>
             
             <div id="auth_form">
-                <?php if ($error): ?>
+                <?php if ($error): ?> 
                 <div class="errors">
                     <p><?php echo $error ?></p>
                 </div>
-                <?php endif; ?>
+                <?php endif; ?> 
                 
                 <?php build_form($scheme, $data) ?> 
             </div>

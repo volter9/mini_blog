@@ -6,6 +6,6 @@
     </head>
     
     <body>
-        <?php view($view) ?>
+        <?php view($view) ?> 
     </body>
 </html>

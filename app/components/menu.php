@@ -25,9 +25,9 @@ function menu ($key = null, $value = null) {
  */
 function menu_add_item ($module, $title, $url, array $args = array()) {
     menu($module, array(
-        'title' => $title,
-        'url'   => $url,
-        'args'  => $args,
+        'title'   => $title,
+        'url'     => $url,
+        'args'    => $args,
         'submenu' => array()
     ));
 }
@@ -41,6 +41,10 @@ function menu_add_item ($module, $title, $url, array $args = array()) {
  * @param array $args
  */
 function menu_add_subitem ($module, $title, $url, array $args = array()) {
+    if (!menu("$module.title")) {
+        return;
+    }
+    
     menu("$module.submenu", array(
         array(
             'title' => $title,

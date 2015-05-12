@@ -3,7 +3,7 @@
 
 <blockquote><?php echo $post['category'] ?> |
 <?php echo $post['date'] ?> |
-<?php echo $post['username'] ?>
+<?php echo $post['username'] ?> 
 </blockquote>
 
 <?php $parse = new Parsedown; echo $parse->text($post['text']) ?>

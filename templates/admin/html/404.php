@@ -10,9 +10,10 @@
         
         <article class="error">
             <h1>404 Not Found</h1>
+            
             <p>Sorry, this page wasn't found!</p>
         </article>
         
-        <?php view('blocks/footer') ?>
+        <?php view('blocks/footer') ?> 
     </body>
 </html>

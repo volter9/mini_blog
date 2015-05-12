@@ -3,22 +3,19 @@
     
     margin-top: 20px;
     
-    > h1 {
-        border-bottom: 1px solid #ccc;
-        font-size: 20px;
+    h1 {
+        font-size: 28px;
         font-weight: normal;
-        line-height: 22px;
         
         margin-bottom: 16px;
         padding-bottom: 8px;
         
         > .right .button {
             font-size: 12px;
-            line-height: 100%;
             vertical-align: top;
             
             margin: 0px;
-            padding: 4px 8px;
+            padding: 8px 16px;
         }
     }
 }

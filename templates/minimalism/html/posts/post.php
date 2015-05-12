@@ -12,7 +12,7 @@
                 <?php echo $post['title'] ?> 
             </h1>
             
-            <?php $parse = new Parsedown; echo $parse->text($post['text']) ?>
+            <?php $parse = new Parsedown; echo $parse->text($post['text']) ?> 
             
             <p class="info">
                 <?php echo i18n('posts.published') ?> 

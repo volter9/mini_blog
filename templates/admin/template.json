@@ -1,7 +1,8 @@
 {
     "name": "mini_admin",
     "author": "volter9",
-    "description": "mini_blog default admin template",
+    "description": "Шаблон mini_blog админки",
     "version": "v1.1",
-    "type": "admin"
+    "type": "admin",
+    "screenshot": "icon.jpg" 
 }

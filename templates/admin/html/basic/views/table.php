@@ -26,9 +26,14 @@
         <?php endforeach; ?> 
         
         <td class="edit">
-            <a class="button blue" 
+            <a class="link blue" 
                href="<?php echo url('#admin_edit', array($module, $field['id'])) ?>">
-                <?php echo lang('admin.admin.edit') ?> 
+                <i class="fa fa-pencil"></i>
+            </a>
+            &nbsp;
+            <a class="link red" 
+               href="<?php echo url('#admin_remove', array($module, $field['id'])) ?>">
+                <i class="fa fa-close"></i>
             </a>
         </td>
     </tr>

@@ -1,58 +1,61 @@
-article.view .templates,
-article.view .posts {
-    font-size: 0px;
+.templates li {
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    font-size: 14px;
+    vertical-align: top;
     
-    li {
-        border: 1px solid #e8e8e8;
-        font-size: 14px;
-        vertical-align: top;
+    float: left;
+    margin-bottom: 15px;
+    margin-right: 2%;
+    overflow: hidden;
+    padding-bottom: 4px;
+    width: 31%;
+    
+    .screenshot {
+        background-color: #f8f8f8;
+        background-position: center center;
+        background-size: cover;
         
-        display: inline-block;
-        margin-bottom: 15px;
-        width: 31%;
+        padding-top: 100%;
+        width: 100%;
+    }
+    
+    .header {
+        border-top: 1px solid #e8e8e8;
+        line-height: 20px;
         
-        padding-bottom: 4px;
+        padding: 8px;
+        padding-bottom: 6px;
         
-        &:nth-child(3n + 2) {
-            margin-left: 3.5%;
-            margin-right: 3.5%;
-        }
-        
-        .header {
-            border-bottom: 1px solid #ddd;
-            line-height: 20px;
+        .left {
+            width: 70%;
             
-            padding: 8px;
-            margin-bottom: 4px;
-            
-            .left {
-                width: 70%;
+            a {
+                color: #888;
                 
-                a {
-                    color: #888;
-                    
-                    &:hover {
-                        text-decoration: underline;
-                    }
+                &:hover {
+                    text-decoration: underline;
                 }
             }
-            
-            .button {
-                font-size: 10px;
-                line-height: 100%;
-                
-                margin: 0px;
-                padding: 4px;
-                width: auto;
-            }
         }
         
-        p {
-            color: #666;
+        .button {
+            background-color: #fff;
+            border: 0px;
             font-size: 12px;
-            line-height: 160%;
+            line-height: 100%;
             
-            padding: 4px 8px;
+            margin: 0px;
+            padding: 4px 0px;
+            width: auto;
         }
+    }
+    
+    p {
+        color: #666;
+        font-size: 12px;
+        line-height: 140%;
+        
+        padding: 2px 8px;
     }
 }

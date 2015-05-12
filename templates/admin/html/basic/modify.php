@@ -11,16 +11,7 @@
 ?>
 <article class="modify">
     <h1 class="clearfix">
-        <?php echo $header ?> 
-        
-        <?php if (!empty($edit)): ?> 
-        <div class="right">
-            <a class="button red"
-               href="<?php echo url('#admin_remove', array($module, $data['input']['id'])) ?>">
-                <?php echo lang('admin.admin.remove') ?> 
-            </a>
-        </div>
-        <?php endif; ?> 
+        <?php echo $header ?>  
     </h1>
     
     <?php build_form($scheme, $data) ?> 

@@ -9,18 +9,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php view('blocks/head') ?>
+        <?php view('blocks/head') ?> 
     </head>
     
     <body>
-        <?php view('blocks/header') ?>
+        <?php view('blocks/header') ?> 
         
         <div class="fluid" id="wrapper">
-            <?php view('blocks/navigation') ?>
+            <?php view('blocks/navigation') ?> 
             
-            <?php view($view) ?>
+            <?php view($view) ?> 
         </div>
         
-        <?php view('blocks/footer') ?>
+        <?php view('blocks/footer') ?> 
     </body>
 </html>
