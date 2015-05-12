@@ -29,13 +29,12 @@
                    href="<?php echo url('#admin_templates_choose', array($key)) ?>">
                     <?php echo lang('admin.templates.choose') ?> 
                 </a>
-                <?php endif; ?> 
+                <?php else: ?> 
+                <span class="right button green">
+                    <?php echo lang('admin.templates.choosen') ?> 
+                </span>
+                <?php endif; ?>
             </div>
-            
-            <p>
-                <?php echo lang('admin.templates.author') ?>: 
-                <?php echo $template['author'] ?> 
-            </p>
             
             <p><?php echo $template['description'] ?></p>
         </section>
