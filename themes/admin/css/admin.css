@@ -1,0 +1,378 @@
+/**
+ * mini_admin styles
+ * 
+ * @author volter9
+ * @version 1.0
+ * @package mini_blog
+ */
+
+/**
+ * Colors
+ * 
+ * - pink: #ee56a3
+ * - green: #50c650
+ * - blue: #1080ee
+ * - red: #f57
+ * - light-grey: #eee
+ * - grey: #ccc
+ */
+
+/**
+ * Global styles
+ */
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    font-weight: normal;
+    
+    margin-bottom: 0.725em;
+}
+
+h1 { font-size: 32px }
+h2 { font-size: 28px }
+h3 { font-size: 22px }
+h4 { font-size: 18px }
+h5 { font-size: 14px }
+h6 { font-size: 12px }
+
+p {
+    font-size: 14px;
+    line-height: 1.4em;
+    
+    margin-bottom: 1em;
+}
+
+a {
+    color: #ee56a3; /* pink */
+}
+
+/**
+ * Common styles
+ */
+
+.group:after {
+    content: "";
+    font-size: 0px;
+    
+    clear: both;
+    display: block;
+    height: 0px;
+    width: 100%;
+}
+
+.wrapper {
+    display: block;
+    margin: 0px auto;
+    width: 960px;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+/**
+ * Buttons
+ */
+
+.button {
+    background-color: #ee56a3;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 12px;
+    line-height: 100%;
+    text-decoration: none;
+    
+    display: inline-block;
+    padding: 0.5em 1em;
+}
+
+.button:hover {
+    background-color: #fff;
+    border: 1px solid #ee56a3;
+    color: #ee56a3;
+}
+
+.button.blue {
+    background-color: #1080ee; /* blue */
+}
+
+.button.blue:hover {
+    background-color: #fff;
+    border: 1px solid #1080ee;
+    color: #1080ee;
+}
+
+.button.green {
+    background-color: #50c650;
+}
+
+.button.green:hover {
+    background-color: #fff;
+    border: 1px solid #50c650;
+    color: #50c650;
+}
+
+.button.disabled,
+.button.disabled:hover {
+    background-color: #ddd;
+    border-color: transparent;
+    color: #fff;
+}
+
+/** 
+ * Header
+ */
+
+#header {
+    margin-bottom: 16px;
+}
+
+#header .wrapper {
+    border-radius: 0px 0px 10px 10px;
+    
+    overflow: hidden;
+}
+
+#header ul {
+    font-size: 0px;
+}
+
+#header ul > li {
+    font-size: 14px;
+    
+    display: block;
+    float: left;
+    height: 48px;
+}
+
+#header a {
+    color: #888;
+    line-height: 48px;
+    text-decoration: none;
+    // text-transform: capitalize;
+    vertical-align: middle;
+    
+    display: block;
+    padding: 0px 16px;
+}
+
+#header a:hover {
+    background-color: #f9f9f9;
+    color: #ee56a3; /* pink */
+}
+
+#header ul > li > ul {
+    display: none;
+}
+
+#logo > a {
+    background-color: #eee;
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 44px;
+    text-align: center;
+    text-decoration: none;
+    
+    display: block;
+    height: 48px;
+    width: 48px;
+    padding: 0px;
+}
+
+#logo > a:hover {
+    background-color: #444;
+    color: #ee56a3;
+}
+
+/**
+ * Index page module list
+ */
+
+.modules-list > li {
+    font-size: 18px;
+    
+    margin-bottom: 0px;
+    width: 33.3333%;
+}
+
+.modules-list > li a {
+    color: #444;
+    text-decoration: none;
+    
+    display: block;
+    margin-bottom: 0.2em;
+}
+
+.modules-list > li > a {
+    color: #000;
+}
+
+.modules-list > li li {
+    font-size: 14px;
+}
+
+/**
+ * Table
+ */
+
+.table-wrapper {
+    display: block;
+    width: 100%;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table thead > tr {
+    border-bottom: 2px solid #eee;
+}
+
+.table th {
+    text-align: left;
+    white-space: nowrap;
+}
+
+.table td {
+    font-size: 14px;
+    line-height: 160%;
+    vertical-align: top;
+}
+
+.table th,
+.table td {
+    min-width: 20%;
+    padding: 8px;
+}
+
+.table tr {
+    border-bottom: 1px solid #eee;
+}
+
+/**
+ * Custom table styles
+ */
+
+.table td.title {
+    width: 20%;
+}
+
+.table td.edit {
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+.edit a {
+    text-align: center;
+    text-decoration: none;
+    
+    display: inline-block;
+    margin-right: 5px;
+    width: 24px;
+}
+
+.edit a.edit {
+    color: #1080ee;
+}
+
+.edit a.remove {
+    color: #f57;
+}
+
+/**
+ * Pagination
+ */
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination a,
+.pagination span {
+    border-radius: 4px;
+    font-size: 14px;
+    text-decoration: none;
+    
+    display: inline-block;
+    padding: 4px 8px;
+}
+
+/**
+ * View styles
+ */
+
+article.view h1 .button {
+    vertical-align: middle;
+}
+
+.form .field {
+    margin-bottom: 1.5em;
+}
+
+.form .field-label {
+    font-size: 14px;
+    text-align: right;
+    
+    display: block;
+    padding: 8px 0px;
+    width: 12%;
+}
+
+.form .field-element {
+    padding-left: 10px;
+    width: 88%;
+}
+
+.form .field-tooltip {
+    color: #888;
+    font-size: 12px;
+    text-align: left;
+    
+    margin-top: 4px;
+    padding: 0px 8px;
+}
+
+.form input,
+.form textarea {
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 140%; 
+    
+    display: block;
+    padding: 8px;
+    width: 100%;
+}
+
+.form textarea {
+    height: 20em;
+    max-width: 100%;
+}
+
+.form select {
+    margin-top: 8px
+}

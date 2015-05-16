@@ -8,10 +8,10 @@ return array(
         'remove' => 'Удалить пользователя',
     
         'fields' => array(
-            'username' => 'Имя пользователя',
+            'username' => 'Имя',
             'password' => 'Пароль',
-            'mail'     => 'Элекронный адрес почты',
-            'group_id' => 'Группа пользователя'
+            'mail'     => 'Адрес почты',
+            'group_id' => 'Группа'
         ),
     
         'tooltips' => array(

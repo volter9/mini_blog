@@ -1,6 +1,10 @@
 <?php
 
 return array(
+    'blog' => array(
+        'title' => 'Blog'
+    ),
+    
     'posts' => array(
         'title'  => 'Posts',
         'add'    => 'Add a post',
@@ -23,46 +27,6 @@ return array(
             'text'        => '<a href="http://daringfireball.net/projects/markdown/" target="_blank">Markdown</a> friendly content of your post, share you thoughts here',
             'user_id'     => 'Post\'s author',
             'category_id' => 'Post\'s category'
-        )
-    ),
-    
-    'categories' => array(
-        'title'  => 'Categories',
-        'add'    => 'Add a category',
-        'edit'   => 'Edit the category',
-        'remove' => 'Remove the category',
-        
-        'fields' => array(
-            'title'       => 'Title',
-            'url'         => 'Category slug URL',
-            'description' => 'Meta description',
-        ),
-        
-        'tooltips' => array(
-            'title'       => 'Title of your category',
-            'url'         => 'URL slug would be displayed in URL',
-            'description' => 'Description of category, it is used in meta tags'
-        ),
-    ),
-    
-    'users' => array(
-        'title'  => 'Users',
-        'add'    => 'Add a user',
-        'edit'   => 'Edit the user',
-        'remove' => 'Remove the user',
-        
-        'fields' => array(
-            'username' => 'Username',
-            'password' => 'Password',
-            'mail'     => 'Email',
-            'group_id' => 'User Group'
-        ),
-        
-        'tooltips' => array(
-            'username' => 'User name (login)',
-            'password' => 'User\'s password',
-            'mail'     => 'User\'s e-mail',
-            'group_id' => 'User\'s permission group'
         )
     )
 );

@@ -5,6 +5,14 @@
  * 
  * @package mini_blog
  */
+
+/**
+ * Modules storage
+ * 
+ * @param mixed $key
+ * @param mixed $value
+ * @return mixed
+ */
 function modules ($key = null, $value = null) {
     static $repo = null;
     $repo or $repo = repo();
@@ -18,6 +26,8 @@ function modules ($key = null, $value = null) {
  * but module_load loads one seperate module.
  * 
  * Load all modules
+ *
+ * @param array $modules
  */
 function modules_load (array $modules) {
     foreach ($modules as $key => $module) {
@@ -39,7 +49,7 @@ function modules_load (array $modules) {
  * Call all admin initiator functions for modules
  */
 function modules_admin_init () {
-    foreach (modules() as $module => $content) {
+    foreach (array_keys(modules()) as $module) {
         function_exists($function = "{$module}_module_admin_init") and $function();
     }
 }
@@ -48,6 +58,7 @@ function modules_admin_init () {
  * Register module
  * 
  * @param string $module
+ * @param string $path
  */
 function module_register ($module, $path) {
     modules($module, array('path' => $path));

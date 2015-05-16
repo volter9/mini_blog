@@ -5,6 +5,13 @@
  */
 function actions_init () {
     load_php(module_path('templates', 'models/templates'));
+    
+    bind('admin:head', function () {
+        printf(
+            '<link href="%s" rel="stylesheet" type="text/css"/>', 
+            module_url('templates', 'views/templates.css')
+        );
+    });
 }
 
 /**

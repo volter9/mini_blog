@@ -2,6 +2,8 @@
 
 /**
  * App's config
+ * 
+ * @package mini_blog
  */
 
 return array(
@@ -22,14 +24,14 @@ return array(
     ),
     
     /**
-     * Templates configuration
+     * Themes configuration
      * 
-     * - directory - where templates are living
-     * - template - which template is chosen
-     * - layout - name of layout in current template
+     * - directory - where themes are living
+     * - template - which theme is chosen
+     * - layout - name of layout in current theme
      */
     'templates' => array(
-        'directory' => base_path('templates/'),
+        'directory' => base_path('themes'),
         'template'  => 'minimalism',
         'layout'    => 'main'
     ),
@@ -42,7 +44,6 @@ return array(
      * - symbols - readable way to capture parameters in URL's
      */
     'routing' => array(
-        'base_url' => 'http://php.sandbox/',
         'symbols' => array(
             '/:any' => '/?([\d\w\-_]+)',
             '/:num' => '/?(\d+)'

@@ -1,6 +1,34 @@
 <?php
 
 /**
+ * Transliterate text
+ * 
+ * @param string $text
+ * @return string
+ */
+function transliterate ($text = null) {
+    static $cyrillic = array(
+        'ж',  'ч',  'щ',   'ш',  'ю',  'а', 'б', 'в', 'г', 'д', 'е', 'з', 'и', 'й', 'к', 'л', 
+        'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ъ', 'ь', 'я', 'ы',
+        'Ж',  'Ч',  'Щ',   'Ш',  'Ю',  'А', 'Б', 'В', 'Г', 'Д', 'Е', 'З', 'И', 'Й', 'К', 'Л', 
+        'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ъ', 'Ь', 'Я', 'Ы'
+    );
+    
+    static $latin = array(
+        'zh', 'ch', 'sht', 'sh', 'yu', 'a', 'b', 'v', 'g', 'd', 'e', 'z', 'i', 'j', 'k', 'l', 
+        'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'c', 'y', '', 'ya', 'y',
+        'Zh', 'Ch', 'Sht', 'Sh', 'Yu', 'A', 'B', 'V', 'G', 'D', 'E', 'Z', 'I', 'J', 'K', 'L', 
+        'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'c', 'Y', '', 'Ya', 'Y'
+    );
+    
+    if ($text) {
+        return str_replace($cyrillic, $latin, $text);
+    }
+    
+    return null;
+}
+
+/**
  * Posts form description
  * 
  * @return array
@@ -8,15 +36,16 @@
 function posts_module_describe () {
     return array(
         'fields'   => 'title, description',
-        'per_page' => 5,
+        'per_page' => 6,
         
-        'templates' => array(
+        'template' => array(
+            'view'   => module_path('blog', 'views/view'),
             'modify' => module_path('blog', 'views/form')
         ),
         
         'form' => array(
             'title' => 'input',
-            'text'  => 'markdown'
+            'text'  => 'text'
         )
     );
 }
@@ -39,12 +68,7 @@ function posts_module_rules () {
  * @param array $data
  */
 function posts_module_filter ($data) {
-    $data = array_merge(array(
-        'url'         => '',
-        'description' => before(' ', $data['text'])
-    ), $data);
-    
-    if (!$data['url']) {    
+    if (!isset($data['url'])) {
         $url = preg_replace('/[^\w\d\-_]+/i', '-', transliterate($data['title']));
         $url = trim($url, '-');
     

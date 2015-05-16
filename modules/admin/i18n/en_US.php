@@ -1,16 +1,18 @@
 <?php
 
 return array(
-    'admin' => array(
-        'add'     => 'Add',
-        'edit'    => 'Edit',
-        'remove'  => 'Remove',
-        'save'    => 'Save',
-        'home'    => 'Home',
-        'title'   => 'mini_blog admin',
-        'go_back' => 'go back',
-        'empty'   => 'Nothing yet here',
-        'none'    => 'None'
+    'common' => array(
+        'add'       => 'Add',
+        'edit'      => 'Edit',
+        'remove'    => 'Remove',
+        'save'      => 'Save',
+        'view_site' => 'View your site',
+        'title'     => 'mini_blog admin',
+        'go_back'   => 'go back',
+        'empty'     => 'Nothing yet here',
+        'none'      => 'None',
+        'modules'   => 'Modules',
+        'actions'   => 'Actions'
     ),
     
     'auth' => array(

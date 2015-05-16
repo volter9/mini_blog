@@ -59,8 +59,8 @@ function settings_view ($group, array $input = array(), array $errors = array())
         'title'  => lang('admin.settings.title'),
         
         'scheme' => array(
-            'view'   => 'forms/admin',
-            'submit' => lang('admin.admin.save'),
+            'view'   => 'forms/basic',
+            'submit' => lang('admin.common.save'),
             'action' => url('#admin_settings_post', array($group)),
             'form'   => settings($group)
         ),
@@ -68,8 +68,8 @@ function settings_view ($group, array $input = array(), array $errors = array())
         'data' => array(
             'errors'  => $errors,
             'input'   => $input,
-            'field'   => lang("admin.settings.groups.$group.fields"),
-            'tooltip' => lang("admin.settings.groups.$group.tooltips")
+            'field'   => lang("admin.settings.$group.fields"),
+            'tooltip' => lang("admin.settings.$group.tooltips")
         )
     ));
 }

@@ -9,7 +9,6 @@
  */
 function settings ($key = null, $value = null) {
     static $repo = null;
-    
     $repo or $repo = repo();
     
     return $repo($key, $value);
@@ -25,6 +24,17 @@ function settings_init () {
     ));
     
     storage('settings.default', settings_get('default'));
+}
+
+/**
+ * Add setting set to 
+ * 
+ * @param string $group
+ * @param string $label
+ * @param array $form
+ */
+function settings_add ($group, $label, array $form) {
+    menu_add_subitem();
 }
 
 /**

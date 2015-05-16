@@ -66,7 +66,11 @@ bind('router:found', function ($route) {
     if (starts_with($id, '#admin_') || starts_with($id, '#auth_')) {
         load_language('admin', module_path('admin', 'i18n'));
         
-        views('templates.template', 'admin');
+        views('templates', array(
+            'template' => 'admin',
+            'layout'   => 'layouts/main'
+        ));
+        
         modules_admin_init();
     }
 });

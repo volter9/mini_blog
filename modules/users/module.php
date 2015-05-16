@@ -21,6 +21,7 @@ function users_module_admin_init () {
     load_language('admin', module_path('users', 'i18n'));
     
     menu_add_item('users', 'admin.users.title', '#admin_view', array('users'));
+    menu_add_subitem('users', 'admin.users.add', '#admin_add', array('users'));
     
     bind('admin:users.filter', 'users_module_filter');
 }

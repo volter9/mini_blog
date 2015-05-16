@@ -4,7 +4,7 @@ return array(
     'templates' => array(
         'title'  => 'Шаблоны',
         'choose' => 'Выбрать',
-        'choosen' => 'Выбрано',
+        'choosen' => 'Выбран',
         'used'   => 'Данный шаблон сейчас используется',
         'author' => 'Автор',
         'description' => 'Описание'

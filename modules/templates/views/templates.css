@@ -1,0 +1,46 @@
+.templates li {
+    margin-bottom: 32px;
+    padding: 0px 0px;
+    width: 33.3333%;
+}
+
+.templates li:nth-child(3n + 1) {
+    clear: both;
+    padding-right: 10px;
+}
+
+.templates li:nth-child(3n + 2) {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.templates li:nth-child(3n + 3) {
+    padding-left: 10px;
+}
+
+.templates .screenshot {
+    background-color: #f0f0f0;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 0px 4px 0px #ddd;
+    
+    padding-top: 100%;
+    width: 100%;
+}
+
+.templates .header {
+    font-size: 14px;
+    padding: 10px;
+}
+
+.templates .button {
+    padding: 4px 8px;
+}
+
+.templates p {
+    color: #777;
+    font-size: 12px;
+    
+    padding: 0px 10px;
+}
