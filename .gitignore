@@ -8,4 +8,4 @@ composer.lock
 
 # Local stuff
 src
-templates/mini_framework/
+themes/mini_framework/
