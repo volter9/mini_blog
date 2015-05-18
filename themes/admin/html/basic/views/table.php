@@ -31,10 +31,11 @@
             <?php endforeach; ?> 
         
             <td class="edit">
-                <a class="edit" 
-                   href="<?php echo url('#admin_edit', array($module, $field['id'])) ?>">&#9998;</a> 
-                <a class="remove" 
-                   href="<?php echo url('#admin_remove', array($module, $field['id'])) ?>">&#10005;</a>
+                <a class="button button-blue" 
+                   href="<?php echo url('#admin_edit', array($module, $field['id'])) ?>"><?php echo lang('admin.common.edit') ?></a> 
+                
+                <a class="button button-red" 
+                   href="<?php echo url('#admin_remove', array($module, $field['id'])) ?>"><?php echo lang('admin.common.remove') ?></a>
             </td>
         </tr>
         <?php endforeach; ?> 

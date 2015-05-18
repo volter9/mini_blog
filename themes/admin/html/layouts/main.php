@@ -19,8 +19,14 @@
     <body>
         <?php view('blocks/header') ?> 
 
-        <div class="wrapper" id="content">
-            <?php view($view) ?> 
+        <div class="wrapper group" id="content">
+            <div class="left width-20">
+                <?php view('blocks/menu') ?> 
+            </div>
+            
+            <div class="right width-80">
+                <?php view($view) ?> 
+            </div>
         </div>
     </body>
 </html>

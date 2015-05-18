@@ -35,7 +35,7 @@ function transliterate ($text = null) {
  */
 function posts_module_describe () {
     return array(
-        'fields'   => 'title, description',
+        'fields'   => 'title, description, date',
         'per_page' => 6,
         
         'template' => array(
@@ -44,8 +44,10 @@ function posts_module_describe () {
         ),
         
         'form' => array(
-            'title' => 'input',
-            'text'  => 'text'
+            'title'       => 'input',
+            'url'         => 'input',
+            'text'        => 'text',
+            'description' => 'text'
         )
     );
 }

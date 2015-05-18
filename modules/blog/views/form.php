@@ -16,7 +16,7 @@
     </div>
     <?php endforeach; ?> 
     
-    <button class="button blue" type="submit">
+    <button class="button button-blue" type="submit">
         <?php echo $scheme['submit'] ?> 
     </button>
 </form>

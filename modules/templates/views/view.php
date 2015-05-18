@@ -25,7 +25,7 @@
                 $template['type'] === 'template' && 
                 $key !== storage('settings.default.template')
             ): ?> 
-            <a class="button blue right" 
+            <a class="button button-blue right" 
                href="<?php echo url('#admin_templates_choose', array($key)) ?>">
                 <?php echo lang('admin.templates.choose') ?> 
             </a>

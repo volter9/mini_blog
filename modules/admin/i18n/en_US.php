@@ -11,7 +11,7 @@ return array(
         'go_back'   => 'go back',
         'empty'     => 'Nothing yet here',
         'none'      => 'None',
-        'modules'   => 'Modules',
+        'menu'      => 'Menu',
         'actions'   => 'Actions'
     ),
     

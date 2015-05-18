@@ -12,7 +12,7 @@
     <h1 class="group">
         <?php echo $header ?> 
         
-        <a class="button green"
+        <a class="button button-green"
            href="<?php echo url('#admin_add', array($module)) ?>">
             <?php echo lang('admin.common.add') ?> 
         </a>

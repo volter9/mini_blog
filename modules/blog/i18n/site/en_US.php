@@ -16,6 +16,7 @@ return array(
     'posts' => array(
         'empty' => 'No posts',
         'published' => 'Published',
+        'in_category' => 'in category',
         'by' => 'by',
         'at' => 'at'
     ),

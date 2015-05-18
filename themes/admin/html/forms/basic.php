@@ -1,4 +1,12 @@
 <form class="form" action="<?php echo $scheme['action'] ?>" method="POST">
+    <?php if (isset($data['error']) && $errors = $data['error']): ?> 
+    <ul class="alert red-alert">
+        <?php foreach ($errors as $error): ?> 
+        <li><?php echo $error ?></li>
+        <?php endforeach; ?> 
+    </ul>
+    <?php endif; ?> 
+    
     <?php foreach ($scheme['form'] as $field => $type): ?> 
     <div class="field group">
         <div class="field-label left">
@@ -22,7 +30,9 @@
     </div>
     <?php endforeach; ?> 
     
-    <button class="button blue right" type="submit">
-        <?php echo $scheme['submit'] ?> 
-    </button>
+    <div class="group">
+        <button class="button button-blue right" type="submit">
+            <?php echo $scheme['submit'] ?> 
+        </button>
+    </div>
 </form>

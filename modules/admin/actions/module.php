@@ -119,7 +119,7 @@ function extract_keys (array $item, array $input) {
     foreach ($input as $key => $value) {
         $isset = isset($item[$key]);
         
-        if ($isset && (string)$item[$key] !== $value || $isset) {
+        if ($isset && (string)$item[$key] !== $value) {
             $keys[] = $key;
         }
     }

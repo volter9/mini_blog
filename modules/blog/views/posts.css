@@ -3,45 +3,44 @@
  */
 
 .posts li {
+    border-bottom: 1px solid #ddd;
+    
     margin-bottom: 2em;
-    width: 33%;
-}
-
-.posts li:nth-child(3n + 1) {
-    clear: both;
-    padding-right: 10px;
-}
-
-.posts li:nth-child(3n + 2) {
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-.posts li:nth-child(3n + 3) {
-    padding-left: 10px;
+    width: 100%;
 }
 
 .posts .header {
     margin-bottom: 10px;
 }
 
+.posts .header .left a {
+    color: #000;
+    text-decoration: none;
+}
+
+.posts .header .left a:hover {
+    text-decoration: underline;
+}
+
 .posts .header .left {
-    font-size: 16px;
+    font-size: 20px;
     
     max-width: 70%;
 }
 
 .posts .description {
     color: #888;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 160%;
+}
+
+.posts .date {
+    color: #aaa;
+    font-size: 12px;
 }
 
 .posts .edit a {
     margin-right: 0px;
-    width: 20px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
-
-/**
- * Modify posts
- */

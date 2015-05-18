@@ -15,7 +15,8 @@ return array(
     
     'posts' => array(
         'empty' => 'Нету постов',
-        'published' => 'Опубликовано в раздел',
+        'published' => 'Опубликовано',
+        'in_category' => 'в раздел',
         'by' => 'пользователем',
         'at' => 'в'
     ),

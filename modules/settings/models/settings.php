@@ -34,7 +34,9 @@ function settings_init () {
  * @param array $form
  */
 function settings_add ($group, $label, array $form) {
-    menu_add_subitem();
+    menu_add_subitem('settings', $label, "#admin_settings", array($group));
+    
+    settings($group, $form);
 }
 
 /**
