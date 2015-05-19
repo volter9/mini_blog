@@ -19,12 +19,12 @@
     <body>
         <?php view('blocks/header') ?> 
 
-        <div class="wrapper group" id="content">
-            <div class="left width-20">
+        <div class="wrapper group" id="wrapper">
+            <div class="left width-20" id="sidebar">
                 <?php view('blocks/menu') ?> 
             </div>
             
-            <div class="right width-80">
+            <div class="right width-80" id="content">
                 <?php view($view) ?> 
             </div>
         </div>

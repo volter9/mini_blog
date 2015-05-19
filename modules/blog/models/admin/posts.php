@@ -46,8 +46,7 @@ function posts_module_describe () {
         'form' => array(
             'title'       => 'input',
             'url'         => 'input',
-            'text'        => 'text',
-            'description' => 'text'
+            'text'        => 'text'
         )
     );
 }

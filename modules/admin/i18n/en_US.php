@@ -12,7 +12,13 @@ return array(
         'empty'     => 'Nothing yet here',
         'none'      => 'None',
         'menu'      => 'Menu',
-        'actions'   => 'Actions'
+        'actions'   => 'Actions',
+        
+        'welcome' => array(
+            'title'  => 'Admin',
+            'first'  => 'Hello admin! Welcome to mini_blog admin panel!',
+            'second' => 'It\'s planned to add dashboard here or something like that.'
+        )
     ),
     
     'auth' => array(

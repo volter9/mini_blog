@@ -3,8 +3,6 @@
  */
 
 .posts li {
-    border-bottom: 1px solid #ddd;
-    
     margin-bottom: 2em;
     width: 100%;
 }
@@ -41,6 +39,4 @@
 
 .posts .edit a {
     margin-right: 0px;
-    padding-left: 4px;
-    padding-right: 4px;
 }

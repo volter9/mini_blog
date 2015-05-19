@@ -9,7 +9,7 @@
  * @var array $data
  */
 ?>
-<article class="modify">
+<article class="modify modify-<?php echo $module ?>">
     <h1 class="clearfix"><?php echo $header ?></h1>
     
     <?php build_form($scheme, $data) ?> 

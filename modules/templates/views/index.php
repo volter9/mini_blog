@@ -11,7 +11,7 @@
 <article class="view view-templates">
     <h1><?php echo $header ?></h1>
     
-    <p>На этой странице Вы можете выбрать шаблон для своего сайта.</p>
+    <p><?php echo lang('admin.templates.description') ?></p>
     
     <?php if (!empty($data)): ?> 
         <?php view(module_path('templates', 'views/view')) ?> 
