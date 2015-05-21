@@ -1,0 +1,210 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    font-weight: normal;
+}
+
+/**
+ * Common styles
+ */
+
+.group:after {
+    content: "";
+    font-size: 0px;
+    
+    clear: both;
+    display: block;
+    height: 0px;
+    width: 100%;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+/**
+ * Alerts
+ */
+
+.alert {
+    border: 1px solid #ee56a3;
+    border-radius: 4px;
+    color: #ee56a3;
+    font-size: 12px;
+    
+    padding: 8px;
+}
+
+ul.alert {
+    list-style: disc;
+}
+
+ul.alert li {
+    margin-left: 1.75em;
+}
+
+.alert > * {
+    margin-bottom: 0.5em;
+}
+
+.alert > *:last-child {
+    margin-bottom: 0px;
+}
+
+.alert-blue {
+    border-color: #1080ee;
+    color: #1080ee;
+}
+
+.alert-green {
+    border-color: #50c650;
+    color: #50c650;
+}
+
+/* lol */
+.red-alert,
+.alert-red {
+    border-color: #f56;
+    color: #f56;
+}
+
+/**
+ * Form
+ */
+
+.form .field-label {
+    font-size: 14px;
+    text-align: left;
+    
+    display: block;
+    padding: 8px 0px;
+    width: 100%;
+}
+
+.form .field-element {
+    width: 100%;
+}
+
+.form input,
+.form textarea {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 140%; 
+    
+    display: block;
+    padding: 8px;
+    width: 100%;
+}
+
+.form textarea {
+    height: 20em;
+    max-width: 100%;
+}
+
+.form button {
+    margin-top: 10px;
+}
+
+/**
+ * Buttons
+ */
+
+.button {
+    background-color: #ee56a3;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 12px;
+    line-height: 100%;
+    text-decoration: none;
+    
+    display: inline-block;
+    padding: 0.5em 1em;
+}
+
+.button:hover {
+    background-color: #fff;
+    border: 1px solid #ee56a3;
+    color: #ee56a3;
+}
+
+.button-blue {
+    background-color: #1080ee;
+}
+
+.button-blue:hover {
+    border: 1px solid #1080ee;
+    color: #1080ee;
+}
+
+.button-green {
+    background-color: #50c650;
+}
+
+.button-green:hover {
+    border: 1px solid #50c650;
+    color: #50c650;
+}
+
+.button-red {
+    background-color: #f56;
+}
+
+.button-red:hover {
+    border: 1px solid #f56;
+    color: #f56;
+}
+
+.button.disabled,
+.button.disabled:hover {
+    background-color: #ddd;
+    border-color: transparent;
+    color: #bbb;
+    cursor: default;
+}
+
+/**
+ * Auth specific styles
+ */
+
+.form-wrapper button {
+    margin-top: 1.5em;
+}
+
+.form-wrapper {
+    border: 1px solid #eee;
+    border-radius: 4px;
+    
+    padding: 16px;
+}
+
+#wrapper {
+    margin: 0px auto;
+    padding-top: 10px;
+    width: 400px;
+}
+
+#mini_blog {
+    font-size: 32px;
+    font-weight: 100;
+    text-align: center;
+    
+    margin-bottom: 8px;
+}

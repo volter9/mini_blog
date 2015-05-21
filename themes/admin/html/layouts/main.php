@@ -28,5 +28,7 @@
                 <?php view($view) ?> 
             </div>
         </div>
+        
+        <?php view('blocks/footer') ?> 
     </body>
 </html>

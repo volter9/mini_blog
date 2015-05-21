@@ -5,6 +5,8 @@ return array(
         'title'  => 'Настройки',
         
         'default' => array(
+            'title' => 'Основные',
+            
             'fields' => array(
                 'sitename' => 'Название сайта',
                 'language' => 'Язык'
@@ -12,7 +14,7 @@ return array(
             
             'tooltips' => array(
                 'sitename' => 'Имя вебсайта (заголовок)',
-                'language' => 'Язык интерфейска'
+                'language' => 'Язык интерфейса CMS'
             )
         )
     )

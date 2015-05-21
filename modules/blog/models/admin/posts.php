@@ -46,7 +46,8 @@ function posts_module_describe () {
         'form' => array(
             'title'       => 'input',
             'url'         => 'input',
-            'text'        => 'text'
+            'text'        => 'text',
+            'description' => 'input'
         )
     );
 }
@@ -69,11 +70,11 @@ function posts_module_rules () {
  * @param array $data
  */
 function posts_module_filter ($data) {
-    if (!isset($data['url'])) {
-        $url = preg_replace('/[^\w\d\-_]+/i', '-', transliterate($data['title']));
+    if (!isset($data['url']) && $title = array_get($data, 'title')) {
+        $url = preg_replace('/[^\w\d\-_]+/i', '-', transliterate($title));
         $url = trim($url, '-');
     
-        array_set($data, 'url', strtolower($url));
+        array_set($data, 'url', mb_strtolower($url));
     }
     
     array_set($data, 'user_id', array_get($data, 'user_id', users('user.id')));

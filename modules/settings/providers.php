@@ -9,15 +9,6 @@
 
 return array(
     'langauges' => function () {
-        return array(
-            array(
-                'title' => 'English',
-                'value' => 'en_US'
-            ),
-            array(
-                'title' => 'Русский',
-                'value' => 'ru_RU'
-            )
-        );
+        return require module_path('settings', 'i18n/languages.php');
     }
 );

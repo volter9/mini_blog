@@ -32,6 +32,8 @@ function action_view ($url = '') {
     
     layout('posts/post', array(
         'title' => $post['title'],
-        'post'  => $post
+        'post'  => $post,
+        
+        'meta_description' => $post['description']
     ));
 }

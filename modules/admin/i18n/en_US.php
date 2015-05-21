@@ -16,8 +16,8 @@ return array(
         
         'welcome' => array(
             'title'  => 'Admin',
-            'first'  => 'Hello admin! Welcome to mini_blog admin panel!',
-            'second' => 'It\'s planned to add dashboard here or something like that.'
+            'first'  => 'Welcome to mini_blog admin panel!',
+            'second' => 'It\'s planned to add dashboard here or something like that, but for now here\'s only this message.'
         )
     ),
     

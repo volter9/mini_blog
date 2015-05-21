@@ -15,16 +15,20 @@
     </head>
     
     <body>
-        <h1>Форма входа</h1>
-        
-        <?php if ($errors = $data['error']): ?>
-        <ul>
-            <?php foreach ($errors as $error): ?> 
-            <li><?php echo $error ?></li>
-            <?php endforeach; ?>
-        </ul>
-        <?php endif; ?>
-        
-        <?php build_form($scheme, $data) ?>
+        <section id="wrapper">
+            <h1 id="mini_blog">mini_blog</h1>
+            
+            <div class="form-wrapper">
+                <?php if (isset($data['error']) && $errors = $data['error']): ?> 
+                <div class="alert red-alert">
+                    <?php foreach ($errors as $error): ?> 
+                    <p><?php echo $error ?></p>
+                    <?php endforeach; ?> 
+                </div>
+                <?php endif; ?> 
+                
+                <?php build_form($scheme, $data) ?>
+            </div>
+        </section>
     </body>
 </html>

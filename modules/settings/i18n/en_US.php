@@ -5,6 +5,8 @@ return array(
         'title'  => 'Settings',
         
         'default' => array(
+            'title' => 'General',
+            
             'fields' => array(
                 'sitename' => 'Site name',
                 'language' => 'Language'

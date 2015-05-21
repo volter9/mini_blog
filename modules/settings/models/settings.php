@@ -18,11 +18,6 @@ function settings ($key = null, $value = null) {
  * Initalize settings
  */
 function settings_init () {
-    settings('default', array(
-        'sitename' => 'input',
-        'language' => 'select:langauges'
-    ));
-    
     storage('settings.default', settings_get('default'));
 }
 

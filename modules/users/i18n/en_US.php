@@ -8,10 +8,10 @@ return array(
         'remove' => 'Remove the user',
     
         'fields' => array(
-            'username' => 'Username',
+            'username' => 'User name',
             'password' => 'Password',
             'mail'     => 'Email',
-            'group_id' => 'User Group'
+            'group_id' => 'User group'
         ),
     
         'tooltips' => array(

@@ -89,7 +89,7 @@ a {
 }
 
 /**
- * Buttons
+ * Button styles
  */
 
 .button {
@@ -145,8 +145,11 @@ a {
     border-color: transparent;
     color: #bbb;
     cursor: default;
-    // font-weight: bold;
 }
+
+/**
+ * Width helpers
+ */
 
 .width-10 { width: 10% }
 .width-20 { width: 20% }
@@ -169,12 +172,153 @@ a {
 .width-33 { width: 33.3333% }
 .width-66 { width: 66.6666% }
 
+/**
+ * Alerts styles
+ */
+
+.alert {
+    border: 1px solid #ee56a3;
+    border-radius: 4px;
+    color: #ee56a3;
+    font-size: 12px;
+    
+    margin-bottom: 1em;
+    padding: 8px;
+}
+
+ul.alert {
+    list-style: disc;
+}
+
+ul.alert li {
+    margin-left: 1.75em;
+}
+
+.alert > * {
+    margin-bottom: 0.5em;
+}
+
+.alert > *:last-child {
+    margin-bottom: 0px;
+}
+
+.alert-blue {
+    border-color: #1080ee;
+    color: #1080ee;
+}
+
+.alert-green {
+    border-color: #50c650;
+    color: #50c650;
+}
+
+/* lol */
+.red-alert,
+.alert-red {
+    border-color: #f56;
+    color: #f56;
+}
+
+/**
+ * Form styles
+ */
+
+.form .field {
+    margin-bottom: 1.5em;
+}
+
+.form .field-label {
+    font-size: 14px;
+    text-align: left;
+    
+    display: block;
+    padding: 8px 0px;
+    width: 100%;
+}
+
+.form .field-element {
+    width: 100%;
+}
+
+.form .field-tooltip {
+    color: #888;
+    font-size: 12px;
+    text-align: left;
+    
+    margin-top: 4px;
+    padding: 0px 8px;
+}
+
+.form input,
+.form textarea {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 140%; 
+    
+    display: block;
+    padding: 8px;
+    width: 100%;
+}
+
+.form textarea {
+    height: 20em;
+    max-width: 100%;
+}
+
+/**
+ * Table styles
+ */
+
+.table-wrapper {
+    display: block;
+    width: 100%;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table thead > tr {
+    border-bottom: 1px solid #eee;
+}
+
+.table th {
+    font-size: 14px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.table td {
+    font-size: 12px;
+    line-height: 160%;
+    vertical-align: top;
+}
+
+.table th,
+.table td {
+    min-width: 20%;
+    padding: 8px;
+}
+
+.table tr {
+    border-bottom: 1px solid #eee;
+}
+
+/**
+ * Site specific styles
+ */
+
 /** 
  * Header
  */
 
 #header {
-    margin-bottom: 16px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 2em;
 }
 
 #header ul {
@@ -193,7 +337,6 @@ a {
     color: #888;
     line-height: 48px;
     text-decoration: none;
-    // text-transform: capitalize;
     vertical-align: middle;
     
     display: block;
@@ -274,45 +417,6 @@ a {
 }
 
 /**
- * Table
- */
-
-.table-wrapper {
-    display: block;
-    width: 100%;
-}
-
-.table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.table thead > tr {
-    border-bottom: 2px solid #eee;
-}
-
-.table th {
-    text-align: left;
-    white-space: nowrap;
-}
-
-.table td {
-    font-size: 14px;
-    line-height: 160%;
-    vertical-align: top;
-}
-
-.table th,
-.table td {
-    min-width: 20%;
-    padding: 8px;
-}
-
-.table tr {
-    border-bottom: 1px solid #eee;
-}
-
-/**
  * Custom table styles
  */
 
@@ -321,13 +425,11 @@ a {
 }
 
 .table td.edit {
-    font-size: 18px;
     width: 22.5%;
     white-space: nowrap;
 }
 
 .edit a {
-    font-size: 12px;
     text-align: center;
     text-decoration: none;
     vertical-align: top;
@@ -359,99 +461,11 @@ article.view h1 .button {
     vertical-align: middle;
 }
 
-.form .field {
-    margin-bottom: 1.5em;
-}
-
-.form .field-label {
-    font-size: 14px;
-    text-align: left;
-    
-    display: block;
-    padding: 8px 0px;
-    width: 100%;
-}
-
-.form .field-element {
-    // padding-left: 10px;
-    width: 100%;
-}
-
-.form .field-tooltip {
-    color: #888;
-    font-size: 12px;
-    text-align: left;
-    
-    margin-top: 4px;
-    padding: 0px 8px;
-}
-
-.form input,
-.form textarea {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-family: sans-serif;
-    font-size: 14px;
-    line-height: 140%; 
-    
-    display: block;
-    padding: 8px;
-    width: 100%;
-}
-
-.form textarea {
-    height: 20em;
-    max-width: 100%;
-}
-
-.form select {
-    margin-top: 8px
-}
-
 /**
- * Alerts
+ * Footer styles
  */
 
-.alert {
-    border: 1px solid #ee56a3;
-    border-radius: 4px;
-    color: #ee56a3;
+#footer p {
+    color: #aaa;
     font-size: 12px;
-    
-    margin-bottom: 1em;
-    padding: 8px;
-}
-
-ul.alert {
-    list-style: disc;
-}
-
-ul.alert li {
-    margin-left: 1.75em;
-}
-
-.alert > * {
-    margin-bottom: 0.5em;
-}
-
-.alert > *:last-child {
-    margin-bottom: 0px;
-}
-
-.alert-blue {
-    border-color: #1080ee;
-    color: #1080ee;
-}
-
-.alert-green {
-    border-color: #50c650;
-    color: #50c650;
-}
-
-/* lol */
-.red-alert,
-.alert-red {
-    border-color: #f56;
-    color: #f56;
 }

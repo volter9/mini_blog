@@ -7,6 +7,6 @@
     
     "require": {
         "erusev/parsedown": "dev-master",
-        "volter/mini_framework": "1.2.1"
+        "volter/mini_framework": "1.2.2"
     }
 }

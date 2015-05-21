@@ -25,6 +25,8 @@ function actions_init () {
  * @param int $page
  */
 function action_view ($module, $page = 1) {
+    emit('admin:view', $module);
+    
     load_api('pagination');
     
     view_browse_page($module, $page);
@@ -38,6 +40,8 @@ function action_view ($module, $page = 1) {
  * @param array $errors
  */
 function action_add ($module, array $data = array(), array $errors = array()) {
+    emit('admin:add', $module);
+    
     $url = url('#admin_add_post', array($module));
     
     view_modify_page($module, 'add', $url, $data, $errors);
@@ -69,6 +73,8 @@ function action_add_post ($module) {
  * @param array $errors
  */
 function action_edit ($module, $id, array $data = array(), array $errors = array()) { 
+    emit('admin:edit', $module);
+    
     $url = url('#admin_edit_post', array($module, $id));
     
     if (!$data) {
@@ -100,9 +106,7 @@ function action_edit_post ($module, $id) {
         return redirect('#admin_view', array($module));
     }
     
-    $errors = validation_errors();
-    
-    action_edit($module, $id, array_merge($item, $input), $errors ? $errors : array());
+    action_edit($module, $id, array_merge($item, $input), validation_errors());
 }
 
 /**
@@ -157,9 +161,17 @@ function limit_keys (array $array, array $keys) {
 function validate_module ($module, array $input) {
     $rules = admin_module_rules($module);
     
-    validation_init(lang("admin.$module.fields"), i18n('messages'));
+    validation_init(
+        lang("admin.$module.fields"), 
+        i18n('messages')
+    );
     
-    return validate($input, limit_keys($rules, array_keys($input)));
+    try {
+        return validate($input, limit_keys($rules, array_keys($input)));
+    }
+    catch (Exception $e) {
+        return true;
+    }
 }
 
 /**

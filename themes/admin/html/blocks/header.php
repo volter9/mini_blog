@@ -6,14 +6,14 @@
                     m
                 </a>
             </li>
-            
+        
             <li>
                 <a href="<?php echo url('#index') ?>">
                     <?php echo lang('admin.common.view_site') ?>
                 </a>
             </li>
         </ul>
-    
+
         <ul class="right">
             <li>
                 <a href="<?php echo url('#auth_signout') ?>">

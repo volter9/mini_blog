@@ -6,8 +6,10 @@
 function action_index () {
     load_model('landing', module_path('landing', 'models', true));
     
-    layout(module_path('landing', 'views/index'), array(
-        'title'    => 'Добро пожаловать!',
+    $settings = settings_get('landing');
+    
+    module_layout('landing', 'landing', array(
+        'title'    => array_get($settings, 'title', 'Добро пожаловать!'),
         'sections' => landing_sections()
-    ));
+    ), true);
 }

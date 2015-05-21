@@ -41,7 +41,7 @@ function action_save ($group = 'default') {
     }
     
     if (settings_save($group, $input)) {
-        redirect('#admin_index');
+        redirect('#admin_settings', array($group));
     }
 }
 
@@ -56,7 +56,8 @@ function settings_view ($group, array $input = array(), array $errors = array())
     forms('providers', load_php(module_path('settings', 'providers')));
     
     layout(module_path('settings', 'views/index'), array(
-        'title'  => lang('admin.settings.title'),
+        'title'     => lang('admin.settings.title'),
+        'subheader' => lang("admin.settings.$group.title"),
         
         'scheme' => array(
             'view'   => 'forms/basic',
@@ -66,10 +67,10 @@ function settings_view ($group, array $input = array(), array $errors = array())
         ),
         
         'data' => array(
-            'errors'  => $errors,
-            'input'   => $input,
-            'field'   => lang("admin.settings.$group.fields"),
-            'tooltip' => lang("admin.settings.$group.tooltips")
+            'errors'   => $errors,
+            'input'    => $input,
+            'field'    => lang("admin.settings.$group.fields"),
+            'tooltips' => lang("admin.settings.$group.tooltips")
         )
     ));
 }

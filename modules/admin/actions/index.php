@@ -39,7 +39,7 @@ function view_auth_action ($errors = '', array $input = array()) {
         'title' => 'Login',
         
         'scheme' => array(
-            'view'   => 'forms/basic',
+            'view'   => 'forms/auth',
             'action' => url('#auth_login'),
             'submit' => lang('admin.auth.login'),
             'form'   => auth_form()

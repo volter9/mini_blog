@@ -12,16 +12,7 @@ return array(
      * 
      * - autoload - automatically connect on boot to database
      */
-    'database' => array(
-        'autoload' => true,
-        'default'  => array(
-            'name'     => 'mini_blog',
-            'host'     => 'localhost',
-            'user'     => 'root',
-            'password' => '',
-            'charset'  => 'utf8'
-        )
-    ),
+    'database' => require app_path('config/database.php'),
     
     /**
      * Themes configuration
@@ -98,14 +89,7 @@ return array(
         /**
          * Modules which should be loaded
          */
-        'modules' => array(
-            'settings',
-            'admin', 
-            'users',
-            'blog',
-            'landing',
-            'templates'
-        ),
+        'modules' => require app_path('config/modules.php'),
         
         /**
          * Default timezone

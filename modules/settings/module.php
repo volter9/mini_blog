@@ -22,4 +22,9 @@ function settings_module_admin_init () {
     load_language('admin', module_path('settings', 'i18n'));
     
     menu_add_item('settings', 'admin.settings.title', '#admin_settings');
+    
+    settings_add('default', 'admin.settings.default.title', array(
+        'sitename' => 'input',
+        'language' => 'select:langauges'
+    ));
 }
