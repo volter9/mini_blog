@@ -38,7 +38,12 @@ function action_index () {
  * @param string $template
  */
 function action_choose ($template) {
-    setting_save('default', 'template', $template, true) and redirect('#admin_templates_view');
+    $default = settings_get('default');
+    $exists  = array_get($default, 'template') !== false;
+    
+    if (setting_save('default', 'template', $template, $exists)) { 
+        redirect('#admin_templates_view');
+    }
     
     action_index();
 }

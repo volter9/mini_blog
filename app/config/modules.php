@@ -9,6 +9,6 @@ return array(
     'admin', 
     'users',
     'blog',
-    'landing',
+    // 'landing',
     'templates'
 );
