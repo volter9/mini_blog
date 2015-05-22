@@ -1,7 +1,7 @@
 <?php
 
 /**
- * mini_blog modules
+ * mini_blog modules which should be loaded
  */
 
 return array(

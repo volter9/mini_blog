@@ -52,12 +52,10 @@ return array(
     /**
      * Autoload resources
      * 
-     * - models - autoload models
      * - files - autoload any PHP files
      */
     'autoload' => array(
-        'models' => array(),
-        'files'  => array(
+        'files' => array(
             'app/components/loader',
             'app/components/modules',
             'app/components/menu'
@@ -66,12 +64,8 @@ return array(
     
     /**
      * i18n - Internationalization
-     * 
-     * - default - default language
      */
-    'i18n' => array(
-        'default' => 'ru_RU'
-    ),
+    'i18n' => require app_path('config/i18n.php'),
     
     /**
      * Validation
