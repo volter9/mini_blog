@@ -2,6 +2,8 @@
 
 /**
  * Load all components and check for existent module
+ * 
+ * @return bool
  */
 function actions_init () {
     $module = router('route.matches.0');
@@ -25,7 +27,7 @@ function actions_init () {
  * @param int $page
  */
 function action_view ($module, $page = 1) {
-    emit('admin:view', $module);
+    emit("admin:$module.view");
     
     load_api('pagination');
     
@@ -40,7 +42,7 @@ function action_view ($module, $page = 1) {
  * @param array $errors
  */
 function action_add ($module, array $data = array(), array $errors = array()) {
-    emit('admin:add', $module);
+    emit("admin:$module.add");
     
     $url = url('#admin_add_post', array($module));
     
@@ -73,7 +75,7 @@ function action_add_post ($module) {
  * @param array $errors
  */
 function action_edit ($module, $id, array $data = array(), array $errors = array()) { 
-    emit('admin:edit', $module);
+    emit("admin:$module.edit");
     
     $url = url('#admin_edit_post', array($module, $id));
     
@@ -95,9 +97,9 @@ function action_edit_post ($module, $id) {
     $input = input();
     
     $keys = extract_keys($item, $input);
-    $data = admin_filter_input($module, limit_keys($input, $keys));
+    $data = admin_filter_input($module, array_extract($input, $keys));
     
-    $input = limit_keys($input, $keys);
+    $input = array_extract($input, $keys);
     $input['id'] = $id;
     
     $criteria = array('id[=]' => $id);
@@ -132,27 +134,6 @@ function extract_keys (array $item, array $input) {
 }
 
 /**
- * Leave only provided keys in input array
- * 
- * @param array $array
- * @param array $keys
- * @return array
- */
-function limit_keys (array $array, array $keys) {
-    if (empty($keys)) {
-        return $array;
-    }
-    
-    foreach ($array as $key => $value) {
-        if (!in_array($key, $keys)) {
-            unset($array[$key]);
-        }
-    }
-    
-    return $array;
-}
-
-/**
  * Validate input
  * 
  * @param string $module
@@ -162,12 +143,12 @@ function validate_module ($module, array $input) {
     $rules = admin_module_rules($module);
     
     validation_init(
-        lang("admin.$module.fields"), 
+        admin_module_fields($module), 
         i18n('messages')
     );
     
     try {
-        return validate($input, limit_keys($rules, array_keys($input)));
+        return validate($input, array_extract($rules, array_keys($input)));
     }
     catch (Exception $e) {
         return true;

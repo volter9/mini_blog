@@ -10,6 +10,15 @@
  */
 
 /**
+ * Set current template
+ */
+function templates_module_init () {
+    if ($template = storage('settings.default.template')) {
+        views('templates.template', $template);
+    }
+}
+
+/**
  * Add templates item menu
  */
 function templates_module_admin_init () {

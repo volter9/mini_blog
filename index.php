@@ -13,9 +13,11 @@
  * 
  * @const string MB_VERSION Version string
  * @const bool MB_DEBUG Debug flag
+ * @const float MB_START Execution time started
  */
 define('MB_VERSION', 'v1.2');
 define('MB_DEBUG'  , true);
+define('MB_START'  , microtime(true));
 
 /**
  * mini_framework constants
@@ -34,11 +36,6 @@ ini_set('display_errors', defined('MB_DEBUG'));
 error_reporting(-defined('MB_DEBUG'));
 
 /**
- * Capturing start time
- */
-$time = microtime(true);
-
-/**
  * Requiring installer and exit, if installer exists 
  * and that's all in two lines. Pretty smart, huh? :)
  */
@@ -53,22 +50,3 @@ file_exists($install) and (require $install) and exit;
 require 'vendor/autoload.php';
 
 app_boot(sprintf('%sconfig', MF_APP_DIR));
-
-/**
- * Debug information
- * 
- * If MB_DEBUG is defined, then HTML comment
- * would be displayed at bottom of the source page
- * with following information
- * 
- * - Execution time
- * - Real memory usage (according to PHP)
- * - Current routing URL
- */
-defined('MB_DEBUG') and printf(
-    '<!-- Execution time: %.5f, Memory usage: %s, URL: %s, files: %s -->', 
-    microtime(true) - $time, 
-    memory_get_usage(true), 
-    get_url(),
-    count(get_included_files())
-);

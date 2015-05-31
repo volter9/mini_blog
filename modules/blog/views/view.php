@@ -16,8 +16,15 @@
             </div>
             
             <div class="right edit">
+                <a class="button button-blue" 
+                   href="<?php echo url('#admin_edit', array($module, $post['id'])) ?>">
+                    <?php echo lang('admin.common.edit') ?> 
+                </a>
+                
                 <a class="button button-red" 
-                   href="<?php echo url('#admin_remove', array($module, $post['id'])) ?>"><?php echo lang('admin.common.remove') ?></a>
+                   href="<?php echo url('#admin_remove', array($module, $post['id'])) ?>">
+                   <?php echo lang('admin.common.remove') ?> 
+                </a>
             </div>
         </div>
         

@@ -16,9 +16,9 @@
     
     <body>
         <section id="wrapper">
-            <h1 id="mini_blog">mini_blog</h1>
-            
             <div class="form-wrapper">
+                <h1 id="mini_blog">mini_blog</h1>
+                
                 <?php if (isset($data['error']) && $errors = $data['error']): ?> 
                 <div class="alert red-alert">
                     <?php foreach ($errors as $error): ?> 

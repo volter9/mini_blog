@@ -12,21 +12,23 @@ return array(
         'remove' => 'Удалить запись',
         
         'fields' => array(
-            'title'       => 'Заголовок',
-            'url'         => 'URL фрагмент',
-            'description' => 'Описание',
-            'text'        => 'Содержание',
-            'user_id'     => 'Автор',
             'category_id' => 'Категория'
         ),
         
         'tooltips' => array(
-            'title'       => 'Заголовок вашей записи',
-            'url'         => 'URL фрагмент записи в адресной строке',
-            'description' => 'Описание записи',
-            'text'        => 'Содержание записи, можно использовать HTML или <a href="http://rukeba.com/by-the-way/markdown-sintaksis-po-russki/" target="_blank">Markdown</a>',
-            'user_id'     => 'Автор записи',
-            'category_id' => 'Категория записи'
+            'title'       => 'Дайте отличный заголовок для вашей записи',
+            'url'         => 'Индетификатор статьи в URL',
+            'description' => 'Мета описание записи',
+            'text'        => 'Тут Ваши мысли, можно использовать HTML или <a href="http://rukeba.com/by-the-way/markdown-sintaksis-po-russki/" target="_blank">Markdown</a>',
+            'user_id'     => 'Пользователь который владеет данной записью',
+            'category_id' => 'Категория необязательна'
         )
+    ),
+    
+    'categories' => array(
+        'title'  => 'Категории',
+        'add'    => 'Добавить категорию',
+        'edit'   => 'Редактировать категорию',
+        'remove' => 'Удалить категорию',
     )
 );

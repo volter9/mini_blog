@@ -12,11 +12,6 @@ return array(
         'remove' => 'Remove the post',
         
         'fields' => array(
-            'title'       => 'Title',
-            'url'         => 'Post slug URL',
-            'description' => 'Meta description',
-            'text'        => 'Content',
-            'user_id'     => 'Author',
             'category_id' => 'Category'
         ),
         
@@ -28,5 +23,12 @@ return array(
             'user_id'     => 'Post\'s author',
             'category_id' => 'Post\'s category'
         )
+    ),
+    
+    'categories' => array(
+        'title'  => 'Categories',
+        'add'    => 'Add a category',
+        'edit'   => 'Edit a category',
+        'remove' => 'Remove a category'
     )
 );

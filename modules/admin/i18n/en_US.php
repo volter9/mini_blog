@@ -18,6 +18,13 @@ return array(
             'title'  => 'Admin',
             'first'  => 'Welcome to mini_blog admin panel!',
             'second' => 'It\'s planned to add dashboard here or something like that, but for now here\'s only this message.'
+        ),
+        
+        'fields' => array(
+            'title'       => 'Title',
+            'url'         => 'URL slug',
+            'description' => 'Description',
+            'text'        => 'Content'
         )
     ),
     

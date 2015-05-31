@@ -9,10 +9,6 @@ function settings_module_init () {
     if ($language = storage('settings.default.language')) {
         lang('settings.default', $language);
     }
-    
-    if ($template = storage('settings.default.template')) {
-        views('templates.template', $template);
-    }
 }
 
 /**

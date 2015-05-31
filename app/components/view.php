@@ -20,6 +20,7 @@ function view_browse_page ($module, $page) {
         'data'        => $items['items'],
         'pages'       => $items['pages'],
         'description' => $description,
+        'fields'      => admin_module_fields($module),
         'template'    => array_get($description, 'template.view', 'basic/views/table')
     ));
 }
@@ -56,7 +57,7 @@ function view_modify_page ($module, $action, $url, array $data, array $errors) {
         'data' => array(
             'error'    => $errors,
             'input'    => $data,
-            'field'    => lang("admin.$module.fields"),
+            'field'    => admin_module_fields($module),
             'tooltips' => lang("admin.$module.tooltips")
         )
     ));

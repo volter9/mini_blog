@@ -39,15 +39,15 @@ function posts_module_describe () {
         'per_page' => 6,
         
         'template' => array(
-            'view'   => module_path('blog', 'views/view'),
-            'modify' => module_path('blog', 'views/form')
+            'view' => module_path('blog', 'views/view'),
         ),
         
         'form' => array(
             'title'       => 'input',
             'url'         => 'input',
             'text'        => 'text',
-            'description' => 'input'
+            'description' => 'input',
+            'category_id' => 'select:categories'
         )
     );
 }
@@ -70,7 +70,11 @@ function posts_module_rules () {
  * @param array $data
  */
 function posts_module_filter ($data) {
-    if (!isset($data['url']) && $title = array_get($data, 'title')) {
+    if (
+        (!isset($data['url']) || 
+        $data['url'] === '') && 
+        $title = array_get($data, 'title')
+    ) {
         $url = preg_replace('/[^\w\d\-_]+/i', '-', transliterate($title));
         $url = trim($url, '-');
     
