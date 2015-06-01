@@ -27,7 +27,7 @@ body {
 
 #header {
     background-color: #fff;
-    margin-bottom: 4em;
+    margin-bottom: 2em;
 }
 
 #header ul {
@@ -87,15 +87,17 @@ body {
  * Index page module list
  */
 
+#sidebar {
+    padding: 2em 0em 2em 2em;
+}
+
 #wrapper {
     background-color: #fff;
     box-shadow: 0px 4px 4px #ddd;
-    
-    padding: 2em;
 }
 
 #content {
-    /* padding: 0px 1em; */
+    padding: 2em;
 }
 
 .modules-list > li {

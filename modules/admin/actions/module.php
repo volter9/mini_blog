@@ -96,15 +96,19 @@ function action_edit_post ($module, $id) {
     $item  = db_find($module, $id);
     $input = input();
     
+    $data = admin_filter_input($module, $input);
     $keys = extract_keys($item, $input);
-    $data = admin_filter_input($module, array_extract($input, $keys));
     
     $input = array_extract($input, $keys);
     $input['id'] = $id;
     
     $criteria = array('id[=]' => $id);
     
-    if (empty($keys) || validate_module($module, $input) && db_update($module, $data, $criteria)) {
+    $condition = empty($keys) 
+              || validate_module($module, $input) 
+              && db_update($module, $data, $criteria);
+    
+    if ($condition) {
         return redirect('#admin_view', array($module));
     }
     

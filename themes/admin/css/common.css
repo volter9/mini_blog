@@ -269,8 +269,6 @@ ul.alert li {
  */
 
 .table-wrapper {
-    border: 1px solid #eee;
-    
     display: block;
     width: 100%;
 }
@@ -280,12 +278,9 @@ ul.alert li {
     width: 100%;
 }
 
-.table thead > tr {
-    border-bottom: 1px solid #eee;
-}
-
 .table th {
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: normal;
     text-align: left;
     white-space: nowrap;
 }
@@ -299,11 +294,7 @@ ul.alert li {
 .table th,
 .table td {
     min-width: 20%;
-    padding: 8px 12px;
-}
-
-.table tbody td {
-    padding-bottom: 2em;
+    padding: 8px 0px;
 }
 
 /**
