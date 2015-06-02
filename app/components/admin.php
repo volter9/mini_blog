@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Admin function container
+ * Admin container
  * 
  * @param mixed $key
  * @param mixed $value

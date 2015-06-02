@@ -11,6 +11,18 @@
  */
 function users_module_init () {
     load_model('users', module_path('users', 'models', true));
+    
+    bind('router:found', function ($route) {
+        $id = after($route['id'], '#');
+        
+        if (
+            starts_with($id, 'admin_') && 
+            !is_allowed("route_$id") &&
+            $id !== 'admin_denied'
+        ) {
+            redirect('#admin_denied');
+        }
+    });
 }
 
 /**

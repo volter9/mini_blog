@@ -8,7 +8,7 @@
 function categories_module_describe () {
     return array(
         'fields'   => 'title, description',
-        'per_page' => 6,
+        'per_page' => 10,
         
         'form' => array(
             'title'       => 'input',

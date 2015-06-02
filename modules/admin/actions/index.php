@@ -58,13 +58,12 @@ function view_auth_action ($errors = '', array $input = array()) {
  */
 function action_login () {
     $input = input();
-    
-    validation_init(lang('admin.auth.fields'), i18n('messages'));
-    
-    $user = user_for_auth(
+    $user  = user_for_auth(
         array_get($input, 'username'), 
         md5(array_get($input, 'password'))
     );
+    
+    validation_init(lang('admin.auth.fields'), i18n('messages'));
     
     if (validate($input, auth_rules()) && $user) {
         session('user_id', $user['id']);

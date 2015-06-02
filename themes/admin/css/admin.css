@@ -27,6 +27,8 @@ body {
 
 #header {
     background-color: #fff;
+    box-shadow: 0px 2px 4px #ddd;
+    
     margin-bottom: 2em;
 }
 
@@ -53,8 +55,8 @@ body {
 }
 
 #header a:hover {
-    background-color: #ee56a3;
-    color: #fff; /* pink */
+    background-color: #fafafa;
+    color: #ee56a3; /* pink */
 }
 
 #header ul > li > ul {
@@ -62,7 +64,7 @@ body {
 }
 
 #logo > a {
-    background-color: #f4f4f4;
+    border-right: 1px solid #eee;
     color: #000;
     font-size: 24px;
     font-weight: bold;
@@ -72,7 +74,7 @@ body {
     
     display: block;
     height: 48px;
-    min-width: 48px;
+    min-width: 50px;
     padding: 0px;
     padding-left: 12px;
     padding-right: 12px;
@@ -88,15 +90,22 @@ body {
  */
 
 #sidebar {
+    /* 
+background-color: #fff;
+    box-shadow: 0px 4px 4px #ddd;
+ */
+    
     padding: 2em 0em 2em 2em;
 }
 
 #wrapper {
-    background-color: #fff;
-    box-shadow: 0px 4px 4px #ddd;
+    
 }
 
 #content {
+    background-color: #fff;
+    box-shadow: 0px 4px 4px #ddd;
+    
     padding: 2em;
 }
 
@@ -171,4 +180,39 @@ article.view h1 .button {
     color: #aaa;
     font-size: 12px;
     text-shadow: 0px 1px 2px #fff;
+}
+
+
+/**
+ * Tables
+ */
+
+.table-wrapper {
+    border: 1px solid #ddd;
+}
+
+.table-wrapper td,
+.table-wrapper th {
+    padding: 8px 12px;
+}
+
+.table-wrapper tr {
+    border-bottom: 1px solid #eee;
+}
+
+.table-wrapper tbody tr:last-child {
+    border-bottom: 0px;
+}
+
+.table-wrapper th {
+    background-color: #f8f8f8;
+}
+
+.table-wrapper td {
+    background-color: #fff;
+}
+
+.table-wrapper td {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
 }

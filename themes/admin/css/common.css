@@ -128,6 +128,7 @@ a {
     color: #f56;
 }
 
+.button[disabled],
 .button.disabled,
 .button.disabled:hover {
     background-color: #ddd;
@@ -279,16 +280,17 @@ ul.alert li {
 }
 
 .table th {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: normal;
     text-align: left;
     white-space: nowrap;
 }
 
 .table td {
+    color: #888;
     font-size: 12px;
     line-height: 160%;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 .table th,
@@ -301,7 +303,9 @@ ul.alert li {
  * Pagination
  */
 
-.pagination {}
+.pagination {
+    margin-top: 1em;
+}
 
 .pagination a,
 .pagination span {

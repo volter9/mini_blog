@@ -22,8 +22,8 @@ function users_init () {
     
     if ($user) {
         users('user', $user);
-        users('privileges', explode(',', $user['privileges']));
         users('authorized', true);
+        users('privileges', explode(',', $user['privileges']));
     }
     else {
         session('user_id', false);
@@ -36,7 +36,7 @@ function users_init () {
  * @param string $action
  * @return bool
  */
-function is_user_allowed ($action) {
+function is_allowed ($action) {
     $privileges = users('privileges');
     
     return in_array($action, $privileges)
@@ -44,13 +44,13 @@ function is_user_allowed ($action) {
 }
 
 /**
- * Is user in specific group
+ * Check for specific role
  * 
- * @param string $group
+ * @param string
  * @return bool
  */
-function is_user ($group) {
-    return users('user.group_name') === $group;
+function is_role ($role) {
+    return users('user.role') === $role;
 }
 
 /**
@@ -63,10 +63,9 @@ function user_by_id ($id) {
     return db_select('
         SELECT 
             u.id, u.username, u.mail, 
-            g.name AS group_name, g.privileges
+            g.name as role, g.privileges
         FROM users u
-        LEFT JOIN groups g 
-        ON (g.id = u.group_id) 
+        LEFT JOIN groups g ON (u.group_id = g.id)
         WHERE u.id = ?',
         array($id), true
     );

@@ -104,11 +104,9 @@ function action_edit_post ($module, $id) {
     
     $criteria = array('id[=]' => $id);
     
-    $condition = empty($keys) 
-              || validate_module($module, $input) 
-              && db_update($module, $data, $criteria);
-    
-    if ($condition) {
+    if (empty($keys) || validate_module($module, $input)) {
+        db_update($module, $data, $criteria);
+        
         return redirect('#admin_view', array($module));
     }
     

@@ -6,7 +6,12 @@ return array(
         'add'    => 'Add a user',
         'edit'   => 'Edit the user',
         'remove' => 'Remove the user',
-    
+        
+        'denied' => array(
+            'title'       => 'Access denied',
+            'description' => 'Unfortunately, you cannot access this page or action.'
+        ),
+        
         'fields' => array(
             'username' => 'User name',
             'password' => 'Password',
