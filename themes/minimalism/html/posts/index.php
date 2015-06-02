@@ -41,8 +41,10 @@
         </div>
         <?php endforeach; ?> 
         
-        <?php view('admin:blocks/pagination', array_merge(
-            $posts['pages'], array('url' => $url)
-        ), false) ?> 
+        <?php view(
+            'admin:blocks/pagination', 
+            array_merge($posts['pages'], compact('url')), 
+            false
+        ) ?> 
     <?php endif; ?> 
 </article>

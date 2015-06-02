@@ -21,9 +21,16 @@ function users_init () {
     $user = user_by_id((int)session('user_id'));
     
     if ($user) {
+        $privileges = array_map(
+            function ($privilege) {
+                return trim($privilege);
+            },
+            explode(',', $user['privileges'])
+        );
+        
         users('user', $user);
         users('authorized', true);
-        users('privileges', explode(',', $user['privileges']));
+        users('privileges', $privileges);
     }
     else {
         session('user_id', false);

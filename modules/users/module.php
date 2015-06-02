@@ -31,12 +31,20 @@ function users_module_init () {
 function users_module_admin_init () {
     load_language('admin', module_path('users', 'i18n'));
     
+    load_php(module_path('users', 'models/admin/groups'));
+    
     menu_add_item('users', 'admin.users.title', '#admin_view', array('users'));
     menu_add_subitem('users', 'admin.users.add', '#admin_add', array('users'));
+    menu_add_subitem('users', 'admin.groups.title', '#admin_view', array('groups'));
     
     admin_add_module('users', array(
         'rules'       => 'users_module_rules',
         'description' => 'users_module_describe',
+    ));
+    
+    admin_add_module('groups', array(
+        'rules'       => 'groups_module_rules',
+        'description' => 'groups_module_describe',
     ));
     
     bind('admin:users.filter', 'users_module_filter');

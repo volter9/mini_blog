@@ -195,9 +195,8 @@ article.error ul li {
 .post h4,
 .post h5,
 .post h6 {
-    color: #484848;
-    font-family: Trebuchet MS;
-    font-weight: bold;
+    color: #333;
+    font-weight: normal;
     line-height: 100%;
     margin-bottom: 20px;
     padding: 0px 20px

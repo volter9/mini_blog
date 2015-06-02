@@ -10,7 +10,7 @@
     <li class="left">
         <div class="header group">
             <div class="left">
-                <a href="<?php echo url('#admin_edit', array($module, $post['id'])) ?>">
+                <a href="<?php echo url('#post', array($post['url'])) ?>">
                     <?php echo $post['title'] ?>
                 </a>
             </div>

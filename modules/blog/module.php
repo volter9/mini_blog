@@ -34,12 +34,10 @@ function blog_module_admin_init () {
     
     bind('admin:posts.filter', 'posts_module_filter');
     
-    bind('admin:posts.view', function () {
-        bind('admin:head', function () {
-            printf(
-                '<link href="%s" rel="stylesheet" type="text/css"/>', 
-                module_url('blog', 'views/posts.css')
-            );
-        });
+    bind('admin:head', function () {
+        printf(
+            '<link href="%s" rel="stylesheet" type="text/css"/>', 
+            module_url('blog', 'views/posts.css')
+        );
     });
 }

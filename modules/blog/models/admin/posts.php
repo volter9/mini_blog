@@ -35,17 +35,17 @@ function transliterate ($text = null) {
  */
 function posts_module_describe () {
     return array(
-        'fields'   => 'title, description, date',
+        'fields'   => 'title, url, description, date',
         'per_page' => 6,
         
-        'template' => array(
-            'view' => module_path('blog', 'views/view'),
+        'templates' => array(
+            'view' => module_path('blog', 'views/view')
         ),
         
         'form' => array(
             'title'       => 'input',
-            'url'         => 'input',
             'text'        => 'text',
+            'url'         => 'input',
             'description' => 'input',
             'category_id' => 'select:categories'
         )

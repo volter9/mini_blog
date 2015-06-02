@@ -4,7 +4,5 @@
     "description": "Демо версия шаблона для mini_blog",
     "version": "v1.0",
     "type": "template",
-    "screenshot": "icon.jpg",
-    
-    "require": ["admin"]
+    "screenshot": "icon.jpg"
 }

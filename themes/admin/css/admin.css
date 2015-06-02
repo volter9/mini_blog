@@ -90,17 +90,10 @@ body {
  */
 
 #sidebar {
-    /* 
-background-color: #fff;
-    box-shadow: 0px 4px 4px #ddd;
- */
-    
     padding: 2em 0em 2em 2em;
 }
 
-#wrapper {
-    
-}
+#wrapper {}
 
 #content {
     background-color: #fff;
@@ -188,7 +181,7 @@ article.view h1 .button {
  */
 
 .table-wrapper {
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
 }
 
 .table-wrapper td,

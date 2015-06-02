@@ -9,9 +9,9 @@
     
     <?php foreach ($scheme['form'] as $field => $type): ?> 
     <div class="field group">
-        <div class="field-label left">
+        <div class="field-label">
             <label for="form_<?php echo $field ?>">
-                <?php echo array_get($data, "field.$field", $field) ?>:
+                <?php echo array_get($data, "field.$field", $field) ?>
             </label>
             
             <?php if ($tooltip = array_get($data, "tooltips.$field")): ?> 
@@ -21,7 +21,7 @@
             <?php endif; ?> 
         </div>
         
-        <div class="field-element right">
+        <div class="field-element">
             <?php build_element($type, array_merge(
                 array('name' => $field), 
                 array_transfer($data, $field)

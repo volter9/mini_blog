@@ -21,7 +21,7 @@ function view_browse_page ($module, $page) {
         'pages'       => $items['pages'],
         'description' => $description,
         'fields'      => admin_module_fields($module),
-        'template'    => array_get($description, 'template.view', 'basic/views/table')
+        'template'    => array_get($description, 'templates.view', 'basic/views/table')
     ));
 }
 
