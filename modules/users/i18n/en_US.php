@@ -25,5 +25,22 @@ return array(
             'mail'     => 'User\'s e-mail',
             'group_id' => 'User\'s permission group'
         )
+    ),
+    
+    'groups' => array(
+        'title'  => 'Groups',
+        'add'    => 'Add a group',
+        'edit'   => 'Edit a group',
+        'remove' => 'Remove a group',
+        'privileges' => 'Priveleges',
+        
+        'fields' => array(
+            'name'       => 'Name',
+            'privileges' => 'Privileges'
+        ),
+        
+        'permissions' => array(
+            'all' => 'All privileges'
+        )
     )
 );

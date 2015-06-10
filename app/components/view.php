@@ -37,6 +37,8 @@ function view_browse_page ($module, $page) {
 function view_modify_page ($module, $action, $url, array $data, array $errors) {
     load_api('forms');
     
+    emit("admin:$module.$action");
+    
     forms('providers', load_php(module_path('admin', 'providers')));
     
     $title = lang("admin.$module.$action");

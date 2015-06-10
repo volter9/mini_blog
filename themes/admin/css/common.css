@@ -242,7 +242,8 @@ ul.alert li {
     padding: 0px 8px;
 }
 
-.form input,
+.form input[type=text],
+.form input[type=password],
 .form textarea {
     background-color: #fff;
     border: 1px solid #ddd;

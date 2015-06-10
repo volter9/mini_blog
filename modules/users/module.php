@@ -10,17 +10,30 @@
  * Users module initialize
  */
 function users_module_init () {
-    load_model('users', module_path('users', 'models', true));
+    $path = module_path('users', 'models', true);
     
-    bind('router:found', function ($route) {
+    load_model('users' , $path);
+    load_model('groups', $path);
+    
+    groups('*', 'admin.groups.permissions.all');
+    
+    bind('router:found', function ($route, $matches) {
         $id = after($route['id'], '#');
+        
+        if (!empty($matches)) {
+            $id .= ':' . implode(',', $matches);
+        }
         
         if (
             starts_with($id, 'admin_') && 
             !is_allowed("route_$id") &&
             $id !== 'admin_denied'
         ) {
-            redirect('#admin_denied');
+            require module_path('users', 'actions/denied.php');
+            
+            action_index();
+            
+            exit;
         }
     });
 }
@@ -34,7 +47,6 @@ function users_module_admin_init () {
     load_php(module_path('users', 'models/admin/groups'));
     
     menu_add_item('users', 'admin.users.title', '#admin_view', array('users'));
-    menu_add_subitem('users', 'admin.users.add', '#admin_add', array('users'));
     menu_add_subitem('users', 'admin.groups.title', '#admin_view', array('groups'));
     
     admin_add_module('users', array(
@@ -47,7 +59,22 @@ function users_module_admin_init () {
         'description' => 'groups_module_describe',
     ));
     
+    $callback = function () {
+        forms('providers', load_php(module_path('users', 'providers')));
+    };
+    
     bind('admin:users.filter', 'users_module_filter');
+    
+    bind('admin:groups.add', $callback);
+    bind('admin:groups.edit', $callback);
+    bind('admin:groups.filter', 'groups_module_filter');
+    
+    bind('admin:head', function () {
+        printf(
+            '<link href="%s" rel="stylesheet" type="text/css"/>', 
+            module_url('users', 'views/groups/styles.css')
+        );
+    });
 }
 
 /**
@@ -91,7 +118,7 @@ function users_module_rules () {
  */
 function users_module_filter (array $data) {
     $password = array_get($data, 'password');
-    $password = $password ? md5($password) : null;
+    $password = strlen($password) !== 32 ? md5($password) : null;
     
     if ($password) {
         array_set($data, 'password', $password);

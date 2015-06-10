@@ -28,6 +28,7 @@ body {
 #header {
     background-color: #fff;
     box-shadow: 0px 2px 4px #ddd;
+    overflow: auto;
     
     margin-bottom: 2em;
 }
@@ -141,17 +142,61 @@ body {
 }
 
 .table td.edit {
-    width: 22.5%;
+    width: 20%;
     white-space: nowrap;
+    vertical-align: top;
 }
 
-.edit a {
+td.edit .button {
+    font-size: 12px;
     text-align: center;
     text-decoration: none;
-    vertical-align: top;
     
     margin-right: 5px;
+    padding: 8px 12px;
 }
+
+td.edit .button-red {
+    margin: 0px;
+}
+
+.table-wrapper {
+    border-bottom: 1px solid #eee;
+}
+
+.table-wrapper td,
+.table-wrapper th {
+    padding: 8px 12px;
+}
+
+.table-wrapper tr {
+    border-bottom: 1px solid #eee;
+}
+
+.table-wrapper tbody tr:last-child {
+    border-bottom: 0px;
+}
+
+.table-wrapper td {
+    border-right: 1px solid #eee;
+    background-color: #fff;
+    
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.table-wrapper td:first-child {
+    border-left: 1px solid #eee;
+}
+
+.table th {
+    color: #333;
+    font-weight: bold;
+    
+    padding-bottom: 4px;
+    padding-left: 2px;
+}
+
 /**
  * View styles
  */
@@ -173,39 +218,4 @@ article.view h1 .button {
     color: #aaa;
     font-size: 12px;
     text-shadow: 0px 1px 2px #fff;
-}
-
-
-/**
- * Tables
- */
-
-.table-wrapper {
-    /* border: 1px solid #ddd; */
-}
-
-.table-wrapper td,
-.table-wrapper th {
-    padding: 8px 12px;
-}
-
-.table-wrapper tr {
-    border-bottom: 1px solid #eee;
-}
-
-.table-wrapper tbody tr:last-child {
-    border-bottom: 0px;
-}
-
-.table-wrapper th {
-    background-color: #f8f8f8;
-}
-
-.table-wrapper td {
-    background-color: #fff;
-}
-
-.table-wrapper td {
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
 }

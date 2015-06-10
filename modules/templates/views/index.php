@@ -14,7 +14,7 @@
     <p><?php echo lang('admin.templates.description') ?></p>
     
     <?php if (!empty($data)): ?> 
-        <?php view(module_path('templates', 'views/view')) ?> 
+    <?php view(module_path('templates', 'views/view')) ?> 
     <?php else: ?> 
     <p><?php echo lang('admin.common.empty') ?></p>
     <?php endif; ?> 

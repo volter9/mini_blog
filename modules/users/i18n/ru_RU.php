@@ -33,10 +33,15 @@ return array(
         'add'    => 'Добавить группу',
         'edit'   => 'Редактировать группу',
         'remove' => 'Удалить группу',
+        'privileges' => 'Привелегии',
         
         'fields' => array(
             'name'       => 'Имя',
             'privileges' => 'Список привелегий '
+        ),
+        
+        'permissions' => array(
+            'all' => 'Все привелегии'
         )
     )
 );

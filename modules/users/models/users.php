@@ -9,6 +9,7 @@
  */
 function users ($key = null, $value = null) {
     static $repo = null;
+    
     $repo or $repo = repo();
     
     return $repo($key, $value);

@@ -2,7 +2,7 @@
  * View posts
  */
 
-.posts li {
+.posts > li {
     margin-bottom: 2em;
     width: 100%;
 }

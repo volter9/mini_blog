@@ -42,8 +42,6 @@ function action_view ($module, $page = 1) {
  * @param array $errors
  */
 function action_add ($module, array $data = array(), array $errors = array()) {
-    emit("admin:$module.add");
-    
     $url = url('#admin_add_post', array($module));
     
     view_modify_page($module, 'add', $url, $data, $errors);
@@ -75,8 +73,6 @@ function action_add_post ($module) {
  * @param array $errors
  */
 function action_edit ($module, $id, array $data = array(), array $errors = array()) { 
-    emit("admin:$module.edit");
-    
     $url = url('#admin_edit_post', array($module, $id));
     
     if (!$data) {

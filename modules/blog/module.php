@@ -19,7 +19,6 @@ function blog_module_admin_init () {
     menu_add_item('blog', "admin.blog.title", '#admin_view', array('posts'));
     
     menu_add_subitem('blog', "admin.posts.title", '#admin_view', array('posts'));
-    menu_add_subitem('blog', "admin.posts.add", '#admin_add', array('posts'));
     menu_add_subitem('blog', "admin.categories.title", '#admin_view', array('categories'));
     
     admin_add_module('posts', array(

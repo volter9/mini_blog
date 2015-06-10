@@ -25,8 +25,8 @@ define('MB_START'  , microtime(true));
  * @const string MF_BASEPATH Base path of the CMS
  * @const string MF_APP_DIR Path of app dir (app/)
  */
-define('MF_BASEPATH', __DIR__ . '/');
-define('MF_APP_DIR' , __DIR__ . '/app/');
+define('MF_BASEPATH', chop(__DIR__, '/') . '/');
+define('MF_APP_DIR' , chop(__DIR__, '/') . '/app/');
 
 /**
  * Setting error display based on MB_DEBUG constant
@@ -36,16 +36,17 @@ ini_set('display_errors', defined('MB_DEBUG'));
 error_reporting(-defined('MB_DEBUG'));
 
 /**
- * Requiring installer and exit, if installer exists 
- * and that's all in two lines. Pretty smart, huh? :)
+ * Requiring installer and exit, if installer exists.
+ * Otherwise unset global $install variable
  */
 $install = MF_BASEPATH . 'install/index.php';
 
 file_exists($install) and (require $install) and exit;
 
+unset($intall);
+
 /**
- * Requiring composer's autoload and booting the
- * application
+ * Requiring composer's autoload and booting the application
  */
 require 'vendor/autoload.php';
 

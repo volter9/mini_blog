@@ -1,7 +1,15 @@
 <h2><?php echo lang('admin.common.menu') ?></h2>
 
 <ul class="modules-list">
-<?php foreach (menu() as $menu): ?> 
+<?php foreach (menu() as $menu): 
+    $id = 'route_' . after($menu['url'], '#');
+    
+    if (!empty($menu['args'])) {
+        $id .= ':' . implode(',', $menu['args']);
+    }
+    
+    ?> 
+    <?php if (is_allowed($id)): ?> 
     <li>
         <a href="<?php echo url($menu['url'], $menu['args']) ?>">
             <?php echo lang($menu['title']) ?> 
@@ -19,5 +27,6 @@
         </ul>
         <?php endif ?> 
     </li>
+    <?php endif; ?> 
 <?php endforeach ?> 
 </ul>

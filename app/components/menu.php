@@ -24,6 +24,15 @@ function menu ($key = null, $value = null) {
  * @param array $args
  */
 function menu_add_item ($module, $title, $url, array $args = array()) {
+    $group = 'route_';
+    $group .= after($url, '#');
+    
+    if (!empty($args)) {
+        $group .= ':' . implode(',', $args);
+    }
+    
+    groups($group, $title);
+    
     menu($module, array(
         'title'   => $title,
         'url'     => $url,
@@ -40,10 +49,12 @@ function menu_add_item ($module, $title, $url, array $args = array()) {
  * @param string $url
  * @param array $args
  */
-function menu_add_subitem ($module, $title, $url, array $args = array()) {
+function menu_add_subitem ($module, $title, $url, array $args = array(), $permissions = true) {
     if (!menu("$module.title")) {
         return;
     }
+    
+    groups('route_' . after($url, '#') . ':' . implode($args), $title);
     
     menu("$module.submenu", array(
         array(
