@@ -10,16 +10,7 @@ return array(
      * 
      * - autoload - automatically connect on boot to database
      */
-    'database' => array(
-        'autoload' => true,
-        'default'  => array(
-            'name'     => 'mini_blog',
-            'host'     => 'localhost',
-            'user'     => 'root',
-            'password' => '',
-            'charset'  => 'utf8'
-        )
-    ),
+    'database' => require app_path('config/database.php'),
     
     /**
      * Templates configuration
@@ -77,9 +68,7 @@ return array(
      * 
      * - default - default language
      */
-    'i18n' => array(
-        'default' => 'ru_RU'
-    ),
+    'i18n' => require app_path('config/i18n.php'),
     
     /**
      * Validation
@@ -102,7 +91,6 @@ return array(
             'users',
             'settings',
             'blog',
-            'landing',
             'templates'
         ),
         
