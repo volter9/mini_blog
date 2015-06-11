@@ -14,7 +14,7 @@
  * @const string MB_VERSION Version string
  * @const bool MB_DEBUG Debug flag
  */
-define('MB_VERSION', 'v1.1.1');
+define('MB_VERSION', 'v1.1.2');
 define('MB_DEBUG'  , true);
 
 /**
