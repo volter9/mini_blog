@@ -26,7 +26,7 @@ function users_init () {
             function ($privilege) {
                 return trim($privilege);
             },
-            explode(',', $user['privileges'])
+            explode('|', $user['privileges'])
         );
         
         users('user', $user);
@@ -46,6 +46,24 @@ function users_init () {
  */
 function is_allowed ($action) {
     $privileges = users('privileges');
+    $privileges = $privileges ? $privileges : array();
+    
+    if (contains($action, ':')) {
+        list($name, $parameters) = explode(':', $action);
+        
+        $filtered = array_filter($privileges, function ($privilege) use ($name) {
+            return starts_with($privilege, $name);
+        });
+        
+        foreach ($filtered as $privilege) {
+            $privilege = str_replace('*', '[^,]+', $privilege);
+            $regex = "#^$privilege$#i";
+            
+            if (preg_match($regex, $action)) {
+                return true;
+            }
+        }
+    }
     
     return in_array($action, $privileges)
         || in_array('*', $privileges);

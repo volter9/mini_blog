@@ -18,22 +18,15 @@ function users_module_init () {
     groups('*', 'admin.groups.permissions.all');
     
     bind('router:found', function ($route, $matches) {
-        $id = after($route['id'], '#');
-        
-        if (!empty($matches)) {
-            $id .= ':' . implode(',', $matches);
-        }
+        $id = route_to_group($route['id'], $matches);
+        $denied = 'admin_denied';
         
         if (
             starts_with($id, 'admin_') && 
-            !is_allowed("route_$id") &&
-            $id !== 'admin_denied'
+            !is_allowed("route_$id")   &&
+            $id !== $denied
         ) {
-            require module_path('users', 'actions/denied.php');
-            
-            action_index();
-            
-            exit;
+            redirect('#admin_denied');
         }
     });
 }
@@ -103,8 +96,8 @@ function users_module_describe () {
  */
 function users_module_rules () {
     return array(
-        'username' => 'required|max_length:20|min_length:6|alpha_dash|unique:users.username',
-        'password' => 'required|min_length:6|alpha_dash',
+        'username' => 'required|max_length:20|alpha_dash|unique:users.username',
+        'password' => 'required|alpha_dash',
         'mail'     => 'required|valid_mail|max_length:40|unique:users.mail',
         'group_id' => 'required|is_numeric'
     );

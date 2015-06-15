@@ -8,7 +8,7 @@
 }
 
 .groups .header {
-    margin-bottom: 1em;
+    margin-bottom: 0.25em;
 }
 
 .groups .header .left a {
@@ -39,4 +39,17 @@
 
 .groups .edit a {
     margin-right: 0px;
+}
+
+.checkboxes li {
+    font-size: 14px;
+    line-height: 100%;
+    
+    margin-bottom: 0.5em;
+}
+
+.checkboxes input {
+    vertical-align: middle;
+    
+    margin-right: 4px;
 }

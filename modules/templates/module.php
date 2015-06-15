@@ -26,5 +26,5 @@ function templates_module_admin_init () {
     
     menu_add_item('templates', 'admin.templates.title', '#admin_templates_view');
     
-    groups('route_admin_templates_choose', 'admin.templates.edit');
+    groups('route_admin_templates_choose:*', 'admin.templates.edit');
 }

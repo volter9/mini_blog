@@ -5,9 +5,9 @@
  */
 
 return array(
+    'users',
     'settings',
     'admin', 
-    'users',
     'blog',
     'templates'
 );

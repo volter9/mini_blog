@@ -39,6 +39,11 @@ return array(
             'privileges' => 'Privileges'
         ),
         
+        'tooltips' => array(
+            'name'       => 'Name of the group',
+            'privileges' => 'Choose privileges for following group'
+        ),
+        
         'permissions' => array(
             'all' => 'All privileges'
         )

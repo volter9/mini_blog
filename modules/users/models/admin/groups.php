@@ -28,7 +28,7 @@ function groups_module_describe () {
  */
 function groups_module_rules () {
     return array(
-        'name'       => 'required|max_length:20|min_length:6|alpha_dash',
+        'name'       => 'required|max_length:20|alpha_dash',
         'privileges' => 'required',
     );
 }
@@ -40,9 +40,13 @@ function groups_module_rules () {
  * @return $data
  */
 function groups_module_filter ($data) {
+    if (!isset($data['privileges'])) {
+        return $data;
+    }
+    
     $privileges = $data['privileges'];
     
-    $data['privileges'] = in_array('*', $privileges) ? '*' : implode(',', $privileges);
+    $data['privileges'] = in_array('*', $privileges) ? '*' : implode('|', $privileges);
     
     return $data;
 }

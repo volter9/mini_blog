@@ -7,6 +7,7 @@
 $providers = require module_path('users', 'providers.php');
 $providers = $providers['privileges'];
 $providers = array_join($providers(), 'value', 'title');
+
 ?>
 <ul class="groups group">
     <?php foreach ($data as $group): ?> 
@@ -31,13 +32,13 @@ $providers = array_join($providers(), 'value', 'title');
         
         <p class="description">
             <?php echo lang('admin.groups.privileges') ?> 
-            <?php $privileges = explode(',', $group['privileges']) ?> 
+            <?php $privileges = explode('|', $group['privileges']) ?> 
         </p>
         
         <ul class="privileges">
-        <?php foreach ($privileges as $privilege): ?> 
+        <?php foreach ($privileges as $privilege): if (isset($providers[$privilege])): ?> 
             <li><?php echo lang($providers[$privilege]) ?></li>
-        <?php endforeach; ?> 
+        <?php endif; endforeach; ?> 
         </ul>
     </li>
     <?php endforeach; ?> 

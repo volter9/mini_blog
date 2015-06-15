@@ -37,7 +37,12 @@ return array(
         
         'fields' => array(
             'name'       => 'Имя',
-            'privileges' => 'Список привелегий '
+            'privileges' => 'Привелегии'
+        ),
+        
+        'tooltips' => array(
+            'name'       => 'Название группы латинскими буквами',
+            'privileges' => 'Выберите привелегии для данной группы пользователей'
         ),
         
         'permissions' => array(

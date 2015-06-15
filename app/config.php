@@ -56,6 +56,7 @@ return array(
      */
     'autoload' => array(
         'files' => array(
+            'app/components/admin',
             'app/components/loader',
             'app/components/modules',
             'app/components/menu'

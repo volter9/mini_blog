@@ -14,3 +14,22 @@ function groups ($key = null, $value = null) {
     
     return $repo($key, $value);
 }
+
+/**
+ * Route to group
+ * 
+ * @param string $id
+ * @param array $matches
+ * @return string
+ */
+function route_to_group ($id, array $matches) {
+    $id = after($id, '#');
+    
+    if (!empty($matches)) {
+        $parameters = implode(',', $matches);
+        
+        $id = "$id:$parameters";
+    }
+    
+    return $id;
+}

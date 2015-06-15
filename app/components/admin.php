@@ -22,6 +22,12 @@ function admin ($key = null, $value = null) {
  * @param array $info
  */
 function admin_add_module ($name, array $info) {
+    groups("route_admin_add:$name", "admin.$name.add");
+    groups("route_admin_add_post:$name", "admin.$name.add");
+    groups("route_admin_edit:$name,*", "admin.$name.edit");
+    groups("route_admin_edit_post:$name,*", "admin.$name.edit");
+    groups("route_admin_remove:$name,*", "admin.$name.remove");
+    
     admin($name, $info);
 }
 

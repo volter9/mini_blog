@@ -15,9 +15,7 @@
     <body>
         <?php view('blocks/header') ?> 
         
-        <div class="fluid" id="wrapper">
-            <?php view('blocks/navigation') ?> 
-            
+        <div id="wrapper">
             <?php view($view) ?> 
         </div>
         

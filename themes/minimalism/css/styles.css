@@ -14,9 +14,7 @@ ul, ol {
 }
 
 /**
- * My custom styles
- * 
- * 
+ * Custom styles
  */
 
 html,
@@ -35,11 +33,7 @@ a:hover {
     text-decoration: underline
 }
 
-.clearfix:after,
-#wrapper > nav:after,
-article.error:after,
-.post:after,
-body > footer > div:after {
+.clearfix:after {
     content: "";
     font-size: 0px;
     visibility: hidden;
@@ -49,78 +43,66 @@ body > footer > div:after {
     width: 100%
 }
 
-.clearfix .left,
-#wrapper > nav .left,
-article.error .left,
-.post .left,
-body > footer > div .left {
-    float: left
-}
+.left  { float: left }
+.right { float: right }
 
-.clearfix .right,
-#wrapper > nav .right,
-article.error .right,
-.post .right,
-body > footer > div .right {
-    float: right
-}
-
-.fluid,
-article.error,
-#wrapper > article .pagination {
+.fluid {
     margin: 0px auto;
     width: 900px
 }
 
-#wrapper {
-    border: 1px solid #ddd;
-    border-radius: 10px
+#wrapper {}
+
+#header {
+    margin-bottom: 1.5em;
 }
 
-body > header > div {
+#header > div {
     box-sizing: border-box;
-    padding: 15px 10px
+    padding: 15px 0px;
 }
 
-body > header h1 {
-    font-size: 32px;
-    font-weight: 100
+#header h1 {
+    font-size: 36px;
+    font-weight: 100;
+    
+    float: left;
 }
 
-body > header h1 a {
+#header h1 a {
     color: #000
 }
 
-body > header h1 a:hover {
+#header h1 a:hover {
     text-decoration: none
 }
 
-#wrapper > nav {
-    border-bottom: 1px solid #eee;
-    padding: 0px 0px
+#navigation {
+    padding: 0px 0px;
+    float: left;
 }
 
-#wrapper > nav ul {
-    padding: 0px 10px
-}
-
-#wrapper > nav ul li {
-    border-right: 1px solid #eee;
+#navigation ul li {
     font-size: 14px;
-    float: left
+    float: left;
 }
 
-#wrapper > nav ul li a {
+#navigation ul li a {
     display: block;
-    padding: 10px 15px;
-    color: #888
+    margin-left: 20px;
+    margin-top: 20px;
+    color: #666
+    
+    vertical-align: bottom;
 }
 
-#wrapper > nav ul li a:hover {
-    background-color: rgba(0, 0, 0, 0.017);
-    color: #aaa;
-    text-decoration: none
+#navigation ul li a:hover {
+    color: #999;
 }
+
+/**
+ * Error page
+ */
 
 article.error {
     margin-top: 20px;
@@ -174,10 +156,7 @@ article.error ul li {
     box-sizing: border-box
 }
 
-.pagination {
-    text-align: center;
-    padding: 10px 0px
-}
+.pagination {}
 
 .pagination a,
 .pagination span {
@@ -185,8 +164,18 @@ article.error ul li {
     padding: 2px 4px
 }
 
-.post .content {
-    padding: 20px 0px
+.post {
+    margin-bottom: 2em;
+}
+
+.post .post-title {
+    margin-bottom: 4px;
+}
+
+.post .content > * {
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
 }
 
 .post h1,
@@ -199,7 +188,6 @@ article.error ul li {
     font-weight: normal;
     line-height: 100%;
     margin-bottom: 20px;
-    padding: 0px 20px
 }
 
 .post h1 a,
@@ -233,16 +221,17 @@ article.error ul li {
     line-height: 150%
 }
 
-.post p.info {
-    font-size: 14px;
-    color: #ccc
+.post .info {
+    color: #ccc;
+    font-size: 12px;
+    
+    margin-bottom: 0.5em
 }
 
 .post p,
 .post blockquote,
 .post ul {
-    margin-bottom: 20px;
-    padding: 0px 20px
+    margin-bottom: 0.75em;
 }
 
 .post p:last-child,
@@ -282,7 +271,7 @@ article.error ul li {
     line-height: 140%;
     margin-left: 20px;
     margin-right: 20px;
-    padding: 0px 10px
+    padding: 0px 10px;
 }
 
 .post blockquote p {
@@ -291,9 +280,6 @@ article.error ul li {
 }
 
 .post pre {
-    border: 1px solid #eee;
-    border-left: 0px;
-    border-right: 0px;
     font-family: Menlo, Monaco, monospace;
     font-size: 14px;
     line-height: 130%;
@@ -304,7 +290,7 @@ article.error ul li {
 
 .post pre code {
     font-family: inherit;
-    padding: 10px 20px
+    padding: 10px
 }
 
 .post img {
@@ -312,31 +298,22 @@ article.error ul li {
     margin-top: 0px
 }
 
-.posts p.description,
-.posts p.info {
+.posts .description {
     font-size: 14px;
     margin-bottom: 15px
 }
 
-.posts .post {
-    border-bottom: 1px solid #eee
-}
-
-.posts .post p {
-    padding: 0px 20px
-}
-
-.posts .post p.info {
-    margin-bottom: 0px
+.posts .post:last-child {
+    margin-bottom: 0px;
 }
 
 /**
  * Footer
  */
 
-#footer > div {
+#footer {
     box-sizing: border-box;
-    padding: 20px 10px
+    padding-bottom: 20px
 }
 
 #footer p {
