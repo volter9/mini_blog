@@ -53,10 +53,9 @@ return array(
         
         $result = db_select($query, array($value), true);
         
-        return !$result || 
-        (
+        return !$result || (
             isset($array['id'], $result['id']) && 
-            (int)$array['id'] === (int)$result['id']
+            intval($array['id']) === intval($result['id'])
         );
     },
     
@@ -90,7 +89,11 @@ return array(
      * - "safe" html tags for text formatting
      */
     'html' => function ($value) {
-        $stripped = strip_tags($value, '<a><b><strong><blockquote><i><em><br><br/><hr><hr/><ul><ol><li><h1><h2><h3><h4><h5><h6><img><img/><iframe><del><s><u>');
+        $allowed_tags = '<a><b><strong><blockquote><i><em><br><br/><hr><hr/>' . 
+                        '<ul><ol><li><h1><h2><h3><h4><h5><h6><img><img/>' . 
+                        '<iframe><del><s><u>';
+        
+        $stripped = strip_tags($value, $allowed_tags);
         
         return strlen($stripped) === strlen($value)
             && !preg_match('/<\w+[^\>]+(on\w+\s*=|style\s*=)[^\>]+>/', $value);

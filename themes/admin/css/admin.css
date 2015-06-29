@@ -1,0 +1,221 @@
+@import 'common.css';
+
+/**
+ * mini_admin styles
+ * 
+ * @author volter9
+ * @version 1.0
+ * @package mini_blog
+ */
+
+/**
+ * Global styles
+ */
+
+body {
+    background-color: #f4f4f4;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/**
+ * Site specific styles
+ */
+
+/** 
+ * Header
+ */
+
+#header {
+    background-color: #fff;
+    box-shadow: 0px 2px 4px #ddd;
+    overflow: auto;
+    
+    margin-bottom: 2em;
+}
+
+#header ul {
+    font-size: 0px;
+}
+
+#header ul > li {
+    font-size: 14px;
+    
+    display: block;
+    float: left;
+    height: 48px;
+}
+
+#header a {
+    color: #888;
+    line-height: 48px;
+    text-decoration: none;
+    vertical-align: middle;
+    
+    display: block;
+    padding: 0px 16px;
+}
+
+#header a:hover {
+    background-color: #fafafa;
+    color: #ee56a3; /* pink */
+}
+
+#header ul > li > ul {
+    display: none;
+}
+
+#logo > a {
+    border-right: 1px solid #eee;
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 44px;
+    text-align: center;
+    text-decoration: none;
+    
+    display: block;
+    height: 48px;
+    min-width: 50px;
+    padding: 0px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+#logo > a:hover {
+    background-color: #444;
+    color: #ee56a3;
+}
+
+/**
+ * Index page module list
+ */
+
+#sidebar {
+    padding: 2em 0em 2em 2em;
+}
+
+#wrapper {}
+
+#content {
+    background-color: #fff;
+    box-shadow: 0px 4px 4px #ddd;
+    
+    padding: 2em;
+}
+
+.modules-list > li {
+    font-size: 16px;
+    
+    margin-bottom: 0px;
+}
+
+.modules-list li a:hover {
+    text-decoration: underline
+}
+
+.modules-list > li > ul {
+    margin-bottom: 1em;
+}
+
+.modules-list > li a {
+    color: #888;
+    text-decoration: none;
+    
+    display: block;
+    margin-bottom: 0.1em;
+}
+
+.modules-list > li > a {
+    color: #000;
+}
+
+.modules-list > li li {
+    font-size: 12px;
+}
+
+/**
+ * Custom table styles
+ */
+
+.table td.title {
+    width: 20%;
+}
+
+.table td.edit {
+    width: 20%;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+td.edit .button {
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    
+    margin-right: 5px;
+    padding: 8px 12px;
+}
+
+td.edit .button-red {
+    margin: 0px;
+}
+
+.table-wrapper {
+    border-bottom: 1px solid #eee;
+}
+
+.table-wrapper td,
+.table-wrapper th {
+    padding: 8px 12px;
+}
+
+.table-wrapper tr {
+    border-bottom: 1px solid #eee;
+}
+
+.table-wrapper tbody tr:last-child {
+    border-bottom: 0px;
+}
+
+.table-wrapper td {
+    border-right: 1px solid #eee;
+    background-color: #fff;
+    
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.table-wrapper td:first-child {
+    border-left: 1px solid #eee;
+}
+
+.table th {
+    color: #333;
+    font-weight: bold;
+    
+    padding-bottom: 4px;
+    padding-left: 2px;
+}
+
+/**
+ * View styles
+ */
+
+article.view h1 .button {
+    vertical-align: middle;
+}
+
+/**
+ * Footer styles
+ */
+
+#footer {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#footer p {
+    color: #aaa;
+    font-size: 12px;
+    text-shadow: 0px 1px 2px #fff;
+}

@@ -1,18 +1,46 @@
 <?php
 
 /**
- * Check if the modules exists (according to existance of two functions)
- * Module should contain two functions: 
+ * Admin container
  * 
- * - %module_name%_rules (validation rules)
- * - %module_name%_describe (form and module description)
+ * @param mixed $key
+ * @param mixed $value
+ * @return mixed
+ */
+function admin ($key = null, $value = null) {
+    static $repo = null;
+    
+    $repo or $repo = repo();
+    
+    return $repo($key, $value);
+}
+
+/**
+ * Add admin module
+ * 
+ * @param string $name
+ * @param array $info
+ */
+function admin_add_module ($name, array $info) {
+    groups("route_admin_add:$name", "admin.$name.add");
+    groups("route_admin_add_post:$name", "admin.$name.add");
+    groups("route_admin_edit:$name,*", "admin.$name.edit");
+    groups("route_admin_edit_post:$name,*", "admin.$name.edit");
+    groups("route_admin_remove:$name,*", "admin.$name.remove");
+    
+    admin($name, $info);
+}
+
+/**
+ * Check if the modules exists (according to existance of two functions)
  * 
  * @param string $module
  * @return bool
  */
 function admin_module_exists ($module) {
-    return function_exists("{$module}_module_rules") 
-        && function_exists("{$module}_module_describe");
+    return admin($module)
+        && function_exists(admin("$module.rules")) 
+        && function_exists(admin("$module.description"));
 }
 
 /**
@@ -22,7 +50,7 @@ function admin_module_exists ($module) {
  * @return array
  */
 function admin_module_rules ($module) {
-    $function = "{$module}_module_rules";
+    $function = admin("$module.rules");
     
     return $function();
 }
@@ -34,9 +62,24 @@ function admin_module_rules ($module) {
  * @return array
  */
 function admin_describe_module ($module) {
-    $function = "{$module}_module_describe";
+    $function = admin("$module.description");
     
     return $function();
+}
+
+/**
+ * Get fields labels for module
+ *
+ * @param string $module
+ * @return array
+ */
+function admin_module_fields ($module) {
+    $fields = lang("admin.$module.fields");
+    
+    return array_merge(
+        lang('admin.common.fields'),
+        $fields ? $fields : array()
+    );
 }
 
 /**
@@ -47,7 +90,12 @@ function admin_describe_module ($module) {
  * @return array
  */
 function admin_filter_input ($module, array $data) {
-    $function = "{$module}_module_filter";
+    $input = emit("admin:$module.filter", $data);
+    $input = $input ? $input : array();
     
-    return function_exists($function) ? $function($data) : $data;
+    foreach ($input as $value) {
+        $data = array_merge($data, $value);
+    }
+    
+    return $data;
 }

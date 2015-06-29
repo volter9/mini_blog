@@ -1,0 +1,8 @@
+{
+    "name": "demo",
+    "author": "volter9",
+    "description": "Демо версия шаблона для mini_blog",
+    "version": "v1.0",
+    "type": "template",
+    "screenshot": "icon.jpg"
+}

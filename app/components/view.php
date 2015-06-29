@@ -14,12 +14,14 @@ function view_browse_page ($module, $page) {
     $title = lang("admin.$module.title");
     
     layout('basic/view', array(
-        'title'    => $title,
-        'header'   => $title,
-        'module'   => $module,
-        'data'     => $items['items'],
-        'pages'    => $items['pages'],
-        'template' => array_get($description, 'template', 'basic/views/table')
+        'title'       => $title,
+        'header'      => $title,
+        'module'      => $module,
+        'data'        => $items['items'],
+        'pages'       => $items['pages'],
+        'description' => $description,
+        'fields'      => admin_module_fields($module),
+        'template'    => array_get($description, 'templates.view', 'basic/views/table')
     ));
 }
 
@@ -35,6 +37,8 @@ function view_browse_page ($module, $page) {
 function view_modify_page ($module, $action, $url, array $data, array $errors) {
     load_api('forms');
     
+    emit("admin:$module.$action");
+    
     forms('providers', load_php(module_path('admin', 'providers')));
     
     $title = lang("admin.$module.$action");
@@ -44,20 +48,19 @@ function view_modify_page ($module, $action, $url, array $data, array $errors) {
         'title'  => $title,
         'header' => $title,
         'module' => $module,
-        'edit'   => $action === 'edit',
         
         'scheme' => array(
-            'view'   => 'forms/admin',
-            'submit' => lang("admin.admin.$action"),
+            'view'   => array_get($description, 'templates.modify','forms/basic'),
+            'submit' => lang("admin.common.$action"),
             'action' => $url,
             'form'   => $description['form']
         ),
         
         'data' => array(
-            'errors' => $errors,
-            'input'  => $data,
-            'field'   => lang("admin.$module.fields"),
-            'tooltip' => lang("admin.$module.tooltips")
+            'error'    => $errors,
+            'input'    => $data,
+            'field'    => admin_module_fields($module),
+            'tooltips' => lang("admin.$module.tooltips")
         )
     ));
 }

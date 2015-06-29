@@ -5,6 +5,14 @@
  * 
  * @package mini_blog
  */
+
+/**
+ * Modules storage
+ * 
+ * @param mixed $key
+ * @param mixed $value
+ * @return mixed
+ */
 function modules ($key = null, $value = null) {
     static $repo = null;
     $repo or $repo = repo();
@@ -18,10 +26,12 @@ function modules ($key = null, $value = null) {
  * but module_load loads one seperate module.
  * 
  * Load all modules
+ *
+ * @param array $modules
  */
 function modules_load (array $modules) {
     foreach ($modules as $key => $module) {
-        $file = app_path("modules/$module/module");
+        $file = base_path("modules/$module/module");
         
         if (!file_exists("$file.php")) {
             continue;
@@ -39,7 +49,7 @@ function modules_load (array $modules) {
  * Call all admin initiator functions for modules
  */
 function modules_admin_init () {
-    foreach (modules() as $module => $content) {
+    foreach (array_keys(modules()) as $module) {
         function_exists($function = "{$module}_module_admin_init") and $function();
     }
 }
@@ -48,6 +58,7 @@ function modules_admin_init () {
  * Register module
  * 
  * @param string $module
+ * @param string $path
  */
 function module_register ($module, $path) {
     modules($module, array('path' => $path));
@@ -89,10 +100,50 @@ function module_name ($module_path) {
  * 
  * @param string $module
  * @param string $file
+ * @param bool $base
  * @return string
  */
 function module_path ($module, $file = '', $base = false) {
     $path = sprintf('modules/%s/%s', $module, $file);
     
-    return $base ? $path : app_path($path);
+    return $base ? $path : base_path($path);
+}
+
+/**
+ * Get url to module asset
+ * 
+ * @param string $module
+ * @param string $file
+ * @return string
+ */
+function module_url ($module, $file = '') {
+    $path = sprintf('modules/%s/%s', $module, $file);
+    
+    return path($path);
+}
+
+/**
+ * View module view
+ * 
+ * @param string $module
+ * @param string $view
+ * @param array $data
+ * @param bool $as_fallback
+ */
+function module_layout ($module, $view, array $data = array(), $as_fallback = false) {
+    $view_path = module_path($module, "views/$view");
+    
+    if ($as_fallback) {
+        $theme_view_path = view_path($view);
+        
+        if (ends_with($theme_view_path, '.php')) {
+            $theme_view_path = substr($theme_view_path, 0, -4);
+        }
+        
+        if (file_exists($theme_view_path . '.php')) {
+            return layout($theme_view_path, $data);
+        }
+    }
+    
+    layout($view_path, $data);
 }

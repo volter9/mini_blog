@@ -10,9 +10,9 @@
  * @return array
  */
 function db_browse ($table, $fields, $limit, $page = 0) {
-    $query = 'SELECT %s FROM %s ORDER BY id DESC';
+    $query = "SELECT $fields FROM $table ORDER BY id DESC";
     
-    return paginate_query(sprintf($query, $fields, $table), array(), $limit, $page);
+    return paginate_query($query, array(), $limit, $page);
 }
 
 /**
@@ -24,9 +24,9 @@ function db_browse ($table, $fields, $limit, $page = 0) {
  * @return array|bool
  */
 function db_find ($table, $id) {
-    $query = 'SELECT * FROM %s WHERE id = ?';
+    $query = "SELECT * FROM $table WHERE id = ?";
     
-    return db_select(sprintf($query, $table), array($id), true);
+    return db_select($query, array($id), true);
 }
 
 /**
