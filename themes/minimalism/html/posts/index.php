@@ -11,33 +11,29 @@
 <article class="posts">
     <?php if (!$posts['items']): ?> 
     <div class="post">
-        <div class="content">
-            <p><?php echo i18n('posts.empty') ?></p>
-        </div>
+        <p><?php echo i18n('posts.empty') ?></p>
     </div>
     <?php else: ?> 
         <?php foreach ($posts['items'] as $post): ?> 
         <div class="post">
-            <div class="content">
-                <h2 class="post-title">
-                    <a href="<?php echo url('#post', array($post['url'])) ?>">
-                        <?php echo $post['title'] ?> 
-                    </a>
-                </h2>
-                
-                <p class="info">
-                    <?php if (!empty($post['category'])): ?>
-                    <a href="<?php echo url('#category', array($post['category_url'])) ?>">
-                        <?php echo $post['category'] ?> 
-                    </a> 
-                    |<?php endif; ?> <?php echo $post['username'] ?> 
-                    | <?php echo date('d.m.Y', strtotime($post['date'])) ?> 
-                </p>
+            <h2 class="post-title">
+                <a href="<?php echo url('#post', array($post['url'])) ?>">
+                    <?php echo $post['title'] ?> 
+                </a>
+            </h2>
             
-                <p class="description">
-                    <?php echo $post['description'] ?>
-                </p>
-            </div>
+            <p class="info">
+                <?php if (!empty($post['category'])): ?>
+                <a href="<?php echo url('#category', array($post['category_url'])) ?>">
+                    <?php echo $post['category'] ?> 
+                </a> 
+                | <?php endif; ?> <?php echo $post['username'] ?> 
+                | <?php echo date('d.m.Y', strtotime($post['date'])) ?> 
+            </p>
+        
+            <p class="description">
+                <?php echo $post['description'] ?>
+            </p>
         </div>
         <?php endforeach; ?> 
         
