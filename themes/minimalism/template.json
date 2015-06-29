@@ -3,10 +3,5 @@
     "author": "volter9",
     "description": "Шаблон mini_blog по умолчанию",
     "version": "v1.0",
-    "type": "template",
-    "screenshot": "icon.png",
-    
-    "require": [
-        "admin"
-    ]
+    "type": "template"
 }

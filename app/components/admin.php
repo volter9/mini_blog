@@ -16,22 +16,6 @@ function admin ($key = null, $value = null) {
 }
 
 /**
- * Add admin module
- * 
- * @param string $name
- * @param array $info
- */
-function admin_add_module ($name, array $info) {
-    groups("route_admin_add:$name", "admin.$name.add");
-    groups("route_admin_add_post:$name", "admin.$name.add");
-    groups("route_admin_edit:$name,*", "admin.$name.edit");
-    groups("route_admin_edit_post:$name,*", "admin.$name.edit");
-    groups("route_admin_remove:$name,*", "admin.$name.remove");
-    
-    admin($name, $info);
-}
-
-/**
  * Check if the modules exists (according to existance of two functions)
  * 
  * @param string $module

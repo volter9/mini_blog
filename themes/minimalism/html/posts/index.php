@@ -34,7 +34,9 @@
                     | <?php echo date('d.m.Y', strtotime($post['date'])) ?> 
                 </p>
             
-                <?php $parse = new Parsedown; echo $parse->text($post['text']) ?> 
+                <p class="description">
+                    <?php echo $post['description'] ?>
+                </p>
             </div>
         </div>
         <?php endforeach; ?> 

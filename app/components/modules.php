@@ -46,15 +46,6 @@ function modules_load (array $modules) {
 }
 
 /**
- * Call all admin initiator functions for modules
- */
-function modules_admin_init () {
-    foreach (array_keys(modules()) as $module) {
-        function_exists($function = "{$module}_module_admin_init") and $function();
-    }
-}
-
-/**
  * Register module
  * 
  * @param string $module
