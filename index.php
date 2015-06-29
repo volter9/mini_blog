@@ -15,7 +15,7 @@
  * @const bool MB_DEBUG Debug flag
  * @const float MB_START Execution time started
  */
-define('MB_VERSION', 'v1.2');
+define('MB_VERSION', 'v1.3');
 define('MB_DEBUG'  , true);
 define('MB_START'  , microtime(true));
 

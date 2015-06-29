@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Languages available
+ * Available languages
  * 
  * @package mini_blog
  * @subpackage settings

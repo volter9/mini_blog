@@ -55,12 +55,7 @@ return array(
      * - files - autoload any PHP files
      */
     'autoload' => array(
-        'files' => array(
-            'app/components/admin',
-            'app/components/loader',
-            'app/components/modules',
-            'app/components/menu'
-        )
+        'files' => array('app/components/modules')
     ),
     
     /**

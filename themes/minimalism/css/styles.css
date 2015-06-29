@@ -1,3 +1,10 @@
+/**
+ * minimalist 'minimalism' theme for mini_blog styles
+ * 
+ * @author volter9
+ * @package mini_blog
+ */
+
 * {
     box-sizing: border-box;
     margin: 0px;
@@ -63,7 +70,7 @@ a:hover {
 }
 
 #header h1 {
-    font-size: 36px;
+    font-size: 40px;
     font-weight: 100;
     
     float: left;
@@ -90,7 +97,7 @@ a:hover {
 #navigation ul li a {
     display: block;
     margin-left: 20px;
-    margin-top: 20px;
+    margin-top: 22px;
     color: #666
     
     vertical-align: bottom;
@@ -156,8 +163,6 @@ article.error ul li {
     box-sizing: border-box
 }
 
-.pagination {}
-
 .pagination a,
 .pagination span {
     font-size: 14px;
@@ -169,7 +174,9 @@ article.error ul li {
 }
 
 .post .post-title {
-    margin-bottom: 4px;
+    font-size: 28px;
+    
+    margin-bottom: 2px;
 }
 
 .post .content > * {
@@ -222,10 +229,14 @@ article.error ul li {
 }
 
 .post .info {
-    color: #ccc;
+    color: #aaa;
     font-size: 12px;
     
-    margin-bottom: 0.5em
+    margin-bottom: 0.75em
+}
+
+.post .info a {
+    color: #777;
 }
 
 .post p,

@@ -7,7 +7,5 @@
 return array(
     'users',
     'settings',
-    'admin', 
-    'blog',
-    'templates'
+    'blog'
 );
