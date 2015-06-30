@@ -65,6 +65,17 @@ function module_init ($module) {
 }
 
 /**
+ * Initiate admin callbacks
+ */
+function module_admin_init () {
+    foreach (modules() as $name => $_) {
+        $function = "{$name}_module_admin_init";
+        
+        function_exists($function) and $function();
+    }
+}
+
+/**
  * Load module routes, if they're exists
  * 
  * @param string $module

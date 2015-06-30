@@ -55,14 +55,16 @@ a:hover {
 
 .fluid {
     margin: 0px auto;
-    width: 900px
+    width: 700px
 }
+
+/**
+ * Site specific styles
+ */
 
 #wrapper {}
 
-#header {
-    margin-bottom: 1.5em;
-}
+#header {}
 
 #header > div {
     box-sizing: border-box;
@@ -72,6 +74,16 @@ a:hover {
 #header h1 {
     font-size: 40px;
     font-weight: 100;
+}
+
+#header p {
+    border-left: 2px solid #ccc;
+    color: #666;
+    font-size: 14px;
+    
+    margin-top: 0.5em;
+    margin-bottom: 0px;
+    padding-left: 0.5em;
 }
 
 #header h1 a {
@@ -84,7 +96,6 @@ a:hover {
 
 #navigation {
     padding: 0px 0px;
-    float: left;
 }
 
 #navigation ul li {
@@ -93,16 +104,17 @@ a:hover {
 }
 
 #navigation ul li a {
+    color: #999;
     display: block;
-    margin-right: 20px;
-    margin-top: 6px;
-    color: #666
+    margin-left: 20px;
+    margin-top: 20px;
     
-    vertical-align: bottom;
+    padding: 0px 4px;
+    padding-bottom: 4px;
 }
 
 #navigation ul li a:hover {
-    color: #999;
+    color: #bbb;
 }
 
 /**
@@ -185,7 +197,7 @@ article.error ul li {
 .post > * {
     margin-left: auto;
     margin-right: auto;
-    width: 900px;
+    width: 700px;
 }
 
 .post h1,

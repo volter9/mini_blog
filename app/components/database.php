@@ -19,7 +19,6 @@ function db_browse ($table, $fields, $limit, $page = 0) {
  * Find a row in database
  * 
  * @param string $table
- * @param string $fields
  * @param string $id
  * @return array|bool
  */
@@ -27,6 +26,20 @@ function db_find ($table, $id) {
     $query = "SELECT * FROM $table WHERE id = ?";
     
     return db_select($query, array($id), true);
+}
+
+/**
+ * Find a row in database
+ * 
+ * @param string $table
+ * @param array $data
+ * @param string $id
+ * @return array|bool
+ */
+function db_edit ($table, array $data, $id) {
+    $criteria = ['id[=]' => $id];
+    
+    return db_update($table, $data, $criteria);
 }
 
 /**

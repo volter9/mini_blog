@@ -55,7 +55,11 @@ return array(
      * - files - autoload any PHP files
      */
     'autoload' => array(
-        'files' => array('app/components/modules')
+        'files' => array(
+            'app/components/modules',
+            'app/components/admin',
+            'app/components/database'
+        )
     ),
     
     /**

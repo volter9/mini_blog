@@ -5,6 +5,7 @@
  */
 
 return array(
+    'admin',
     'users',
     'settings',
     'blog'

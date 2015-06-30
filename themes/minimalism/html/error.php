@@ -9,7 +9,7 @@
 <html>
     <head>
         <title>Error - Exception was thrown</title>
-        <link href="<?php echo asset_url('css/main.css') ?>" 
+        <link href="<?php echo asset_url('css/styles.css') ?>" 
               rel="stylesheet" 
               type="text/css"/>
     </head>
@@ -17,7 +17,7 @@
     <body>
         <?php view('blocks/header') ?> 
         
-        <article class="error">
+        <article class="fluid error">
             <div class="left">
                 <?php echo $exception->getMessage() ?> 
             </div>
