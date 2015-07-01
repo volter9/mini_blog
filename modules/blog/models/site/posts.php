@@ -3,7 +3,7 @@
 /**
  * @const int POSTS_PER_PAGE The name is self-explanatory
  */
-define('POSTS_PER_PAGE', 5);
+define('POSTS_PER_PAGE', 2);
 
 /**
  * Initiate Posts model
@@ -20,7 +20,7 @@ function posts_init () {
 function posts_all ($page = 1) {
     return paginate_query('
         SELECT
-            p.title, p.url, p.text, p.description, 
+            p.id, p.title, p.url, p.text, p.description, 
             p.user_id, p.category_id, p.date, 
             u.username, 
             c.title as category, c.url as category_url
@@ -41,7 +41,7 @@ function posts_all ($page = 1) {
 function posts_by_category ($id, $page = 1) {
     return paginate_query('
         SELECT 
-            p.title, p.url, p.text, p.description, 
+            p.id, p.title, p.url, p.text, p.description, 
             p.user_id, p.category_id, p.date, 
             u.username, 
             c.title as category, c.url as category_url
@@ -63,7 +63,7 @@ function posts_by_category ($id, $page = 1) {
 function post_by_url ($url) {
     return db_select('
         SELECT
-            p.title, p.url, p.text, p.description, 
+            p.id, p.title, p.url, p.text, p.description, 
             p.user_id, p.category_id, p.date, 
             u.username, 
             c.title as category, c.url as category_url

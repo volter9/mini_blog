@@ -6,8 +6,7 @@
  * @param string $module
  */
 function action_add ($module) {
-    $data   = input();
-    $result = db_insert($module, $data);
+    $result = db_insert($module, input());
     
     echo json_encode(array(
         'status' => $result ? 'ok' : 'not_ok',
@@ -21,8 +20,7 @@ function action_add ($module) {
  * @param string $id
  */
 function action_edit ($module, $id) {
-    $data   = input();
-    $result = db_edit($module, $data, $id);
+    $result = db_edit($module, input(), $id);
     
     echo json_encode(array(
         'status' => $result ? 'ok' : 'not_ok',

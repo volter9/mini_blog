@@ -64,7 +64,9 @@ a:hover {
 
 #wrapper {}
 
-#header {}
+#header {
+    margin-bottom: 1em;
+}
 
 #header > div {
     box-sizing: border-box;
@@ -174,6 +176,7 @@ article.error ul li {
 }
 
 .pagination {
+    text-align: center;
     margin-bottom: 1em;
 }
 
@@ -194,12 +197,6 @@ article.error ul li {
     margin-bottom: 2px;
 }
 
-.post > * {
-    margin-left: auto;
-    margin-right: auto;
-    width: 700px;
-}
-
 .post h1,
 .post h2,
 .post h3,
@@ -208,7 +205,6 @@ article.error ul li {
 .post h6 {
     color: #333;
     font-weight: normal;
-    line-height: 100%;
     
     margin-top: 1em;
     margin-bottom: 0.25em;
@@ -317,6 +313,7 @@ article.error ul li {
 }
 
 .post pre code {
+    border-radius: 10px;
     font-family: inherit;
     line-height: 140%;
     

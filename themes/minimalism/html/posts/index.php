@@ -15,7 +15,7 @@
     </div>
     <?php else: ?> 
         <?php foreach ($posts['items'] as $post): ?> 
-        <div class="post">
+        <div class="post" data-component="post">
             <h2 class="post-title">
                 <a href="<?php echo url('#post', array($post['url'])) ?>">
                     <?php echo $post['title'] ?> 

@@ -12,10 +12,10 @@
         <?php view('blocks/head') ?> 
     </head>
     
-    <body>
+    <body data-baseurl="<?php echo router('settings.root') ?>">
         <?php view('blocks/header') ?> 
         
-        <div id="wrapper">
+        <div class="fluid" id="wrapper">
             <?php view($view) ?> 
         </div>
         
@@ -23,5 +23,10 @@
         
         <script src="<?php echo module_url('admin', 'js/mini_blog.js') ?>" 
                 type="text/javascript"></script>
+        <script type="text/javascript">
+            mini_blog.init();
+            
+            hljs.initHighlightingOnLoad();
+        </script>
     </body>
 </html>
