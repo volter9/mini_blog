@@ -44,29 +44,27 @@ composer install
 
 Возьмите дамп из `install/install/resources/dump.sql` и залейте его в БД.
 
-После этого отредактируйте данные о подключение `app/config.php`:
+После этого отредактируйте данные о подключение `app/config/database.php`:
 
 ```php
 return array(
-    'database' => array(
-        'autoload' => true,
-        'default'  => array(
-            // Имя базы данных
-            'name'     => 'mini_blog',
-            // Хост БД
-            'host'     => 'localhost',
-            // Пользователь БД
-            'user'     => 'root',
-            // Пароль пользователя БД
-            'password' => '',
-            // Кодировка
-            'charset'  => 'utf8'
-        )
-    ),
-    
-    /* ... */
+    'autoload' => true,
+    'default'  => array(
+        // Имя базы данных
+        'name'     => 'mini_blog',
+        // Хост БД
+        'host'     => 'localhost',
+        // Пользователь БД
+        'user'     => 'root',
+        // Пароль пользователя БД
+        'password' => '',
+        // Кодировка
+        'charset'  => 'utf8'
+    )
 );
 ```
+
+И, если нужна установка другого языка то, поправьте `app/config/i18n.php`.
 
 ### Код инсталятора
 
