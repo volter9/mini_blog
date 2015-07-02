@@ -2,8 +2,6 @@
 
 mini_blog это простая легкая бложная CMS написанная на процедурном PHP5 на базе [mini_framework](https://github.com/Volter9/mini_framework).
 
-**Внимание:** разработка mini_blog 1.2 ведется в ветке `1.2`. Проект не умер, короче говоря.
-
 ## Требования
 
 Для работы с mini_blog требуется PHP5.3+, PDO и pdo_mysql, и MySQL база данных.
