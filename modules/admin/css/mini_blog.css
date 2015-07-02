@@ -1,0 +1,45 @@
+/**
+ * mini_blog.css
+ * 
+ * Admin panels styles
+ * 
+ * @author volter9
+ * @package mini_blog
+ */
+
+#mini_editor {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    
+    width: 70px;
+}
+
+#mini_editor .button {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    color: #f48;
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+    
+    margin-bottom: 6px;
+    padding: 8px 8px;
+    width: 100%;
+}
+
+#mini_editor .button:hover {
+    text-decoration: underline;
+}
+
+#mini_editor.visible {
+    display: block;
+    opacity: 1;
+}
+
+#mini_editor.hidden {
+    display: none;
+    opacity: 0;
+    
+}

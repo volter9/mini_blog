@@ -15,9 +15,11 @@
     </div>
     <?php else: ?> 
         <?php foreach ($posts['items'] as $post): ?> 
-        <div class="post" data-component="post">
+        <div class="post" 
+             data-component="post"
+             data-id="<?php echo $post['id'] ?>">
             <h2 class="post-title">
-                <a href="<?php echo url('#post', array($post['url'])) ?>">
+                <a href="<?php echo url('#post', array($post['url'])) ?>" data-name="title">
                     <?php echo $post['title'] ?> 
                 </a>
             </h2>
@@ -31,7 +33,7 @@
                 | <?php echo date('d.m.Y', strtotime($post['date'])) ?> 
             </p>
         
-            <p class="description">
+            <p class="description" data-name="description">
                 <?php echo $post['description'] ?>
             </p>
         </div>

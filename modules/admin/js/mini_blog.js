@@ -1,7 +1,7 @@
 /**
  * mini_blog.js
  * 
- * JS library for inline edit and other stuff for mini_blog
+ * JS library for inline edit and other stuff for CMS mini_blog
  * 
  * @author volter9
  * @package mini_blog
@@ -54,9 +54,8 @@ mini_blog.ajax = function (url, method, data, callback) {
  */
 mini_blog.ajax.post = function (url, data, callback) { 
     url = '/' + mini_blog.settings.baseurl + '/' + url;
-    url = url.replace(/\/+/, '/');
     
-    mini_blog.ajax(url, 'POST', data, callback);
+    mini_blog.ajax(url.replace(/\/+/, '/'), 'POST', data, callback);
 };
 
 /**
@@ -70,10 +69,10 @@ mini_blog.ajax.query = function (object) {
         keys = Object.keys(object);
     
     keys.forEach(function (v, k) {
-        result += v + '=' + encodeURIComponent(object[v]) + '&';
+        result += encodeURIComponent(v) + '=' + encodeURIComponent(object[v]) + '&';
     });
     
-    return result.substr(0, -1);
+    return result.substr(0, result.length - 1);
 };
 
 /**
@@ -115,6 +114,14 @@ mini_blog.dom.data_attributes = function (element) {
     return attributes;
 };
 
+mini_blog.dom.makeEditable = function (node) {
+    node.setAttribute('contenteditable', 'true');
+};
+
+mini_blog.dom.unmakeEditable = function (node) {
+    node.removeAttribute('contenteditable');
+};
+
 /**
  * Core
  */
@@ -128,6 +135,34 @@ mini_blog.dom.data_attributes = function (element) {
 mini_blog.editor = (function () {
     function Editor () {
         this.mods = [];
+        this.current = null;
+        this.container = document.getElementById('mini_editor');
+        this.active = false;
+        
+        var edit = this.container.querySelector('[data-role=edit]'),
+            self = this;
+        
+        edit.addEventListener('click', function () {
+            if (!self.current) {
+                return;
+            }
+            
+            var component = self.current.component;
+            
+            if (!self.active) {
+                component.enable();
+                
+                self.active = true;
+                this.innerHTML = 'Save';
+            }
+            else {
+                component.disable();
+                component.save(function () {
+                    self.active = false;
+                    edit.innerHTML = 'Edit'; 
+                });
+            }
+        });
     }
     
     /**
@@ -146,17 +181,50 @@ mini_blog.editor = (function () {
         this.mods = [];
     };
     
+    /**
+     * Set current editing component
+     * 
+     * @param {Node} node
+     */
+    Editor.prototype.setCurrent = function (node) {
+        if (this.active) {
+            return;
+        }
+        
+        this.current = node;
+        this.move(node);
+    };
+    
+    /**
+     * Move container with editor buttons
+     * 
+     * @param {Node} node
+     */
+    Editor.prototype.move = function (node) {
+        this.container.className = 'visible';
+        
+        var x = node.offsetLeft - this.container.offsetWidth - 10,
+            y = node.offsetTop;
+        
+        this.container.style.left = x + 'px';
+        this.container.style.top = y + 'px';
+    };
+    
     return new Editor;
 })();
 
 /**
- * 
+ * Editor modification
  * 
  * 
  */
-mini_blog.editor.mod = function () {
+mini_blog.editor.mod = (function () {
+    function Mod () {
+        
+    }
     
-};
+    return Mod;
+})();
 
 /**
  * Components
@@ -261,6 +329,25 @@ mini_blog.component = (function () {
     
     Component.prototype.enable = function () {};
     Component.prototype.disable = function () {};
+    Component.prototype.save = function () {};
+    
+    /**
+     * Collect data from component nodes
+     * 
+     * @return {Object}
+     */
+    Component.prototype.collectData = function () {
+        var data = {};
+    
+        for (var i = 0, l = this.nodes.length; i < l; i ++) {
+            var node = this.nodes[i],
+                value = node.innerText || node.textContent;
+        
+            data[node.getAttribute('data-name')] = value.trim();
+        }
+        
+        return data;
+    };
     
     return Component;
 })();
@@ -269,28 +356,31 @@ mini_blog.component = (function () {
  * Initialization
  */
 mini_blog.init = function () {
-    if (mini_blog.settings.init) {
-        return;
-    }
-    
     var baseurl = document.body.getAttribute('data-baseurl') || '',
         components = document.querySelectorAll('[data-component]');
     
     mini_blog.settings.baseurl = baseurl;
     
     for (var i = 0, l = components.length; i < l; i ++) {
-        var component = components[i],
-            attributes = mini_blog.dom.data_attributes(component),
+        var node = components[i],
+            attributes = mini_blog.dom.data_attributes(node),
             name = attributes['data-component'];
         
-        var instance = mini_blog.components.create(name, [attributes, component]);
+        var component = mini_blog.components.create(name, [attributes, node]);
         
-        if (!instance) {
+        if (!component) {
             console.warn('Component "' + name + '" does not exists!');
+            
+            continue;
         }
+        
+        node.component = component;
+        node.addEventListener('mouseenter', function () {
+            mini_blog.editor.setCurrent(this);
+        });
     }
     
-    mini_blog.settings.init = true;
+    mini_blog.init = null;
 };
 
 /**
@@ -307,26 +397,38 @@ mini_blog.init = function () {
  */
 var Settings = function (attributes, node) {
     this.name = 'settings';
+    this.group = node.getAttribute('data-group');
     
     mini_blog.component.call(this, attributes, node);
 };
 
 Settings.prototype = Object.create(mini_blog.component.prototype);
 
-/**
- * Get group for current component
- * 
- * @param {Node} element
- * @return {String}
- */
-Settings.prototype.getGroup = function (element) {
-    var group = this.node.getAttribute('data-group');
-    
-    return group || element.getAttribute('data-group');
+Settings.prototype.enable = function () {
+    for (var i = 0, l = this.nodes.length; i < l; i ++) {
+        var node = this.nodes[i];
+        
+        mini_blog.dom.makeEditable(node);
+    }
 };
 
-Settings.prototype.activate = function () {
-    console.log('Hello, world!');
+Settings.prototype.disable = function () {
+    for (var i = 0, l = this.nodes.length; i < l; i ++) {
+        var node = this.nodes[i];
+        
+        mini_blog.dom.unmakeEditable(node);
+    }
+};
+
+Settings.prototype.save = function (callback) {
+    var url = ['admin', this.name, this.group],
+        data = this.collectData();
+    
+    mini_blog.ajax.post('/' + url.join('/'), data, function (x, r, s) {
+        if (r === 4 && s === 200) {
+            callback();
+        }
+    });
 };
 
 /**
@@ -335,14 +437,46 @@ Settings.prototype.activate = function () {
  */
 var Posts = function (attributes, node) {
     this.name = 'posts';
+    this.id = node.getAttribute('data-id');
     
     mini_blog.component.call(this, attributes, node);
 };
 
 Posts.prototype = Object.create(mini_blog.component.prototype);
 
-Posts.prototype.activate = function () {
-    console.log('Hello, posts!');
+Posts.prototype.enable = function () {
+    for (var i = 0, l = this.nodes.length; i < l; i ++) {
+        var node = this.nodes[i];
+        
+        mini_blog.dom.makeEditable(node);
+    }
+};
+
+Posts.prototype.disable = function () {
+    for (var i = 0, l = this.nodes.length; i < l; i ++) {
+        var node = this.nodes[i];
+        
+        mini_blog.dom.unmakeEditable(node);
+    }
+};
+
+Posts.prototype.save = function (callback) {
+    var exists = Boolean(this.id);
+    
+    var url = ['admin', this.name, 'add'],
+        data = this.collectData();
+    
+    if (this.id) {
+        url.pop();
+        url.push('edit');
+        url.push(this.id);
+    }
+    
+    mini_blog.ajax.post('/' + url.join('/'), data, function (x, r, s) {
+        if (r === 4 && s === 200) {
+            callback();
+        }
+    });
 };
 
 /**

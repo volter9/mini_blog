@@ -14,5 +14,8 @@
 <link href="<?php echo asset_url('js/styles/monokai_sublime.css') ?>" 
       rel="stylesheet" 
       type="text/css"/>
+<link href="<?php echo module_url('admin', 'css/mini_blog.css') ?>" 
+      rel="stylesheet" 
+      type="text/css"/>
 
 <script src="<?php echo asset_url('js/hljs.js') ?>"></script>

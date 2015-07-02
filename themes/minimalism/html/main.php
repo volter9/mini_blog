@@ -21,6 +21,14 @@
         
         <?php view('blocks/footer') ?> 
         
+        <div class="hidden" id="mini_editor">
+            <button data-role="edit" class="button">
+                Edit
+            </button>
+            
+            <div class="buttons"></div>
+        </div>
+        
         <script src="<?php echo module_url('admin', 'js/mini_blog.js') ?>" 
                 type="text/javascript"></script>
         <script type="text/javascript">

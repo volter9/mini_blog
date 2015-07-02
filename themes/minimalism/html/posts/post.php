@@ -19,9 +19,7 @@
                 <?php echo $post['category'] ?> 
             </a> 
             | <?php endif; ?> 
-            <span data-name="username">
-                <?php echo $post['username'] ?> 
-            </span>
+            <span data-name="username"><?php echo $post['username'] ?></span>
             | <?php echo date('d.m.Y', strtotime($post['date'])) ?> 
         </p>
         

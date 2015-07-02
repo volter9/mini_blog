@@ -4,6 +4,22 @@
  * Add an item from post to $module's table
  * 
  * @param string $module
+ * @param string $id
+ */
+function action_get ($module, $id) {
+    $result = db_find($module, $id);
+    
+    echo json_encode(array(
+        'status' => $result ? 'ok' : 'not_ok',
+        'item'   => $result
+    ));
+}
+
+
+/**
+ * Add an item from post to $module's table
+ * 
+ * @param string $module
  */
 function action_add ($module) {
     $result = db_insert($module, input());

@@ -53,11 +53,7 @@ set_exception_handler(function ($e) {
  * Load up custom theme functions
  */
 bind('router:found', function () {
-    $functions = asset_path('functions.php');
-    
-    if (file_exists($functions)) {
-        require $functions;
-    }
+    file_exists($functions = asset_path('functions.php')) and require $functions;
 });
 
 modules_load($config('mini_blog.modules'));
