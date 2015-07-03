@@ -18,8 +18,7 @@
             <a href="<?php echo url('#category', array($post['category_url'])) ?>">
                 <?php echo $post['category'] ?> 
             </a> 
-            | <?php endif; ?> 
-            <span data-name="username"><?php echo $post['username'] ?></span>
+            | <?php endif; ?> <?php echo $post['username'] ?> 
             | <?php echo date('d.m.Y', strtotime($post['date'])) ?> 
         </p>
         

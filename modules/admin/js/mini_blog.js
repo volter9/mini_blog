@@ -9,7 +9,8 @@
 
 var mini_blog = {
     settings: {},
-    dom: {}
+    dom: {},
+    utils: {}
 };
 
 /**
@@ -17,33 +18,86 @@ var mini_blog = {
  */
 
 /**
- * AJAX helper function
+ * Convert array-like object to array
  * 
- * @param {String} url
- * @param {String} method
- * @param {Object} data
- * @param {Function} callback
+ * @param {Object} arrayLikeObject
+ * @return {Array}
  */
-mini_blog.ajax = function (url, method, data, callback) {
-    var request = new XMLHttpRequest,
-        query = mini_blog.ajax.query(data);
-    
-    method = method || 'GET';
-    method = method.toUpperCase();
-    
-    if (method === 'GET') {
-        url += (url.indexOf('?') === -1 ? '?' : '&') + query;
+mini_blog.toArray = function (arrayLikeObject) {
+    return Array.prototype.slice.call(arrayLikeObject);
+};
+
+mini_blog.ajax = (function () {
+    /**
+     * AJAX constructor
+     * 
+     * @param {String} url
+     * @param {String} method
+     * @param {Object} data
+     */
+    function Ajax (url, method, data) {
+        this.url = url;
+        this.method = method || 'GET';
+        this.data = data;
     }
     
-    request.open(method, url);
-    request.onreadystatechange = function () {
-        callback(this, request.readyState, request.status);
+    /**
+     * Send AJAX request
+     */
+    Ajax.prototype.send = function () {
+        var request = new XMLHttpRequest;
+        
+        var query = mini_blog.ajax.query(this.data),
+            method = this.method.toUpperCase(),
+            url = this.url;
+        
+        var self = this;
+    
+        if (method === 'GET') {
+            url += (url.indexOf('?') === -1 ? '?' : '&') + query;
+        }
+    
+        request.open(method, url);
+        request.onreadystatechange = function () {
+            var r = this.readyState,
+                s = this.status;
+            
+            if (r === 4 && s === 200 && self.successHandler) {
+                self.successHandler(this);
+            }
+        };
+        
+        request.onerror = this.errorHandler || function () {};
+        
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        request.send(query);
     };
     
-    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    request.send(query);
-};
+    /**
+     * Set success handler
+     * 
+     * @param {Function} handler
+     */
+    Ajax.prototype.success = function (handler) {
+        this.successHandler = handler;
+        
+        return this;
+    };
+    
+    /**
+     * Set error handler
+     * 
+     * @param {Function} handler
+     */
+    Ajax.prototype.error = function (handler) {
+        this.errorHandler = handler;
+        
+        return this;
+    };
+    
+    return Ajax;
+})();
 
 /**
  * AJAX post shortcut
@@ -52,10 +106,10 @@ mini_blog.ajax = function (url, method, data, callback) {
  * @param {Object} data
  * @param {Function} callback
  */
-mini_blog.ajax.post = function (url, data, callback) { 
-    url = '/' + mini_blog.settings.baseurl + '/' + url;
+mini_blog.ajax.post = function (url, data) { 
+    url = [mini_blog.settings.baseurl, url].join('/');
     
-    mini_blog.ajax(url.replace(/\/+/, '/'), 'POST', data, callback);
+    return new mini_blog.ajax(('/' + url).replace(/\/+/, '/'), 'POST', data);
 };
 
 /**
@@ -114,12 +168,39 @@ mini_blog.dom.data_attributes = function (element) {
     return attributes;
 };
 
+/**
+ * Make argument node HTML5 editable
+ * 
+ * @param {Node} node
+ */
 mini_blog.dom.makeEditable = function (node) {
     node.setAttribute('contenteditable', 'true');
 };
 
+/**
+ * Unmake argument node HTML5 editable
+ * 
+ * @param {Node} node
+ */
 mini_blog.dom.unmakeEditable = function (node) {
     node.removeAttribute('contenteditable');
+};
+
+/**
+ * Get difference between two objects
+ * 
+ * @param {Object} a
+ * @param {Object} b
+ * @return {Object}
+ */
+mini_blog.utils.diff = function (a, b) {
+    for (var key in b) {
+        if (typeof a[key] === 'undefined' || b[key] === a[key]) {
+            delete a[key];
+        }
+    }
+    
+    return a;
 };
 
 /**
@@ -245,8 +326,7 @@ mini_blog.components = (function () {
      */
     Components.prototype.register = function (name, constructor) {
         this.components[name] = {
-            constructor: constructor,
-            children: []
+            constructor: constructor
         };
     };
     
@@ -263,30 +343,6 @@ mini_blog.components = (function () {
         }
         
         return this.construct(this.components[name].constructor, args || []);
-    };
-    
-    /**
-     * @param {String} name
-     * @param {Component} child
-     */
-    Components.prototype.addChild = function (name, child) {
-        if (!this.components[name]) {
-            return false;
-        }
-        
-        this.components[name].children.push(child);
-    };
-    
-    /**
-     * @param {String} name
-     * @return {Component}
-     */
-    Components.prototype.getChildren = function (name) {
-        if (!this.components[name]) {
-            return false;
-        }
-        
-        return this.components[name].children;
     };
     
     /**
@@ -324,7 +380,9 @@ mini_blog.component = (function () {
     function Component (attributes, node) {
         this.attrubutes = attributes;
         this.node = node;
-        this.nodes = node.querySelectorAll('[data-name]');
+        this.nodes = mini_blog.toArray(
+            node.querySelectorAll('[data-name]')
+        );
     }
     
     Component.prototype.enable = function () {};
@@ -405,30 +463,20 @@ var Settings = function (attributes, node) {
 Settings.prototype = Object.create(mini_blog.component.prototype);
 
 Settings.prototype.enable = function () {
-    for (var i = 0, l = this.nodes.length; i < l; i ++) {
-        var node = this.nodes[i];
-        
-        mini_blog.dom.makeEditable(node);
-    }
+    this.nodes.forEach(mini_blog.dom.makeEditable);
 };
 
 Settings.prototype.disable = function () {
-    for (var i = 0, l = this.nodes.length; i < l; i ++) {
-        var node = this.nodes[i];
-        
-        mini_blog.dom.unmakeEditable(node);
-    }
+    this.nodes.forEach(mini_blog.dom.unmakeEditable);
 };
 
 Settings.prototype.save = function (callback) {
-    var url = ['admin', this.name, this.group],
+    var url = ['admin', this.name, this.group].join('/'),
         data = this.collectData();
     
-    mini_blog.ajax.post('/' + url.join('/'), data, function (x, r, s) {
-        if (r === 4 && s === 200) {
-            callback();
-        }
-    });
+    mini_blog.ajax.post(url, data)
+        .success(callback)
+        .send();
 };
 
 /**
@@ -445,21 +493,18 @@ var Posts = function (attributes, node) {
 Posts.prototype = Object.create(mini_blog.component.prototype);
 
 Posts.prototype.enable = function () {
-    for (var i = 0, l = this.nodes.length; i < l; i ++) {
-        var node = this.nodes[i];
-        
-        mini_blog.dom.makeEditable(node);
-    }
+    this.nodes.forEach(mini_blog.dom.makeEditable);
 };
 
 Posts.prototype.disable = function () {
-    for (var i = 0, l = this.nodes.length; i < l; i ++) {
-        var node = this.nodes[i];
-        
-        mini_blog.dom.unmakeEditable(node);
-    }
+    this.nodes.forEach(mini_blog.dom.unmakeEditable);
 };
 
+/**
+ * Save a post
+ * 
+ * @param {Function} callback
+ */
 Posts.prototype.save = function (callback) {
     var exists = Boolean(this.id);
     
@@ -472,11 +517,9 @@ Posts.prototype.save = function (callback) {
         url.push(this.id);
     }
     
-    mini_blog.ajax.post('/' + url.join('/'), data, function (x, r, s) {
-        if (r === 4 && s === 200) {
-            callback();
-        }
-    });
+    mini_blog.ajax.post(url.join('/'), data)
+        .success(callback)
+        .send();
 };
 
 /**
