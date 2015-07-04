@@ -18,8 +18,8 @@
         <nav class="right clearfix" id="navigation">
             <ul>
                 <li>
-                    <a href="<?php echo url('#index') ?>">
-                        <?php echo i18n('header.home') ?> 
+                    <a href="<?php echo url('#posts') ?>">
+                        <?php echo i18n('header.latests') ?> 
                     </a>
                 </li>
             </ul>

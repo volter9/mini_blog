@@ -17,5 +17,3 @@
 <link href="<?php echo module_url('admin', 'css/mini_blog.css') ?>" 
       rel="stylesheet" 
       type="text/css"/>
-
-<script src="<?php echo asset_url('js/hljs.js') ?>"></script>

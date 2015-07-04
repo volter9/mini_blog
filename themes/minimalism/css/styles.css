@@ -295,12 +295,14 @@ article.error ul li {
     line-height: 140%;
     margin-left: 20px;
     margin-right: 20px;
-    padding: 0px 10px;
+    padding: 2px 10px;
 }
 
 .post blockquote p {
     font-size: 14px;
-    padding: 5px 0px
+    
+    margin-bottom: 0.25em;
+    padding: 0px 0px
 }
 
 .post pre {

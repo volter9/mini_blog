@@ -21,8 +21,9 @@ function action_view ($url, $page = 1) {
     }
     
     layout('posts/index', array(
-        'title' => $category['title'],
-        'posts' => posts_by_category($category['id'], $page),
-        'url'   => url('#category', array($category['url']))
+        'title'    => $category['title'],
+        'posts'    => posts_by_category($category['id'], $page),
+        'url'      => url('#category', array($category['url'])),
+        'category' => $category
     ));
 }

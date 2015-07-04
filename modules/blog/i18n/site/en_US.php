@@ -6,7 +6,8 @@ return array(
     'header' => array(
         'title' => 'mini_blog',
         'home'  => 'Home',
-        'admin' => 'Admin'
+        'admin' => 'Admin',
+        'latests' => 'Latests blog posts'
     ),
     
     'footer' => array(
