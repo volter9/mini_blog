@@ -193,12 +193,18 @@ mini_blog.dom.data_attributes = function (element) {
  * @param {Node} node
  */
 mini_blog.dom.makeEditable = function (node) {
-    node.addEventListener("paste", function(e) {
+    node.addEventListener('paste', function(e) {
         e.preventDefault();
 
-        var text = e.clipboardData.getData("text/plain");
+        var text = e.clipboardData.getData('text/plain');
 
-        document.execCommand("insertHTML", false, text);
+        document.execCommand('insertHTML', false, '<p>' + text + '</p>');
+    });
+    
+    node.addEventListener('keyup', function (e) {
+        if (e.keyCode === 13) {
+            document.execCommand('formatBlock', null, 'p');
+        }
     });
     
     node.setAttribute('contenteditable', 'true');
@@ -485,7 +491,7 @@ mini_blog.component = (function () {
         var data = {};
     
         mini_blog.each(this.nodes, function (node) {
-            data[node.getAttribute('data-name')] = node.textContent || node.innerText;
+            data[node.getAttribute('data-name')] = node.innerHTML;
         });
         
         return data;
@@ -551,7 +557,7 @@ mini_blog.init = function () {
         this.addAction('edit', function (node) {
             self.editor.active = true;
             self.editor.disableMods();
-            self.editor.enableMods(['save']);
+            self.editor.enableMods(['save'].concat(node.component.mods || []));
             
             node.component.enable();
         });
@@ -582,11 +588,53 @@ mini_blog.init = function () {
             node.component.save();
         });
         
-        this.addAction('cancel', callback);
+        this.addAction('cancel', function (node) {
+            callback(node);
+            
+            if (self.html) {
+                node.innerHTML = self.html;
+                node.component.setNodes(node);
+            }
+        });
+    };
+    
+    SaveMod.prototype.enable = function () {
+        mini_blog.mod.prototype.enable.call(this);
+        
+        this.html = this.editor.current.innerHTML;
+    };
+    
+    var WysiwigMod = function (editor) {
+        mini_blog.mod.call(this, editor);
+    };
+    
+    WysiwigMod.prototype = Object.create(mini_blog.mod.prototype);
+    
+    WysiwigMod.prototype.init = function () {
+        var self = this;
+        
+        this.name = 'wysiwig';
+        
+        this.addAction('bold', function () {
+            document.execCommand('bold');
+        });
+        
+        this.addAction('italic', function () {
+            document.execCommand('italic');
+        });
+        
+        this.addAction('quote', function () {
+            document.execCommand('formatBlock', null, 'blockquote');
+        });
+        
+        this.addAction('header', function () {
+            document.execCommand('formatBlock', null, 'h2');
+        });
     };
     
     mini_blog.editor.addMod('edit', new EditMod(mini_blog.editor));
     mini_blog.editor.addMod('save', new SaveMod(mini_blog.editor));
+    mini_blog.editor.addMod('wysiwig', new WysiwigMod(mini_blog.editor));
     
     mini_blog.editor.disableMods();
     mini_blog.editor.enableMods(['edit']);
@@ -628,6 +676,10 @@ mini_blog.init = function () {
         this.data = {};
         
         mini_blog.component.call(this, attributes, node);
+        
+        if (this.nodes['text']) {
+            this.mods = ['wysiwig'];
+        }
     };
     
     Post.prototype = Object.create(mini_blog.component.prototype);
