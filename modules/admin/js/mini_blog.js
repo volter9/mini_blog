@@ -198,7 +198,7 @@ mini_blog.dom.makeEditable = function (node) {
 
         var text = e.clipboardData.getData('text/plain');
 
-        document.execCommand('insertHTML', false, '<p>' + text + '</p>');
+        document.execCommand('insertHTML', false, text);
     });
     
     node.addEventListener('keyup', function (e) {

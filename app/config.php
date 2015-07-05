@@ -58,7 +58,8 @@ return array(
         'files' => array(
             'app/components/modules',
             'app/components/admin',
-            'app/components/database'
+            'app/components/database',
+            'app/components/snippets'
         )
     ),
     
