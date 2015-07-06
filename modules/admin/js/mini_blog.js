@@ -196,7 +196,10 @@ mini_blog.dom.makeEditable = function (node) {
     node.addEventListener('paste', function(e) {
         e.preventDefault();
 
-        var text = e.clipboardData.getData('text/plain');
+        var text = e.clipboardData.getData('text/plain')
+            .replace(/\</g, '&lt;')
+            .replace(/\>/g, '&gt;')
+            .replace(/\n\r?/g, '<br/>\n');
 
         document.execCommand('insertHTML', false, text);
     });
@@ -563,12 +566,26 @@ mini_blog.init = function () {
         });
     };
     
+    /**
+     * SaveMod
+     * 
+     * Sends signal to component to send the data to the server
+     * Also has a cancel action to cancel 
+     * 
+     * @param {mini_blog.editor} editor
+     */
     var SaveMod = function (editor) {
         mini_blog.mod.call(this, editor);
     };
     
     SaveMod.prototype = Object.create(mini_blog.mod.prototype);
     
+    /**
+     * Initiate actions:
+     * 
+     * - Save action
+     * - Cancel action
+     */
     SaveMod.prototype.init = function () {
         var self = this;
         
@@ -604,12 +621,27 @@ mini_blog.init = function () {
         this.html = this.editor.current.innerHTML;
     };
     
+    /**
+     * WYSIWIG buttons mod
+     * 
+     * @param {mini_blog.editor} editor
+     */
     var WysiwigMod = function (editor) {
         mini_blog.mod.call(this, editor);
     };
     
     WysiwigMod.prototype = Object.create(mini_blog.mod.prototype);
     
+    /**
+     * Initiate WYSIWIG actions:
+     * 
+     * - Bold
+     * - Italic
+     * - Blockquote
+     * - Header
+     * - Clear formating (paragraph)
+     * - Code
+     */
     WysiwigMod.prototype.init = function () {
         var self = this;
         
@@ -630,8 +662,32 @@ mini_blog.init = function () {
         this.addAction('header', function () {
             document.execCommand('formatBlock', null, 'h2');
         });
+        
+        this.addAction('paragraph', function () {
+            document.execCommand('formatBlock', null, 'p');
+            
+            var selection = document.getSelection(),
+                p = selection.anchorNode.parentNode;
+            
+            if (p.nodeName !== 'P') {
+                p = p.parentNode;
+            }
+            
+            p.innerHTML = p.innerText || p.textContent;
+        });
+        
+        this.addAction('code', function () {
+            var selection = document.getSelection(),
+                p = selection.anchorNode.parentNode,
+                text = (p.textContent || p.innerText).replace(/\<br\/?\>/g, '\n');
+            
+            document.execCommand('insertHTML', null, '<pre><code>' + text + '</code></pre>');
+        });
     };
     
+    /**
+     * Register all mods and enable edit mod **only**
+     */
     mini_blog.editor.addMod('edit', new EditMod(mini_blog.editor));
     mini_blog.editor.addMod('save', new SaveMod(mini_blog.editor));
     mini_blog.editor.addMod('wysiwig', new WysiwigMod(mini_blog.editor));
@@ -659,6 +715,33 @@ mini_blog.init = function () {
      */
     Settings.prototype.save = function (callback) {
         var url = ['admin', this.name, this.group],
+            data = this.collectData();
+        
+        mini_blog.ajax.post(url.join('/'), data)
+            .success(callback)
+            .send();
+    };
+    
+    /**
+     * @param {Object} attributes
+     * @param {Node} node
+     */
+    var Category = function (attributes, node) {
+        this.name = 'categories';
+        this.id = node.getAttribute('data-id');
+        
+        mini_blog.component.call(this, attributes, node);
+    };
+    
+    Category.prototype = Object.create(mini_blog.component.prototype);
+    
+    /**
+     * Save settings
+     * 
+     * @param {Function} callback
+     */
+    Category.prototype.save = function (callback) {
+        var url = ['admin', this.name, 'edit', this.id],
             data = this.collectData();
         
         mini_blog.ajax.post(url.join('/'), data)
@@ -732,4 +815,5 @@ mini_blog.init = function () {
     
     mini_blog.components.register('settings', Settings);
     mini_blog.components.register('post', Post);
+    mini_blog.components.register('category', Category);
 })();

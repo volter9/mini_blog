@@ -79,13 +79,11 @@ a:hover {
 }
 
 #header p {
-    border-left: 2px solid #ccc;
     color: #666;
     font-size: 14px;
     
-    margin-top: 0.5em;
+    margin-top: 0.25em;
     margin-bottom: 0px;
-    padding-left: 0.5em;
 }
 
 #header h1 a {
@@ -108,10 +106,9 @@ a:hover {
 #navigation ul li a {
     color: #999;
     display: block;
-    margin-left: 20px;
+    margin-right: 20px;
     margin-top: 20px;
     
-    padding: 0px 4px;
     padding-bottom: 4px;
 }
 
@@ -309,9 +306,10 @@ article.error ul li {
     font-family: Menlo, Monaco, monospace;
     font-size: 14px;
     line-height: 130%;
+    
     margin-bottom: 20px;
     overflow-x: auto;
-    overflow-y: hidden
+    overflow-y: hidden;
 }
 
 .post pre code {
@@ -319,6 +317,7 @@ article.error ul li {
     font-family: inherit;
     line-height: 140%;
     
+    display: block;
     padding: 10px;
 }
 
