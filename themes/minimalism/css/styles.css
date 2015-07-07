@@ -303,22 +303,20 @@ article.error ul li {
 }
 
 .post pre {
+    border-radius: 10px;
     font-family: Menlo, Monaco, monospace;
     font-size: 14px;
-    line-height: 130%;
-    
-    margin-bottom: 20px;
-    overflow-x: auto;
-    overflow-y: hidden;
-}
-
-.post pre code {
-    border-radius: 10px;
-    font-family: inherit;
     line-height: 140%;
     
     display: block;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
     padding: 10px;
+}
+
+.post pre:not(.hljs) {
+    background-color: #f8f8f8;
 }
 
 .post img {
@@ -331,17 +329,13 @@ article.error ul li {
     margin-bottom: 15px
 }
 
-.posts .post:last-child {
-    margin-bottom: 0px;
-}
-
 /**
  * Footer
  */
 
 #footer {
     box-sizing: border-box;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
 }
 
 #footer p {

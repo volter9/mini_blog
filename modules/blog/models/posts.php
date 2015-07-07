@@ -3,7 +3,7 @@
 /**
  * @const int POSTS_PER_PAGE The name is self-explanatory
  */
-define('POSTS_PER_PAGE', 5);
+define('POSTS_PER_PAGE', 3);
 
 /**
  * Initiate Posts model

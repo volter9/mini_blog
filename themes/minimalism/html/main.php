@@ -21,8 +21,6 @@
         
         <?php view('blocks/footer') ?> 
         
-        <div class="hidden" id="mini_editor"></div>
-        
         <script src="<?php echo module_url('admin', 'js/mini_blog.js') ?>" 
                 type="text/javascript"></script>
         <script src="<?php echo asset_url('js/hljs.js') ?>"
@@ -30,7 +28,11 @@
         <script type="text/javascript">
             mini_blog.init();
             
-            hljs.initHighlightingOnLoad();
+            mini_blog
+                .toArray(document.querySelectorAll('#wrapper pre'))
+                .forEach(function (node) {
+                    hljs.highlightBlock(node);
+                });
         </script>
     </body>
 </html>

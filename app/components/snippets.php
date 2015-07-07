@@ -33,3 +33,11 @@ function snippet ($path, array $data) {
     
     $snippet($data);
 }
+
+function capture ($callback) {
+    ob_start();
+    
+    $callback();
+    
+    return ob_get_clean();
+}

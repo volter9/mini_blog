@@ -15,6 +15,24 @@ function action_get ($module, $id) {
     ));
 }
 
+function action_snippet ($module) {
+    $data = array(
+        'id' => '',
+        'url' => '',
+        'title' => '',
+        'description' => '',
+        'text' => '',
+        'username' => '',
+        'date' => ''
+    );
+    
+    echo json_encode(array(
+        'status' => 'ok',
+        'html' => capture(function () use ($module, $data) {
+            snippet("snippets/$module", $data);
+        })
+    ));
+}
 
 /**
  * Add an item from post to $module's table

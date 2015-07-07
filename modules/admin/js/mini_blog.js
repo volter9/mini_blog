@@ -193,22 +193,26 @@ mini_blog.dom.data_attributes = function (element) {
  * @param {Node} node
  */
 mini_blog.dom.makeEditable = function (node) {
-    node.addEventListener('paste', function(e) {
-        e.preventDefault();
+    if (!node.editable) {
+        node.addEventListener('paste', function(e) {
+            e.preventDefault();
 
-        var text = e.clipboardData.getData('text/plain')
-            .replace(/\</g, '&lt;')
-            .replace(/\>/g, '&gt;')
-            .replace(/\n\r?/g, '<br/>\n');
+            var text = e.clipboardData.getData('text/plain')
+                .replace(/\</g, '&lt;')
+                .replace(/\>/g, '&gt;')
+                .replace(/\n\r?/g, '<br/>\n');
 
-        document.execCommand('insertHTML', false, text);
-    });
+            document.execCommand('insertHTML', false, text);
+        });
     
-    node.addEventListener('keyup', function (e) {
-        if (e.keyCode === 13) {
-            document.execCommand('formatBlock', null, 'p');
-        }
-    });
+        node.addEventListener('keyup', function (e) {
+            if (e.keyCode === 13) {
+                document.execCommand('formatBlock', null, 'p');
+            }
+        });
+        
+        node.editable = true;
+    }
     
     node.setAttribute('contenteditable', 'true');
 };
@@ -230,13 +234,15 @@ mini_blog.dom.unmakeEditable = function (node) {
  * @return {Object}
  */
 mini_blog.utils.diff = function (a, b) {
+    var c = {};
+    
     for (var key in b) {
-        if (typeof a[key] === 'undefined' || b[key] === a[key]) {
-            delete a[key];
+        if (typeof a[key] === 'undefined' || b[key] !== a[key]) {
+            c[key] = a[key];
         }
     }
     
-    return a;
+    return c;
 };
 
 /**
@@ -252,11 +258,25 @@ mini_blog.utils.diff = function (a, b) {
 mini_blog.editor = (function () {
     function Editor () {
         this.mods = {};
-        this.container = document.getElementById('mini_editor');
-       
         this.current = null;
         this.active = false;
+       
+        this.setupContainer();
     }
+    
+    /**
+     * Setup editor's container for buttons
+     */
+    Editor.prototype.setupContainer = function () {
+        var container = document.createElement('div');
+        
+        container.id = 'mini_editor';
+        container.className = 'hidden';
+        
+        document.body.appendChild(container);
+        
+        this.container = container;
+    };
     
     /**
      * Add a mod to the editor
@@ -513,25 +533,30 @@ mini_blog.init = function () {
     mini_blog.settings.baseurl = baseurl;
     
     for (var i = 0, l = components.length; i < l; i ++) {
-        var node = components[i],
-            attributes = mini_blog.dom.data_attributes(node),
-            name = attributes['data-component'];
+        var node = components[i];
         
-        var component = mini_blog.components.create(name, attributes, node);
-        
-        if (!component) {
-            console.warn('Component "' + name + '" does not exists!');
-            
-            continue;
-        }
-        
+        mini_blog.createComponent(node);
+    }
+    
+    mini_blog.init = null;
+};
+
+mini_blog.createComponent = function (node) {
+    var attributes = mini_blog.dom.data_attributes(node),
+        name = attributes['data-component'];
+    
+    var component = mini_blog.components.create(name, attributes, node);
+    
+    if (!component) {
+        return console.warn('Component "' + name + '" does not exists!');
+    }
+    
+    if (node.getAttribute('data-ignore') === null) {
         node.component = component;
         node.addEventListener('mouseenter', function () {
             mini_blog.editor.setCurrent(this);
         });
     }
-    
-    mini_blog.init = null;
 };
 
 /**
@@ -677,11 +702,7 @@ mini_blog.init = function () {
         });
         
         this.addAction('code', function () {
-            var selection = document.getSelection(),
-                p = selection.anchorNode.parentNode,
-                text = (p.textContent || p.innerText).replace(/\<br\/?\>/g, '\n');
-            
-            document.execCommand('insertHTML', null, '<pre><code>' + text + '</code></pre>');
+            document.execCommand('formatBlock', null, 'pre');
         });
     };
     
@@ -810,10 +831,65 @@ mini_blog.init = function () {
     };
     
     /**
+     * @param {Object} attributes
+     * @param {Node} node
+     */
+    var Add = function (attributes, node) {
+        this.item = node.getAttribute('data-item');
+        
+        mini_blog.component.call(this, attributes, node);
+        
+        this.destination = document.querySelector(node.getAttribute('data-destination'));
+        this.setupEvents();
+    };
+    
+    Add.prototype = Object.create(mini_blog.component.prototype);
+    
+    /**
+     * Setup events for add button
+     */
+    Add.prototype.setupEvents = function () {
+        var self = this;
+        
+        this.node.addEventListener('click', function () {
+            var node = self.createNode(self.item, self.destination);
+        });
+    };
+    
+    /**
+     * Create a node from template requested via AJAX
+     * 
+     * @param {String} item
+     * @param {Node} destination
+     */
+    Add.prototype.createNode = function (item, destination) {
+        var url = ['admin', 'snippet', item].join('/');
+        
+        console.log(item, destination, url);
+        
+        mini_blog.ajax.post(url)
+            .success(function (xhr, data) {
+                var fragment = document.createElement('div');
+                
+                fragment.innerHTML = data.html;
+                
+                var div = fragment.children[0];
+                
+                div.removeAttribute('data-id');    
+                
+                mini_blog.createComponent(div);
+                
+                destination.insertBefore(div, destination.children[1]);
+            })
+            .send();
+    };
+    
+    /**
      * Registering components
      */
     
     mini_blog.components.register('settings', Settings);
     mini_blog.components.register('post', Post);
     mini_blog.components.register('category', Category);
+    mini_blog.components.register('add', Add);
 })();

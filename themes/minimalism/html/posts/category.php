@@ -3,8 +3,8 @@
  * Posts list view
  * 
  * @var array      $posts
- *      bool|array $posts['items']      - posts
- *      array      $posts['pagination'] - pagination
+ *      bool|array $posts['items'] - posts
+ *      array      $posts['pages'] - pagination
  * @var string     $url
  */
 ?>
@@ -23,11 +23,13 @@
         <?php foreach ($posts['items'] as $post): ?> 
             <?php snippet('posts/snippet', $post) ?>
         <?php endforeach; ?> 
-        
-        <div class="fluid"><?php 
-            $pages = array_merge($posts['pages'], compact('url'));
-            
-            view('blocks/pagination', $pages, false); 
-        ?></div>
     <?php endif; ?> 
 </article>
+
+<?php if ($posts['pages']['pages'] > 1): ?> 
+<div class="fluid"><?php 
+    $pages = array_merge($posts['pages'], compact('url'));
+    
+    view('blocks/pagination', $pages, false); 
+?></div>
+<?php endif; ?> 
