@@ -193,28 +193,30 @@ mini_blog.dom.data_attributes = function (element) {
  * @param {Node} node
  */
 mini_blog.dom.makeEditable = function (node) {
-    if (!node.editable) {
-        node.addEventListener('paste', function(e) {
-            e.preventDefault();
-
-            var text = e.clipboardData.getData('text/plain')
-                .replace(/\</g, '&lt;')
-                .replace(/\>/g, '&gt;')
-                .replace(/\n\r?/g, '<br/>\n');
-
-            document.execCommand('insertHTML', false, text);
-        });
+    node.setAttribute('contenteditable', 'true');
     
-        node.addEventListener('keyup', function (e) {
-            if (e.keyCode === 13) {
-                document.execCommand('formatBlock', null, 'p');
-            }
-        });
-        
-        node.editable = true;
+    if (node.editable) {
+        return;
     }
     
-    node.setAttribute('contenteditable', 'true');
+    node.addEventListener('paste', function(e) {
+        e.preventDefault();
+
+        var text = e.clipboardData.getData('text/plain')
+            .replace(/\</g, '&lt;')
+            .replace(/\>/g, '&gt;')
+            .replace(/\n\r?/g, '<br/>\n');
+
+        document.execCommand('insertHTML', false, text);
+    });
+
+    node.addEventListener('keyup', function (e) {
+        if (e.keyCode === 13) {
+            document.execCommand('formatBlock', null, 'p');
+        }
+    });
+    
+    node.editable = true;
 };
 
 /**
@@ -475,6 +477,11 @@ mini_blog.component = (function () {
         this.setNodes(node);
     }
     
+    /**
+     * Setup nodes
+     * 
+     * @param {Node} node
+     */
     Component.prototype.setNodes = function (node) {
         var nodes = mini_blog.toArray(
             node.querySelectorAll('[data-name]')
@@ -503,7 +510,12 @@ mini_blog.component = (function () {
         mini_blog.each(this.nodes, mini_blog.dom.unmakeEditable);
     };
     
-    Component.prototype.save = function () {};
+    /**
+     * Save component
+     * 
+     * @param {Function} callback
+     */
+    Component.prototype.save = function (callback) {};
     
     /**
      * Collect data from component nodes
@@ -527,20 +539,20 @@ mini_blog.component = (function () {
  * Initialization
  */
 mini_blog.init = function () {
-    var baseurl = document.body.getAttribute('data-baseurl'),
-        components = document.querySelectorAll('[data-component]');
+    var baseurl = document.body.getAttribute('data-baseurl');
     
     mini_blog.settings.baseurl = baseurl;
-    
-    for (var i = 0, l = components.length; i < l; i ++) {
-        var node = components[i];
-        
-        mini_blog.createComponent(node);
-    }
-    
     mini_blog.init = null;
+    
+    mini_blog.toArray(document.querySelectorAll('[data-component]'))
+        .forEach(mini_blog.createComponent);
 };
 
+/**
+ * Create a component
+ * 
+ * @param {Node} node
+ */
 mini_blog.createComponent = function (node) {
     var attributes = mini_blog.dom.data_attributes(node),
         name = attributes['data-component'];
@@ -572,15 +584,18 @@ mini_blog.createComponent = function (node) {
      * Save and edit mods
      */
     var EditMod = function (editor) {
+        this.name = 'edit';
+        
         mini_blog.mod.call(this, editor);
     };
     
     EditMod.prototype = Object.create(mini_blog.mod.prototype);
     
+    /**
+     * Initiate edit mod
+     */
     EditMod.prototype.init = function () {
         var self = this;
-        
-        this.name = 'edit';
         
         this.addAction('edit', function (node) {
             self.editor.active = true;
@@ -600,6 +615,8 @@ mini_blog.createComponent = function (node) {
      * @param {mini_blog.editor} editor
      */
     var SaveMod = function (editor) {
+        this.name = 'save';
+        
         mini_blog.mod.call(this, editor);
     };
     
@@ -622,8 +639,6 @@ mini_blog.createComponent = function (node) {
             node.component.disable();
         };
         
-        this.name = 'save';
-        
         this.addAction('save', function (node) {
             callback(node);
             
@@ -640,6 +655,9 @@ mini_blog.createComponent = function (node) {
         });
     };
     
+    /**
+     * Enable save mod and cache the HTML
+     */
     SaveMod.prototype.enable = function () {
         mini_blog.mod.prototype.enable.call(this);
         
