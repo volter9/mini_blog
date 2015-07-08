@@ -28,11 +28,8 @@
         <script type="text/javascript">
             mini_blog.init();
             
-            mini_blog
-                .toArray(document.querySelectorAll('#wrapper pre'))
-                .forEach(function (node) {
-                    hljs.highlightBlock(node);
-                });
+            mini_blog.toArray(document.querySelectorAll('#wrapper pre'))
+                     .forEach(hljs.highlightBlock);
         </script>
     </body>
 </html>

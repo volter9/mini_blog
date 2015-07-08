@@ -141,8 +141,8 @@ mini_blog.ajax.query = function (object) {
     
     keys.forEach(function (v, k) {
         result += encodeURIComponent(v) 
-            + '=' 
-            + encodeURIComponent(object[v]) + '&';
+               + '=' 
+               + encodeURIComponent(object[v]) + '&';
     });
     
     return result.substr(0, result.length - 1);
@@ -203,9 +203,9 @@ mini_blog.dom.makeEditable = function (node) {
         e.preventDefault();
 
         var text = e.clipboardData.getData('text/plain')
-            .replace(/\</g, '&lt;')
-            .replace(/\>/g, '&gt;')
-            .replace(/\n\r?/g, '<br/>\n');
+                    .replace(/\</g, '&lt;')
+                    .replace(/\>/g, '&gt;')
+                    .replace(/\n\r?/g, '<br/>\n');
 
         document.execCommand('insertHTML', false, text);
     });
@@ -545,7 +545,7 @@ mini_blog.init = function () {
     mini_blog.init = null;
     
     mini_blog.toArray(document.querySelectorAll('[data-component]'))
-        .forEach(mini_blog.createComponent);
+             .forEach(mini_blog.createComponent);
 };
 
 /**
@@ -757,8 +757,8 @@ mini_blog.createComponent = function (node) {
             data = this.collectData();
         
         mini_blog.ajax.post(url.join('/'), data)
-            .success(callback)
-            .send();
+                      .success(callback)
+                      .send();
     };
     
     /**
@@ -784,8 +784,8 @@ mini_blog.createComponent = function (node) {
             data = this.collectData();
         
         mini_blog.ajax.post(url.join('/'), data)
-            .success(callback)
-            .send();
+                      .success(callback)
+                      .send();
     };
     
     /**
@@ -824,8 +824,8 @@ mini_blog.createComponent = function (node) {
             };
             
             mini_blog.ajax.post(['admin', this.name, 'get', this.id].join('/'))
-                .success(callback)
-                .send();
+                          .success(callback)
+                          .send();
         }
     };
     
@@ -844,8 +844,8 @@ mini_blog.createComponent = function (node) {
         }
         
         mini_blog.ajax.post(url.join('/'), data)
-            .success(callback)
-            .send();
+                      .success(callback)
+                      .send();
     };
     
     /**
@@ -881,25 +881,27 @@ mini_blog.createComponent = function (node) {
      * @param {Node} destination
      */
     Add.prototype.createNode = function (item, destination) {
-        var url = ['admin', 'snippet', item].join('/');
-        
-        console.log(item, destination, url);
+        var url = ['admin', 'template', item].join('/'),
+            callback = function (xhr, data) {
+                var fragment = document.createElement('div');
+            
+                fragment.innerHTML = data.html;
+            
+                var div = fragment.children[0];
+            
+                div.removeAttribute('data-id');    
+            
+                mini_blog.createComponent(div);
+            
+                destination.insertBefore(div, destination.children[1]);
+            
+                mini_blog.editor.setCurrent(div);
+                mini_blog.editor.mods.edit.trigger('edit', div);
+            };
         
         mini_blog.ajax.post(url)
-            .success(function (xhr, data) {
-                var fragment = document.createElement('div');
-                
-                fragment.innerHTML = data.html;
-                
-                var div = fragment.children[0];
-                
-                div.removeAttribute('data-id');    
-                
-                mini_blog.createComponent(div);
-                
-                destination.insertBefore(div, destination.children[1]);
-            })
-            .send();
+                      .success(callback)
+                      .send();
     };
     
     /**

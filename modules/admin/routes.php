@@ -14,7 +14,7 @@ route('POST #admin_get /admin/:any/get/:num', "$path/module:get");
 route('POST #admin_add /admin/:any/add', "$path/module:add");
 route('POST #admin_edit /admin/:any/edit/:num', "$path/module:edit");
 route('POST #admin_remove /admin/:any/remove/:num', "$path/module:remove");
-route('POST #admin_snippet /admin/snippet/:any/', "$path/module:snippet");
+route('POST #admin_template /admin/template/:any/', "$path/module:template");
 
 bind('router:found', function ($route) {
     $id = $route['id'];

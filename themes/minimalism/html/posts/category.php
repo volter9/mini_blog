@@ -21,7 +21,7 @@
     </div>
     <?php else: ?> 
         <?php foreach ($posts['items'] as $post): ?> 
-            <?php snippet('posts/snippet', $post) ?>
+            <?php snippet('snippets/posts', $post) ?>
         <?php endforeach; ?> 
     <?php endif; ?> 
 </article>

@@ -15,7 +15,12 @@ function action_get ($module, $id) {
     ));
 }
 
-function action_snippet ($module) {
+/**
+ * Get the template for specific module
+ * 
+ * @param string $module
+ */
+function action_template ($module) {
     $data = array(
         'id' => '',
         'url' => '',
