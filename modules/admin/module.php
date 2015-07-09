@@ -7,6 +7,6 @@
  * via AJAX
  */
 
-function admin_module_init () {
-    
+function admin_module_admin_init () {
+    load_php(module_path('admin', 'models/templates'));
 }

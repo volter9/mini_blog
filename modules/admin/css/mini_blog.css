@@ -12,20 +12,21 @@
     top: 0px;
     left: 0px;
     
-    width: 80px;
+    width: 70px;
 }
 
 #mini_editor .button {
-    background-color: #fff;
-    border: 1px solid #eee;
+    background-color: rgba(0, 0, 0, 0.75);
+    border: 0px;
     border-radius: 4px;
-    color: #f48;
+    color: #fff;
     cursor: pointer;
     font-size: 12px;
     text-align: center;
+    text-transform: capitalize;
     
     margin-bottom: 6px;
-    padding: 8px 8px;
+    padding: 8px 0px;
     width: 100%;
 }
 
@@ -41,7 +42,6 @@
 #mini_editor.hidden {
     display: none;
     opacity: 0;
-    
 }
 
 [contenteditable] {

@@ -248,6 +248,27 @@ mini_blog.utils.diff = function (a, b) {
 };
 
 /**
+ * Merge two objects
+ * 
+ * @param {Object} a
+ * @param {Object} b
+ * @return {Object}
+ */
+mini_blog.utils.merge = function (a, b) {
+    var c = {}, key;
+    
+    for (key in a) {
+        c[key] = a[key];
+    }
+    
+    for (key in b) {
+        c[key] = b[key];
+    }
+    
+    return c;
+};
+
+/**
  * Core
  */
 
@@ -258,6 +279,9 @@ mini_blog.utils.diff = function (a, b) {
  * on hover
  */
 mini_blog.editor = (function () {
+    /**
+     * Editor constructor
+     */
     function Editor () {
         this.mods = {};
         this.current = null;
@@ -321,6 +345,29 @@ mini_blog.editor = (function () {
         
         this.current = node;
         this.move(node);
+    };
+    
+    /**
+     * Set current editing component
+     * 
+     * @param {Node} node
+     */
+    Editor.prototype.setCurrent = function (node) {
+        if (this.active || !node.component) {
+            return;
+        }
+        
+        this.current = node;
+        this.move(node);
+    };
+    
+    Editor.prototype.clearCurrent = function () {
+        if (!this.active) {
+            return;
+        }
+        
+        this.active = false;
+        this.container.className = 'hidden';
     };
     
     /**
@@ -516,6 +563,7 @@ mini_blog.component = (function () {
      * @param {Function} callback
      */
     Component.prototype.save = function (callback) {};
+    Component.prototype.cancel = function () {};
     
     /**
      * Collect data from component nodes
@@ -640,12 +688,14 @@ mini_blog.createComponent = function (node) {
         };
         
         this.addAction('save', function (node) {
-            callback(node);
-            
             node.component.save();
+            
+            callback(node);
         });
         
         this.addAction('cancel', function (node) {
+            node.component.cancel();
+            
             callback(node);
             
             if (self.html) {
@@ -703,7 +753,7 @@ mini_blog.createComponent = function (node) {
         });
         
         this.addAction('header', function () {
-            document.execCommand('formatBlock', null, 'h2');
+            document.execCommand('formatBlock', null, 'h1');
         });
         
         this.addAction('paragraph', function () {
@@ -829,6 +879,16 @@ mini_blog.createComponent = function (node) {
         }
     };
     
+    Post.prototype.cancel = function () {
+        if (this.id) {
+            return;
+        }
+        
+        this.node.parentNode.removeChild(this.node);
+        
+        mini_blog.editor.clearCurrent();
+    };
+    
     /**
      * Save a post
      * 
@@ -836,7 +896,7 @@ mini_blog.createComponent = function (node) {
      */
     Post.prototype.save = function (callback) {
         var url = ['admin', this.name, 'add'],
-            data = this.collectData();
+            data = mini_blog.utils.merge(this.data, this.collectData());
         
         if (this.id) {
             url.splice(2, 1, 'edit');
@@ -881,27 +941,36 @@ mini_blog.createComponent = function (node) {
      * @param {Node} destination
      */
     Add.prototype.createNode = function (item, destination) {
-        var url = ['admin', 'template', item].join('/'),
-            callback = function (xhr, data) {
-                var fragment = document.createElement('div');
-            
-                fragment.innerHTML = data.html;
-            
-                var div = fragment.children[0];
-            
-                div.removeAttribute('data-id');    
-            
-                mini_blog.createComponent(div);
-            
-                destination.insertBefore(div, destination.children[1]);
-            
-                mini_blog.editor.setCurrent(div);
-                mini_blog.editor.mods.edit.trigger('edit', div);
-            };
+        var url = ['admin', 'template', item].join('/');
         
         mini_blog.ajax.post(url)
-                      .success(callback)
+                      .success(this.addNode.bind(this))
                       .send();
+    };
+    
+    /**
+     * Add a node, this function serves as callback
+     * 
+     * @param {XMLHttpRequest} xhr
+     * @param {Object} data
+     */
+    Add.prototype.addNode = function (xhr, data) {
+        var fragment = document.createElement('div'),
+            destination = this.destination;
+    
+        fragment.innerHTML = data.html;
+    
+        var div = fragment.children[0];
+    
+        div.removeAttribute('data-id');    
+        
+        destination.insertBefore(div, destination.children[1]);
+        
+        mini_blog.createComponent(div);
+        mini_blog.editor.setCurrent(div);
+        mini_blog.editor.mods.edit.trigger('edit', div);
+        
+        div.component.data = data.data;
     };
     
     /**

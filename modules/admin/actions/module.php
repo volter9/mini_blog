@@ -21,18 +21,12 @@ function action_get ($module, $id) {
  * @param string $module
  */
 function action_template ($module) {
-    $data = array(
-        'id' => '',
-        'url' => '',
-        'title' => '',
-        'description' => '',
-        'text' => '',
-        'username' => '',
-        'date' => ''
-    );
+    $data = admin_data($module);
     
     echo json_encode(array(
         'status' => 'ok',
+        'data'   => $data,
+        
         'html' => capture(function () use ($module, $data) {
             snippet("snippets/$module", $data);
         })
@@ -45,7 +39,8 @@ function action_template ($module) {
  * @param string $module
  */
 function action_add ($module) {
-    $result = db_insert($module, input());
+    $data = array_extract(input(), admin_templates("$module.keys"));
+    $result = db_insert($module, $data);
     
     echo json_encode(array(
         'status' => $result ? 'ok' : 'not_ok',
