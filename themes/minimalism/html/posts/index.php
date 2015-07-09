@@ -13,7 +13,7 @@
             data-item="posts"
             data-ignore="true"
             data-destination=".posts">
-        add a post
+        +
     </button>
     
     <?php if (!$posts['items']): ?> 

@@ -47,3 +47,17 @@
 [contenteditable] {
     display: block;
 }
+
+[data-component=add] {
+    background-color: #ddd;
+    border: 0px;
+    color: #666;
+    font-size: 2em;
+    font-weight: bold;
+    
+    display: block;
+    margin-bottom: 8px;
+    padding: 8px;
+    padding-bottom: 10px;
+    width: 100%;
+}

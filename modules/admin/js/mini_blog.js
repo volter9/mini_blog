@@ -343,21 +343,13 @@ mini_blog.editor = (function () {
             return;
         }
         
-        this.current = node;
-        this.move(node);
-    };
-    
-    /**
-     * Set current editing component
-     * 
-     * @param {Node} node
-     */
-    Editor.prototype.setCurrent = function (node) {
-        if (this.active || !node.component) {
-            return;
-        }
+        var mods = ['edit'].concat(node.component.currentMods || []);
         
         this.current = node;
+        
+        this.disableMods();
+        this.enableMods(mods);
+        
         this.move(node);
     };
     
@@ -654,6 +646,27 @@ mini_blog.createComponent = function (node) {
         });
     };
     
+    var RemoveMod = function (editor) {
+        this.name = 'remove';
+        
+        mini_blog.mod.call(this, editor);
+    };
+    
+    RemoveMod.prototype = Object.create(mini_blog.mod.prototype);
+    
+    /**
+     * Initiate edit mod
+     */
+    RemoveMod.prototype.init = function () {
+        var self = this;
+        
+        this.addAction('remove', function (node) {
+            node.component.remove();
+            
+            self.editor.clearCurrent();
+        });
+    };
+    
     /**
      * SaveMod
      * 
@@ -774,12 +787,14 @@ mini_blog.createComponent = function (node) {
         });
     };
     
+    
     /**
      * Register all mods and enable edit mod **only**
      */
     mini_blog.editor.addMod('edit', new EditMod(mini_blog.editor));
     mini_blog.editor.addMod('save', new SaveMod(mini_blog.editor));
     mini_blog.editor.addMod('wysiwig', new WysiwigMod(mini_blog.editor));
+    mini_blog.editor.addMod('remove', new RemoveMod(mini_blog.editor));
     
     mini_blog.editor.disableMods();
     mini_blog.editor.enableMods(['edit']);
@@ -846,10 +861,11 @@ mini_blog.createComponent = function (node) {
         this.name = 'posts';
         this.id = node.getAttribute('data-id');
         this.data = {};
+        this.currentMods = ['remove'];
         
         mini_blog.component.call(this, attributes, node);
         
-        if (this.nodes['text']) {
+        if (this.nodes.text) {
             this.mods = ['wysiwig'];
         }
     };
@@ -889,6 +905,21 @@ mini_blog.createComponent = function (node) {
         mini_blog.editor.clearCurrent();
     };
     
+    Post.prototype.remove = function () {
+        var self = this;
+        
+        if (this.id) {
+            var callback = function () {
+                self.id = null;
+                self.cancel();
+            };
+            
+            mini_blog.ajax.post(['admin', this.name, 'remove', this.id].join('/'))
+                          .success(callback)
+                          .send();
+        }
+    };
+    
     /**
      * Save a post
      * 
@@ -896,15 +927,24 @@ mini_blog.createComponent = function (node) {
      */
     Post.prototype.save = function (callback) {
         var url = ['admin', this.name, 'add'],
-            data = mini_blog.utils.merge(this.data, this.collectData());
+            data = mini_blog.utils.merge(this.data, this.collectData()),
+            self = this;
         
         if (this.id) {
             url.splice(2, 1, 'edit');
             url.push(this.id);
         }
         
+        var func = function (_, data) {
+            if (data.id) {
+                self.id = data.id;
+            }
+            
+            callback();
+        };
+        
         mini_blog.ajax.post(url.join('/'), data)
-                      .success(callback)
+                      .success(func)
                       .send();
     };
     
@@ -930,7 +970,9 @@ mini_blog.createComponent = function (node) {
         var self = this;
         
         this.node.addEventListener('click', function () {
-            var node = self.createNode(self.item, self.destination);
+            if (!mini_blog.editor.active) {
+                var node = self.createNode(self.item, self.destination);
+            }
         });
     };
     

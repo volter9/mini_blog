@@ -32,10 +32,21 @@ function admin_data ($module) {
 }
 
 /**
+ * Filter data
  * 
- * 
- * 
+ * @param string $module
+ * @param array $data
  */
-function admin_filter ($module, $data) {
+function admin_filter ($module, array $data) {
+    $data = array_extract($data, admin_templates("$module.keys"));
     
+    $filter = admin_templates("$module.filters");
+    
+    foreach ($filter as $key => $filters) {
+        foreach ($filters as $function) {
+            $data[$key] = $function($data[$key]);
+        }
+    }
+    
+    return $data;
 }

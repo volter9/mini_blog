@@ -12,7 +12,7 @@ function action_save ($group = 'default') {
     foreach ($input as $key => $value) {
         $input[$key] = array(
             'exist' => isset($settings[$key]),
-            'value' => $value
+            'value' => strip_tags($value)
         );
         
         if (isset($settings[$key]) && $value === $settings[$key]) {

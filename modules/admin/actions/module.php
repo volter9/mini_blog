@@ -39,11 +39,12 @@ function action_template ($module) {
  * @param string $module
  */
 function action_add ($module) {
-    $data = array_extract(input(), admin_templates("$module.keys"));
+    $data = admin_filter($module, input());
     $result = db_insert($module, $data);
     
     echo json_encode(array(
         'status' => $result ? 'ok' : 'not_ok',
+        'id'     => $result
     ));
 }
 
@@ -54,13 +55,13 @@ function action_add ($module) {
  * @param string $id
  */
 function action_edit ($module, $id) {
-    $result = db_edit($module, input(), $id);
+    $data = admin_filter($module, input());
+    $result = db_edit($module, $data, $id);
     
     echo json_encode(array(
         'status' => $result ? 'ok' : 'not_ok',
     ));
 }
-
 
 /**
  * Remove an item $module's table

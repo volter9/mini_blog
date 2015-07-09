@@ -11,6 +11,8 @@ function blog_module_init () {
  * Add blog admin templates
  */
 function blog_module_admin_init () {
+    $user = users('user');
+    
     admin_templates('posts', array(
         'keys' => array('title', 'url', 'description', 'text', 'date', 'user_id'),
         
@@ -20,12 +22,12 @@ function blog_module_admin_init () {
             'description' => 'Описание',
             'url'         => md5(microtime()),
             'date'        => date('Y-m-d H:i:s'),
-            'user_id'     => users('user.id')       ?: 1,
-            'username'    => users('user.username') ?: 'admin'
+            'user_id'     => array_get($user, 'id', 1),
+            'username'    => array_get($user, 'username', 'admin')
         ),
         
         'filters' => array(
-            'title' => array('strip_tags')
+            'title' => array('strip_tags', 'trim'),
         )
     ));
 }
