@@ -52,7 +52,7 @@ function modules_load (array $modules) {
  * @param string $path
  */
 function module_register ($module, $path) {
-    modules($module, array('path' => $path));
+    modules($module, compact('path'));
 }
 
 /**
@@ -84,6 +84,25 @@ function module_routes ($module) {
     $file = module_path($module, 'routes.php');
     
     file_exists($file) and require $file;
+}
+
+/**
+ * Load module providers, if they're exists
+ * 
+ * @return array
+ */
+function modules_providers () {
+    $providers = array();
+    
+    foreach (modules as $name => $_) {
+        $file = module_path($name, 'providers.php');
+    
+        if (file_exists($file)) {
+            $providers = array_merge($providers, require $file);
+        }
+    }
+    
+    return $providers;
 }
 
 /**
@@ -142,7 +161,7 @@ function module_layout ($module, $view, array $data = array(), $as_fallback = fa
             $theme_view_path = substr($theme_view_path, 0, -4);
         }
         
-        if (file_exists($theme_view_path . '.php')) {
+        if (file_exists("$theme_view_path.php")) {
             return layout($theme_view_path, $data);
         }
     }

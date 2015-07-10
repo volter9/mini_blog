@@ -26,14 +26,18 @@ function snippet ($path, array $data) {
         return $snippet($data);
     }
     
-    $snippet = view_path($path);
-    $snippet = require $snippet;
+    $snippet = require view_path($path);
+    $snippet($data);
     
     snippets($path, $snippet);
-    
-    $snippet($data);
 }
 
+/**
+ * Capture output and return it as string
+ * 
+ * @param callable $callback
+ * @return string
+ */
 function capture ($callback) {
     ob_start();
     

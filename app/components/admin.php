@@ -16,69 +16,36 @@ function admin ($key = null, $value = null) {
 }
 
 /**
- * Check if the modules exists (according to existance of two functions)
- * 
- * @param string $module
- * @return bool
- */
-function admin_module_exists ($module) {
-    return admin($module)
-        && function_exists(admin("$module.rules")) 
-        && function_exists(admin("$module.description"));
-}
-
-/**
- * Get module validation rules
+ * Get admin data
  * 
  * @param string $module
  * @return array
  */
-function admin_module_rules ($module) {
-    $function = admin("$module.rules");
+function admin_data ($module) {
+    $template = admin($module);
+    $default  = array_get($template, 'default', array());
     
-    return $function();
+    $keys = array_get($template, 'keys', array());
+    $data = array_fill_keys($keys, '');
+    
+    return array_merge($data, $default);
 }
 
 /**
- * Get module form and fields description
- * 
- * @param string $module
- * @return array
- */
-function admin_describe_module ($module) {
-    $function = admin("$module.description");
-    
-    return $function();
-}
-
-/**
- * Get fields labels for module
- *
- * @param string $module
- * @return array
- */
-function admin_module_fields ($module) {
-    $fields = lang("admin.$module.fields");
-    
-    return array_merge(
-        lang('admin.common.fields'),
-        $fields ? $fields : array()
-    );
-}
-
-/**
- * Filter input for module insert or edit
+ * Filter data
  * 
  * @param string $module
  * @param array $data
- * @return array
  */
-function admin_filter_input ($module, array $data) {
-    $input = emit("admin:$module.filter", $data);
-    $input = $input ? $input : array();
+function admin_filter ($module, array $data) {
+    $data = array_extract($data, admin("$module.keys"));
     
-    foreach ($input as $value) {
-        $data = array_merge($data, $value);
+    $filter = admin("$module.filters");
+    
+    foreach ($filter as $key => $filters) {
+        foreach ($filters as $function) {
+            $data[$key] = $function($data[$key]);
+        }
     }
     
     return $data;

@@ -13,8 +13,10 @@ function blog_module_init () {
 function blog_module_admin_init () {
     $user = users('user');
     
-    admin_templates('posts', array(
-        'keys' => array('title', 'url', 'description', 'text', 'date', 'user_id'),
+    admin('posts', array(
+        'keys' => array(
+            'title', 'url', 'description', 'text', 'date', 'user_id'
+        ),
         
         'default' => array(
             'id'          => 0,

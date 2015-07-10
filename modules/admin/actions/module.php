@@ -22,14 +22,14 @@ function action_get ($module, $id) {
  */
 function action_template ($module) {
     $data = admin_data($module);
+    $html = capture(function () use ($module, $data) {
+        snippet("snippets/$module", $data);
+    });
     
     echo json_encode(array(
         'status' => 'ok',
         'data'   => $data,
-        
-        'html' => capture(function () use ($module, $data) {
-            snippet("snippets/$module", $data);
-        })
+        'html'   => $html
     ));
 }
 
