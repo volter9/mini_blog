@@ -5,14 +5,16 @@
  * @var \Exception $exception
  */
 
-function str_clip ($string, $limit = 50) {
-    $length = mb_strlen($string);
+if (!function_exists('str_clip')) {
+    function str_clip ($string, $limit = 50) {
+        $length = mb_strlen($string);
 
-    if ($length <= $limit) {
-        return $string;
+        if ($length <= $limit) {
+            return $string;
+        }
+
+        return '...' . substr($string, $length - $limit + 3);
     }
-
-    return '...' . substr($string, $length - $limit + 3);
 }
 
 ?>

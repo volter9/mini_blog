@@ -119,11 +119,12 @@ mini_blog.ajax = (function () {
 /**
  * AJAX post shortcut
  * 
- * @param {String} url
+ * @param {String|Array} url
  * @param {Object} data
  * @param {Function} callback
  */
 mini_blog.ajax.post = function (url, data) { 
+    url = Array.isArray(url) ? url.join('/') : url;
     url = [mini_blog.settings.baseurl, url].join('/');
     
     return new mini_blog.ajax(('/' + url).replace(/\/+/, '/'), 'POST', data);
@@ -631,77 +632,3 @@ mini_blog.createComponent = function (node) {
         });
     }
 };
-
-(function () {
-    /**
-     * @param {Object} attributes
-     * @param {Node} node
-     */
-    var Add = function (attributes, node) {
-        this.item = node.getAttribute('data-item');
-        
-        mini_blog.component.call(this, attributes, node);
-        
-        this.destination = document.querySelector(node.getAttribute('data-destination'));
-        this.setupEvents();
-    };
-    
-    Add.prototype = Object.create(mini_blog.component.prototype);
-    
-    /**
-     * Setup events for add button
-     */
-    Add.prototype.setupEvents = function () {
-        var self = this;
-        
-        this.node.addEventListener('click', function () {
-            if (!mini_blog.editor.active) {
-                var node = self.createNode(self.item, self.destination);
-            }
-        });
-    };
-    
-    /**
-     * Create a node from template requested via AJAX
-     * 
-     * @param {String} item
-     * @param {Node} destination
-     */
-    Add.prototype.createNode = function (item, destination) {
-        var url = ['admin', 'template', item].join('/');
-        
-        mini_blog.ajax.post(url)
-                      .success(this.addNode.bind(this))
-                      .send();
-    };
-    
-    /**
-     * Add a node, this function serves as callback
-     * 
-     * @param {XMLHttpRequest} xhr
-     * @param {Object} data
-     */
-    Add.prototype.addNode = function (xhr, data) {
-        var fragment = document.createElement('div'),
-            destination = this.destination;
-    
-        fragment.innerHTML = data.html;
-    
-        var div = fragment.children[0];
-    
-        div.removeAttribute('data-id');    
-        
-        destination.insertBefore(div, destination.children[1]);
-        
-        mini_blog.createComponent(div);
-        mini_blog.editor.setCurrent(div);
-        mini_blog.editor.mods.edit.trigger('edit', div);
-        
-        div.component.data = data.data;
-    };
-    
-    /**
-     * Registering components
-     */
-    mini_blog.components.register('add', Add);
-})();

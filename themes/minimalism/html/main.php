@@ -21,9 +21,9 @@
         
         <?php view('blocks/footer') ?> 
         
-        <script src="<?php echo module_url('admin', 'js/mini_blog.js') ?>" 
-                type="text/javascript"></script>
         <script src="<?php echo asset_url('js/hljs.js') ?>"
+                type="text/javascript"></script>
+        <script src="<?php echo module_url('admin', 'js/mini_blog.js') ?>" 
                 type="text/javascript"></script>
         <script type="text/javascript">
             mini_blog.init([

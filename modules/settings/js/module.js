@@ -20,7 +20,7 @@ Settings.prototype.save = function (callback) {
     var url = ['admin', this.name, this.group],
         data = this.collectData();
     
-    mini_blog.ajax.post(url.join('/'), data)
+    mini_blog.ajax.post(url, data)
                   .success(callback)
                   .send();
 };

@@ -34,7 +34,7 @@ Post.prototype.enable = function () {
             });
         };
         
-        mini_blog.ajax.post(['admin', this.name, 'get', this.id].join('/'))
+        mini_blog.ajax.post(['admin', this.name, 'get', this.id])
                       .success(callback)
                       .send();
     }
@@ -59,7 +59,7 @@ Post.prototype.remove = function () {
             self.cancel();
         };
         
-        mini_blog.ajax.post(['admin', this.name, 'remove', this.id].join('/'))
+        mini_blog.ajax.post(['admin', this.name, 'remove', this.id])
                       .success(callback)
                       .send();
     }
@@ -88,7 +88,7 @@ Post.prototype.save = function (callback) {
         callback();
     };
     
-    mini_blog.ajax.post(url.join('/'), data)
+    mini_blog.ajax.post(url, data)
                   .success(func)
                   .send();
 };
