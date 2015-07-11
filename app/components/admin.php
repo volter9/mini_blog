@@ -1,6 +1,29 @@
 <?php
 
 /**
+ * Flatten given array 
+ * 
+ * @param array $array
+ * @return array
+ */
+function array_flatten (array $array) {
+    $result = array();
+    
+    foreach ($array as $item) {
+        if (is_array($item)) {
+            $result = array_merge($result, array_flatten(
+                array_values($item)
+            ));
+        }
+        else {
+            $result[] = $item;
+        }
+    }
+    
+    return $result;
+}
+
+/**
  * Admin container
  * 
  * @param mixed $key
@@ -49,4 +72,15 @@ function admin_filter ($module, array $data) {
     }
     
     return $data;
+}
+
+/**
+ * Get all JS scripts registered by modules
+ * 
+ * @return array
+ */
+function admin_scripts () {
+    return array_flatten(
+        array_pluck(admin(), 'js')
+    );
 }

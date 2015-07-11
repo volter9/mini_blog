@@ -26,7 +26,9 @@
         <script src="<?php echo asset_url('js/hljs.js') ?>"
                 type="text/javascript"></script>
         <script type="text/javascript">
-            mini_blog.init();
+            mini_blog.init([
+                <?php echo implode(', ', array_map(function ($v) { return "\"$v\""; }, admin_scripts())) ?> 
+            ]);
             
             mini_blog.toArray(document.querySelectorAll('#wrapper pre'))
                      .forEach(hljs.highlightBlock);

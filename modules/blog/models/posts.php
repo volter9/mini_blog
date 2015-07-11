@@ -17,7 +17,7 @@ function posts_init () {
  * 
  * @return array|bool
  */
-function posts_all ($page = 1) {
+function posts_all ($page = 1, $pages = POSTS_PER_PAGE) {
     return paginate_query('
         SELECT
             p.id, p.title, p.url, p.text, p.description, 
@@ -28,7 +28,7 @@ function posts_all ($page = 1) {
             LEFT JOIN users u ON (p.user_id = u.id)
             LEFT JOIN categories c ON (p.category_id = c.id)
         ORDER BY p.date DESC',
-        array(), POSTS_PER_PAGE, $page
+        array(), $pages, $page
     );
 }
 
@@ -38,7 +38,7 @@ function posts_all ($page = 1) {
  * @param int $id
  * @return array|bool
  */
-function posts_by_category ($id, $page = 1) {
+function posts_by_category ($id, $page = 1, $pages = POSTS_PER_PAGE) {
     return paginate_query('
         SELECT 
             p.id, p.title, p.url, p.text, p.description, 
@@ -50,7 +50,7 @@ function posts_by_category ($id, $page = 1) {
             LEFT JOIN categories c ON (p.category_id = c.id)
         WHERE p.category_id = ?
         ORDER BY p.date DESC',
-        array($id), POSTS_PER_PAGE, $page
+        array($id), $pages, $page
     );
 }
 

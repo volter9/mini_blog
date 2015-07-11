@@ -9,4 +9,8 @@ function settings_module_init () {
     if ($language = storage('settings.default.language')) {
         lang('settings.default', $language);
     }
+    
+    admin('settings', array(
+        'js' => array(module_url('settings', 'js/module.js'))
+    ));
 }

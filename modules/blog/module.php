@@ -5,6 +5,10 @@
  */
 function blog_module_init () {
     load_language('app', module_path('blog', 'i18n/site'));
+    
+    admin('posts', array(
+        'js' => array(module_url('blog', 'js/module.js'))
+    ));
 }
 
 /**

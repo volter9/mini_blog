@@ -577,15 +577,36 @@ mini_blog.component = (function () {
 
 /**
  * Initialization
+ * 
+ * @param {Array} scripts
  */
-mini_blog.init = function () {
-    var baseurl = document.body.getAttribute('data-baseurl');
+mini_blog.init = function (scripts) {
+    scripts = scripts || [];
+    scripts.forEach(mini_blog.loadScript);
     
-    mini_blog.settings.baseurl = baseurl;
-    mini_blog.init = null;
+    window.addEventListener('load', function () {
+        var baseurl = document.body.getAttribute('data-baseurl');
     
-    mini_blog.toArray(document.querySelectorAll('[data-component]'))
-             .forEach(mini_blog.createComponent);
+        mini_blog.settings.baseurl = baseurl;
+        mini_blog.init = null;
+    
+        mini_blog.toArray(document.querySelectorAll('[data-component]'))
+                 .forEach(mini_blog.createComponent);
+    });
+};
+
+/**
+ * Load a script
+ * 
+ * @param {String} url
+ */
+mini_blog.loadScript = function (url) {
+    var script = document.createElement('script');
+    
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', url);
+    
+    document.body.appendChild(script);
 };
 
 /**
@@ -611,343 +632,7 @@ mini_blog.createComponent = function (node) {
     }
 };
 
-/**
- * Core modules support
- * 
- * - Settings
- * - Posts
- */
 (function () {
-    /**
-     * Mods
-     * 
-     * Save and edit mods
-     */
-    var EditMod = function (editor) {
-        this.name = 'edit';
-        
-        mini_blog.mod.call(this, editor);
-    };
-    
-    EditMod.prototype = Object.create(mini_blog.mod.prototype);
-    
-    /**
-     * Initiate edit mod
-     */
-    EditMod.prototype.init = function () {
-        var self = this;
-        
-        this.addAction('edit', function (node) {
-            self.editor.active = true;
-            self.editor.disableMods();
-            self.editor.enableMods(['save'].concat(node.component.mods || []));
-            
-            node.component.enable();
-        });
-    };
-    
-    var RemoveMod = function (editor) {
-        this.name = 'remove';
-        
-        mini_blog.mod.call(this, editor);
-    };
-    
-    RemoveMod.prototype = Object.create(mini_blog.mod.prototype);
-    
-    /**
-     * Initiate edit mod
-     */
-    RemoveMod.prototype.init = function () {
-        var self = this;
-        
-        this.addAction('remove', function (node) {
-            node.component.remove();
-            
-            self.editor.clearCurrent();
-        });
-    };
-    
-    /**
-     * SaveMod
-     * 
-     * Sends signal to component to send the data to the server
-     * Also has a cancel action to cancel 
-     * 
-     * @param {mini_blog.editor} editor
-     */
-    var SaveMod = function (editor) {
-        this.name = 'save';
-        
-        mini_blog.mod.call(this, editor);
-    };
-    
-    SaveMod.prototype = Object.create(mini_blog.mod.prototype);
-    
-    /**
-     * Initiate actions:
-     * 
-     * - Save action
-     * - Cancel action
-     */
-    SaveMod.prototype.init = function () {
-        var self = this;
-        
-        var callback = function (node) {
-            self.editor.active = false;
-            self.editor.disableMods();
-            self.editor.enableMods(['edit']);
-            
-            node.component.disable();
-        };
-        
-        this.addAction('save', function (node) {
-            node.component.save();
-            
-            callback(node);
-        });
-        
-        this.addAction('cancel', function (node) {
-            node.component.cancel();
-            
-            callback(node);
-            
-            if (self.html) {
-                node.innerHTML = self.html;
-                node.component.setNodes(node);
-            }
-        });
-    };
-    
-    /**
-     * Enable save mod and cache the HTML
-     */
-    SaveMod.prototype.enable = function () {
-        mini_blog.mod.prototype.enable.call(this);
-        
-        this.html = this.editor.current.innerHTML;
-    };
-    
-    /**
-     * WYSIWIG buttons mod
-     * 
-     * @param {mini_blog.editor} editor
-     */
-    var WysiwigMod = function (editor) {
-        mini_blog.mod.call(this, editor);
-    };
-    
-    WysiwigMod.prototype = Object.create(mini_blog.mod.prototype);
-    
-    /**
-     * Initiate WYSIWIG actions:
-     * 
-     * - Bold
-     * - Italic
-     * - Blockquote
-     * - Header
-     * - Clear formating (paragraph)
-     * - Code
-     */
-    WysiwigMod.prototype.init = function () {
-        var self = this;
-        
-        this.name = 'wysiwig';
-        
-        this.addAction('bold', function () {
-            document.execCommand('bold');
-        });
-        
-        this.addAction('italic', function () {
-            document.execCommand('italic');
-        });
-        
-        this.addAction('quote', function () {
-            document.execCommand('formatBlock', null, 'blockquote');
-        });
-        
-        this.addAction('header', function () {
-            document.execCommand('formatBlock', null, 'h1');
-        });
-        
-        this.addAction('paragraph', function () {
-            document.execCommand('formatBlock', null, 'p');
-            
-            var selection = document.getSelection(),
-                p = selection.anchorNode.parentNode;
-            
-            if (p.nodeName !== 'P') {
-                p = p.parentNode;
-            }
-            
-            p.innerHTML = p.innerText || p.textContent;
-        });
-        
-        this.addAction('code', function () {
-            document.execCommand('formatBlock', null, 'pre');
-        });
-    };
-    
-    
-    /**
-     * Register all mods and enable edit mod **only**
-     */
-    mini_blog.editor.addMod('edit', new EditMod(mini_blog.editor));
-    mini_blog.editor.addMod('save', new SaveMod(mini_blog.editor));
-    mini_blog.editor.addMod('wysiwig', new WysiwigMod(mini_blog.editor));
-    mini_blog.editor.addMod('remove', new RemoveMod(mini_blog.editor));
-    
-    mini_blog.editor.disableMods();
-    mini_blog.editor.enableMods(['edit']);
-    
-    /**
-     * @param {Object} attributes
-     * @param {Node} node
-     */
-    var Settings = function (attributes, node) {
-        this.name = 'settings';
-        this.group = node.getAttribute('data-group');
-        
-        mini_blog.component.call(this, attributes, node);
-    };
-    
-    Settings.prototype = Object.create(mini_blog.component.prototype);
-    
-    /**
-     * Save settings
-     * 
-     * @param {Function} callback
-     */
-    Settings.prototype.save = function (callback) {
-        var url = ['admin', this.name, this.group],
-            data = this.collectData();
-        
-        mini_blog.ajax.post(url.join('/'), data)
-                      .success(callback)
-                      .send();
-    };
-    
-    /**
-     * @param {Object} attributes
-     * @param {Node} node
-     */
-    var Category = function (attributes, node) {
-        this.name = 'categories';
-        this.id = node.getAttribute('data-id');
-        
-        mini_blog.component.call(this, attributes, node);
-    };
-    
-    Category.prototype = Object.create(mini_blog.component.prototype);
-    
-    /**
-     * Save settings
-     * 
-     * @param {Function} callback
-     */
-    Category.prototype.save = function (callback) {
-        var url = ['admin', this.name, 'edit', this.id],
-            data = this.collectData();
-        
-        mini_blog.ajax.post(url.join('/'), data)
-                      .success(callback)
-                      .send();
-    };
-    
-    /**
-     * @param {Object} attributes
-     * @param {Node} node
-     */
-    var Post = function (attributes, node) {
-        this.name = 'posts';
-        this.id = node.getAttribute('data-id');
-        this.data = {};
-        this.currentMods = ['remove'];
-        
-        mini_blog.component.call(this, attributes, node);
-        
-        if (this.nodes.text) {
-            this.mods = ['wysiwig'];
-        }
-    };
-    
-    Post.prototype = Object.create(mini_blog.component.prototype);
-    
-    /**
-     * Enable post with custom logic
-     */
-    Post.prototype.enable = function () {
-        mini_blog.component.prototype.enable.call(this);
-        
-        if (this.id) {
-            var self = this;
-            
-            var callback = function (xhr, data) {
-                self.data = data.item;
-                
-                mini_blog.each(self.nodes, function (node, key) {
-                    node.innerHTML = self.data[key];
-                });
-            };
-            
-            mini_blog.ajax.post(['admin', this.name, 'get', this.id].join('/'))
-                          .success(callback)
-                          .send();
-        }
-    };
-    
-    Post.prototype.cancel = function () {
-        if (this.id) {
-            return;
-        }
-        
-        this.node.parentNode.removeChild(this.node);
-        
-        mini_blog.editor.clearCurrent();
-    };
-    
-    Post.prototype.remove = function () {
-        var self = this;
-        
-        if (this.id) {
-            var callback = function () {
-                self.id = null;
-                self.cancel();
-            };
-            
-            mini_blog.ajax.post(['admin', this.name, 'remove', this.id].join('/'))
-                          .success(callback)
-                          .send();
-        }
-    };
-    
-    /**
-     * Save a post
-     * 
-     * @param {Function} callback
-     */
-    Post.prototype.save = function (callback) {
-        var url = ['admin', this.name, 'add'],
-            data = mini_blog.utils.merge(this.data, this.collectData()),
-            self = this;
-        
-        if (this.id) {
-            url.splice(2, 1, 'edit');
-            url.push(this.id);
-        }
-        
-        var func = function (_, data) {
-            if (data.id) {
-                self.id = data.id;
-            }
-            
-            callback();
-        };
-        
-        mini_blog.ajax.post(url.join('/'), data)
-                      .success(func)
-                      .send();
-    };
-    
     /**
      * @param {Object} attributes
      * @param {Node} node
@@ -1018,9 +703,5 @@ mini_blog.createComponent = function (node) {
     /**
      * Registering components
      */
-    
-    mini_blog.components.register('settings', Settings);
-    mini_blog.components.register('post', Post);
-    mini_blog.components.register('category', Category);
     mini_blog.components.register('add', Add);
 })();
