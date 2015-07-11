@@ -74,7 +74,25 @@
     padding: 0.5em 0px;
 }
 
-#mini_panel ul li {
+#mini_panel a {
+    color: #888;
+}
+
+#mini_panel a:hover {
+    color: #556;
+}
+
+#mini_panel .logo {    
+    font-weight: 100;
+    
+    padding-top: 0.5em; 
+}
+
+#mini_panel .logo a {
+    color: #000;
+}
+
+#mini_panel li {
     font-size: 14px;
     
     float: left;
@@ -85,13 +103,9 @@
     border-left: 1px solid #f2f2f2;
 }
 
-#mini_panel a {
-    color: #888;
-}
-
-#mini_panel a:hover {
-    color: #556;
-}
+/**
+ * Status bar 
+ */
 
 #mini_panel .status-bar {
     color: #666;
