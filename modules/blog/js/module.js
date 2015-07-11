@@ -40,6 +40,11 @@ Post.prototype.enable = function () {
     }
 };
 
+/**
+ * Cancel editing
+ * 
+ * 
+ */
 Post.prototype.cancel = function () {
     if (this.id) {
         return;
@@ -50,6 +55,9 @@ Post.prototype.cancel = function () {
     mini_blog.editor.clearCurrent();
 };
 
+/**
+ * Remove a post
+ */
 Post.prototype.remove = function () {
     var self = this;
     

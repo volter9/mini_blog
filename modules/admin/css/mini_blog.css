@@ -62,3 +62,45 @@
     padding-bottom: 10px;
     width: 100%;
 }
+
+/**
+ * mini_blog panel
+ */
+
+#mini_panel {
+    background-color: rgba(255, 255, 255, 0.75);
+    border-bottom: 1px solid #f2f2f2;
+    
+    padding: 0.5em 0px;
+}
+
+#mini_panel ul li {
+    font-size: 14px;
+    
+    float: left;
+    padding: 0.5em 0.75em;
+}
+
+#mini_panel .separator {
+    border-left: 1px solid #f2f2f2;
+}
+
+#mini_panel a {
+    color: #888;
+}
+
+#mini_panel a:hover {
+    color: #556;
+}
+
+#mini_panel .status-bar {
+    color: #666;
+}
+
+#mini_panel .success {
+    color: #6c6;
+}
+
+#mini_panel .failure {
+    color: #c66;
+}

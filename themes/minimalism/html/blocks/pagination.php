@@ -7,11 +7,12 @@
  * @var int $pages
  * @var int $limit
  * @var int $offset
+ * @var string $url
  */
 ?>
-<?php if (!empty($pagination)): ?> 
 <div class="pagination">
     <?php if ($page > 1): ?> 
+    <!-- &#8592; is left arrow -->
     <a class="button" href="<?php echo "$url/" . ($page - 1) ?>">&#8592;</a>
     <?php endif; ?> 
     
@@ -24,7 +25,7 @@
     <?php endforeach; ?> 
     
     <?php if ($page < $pages): ?> 
+    <!-- &#8594; is right arrow -->
     <a class="button" href="<?php echo "$url/" . ($page + 1) ?>">&#8594;</a>
     <?php endif; ?> 
 </div>
-<?php endif; ?> 

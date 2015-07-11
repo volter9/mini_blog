@@ -176,7 +176,7 @@ mini_blog.dom.attributes = function (element) {
  * @param {Node} element
  * @return {Object}
  */
-mini_blog.dom.data_attributes = function (element) {
+mini_blog.dom.dataAttributes = function (element) {
     var attributes = mini_blog.dom.attributes(element);
     
     Object.keys(attributes).forEach(function (key) {
@@ -586,9 +586,11 @@ mini_blog.init = function (scripts) {
     scripts.forEach(mini_blog.loadScript);
     
     window.addEventListener('load', function () {
-        var baseurl = document.body.getAttribute('data-baseurl');
-    
+        var baseurl = document.body.getAttribute('data-baseurl'),
+            lang    = document.body.getAttribute('data-lang');
+        
         mini_blog.settings.baseurl = baseurl;
+        mini_blog.settings.lang    = lang;
         mini_blog.init = null;
     
         mini_blog.toArray(document.querySelectorAll('[data-component]'))
@@ -616,7 +618,7 @@ mini_blog.loadScript = function (url) {
  * @param {Node} node
  */
 mini_blog.createComponent = function (node) {
-    var attributes = mini_blog.dom.data_attributes(node),
+    var attributes = mini_blog.dom.dataAttributes(node),
         name = attributes['data-component'];
     
     var component = mini_blog.components.create(name, attributes, node);

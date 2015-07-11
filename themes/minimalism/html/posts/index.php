@@ -9,13 +9,6 @@
  */
 ?>
 <article class="posts">
-    <button data-component="add"
-            data-item="posts"
-            data-ignore="true"
-            data-destination=".posts">
-        +
-    </button>
-    
     <?php if (!$posts['items']): ?> 
     <div class="post">
         <p><?php echo i18n('posts.empty') ?></p>

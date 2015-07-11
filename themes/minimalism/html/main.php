@@ -12,7 +12,28 @@
         <?php view('blocks/head') ?> 
     </head>
     
-    <body data-baseurl="<?php echo router('settings.root') ?>">
+    <body data-baseurl="<?php echo router('settings.root') ?>"
+          data-lang="<?php echo lang('settings.default') ?>">
+        <div id="mini_panel">
+            <div class="clearfix fluid">
+                <ul class="clearfix right">
+                    <li class="status-bar" title="Status bar">
+                        ...
+                    </li>
+                    <li class="separator">
+                        <a href="#" title="Add a post">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="More...">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
         <?php view('blocks/header') ?> 
         
         <div class="fluid" id="wrapper">
