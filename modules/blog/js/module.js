@@ -42,8 +42,6 @@ Post.prototype.enable = function () {
 
 /**
  * Cancel editing
- * 
- * 
  */
 Post.prototype.cancel = function () {
     if (this.id) {

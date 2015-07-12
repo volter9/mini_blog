@@ -142,7 +142,7 @@
             document.execCommand('italic');
         });
         
-        this.addAction('quote', '<i class="fa fa-indent fa-fw"></i>', function () {
+        this.addAction('quote', '<i class="fa fa-quote-right fa-fw"></i>', function () {
             document.execCommand('formatBlock', null, 'blockquote');
         });
         

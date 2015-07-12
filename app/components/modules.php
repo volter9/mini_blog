@@ -94,7 +94,7 @@ function module_routes ($module) {
 function modules_providers () {
     $providers = array();
     
-    foreach (modules as $name => $_) {
+    foreach (modules() as $name => $_) {
         $file = module_path($name, 'providers.php');
     
         if (file_exists($file)) {

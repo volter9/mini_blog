@@ -206,7 +206,7 @@ article.error ul li {
     font-size: 28px;
     
     margin-top: 0px;
-    margin-bottom: 2px;
+    margin-bottom: 1em;
 }
 
 .post h1,
@@ -255,9 +255,20 @@ article.error ul li {
 
 .post .info {
     color: #aaa;
-    font-size: 12px;
+    font-size: 14px;
+    list-style: none;
     
-    margin-bottom: 1em;
+    margin: 0em;
+    padding: 0px;
+}
+
+.post .info li {
+    display: inline-block;
+    margin-right: 0.8em;
+}
+
+.post .info .fa {
+    margin-right: 0.2em;
 }
 
 .post .info a {

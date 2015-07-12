@@ -8,19 +8,15 @@ mini_blog.panel = (function () {
     function Panel (node) {
         this.node = node;
         
-        this.setup();
-    }
-    
-    Panel.prototype.setup = function () {
         var self = this,
-            add  = this.node.querySelector('.add');
+            add  = node.querySelector('.add');
         
         add.addEventListener('click', function () {
             if (!mini_blog.editor.active) {
                 self.createNode(self.item, self.destination);
             }
         });
-    };
+    }
     
     /**
      * Create a node from template requested via AJAX
@@ -51,14 +47,14 @@ mini_blog.panel = (function () {
         
         var fragment = document.createElement('div'),
             destination = document.querySelector('.posts');
-    
+        
         fragment.innerHTML = data.html;
     
         var div = fragment.children[0];
     
         div.removeAttribute('data-id');    
         
-        destination.insertBefore(div, destination.children[1]);
+        destination.insertBefore(div, destination.children[0]);
         
         mini_blog.createComponent(div);
         mini_blog.editor.setCurrent(div);

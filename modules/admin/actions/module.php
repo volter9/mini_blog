@@ -76,3 +76,18 @@ function action_remove ($module, $id) {
         'status' => $result ? 'ok' : 'not_ok',
     ));
 }
+
+/**
+ * Providers
+ * 
+ * @param string $provider
+ */
+function action_provider ($provider) {
+    $providers = modules_providers();
+    $provider  = array_get($providers, $provider);
+    
+    echo json_encode(array(
+        'status' => $provider,
+        'result' => is_callable($provider) ? $provider() : null
+    ), JSON_UNESCAPED_UNICODE);
+}

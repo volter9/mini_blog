@@ -33,7 +33,8 @@ function blog_module_admin_init () {
         ),
         
         'filters' => array(
-            'title' => array('strip_tags', 'trim'),
+            'title'       => array('strip_tags', 'trim'),
+            'description' => array('strip_tags', 'trim')
         )
     ));
 }

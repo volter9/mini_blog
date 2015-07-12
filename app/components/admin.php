@@ -80,7 +80,5 @@ function admin_filter ($module, array $data) {
  * @return array
  */
 function admin_scripts () {
-    return array_flatten(
-        array_pluck(admin(), 'js')
-    );
+    return array_flatten(array_pluck(admin(), 'js'));
 }
