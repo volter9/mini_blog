@@ -9,6 +9,9 @@
 
 function admin_module_init () {
     admin('admin', array(
-        'js' => array(module_url('admin', 'js/mods.js'))
+        'js' => array(
+            module_url('admin', 'js/mods.js'),
+            module_url('admin', 'js/panel.js')
+        )
     ));
 }

@@ -3,7 +3,7 @@
  * @param {Node} node
  */
 var Settings = function (attributes, node) {
-    this.name = 'settings';
+    this.name  = 'settings';
     this.group = node.getAttribute('data-group');
     
     mini_blog.component.call(this, attributes, node);

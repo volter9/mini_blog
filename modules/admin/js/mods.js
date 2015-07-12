@@ -18,7 +18,7 @@
     EditMod.prototype.init = function () {
         var self = this;
         
-        this.addAction('edit', function (node) {
+        this.addAction('edit', '<i class="fa fa-pencil fa-fw"></i>', function (node) {
             self.editor.active = true;
             self.editor.disableMods();
             self.editor.enableMods(['save'].concat(node.component.mods || []));
@@ -41,7 +41,7 @@
     RemoveMod.prototype.init = function () {
         var self = this;
         
-        this.addAction('remove', function (node) {
+        this.addAction('remove', '<i class="fa fa-minus fa-fw"></i>', function (node) {
             node.component.remove();
             
             self.editor.clearCurrent();
@@ -81,13 +81,13 @@
             node.component.disable();
         };
         
-        this.addAction('save', function (node) {
+        this.addAction('save', '<i class="fa fa-save fa-fw"></i>', function (node) {
             node.component.save();
             
             callback(node);
         });
         
-        this.addAction('cancel', function (node) {
+        this.addAction('cancel', '<i class="fa fa-times fa-fw"></i>', function (node) {
             node.component.cancel();
             
             callback(node);
@@ -134,23 +134,23 @@
         
         this.name = 'wysiwig';
         
-        this.addAction('bold', function () {
+        this.addAction('bold', '<i class="fa fa-bold fa-fw"></i>', function () {
             document.execCommand('bold');
         });
         
-        this.addAction('italic', function () {
+        this.addAction('italic', '<i class="fa fa-italic fa-fw"></i>', function () {
             document.execCommand('italic');
         });
         
-        this.addAction('quote', function () {
+        this.addAction('quote', '<i class="fa fa-indent fa-fw"></i>', function () {
             document.execCommand('formatBlock', null, 'blockquote');
         });
         
-        this.addAction('header', function () {
+        this.addAction('header', '<i class="fa fa-header fa-fw"></i>', function () {
             document.execCommand('formatBlock', null, 'h1');
         });
         
-        this.addAction('paragraph', function () {
+        this.addAction('paragraph', '<i class="fa fa-paragraph fa-fw"></i>', function () {
             document.execCommand('formatBlock', null, 'p');
             
             var selection = document.getSelection(),
@@ -163,7 +163,7 @@
             p.innerHTML = p.innerText || p.textContent;
         });
         
-        this.addAction('code', function () {
+        this.addAction('code', '<i class="fa fa-code fa-fw"></i>', function () {
             document.execCommand('formatBlock', null, 'pre');
         });
     };

@@ -20,5 +20,9 @@
     <p class="description" data-name="description">
         <?php echo $post['description'] ?>
     </p>
+    
+    <div data-name="text">
+        <?php $parse = new Parsedown; echo $parse->text($post['text']) ?> 
+    </div>
 </div>
 <?php } ?>

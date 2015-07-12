@@ -14,15 +14,5 @@
                 echo storage('settings.default.sitedescription') 
             ?></p>
         </div>
-        
-        <nav class="right clearfix" id="navigation">
-            <ul>
-                <li>
-                    <a href="<?php echo url('#posts') ?>">
-                        <?php echo i18n('header.latests') ?> 
-                    </a>
-                </li>
-            </ul>
-        </nav>
     </div>
 </header>

@@ -12,7 +12,7 @@
     top: 0px;
     left: 0px;
     
-    width: 70px;
+    width: 46px;
 }
 
 #mini_editor .button {
@@ -21,13 +21,12 @@
     border-radius: 4px;
     color: #fff;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     text-transform: capitalize;
     
     margin-bottom: 6px;
-    padding: 8px 0px;
-    width: 100%;
+    padding: 8px 8px;
 }
 
 #mini_editor .button:hover {
@@ -68,10 +67,12 @@
  */
 
 #mini_panel {
-    background-color: rgba(255, 255, 255, 0.75);
-    border-bottom: 1px solid #f2f2f2;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
     
-    padding: 0.5em 0px;
+    padding: 0em 1em;
 }
 
 #mini_panel a {
@@ -80,34 +81,35 @@
 
 #mini_panel a:hover {
     color: #556;
+    text-decoration: none;
 }
 
-#mini_panel .logo {    
-    font-weight: 100;
+#mini_panel ul {
+    background-color: rgba(255, 255, 255, 0.75);
     
-    padding-top: 0.5em; 
-}
-
-#mini_panel .logo a {
-    color: #000;
+    padding: 0.4em 0px;
 }
 
 #mini_panel li {
     font-size: 14px;
     
     float: left;
-    padding: 0.5em 0.75em;
+    padding: 0.5em 1em;
 }
 
 #mini_panel .separator {
     border-left: 1px solid #f2f2f2;
 }
 
+#mini_panel li a {
+    font-size: 14px;
+}
+
 /**
  * Status bar 
  */
 
-#mini_panel .status-bar {
+.status-bar {
     color: #666;
 }
 
@@ -116,5 +118,32 @@
 }
 
 #mini_panel .failure {
-    color: #c66;
+    color: #d66;
+}
+
+/**
+ * Inverted styles
+ */
+
+.invert .status-bar {
+    color: #999;
+}
+
+#mini_panel.invert ul {
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 0px 0px 10px 10px;
+    color: #fff;
+}
+
+#mini_panel.invert .separator {
+    border-left: 1px solid #666;
+}
+
+#mini_panel.invert a {
+    color: #888;
+}
+
+#mini_panel.invert a:hover {
+    color: #aab;
+    text-decoration: none;
 }

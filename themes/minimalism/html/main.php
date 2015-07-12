@@ -14,32 +14,7 @@
     
     <body data-baseurl="<?php echo router('settings.root') ?>"
           data-lang="<?php echo lang('settings.default') ?>">
-        <div id="mini_panel">
-            <div class="clearfix fluid">
-                <div class="logo left">
-                    <a href="<?php echo url('#index') ?>" 
-                       data-name="sitename"><?php 
-                        echo storage('settings.default.sitename') 
-                    ?></a>
-                </div>
-                
-                <ul class="clearfix right">
-                    <li class="status-bar" title="Status bar">
-                        ...
-                    </li>
-                    <li class="separator">
-                        <a href="#" title="Add a post">
-                            <i class="fa fa-plus"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" title="More...">
-                            <i class="fa fa-bars"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <?php view(module_path('admin', 'panel')) ?>
         
         <?php view('blocks/header') ?> 
         

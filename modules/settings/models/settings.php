@@ -9,6 +9,7 @@
  */
 function settings ($key = null, $value = null) {
     static $repo = null;
+    
     $repo or $repo = repo();
     
     return $repo($key, $value);
@@ -53,11 +54,7 @@ function settings_get ($group) {
     );
     
     if ($settings) {
-        $settings = array_join($settings, 'name', 'value');
-        
-        settings("all_settings.$group", $settings);
-        
-        return $settings;
+        return array_join($settings, 'name', 'value');
     }
     
     return array();

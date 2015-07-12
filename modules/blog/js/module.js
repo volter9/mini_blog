@@ -93,7 +93,8 @@ Post.prototype.save = function (callback) {
             self.id = data.id;
         }
         
-        callback();
+        mini_blog.toArray(self.node.querySelectorAll('pre'))
+                 .forEach(hljs.highlightBlock);
     };
     
     mini_blog.ajax.post(url, data)

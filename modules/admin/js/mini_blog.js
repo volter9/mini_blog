@@ -281,20 +281,9 @@ mini_blog.utils.merge = function (a, b) {
  */
 mini_blog.editor = (function () {
     /**
-     * Editor constructor
-     */
-    function Editor () {
-        this.mods = {};
-        this.current = null;
-        this.active = false;
-       
-        this.setupContainer();
-    }
-    
-    /**
      * Setup editor's container for buttons
      */
-    Editor.prototype.setupContainer = function () {
+    function setupContainer () {
         var container = document.createElement('div');
         
         container.id = 'mini_editor';
@@ -310,14 +299,14 @@ mini_blog.editor = (function () {
      * 
      * @param {mini_blog.editor.mod} mod
      */
-    Editor.prototype.addMod = function (name, mod) {
+    function addMod (name, mod) {
         this.mods[name] = mod;
     };
     
     /**
      * Disable all mods
      */
-    Editor.prototype.disableMods = function () {
+    function disableMods () {
         mini_blog.each(this.mods, function (mod) { 
             mod.disable();
         });
@@ -326,7 +315,7 @@ mini_blog.editor = (function () {
     /**
      * Enable given mods
      */
-    Editor.prototype.enableMods = function (names) {
+    function enableMods (names) {
         mini_blog.each(this.mods, function (mod) { 
             if (names.indexOf(mod.name) !== -1) {
                 mod.enable();
@@ -339,7 +328,7 @@ mini_blog.editor = (function () {
      * 
      * @param {Node} node
      */
-    Editor.prototype.setCurrent = function (node) {
+    function setCurrent (node) {
         if (this.active || !node.component) {
             return;
         }
@@ -354,7 +343,10 @@ mini_blog.editor = (function () {
         this.move(node);
     };
     
-    Editor.prototype.clearCurrent = function () {
+    /**
+     * Clear current editable target
+     */
+    function clearCurrent () {
         if (!this.active) {
             return;
         }
@@ -368,7 +360,7 @@ mini_blog.editor = (function () {
      * 
      * @param {Node} node
      */
-    Editor.prototype.move = function (node) {
+    function move (node) {
         this.container.className = 'visible';
         
         var x = node.offsetLeft - this.container.offsetWidth - 10,
@@ -378,7 +370,23 @@ mini_blog.editor = (function () {
         this.container.style.top = y + 'px';
     };
     
-    return new Editor;
+    var object = {
+        mods: {},
+        current: null,
+        active: false,
+        
+        setupContainer: setupContainer,
+        addMod: addMod,
+        disableMods: disableMods,
+        enableMods: enableMods,
+        setCurrent: setCurrent,
+        clearCurrent: clearCurrent,
+        move: move
+    };
+    
+    object.setupContainer();
+    
+    return object;
 })();
 
 /**
@@ -421,13 +429,14 @@ mini_blog.mod = (function () {
      * Add a named action
      * 
      * @param {String} name
+     * @param {String} text
      * @param {Function} callback
      */
-    Mod.prototype.addAction = function (name, callback) {
+    Mod.prototype.addAction = function (name, text, callback) {
         var button = document.createElement('button'),
             self = this;
         
-        button.innerText = name;
+        button.innerHTML = !callback ? name : text;
         button.setAttribute('data-role', name);
         button.className = 'button';
         
@@ -435,8 +444,9 @@ mini_blog.mod = (function () {
             self.trigger(this.getAttribute('data-role'), self.editor.current);
         });
         
-        mini_blog.editor.container.appendChild(button);
+        this.editor.container.appendChild(button);
         
+        callback = callback || text;
         callback.button = button;
         
         this.actions[name] = callback;
@@ -618,19 +628,20 @@ mini_blog.loadScript = function (url) {
  * @param {Node} node
  */
 mini_blog.createComponent = function (node) {
-    var attributes = mini_blog.dom.dataAttributes(node),
-        name = attributes['data-component'];
+    if (node.component || node.getAttribute('data-ignore')) {
+        return;
+    }
     
-    var component = mini_blog.components.create(name, attributes, node);
+    var attributes = mini_blog.dom.dataAttributes(node),
+        name = attributes['data-component'],
+        component = mini_blog.components.create(name, attributes, node);
     
     if (!component) {
         return console.warn('Component "' + name + '" does not exists!');
     }
     
-    if (node.getAttribute('data-ignore') === null) {
-        node.component = component;
-        node.addEventListener('mouseenter', function () {
-            mini_blog.editor.setCurrent(this);
-        });
-    }
+    node.component = component;
+    node.addEventListener('mouseenter', function () {
+        mini_blog.editor.setCurrent(this);
+    });
 };

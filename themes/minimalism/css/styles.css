@@ -26,7 +26,7 @@ ul, ol {
 
 html,
 body {
-    font-family: sans-serif;
+    font-family: Ubuntu, sans-serif;
     margin: 0px;
     padding: 0px
 }
@@ -69,6 +69,7 @@ a:hover {
  */
 
 #header {
+    margin-top: 10px;
     margin-bottom: 1em;
 }
 
@@ -145,7 +146,7 @@ article.error > .right {
 
 article.error p {
     font-size: 14px;
-    line-height: 140%;
+    line-height: 150%;
     
     margin-bottom: 15px
 }
@@ -154,7 +155,7 @@ article.error pre {
     background-color: #f4f4f4;
     font-family: Menlo, Monaco, monospace;
     font-size: 12px;
-    line-height: 140%;
+    line-height: 150%;
     
     margin-bottom: 20px;
     margin-left: 10px;
@@ -174,7 +175,7 @@ article.error code {
 
 article.error ul li {
     font-size: 14px;
-    line-height: 130%;
+    line-height: 150%;
     margin-bottom: 8px
 }
 
@@ -217,8 +218,8 @@ article.error ul li {
     color: #333;
     font-weight: normal;
     
-    margin-top: 1em;
-    margin-bottom: 0.25em;
+    margin-top: 1.6em;
+    margin-bottom: 0.5em;
 }
 
 .post h1 a,
@@ -249,14 +250,14 @@ article.error ul li {
 .post p {
     color: #333;
     font-size: 16px;
-    line-height: 150%
+    line-height: 150%;
 }
 
 .post .info {
     color: #aaa;
     font-size: 12px;
     
-    margin-bottom: 0.75em
+    margin-bottom: 1em;
 }
 
 .post .info a {
@@ -266,7 +267,7 @@ article.error ul li {
 .post p,
 .post blockquote,
 .post ul {
-    margin-bottom: 0.75em;
+    margin-bottom: 1em;
 }
 
 .post p:last-child,
@@ -280,30 +281,31 @@ article.error ul li {
     border-radius: 2px;
     color: #08e;
     font-size: 80%;
-    padding: 2px 4px
+    padding: 2px 4px;
 }
 
 .post iframe {
     display: block;
     margin: 0px auto;
     margin-bottom: 1em;
-    max-width: 95%
+    max-width: 95%;
 }
 
 .post ul {
     list-style-type: square;
-    padding-left: 45px
+    
+    padding-left: 45px;
 }
 
 .post ul li {
     font-size: 14px;
-    line-height: 150%
+    line-height: 150%;
 }
 
 .post blockquote {
     border-left: 3px solid #ccc;
     color: #666;
-    line-height: 140%;
+    line-height: 150%;
     font-size: 14px;
     
     margin-left: 20px;
@@ -320,7 +322,7 @@ article.error ul li {
     border-radius: 10px;
     font-family: Menlo, Monaco, monospace;
     font-size: 14px;
-    line-height: 140%;
+    line-height: 150%;
     
     display: block;
     margin-bottom: 20px;
