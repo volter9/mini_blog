@@ -5,7 +5,7 @@
             <li class="status-bar" title="Status bar">
                 ...
             </li>
-            <li class="separator">
+            <li class="separator add">
                 <a href="#" title="Add a post">
                     <i class="fa fa-plus"></i>
                 </a>

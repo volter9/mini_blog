@@ -10,7 +10,7 @@
 ?>
 <article class="posts">
     <?php if (!$posts['items']): ?> 
-    <div class="post">
+    <div class="post empty">
         <p><?php echo i18n('posts.empty') ?></p>
     </div>
     <?php else: ?> 
