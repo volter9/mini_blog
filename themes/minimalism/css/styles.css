@@ -198,6 +198,10 @@ article.error ul li {
  * Post and posts
  */
 
+.posts .post {
+    margin-bottom: 4em;
+}
+
 .post {
     margin-bottom: 2em;
 }
@@ -206,7 +210,7 @@ article.error ul li {
     font-size: 28px;
     
     margin-top: 0px;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 }
 
 .post h1,

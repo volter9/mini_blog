@@ -26,6 +26,7 @@ function blog_module_admin_init () {
             'id'          => 0,
             'title'       => 'Заголовок',
             'description' => 'Описание',
+            'text'        => '<p>Тут идет текст...</p>',
             'url'         => md5(microtime()),
             'date'        => date('Y-m-d H:i:s'),
             'user_id'     => array_get($user, 'id', 1),

@@ -3,10 +3,6 @@
      data-component="post"
      data-id="<?php echo $post['id'] ?>">
     <ul class="info">
-        <li>
-            <i class="fa fa-user"></i> 
-            <?php echo $post['username'] ?> 
-        </li>
         <li> 
             <i class="fa fa-calendar"></i> 
             <?php echo date('d.m.Y', strtotime($post['date'])) ?> 
@@ -19,6 +15,10 @@
             </a>
         </li>
         <?php endif; ?> 
+        <li>
+            <i class="fa fa-user"></i> 
+            <?php echo $post['username'] ?> 
+        </li>
     </ul>
     
     <h2 class="post-title">

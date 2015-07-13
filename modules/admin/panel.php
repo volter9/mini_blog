@@ -2,10 +2,10 @@
 <div id="mini_panel">
     <div class="clearfix fluid">
         <ul class="clearfix right">
-            <li class="status-bar" title="Status bar">
-                ...
+            <li class="status-bar failure" title="Status bar">
+                <i class="fa fa-exclamation-circle"></i>
             </li>
-            <li class="separator add">
+            <li class="add">
                 <a href="#" title="Add a post">
                     <i class="fa fa-plus"></i>
                 </a>
@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" title="Signout out of 'admin'">
+                <a href="<?php echo url('#signout') ?>" title="Signout out of 'admin'">
                     <i class="fa fa-sign-out"></i>
                 </a>
             </li>

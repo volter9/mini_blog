@@ -592,34 +592,15 @@ mini_blog.component = (function () {
  * @param {Array} scripts
  */
 mini_blog.init = function (scripts) {
-    scripts = scripts || [];
-    scripts.forEach(mini_blog.loadScript);
+    var baseurl = document.body.getAttribute('data-baseurl'),
+        lang    = document.body.getAttribute('data-lang');
     
-    window.addEventListener('load', function () {
-        var baseurl = document.body.getAttribute('data-baseurl'),
-            lang    = document.body.getAttribute('data-lang');
-        
-        mini_blog.settings.baseurl = baseurl;
-        mini_blog.settings.lang    = lang;
-        mini_blog.init = null;
-    
-        mini_blog.toArray(document.querySelectorAll('[data-component]'))
-                 .forEach(mini_blog.createComponent);
-    });
-};
+    mini_blog.settings.baseurl = baseurl;
+    mini_blog.settings.lang    = lang;
+    mini_blog.init = null;
 
-/**
- * Load a script
- * 
- * @param {String} url
- */
-mini_blog.loadScript = function (url) {
-    var script = document.createElement('script');
-    
-    script.setAttribute('type', 'text/javascript');
-    script.setAttribute('src', url);
-    
-    document.body.appendChild(script);
+    mini_blog.toArray(document.querySelectorAll('[data-component]'))
+             .forEach(mini_blog.createComponent);
 };
 
 /**
