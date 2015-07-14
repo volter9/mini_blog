@@ -588,11 +588,9 @@ mini_blog.component = (function () {
     };
     
     /**
-     * Save component
-     * 
-     * @param {Function} callback
+     * Save component 
      */
-    Component.prototype.save = function (callback) {};
+    Component.prototype.save = function () {};
     Component.prototype.cancel = function () {};
     
     /**
@@ -641,8 +639,8 @@ mini_blog.createComponent = function (node) {
     }
     
     var attributes = mini_blog.dom.dataAttributes(node),
-        name = attributes['data-component'],
-        component = mini_blog.components.create(name, attributes, node);
+        name       = attributes['data-component'],
+        component  = mini_blog.components.create(name, attributes, node);
     
     if (!component) {
         return console.warn('Component "' + name + '" does not exists!');

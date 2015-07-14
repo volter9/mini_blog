@@ -25,7 +25,7 @@ mini_blog.panel = (function () {
      * @param {Node} destination
      */
     Panel.prototype.createNode = function (item, destination) {
-        var url = ['admin', 'template', 'posts'].join('/');
+        var url = ['admin', 'template', 'posts'];
         
         mini_blog.ajax.post(url)
                       .success(this.addNode.bind(this))
