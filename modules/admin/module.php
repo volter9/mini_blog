@@ -8,11 +8,13 @@
  */
 
 function admin_module_init () {
+    $path = module_url('admin');
+    
     admin('admin', array(
         'js' => array(
-            module_url('admin', 'js/mini_blog.js'),
-            module_url('admin', 'js/mods.js'),
-            module_url('admin', 'js/panel.js')
+            "$path/js/mini_blog.js",
+            "$path/js/mods.js",
+            "$path/js/panel.js"
         )
     ));
 }

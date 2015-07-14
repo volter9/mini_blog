@@ -4,6 +4,7 @@
         <ul class="clearfix right">
             <li class="status-bar failure" title="Status bar">
                 <i class="fa fa-exclamation-circle"></i>
+                Shit just happenned!
             </li>
             <li class="add">
                 <a href="#" title="Add a post">

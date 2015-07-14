@@ -67,7 +67,9 @@ function admin_filter ($module, array $data) {
     
     foreach ($filter as $key => $filters) {
         foreach ($filters as $function) {
-            $data[$key] = $function($data[$key]);
+            if (isset($data[$key])) {
+                $data[$key] = $function($data[$key]);
+            }
         }
     }
     

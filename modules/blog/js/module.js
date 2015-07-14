@@ -76,8 +76,10 @@ Post.prototype.remove = function () {
  */
 Post.prototype.save = function () {
     var url = ['admin', this.name, 'add'],
-        data = mini_blog.utils.merge(this.data, this.collectData()),
-        self = this;
+        data, self = this;
+    
+    data = mini_blog.utils.merge(this.data, this.collectData());
+    data = mini_blog.utils.diff(data, this.data);
     
     if (this.id) {
         url.splice(2, 1, 'edit');
