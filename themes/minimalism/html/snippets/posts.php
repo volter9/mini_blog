@@ -11,7 +11,7 @@
         <li>
             <i class="fa fa-tag"></i> 
             <a href="<?php echo url('#category', array($post['category_url'])) ?>">
-                <?php echo $post['category'] ?>
+                <?php echo $post['category'] ?> 
             </a>
         </li>
         <?php endif; ?> 
@@ -28,11 +28,11 @@
     </h2>
 
     <p class="description" data-name="description">
-        <?php echo $post['description'] ?>
+        <?php echo $post['description'] ?> 
     </p>
     
     <div data-name="text">
-        <?php $parse = new Parsedown; echo $parse->text($post['text']) ?> 
+        <?php echo $post['text'] ?> 
     </div>
 </div>
 <?php } ?>

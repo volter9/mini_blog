@@ -13,11 +13,9 @@
     <div class="post empty">
         <p><?php echo i18n('posts.empty') ?></p>
     </div>
-    <?php else: ?> 
-        <?php foreach ($posts['items'] as $post): ?> 
-            <?php snippet('snippets/posts', $post) ?>
-        <?php endforeach; ?> 
-    <?php endif; ?> 
+    <?php else: foreach ($posts['items'] as $post): ?> 
+        <?php snippet('snippets/posts', $post) ?> 
+    <?php endforeach; endif; ?> 
 </article>
 
 <?php if ($posts['pages']['pages'] > 1): ?> 

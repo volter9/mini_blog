@@ -124,10 +124,35 @@ mini_blog.ajax = (function () {
  * @param {Function} callback
  */
 mini_blog.ajax.post = function (url, data) { 
-    url = Array.isArray(url) ? url.join('/') : url;
-    url = [mini_blog.settings.baseurl, url].join('/');
+    return new mini_blog.ajax(mini_blog.ajax.url(url), 'POST', data);
+};
+
+/**
+ * AJAX get shortcut
+ * 
+ * @param {String|Array} url
+ * @param {Object} data
+ * @param {Function} callback
+ */
+mini_blog.ajax.get = function (url, data) { 
+    return new mini_blog.ajax(mini_blog.ajax.url(url), 'GET', data);
+};
+
+/**
+ * Convert relative url to full url
+ * 
+ * Empty string is needed to avoid ugly `('/' + url.join('/'))`
+ * snippet
+ * 
+ * @param {String|Array} url
+ * @return {String}
+ */
+mini_blog.ajax.url = function (url) {
+    url = Array.isArray(url)
+        ? ['', mini_blog.settings.baseurl].concat(url)
+        : ['', mini_blog.settings.baseurl, url];
     
-    return new mini_blog.ajax(('/' + url).replace(/\/+/, '/'), 'POST', data);
+    return url.join('/').replace(/\/+/, '/');
 };
 
 /**
@@ -196,14 +221,15 @@ mini_blog.dom.dataAttributes = function (element) {
 mini_blog.dom.makeEditable = function (node) {
     node.setAttribute('contenteditable', 'true');
     
-    if (node.editable) {
+    if (node.isEditable) {
         return;
     }
     
     node.addEventListener('paste', function(e) {
         e.preventDefault();
 
-        var text = e.clipboardData.getData('text/plain')
+        var text = e.clipboardData
+                    .getData('text/plain')
                     .replace(/\</g, '&lt;')
                     .replace(/\>/g, '&gt;')
                     .replace(/\n\r?/g, '<br/>\n');
@@ -217,7 +243,8 @@ mini_blog.dom.makeEditable = function (node) {
         }
     });
     
-    node.editable = true;
+    // Custom attribute
+    node.isEditable = true;
 };
 
 /**

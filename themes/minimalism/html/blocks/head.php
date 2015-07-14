@@ -3,12 +3,16 @@
  * HTML head
  * 
  * @var string $title
+ * @var string $description
  */
 ?>
 <meta charset="UTF-8"/>
 <title>
     <?php echo $title ?> - <?php echo storage('settings.default.sitename') ?> 
 </title>
+<?php if (isset($description)): ?>
+<meta name="description" content="<?php echo $description ?>"/>
+<?php endif; ?>
 
 <link href="<?php echo asset_url('css/styles.css') ?>" 
       rel="stylesheet" 

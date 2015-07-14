@@ -73,10 +73,8 @@ Post.prototype.remove = function () {
 
 /**
  * Save a post
- * 
- * @param {Function} callback
  */
-Post.prototype.save = function (callback) {
+Post.prototype.save = function () {
     var url = ['admin', this.name, 'add'],
         data = mini_blog.utils.merge(this.data, this.collectData()),
         self = this;
@@ -86,7 +84,7 @@ Post.prototype.save = function (callback) {
         url.push(this.id);
     }
     
-    var func = function (_, data) {
+    var callback = function (_, data) {
         if (data.id) {
             self.id = data.id;
         }
@@ -96,7 +94,7 @@ Post.prototype.save = function (callback) {
     };
     
     mini_blog.ajax.post(url, data)
-                  .success(func)
+                  .success(callback)
                   .send();
 };
 

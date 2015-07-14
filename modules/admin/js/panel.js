@@ -45,7 +45,7 @@ mini_blog.panel = (function () {
             empty.parentNode.removeChild(empty);
         }
         
-        var fragment = document.createElement('div'),
+        var fragment    = document.createElement('div'),
             destination = document.querySelector('.posts');
         
         fragment.innerHTML = data.html;

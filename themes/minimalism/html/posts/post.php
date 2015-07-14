@@ -6,5 +6,5 @@
  */
 ?>
 <article>
-    <?php snippet('snippets/posts', $post) ?>
+    <?php snippet('snippets/posts', $post) ?> 
 </article>

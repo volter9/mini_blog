@@ -6,7 +6,6 @@
     "type": "project",
     
     "require": {
-        "erusev/parsedown": "dev-master",
         "volter/mini_framework": "dev-master"
     }
 }
