@@ -7,16 +7,46 @@ mini_blog.panel = (function () {
      */
     function Panel (node) {
         this.node = node;
+    }
+    
+    return new Panel(document.getElementById('mini_panel'));
+})();
+
+mini_blog.panel.add = (function () {
+    /**
+     * @param {Node} node
+     */
+    var Button = function (node) {
+        this.node = node;
         
-        var self = this,
-            add  = node.querySelector('.add');
+        mini_blog.mod.call(this, { container: node.querySelector('.dropdown') });
+    };
+    
+    Button.prototype = Object.create(mini_blog.mod.prototype);
+    
+    Button.prototype.init = function () {
+        var self   = this,
+            editor = this.editor.container;
         
-        add.addEventListener('click', function () {
-            if (!mini_blog.editor.active) {
-                self.createNode(self.item, self.destination);
+        this.node.addEventListener('click', function () {
+            if (mini_blog.editor.active) {
+                return;
+            }
+            
+            var keys = Object.keys(self.actions);
+            
+            if (keys.length > 1) {
+                editor.classList.toggle('hidden', !editor.classList.contains('hidden'));
+            }
+            else {
+                self.trigger(keys.pop());
             }
         });
-    }
+        
+        this.addAction('posts', '<i class="fa fa-fw fa-newspaper-o"></i> Post', function () {
+            self.createNode();
+        });
+    };
     
     /**
      * Create a node from template requested via AJAX
@@ -24,7 +54,7 @@ mini_blog.panel = (function () {
      * @param {String} item
      * @param {Node} destination
      */
-    Panel.prototype.createNode = function (item, destination) {
+    Button.prototype.createNode = function () {
         var url = ['admin', 'template', 'posts'];
         
         mini_blog.ajax.post(url)
@@ -38,7 +68,7 @@ mini_blog.panel = (function () {
      * @param {XMLHttpRequest} xhr
      * @param {Object} data
      */
-    Panel.prototype.addNode = function (xhr, data) {
+    Button.prototype.addNode = function (xhr, data) {
         var empty = document.querySelector('.posts .empty');
         
         if (empty) {
@@ -63,5 +93,5 @@ mini_blog.panel = (function () {
         div.component.data = data.data;
     };
     
-    return new Panel(document.getElementById('mini_panel'));
+    return new Button(document.getElementById('mini_panel').querySelector('.add'));
 })();

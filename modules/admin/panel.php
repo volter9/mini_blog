@@ -10,14 +10,19 @@
                 <a href="#" title="Add a post">
                     <i class="fa fa-plus"></i>
                 </a>
+                
+                <div class="dropdown hidden"></div>
             </li>
             <li>
                 <a href="#" title="More...">
                     <i class="fa fa-bars"></i>
                 </a>
+                
+                <div class="dropdown hidden"></div>
             </li>
             <li>
-                <a href="<?php echo url('#signout') ?>" title="Signout out of 'admin'">
+                <a href="<?php echo url('#signout') ?>" 
+                   title="Signout out of '<?php echo users('user.username') ?>'">
                     <i class="fa fa-sign-out"></i>
                 </a>
             </li>

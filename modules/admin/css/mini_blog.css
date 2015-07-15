@@ -15,7 +15,8 @@
     width: 45px;
 }
 
-#mini_editor .button {
+#mini_editor .button,
+.dropdown .button {
     background-color: rgba(0, 0, 0, 0.75);
     border: 0px;
     border-radius: 4px;
@@ -87,6 +88,10 @@
 #mini_panel li {
     font-size: 14px;
     
+    position: relative;
+    top: 0px;
+    left: 0px;
+    
     float: left;
     padding: 1em 0.8em;
 }
@@ -105,4 +110,35 @@
 
 #mini_panel .failure {
     color: #d54;
+}
+
+/**
+ * Dropdown
+ */
+
+.dropdown {
+    background-color: #fff;
+    border-radius: 10px;
+    
+    position: absolute;
+    top: 3em;
+    left: 0px;
+    
+    padding: 0.75em;
+    width: 200px;
+}
+
+.dropdown .button {
+    font-size: 13px;
+    text-align: left;
+    
+    width: 100%;
+}
+
+.dropdown .fa {
+    font-size: 14px;
+}
+
+.dropdown.hidden {
+    display: none;
 }
