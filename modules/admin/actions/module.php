@@ -39,7 +39,9 @@ function action_template ($module) {
  * @param string $module
  */
 function action_add ($module) {
-    $data = admin_filter($module, input());
+    $data = admin("$module.default");
+    $data = array_merge(is_array($data) ? $data : array(), input());
+    $data = admin_filter($module, $data);
     $result = db_insert($module, $data);
     
     echo json_encode(array(

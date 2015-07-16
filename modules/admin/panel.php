@@ -7,18 +7,20 @@
                 Shit just happenned!
             </li>
             <li class="add">
-                <a href="#" title="Add a post">
+                <a href="#" title="Create...">
                     <i class="fa fa-plus"></i>
                 </a>
                 
                 <div class="dropdown hidden"></div>
             </li>
-            <li>
+            <li class="more">
                 <a href="#" title="More...">
                     <i class="fa fa-bars"></i>
                 </a>
                 
-                <div class="dropdown hidden"></div>
+                <div class="dropdown hidden">
+                    Hello, world!
+                </div>
             </li>
             <li>
                 <a href="<?php echo url('#signout') ?>" 

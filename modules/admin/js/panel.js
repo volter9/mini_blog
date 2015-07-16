@@ -1,3 +1,7 @@
+// @todo refactor all that shit!!! or better
+//       port this shit to backbone
+//       or maybe write your own MV* framework
+
 /**
  * Admin panel
  */
@@ -24,11 +28,16 @@ mini_blog.panel.add = (function () {
     
     Button.prototype = Object.create(mini_blog.mod.prototype);
     
+    /**
+     * Initiate buttons
+     */
     Button.prototype.init = function () {
         var self   = this,
             editor = this.editor.container;
         
-        this.node.addEventListener('click', function () {
+        this.node.addEventListener('click', function (e) {
+            e.preventDefault();
+            
             if (mini_blog.editor.active) {
                 return;
             }
@@ -94,4 +103,35 @@ mini_blog.panel.add = (function () {
     };
     
     return new Button(document.getElementById('mini_panel').querySelector('.add'));
+})();
+
+mini_blog.panel.more = (function () {
+    /**
+     * More (three bars) button
+     * 
+     * @param {Node} node
+     */
+    var Button = function (node) {
+        var self = this;
+        
+        this.node = node.querySelector('.fa');
+        this.container = node.querySelector('.dropdown');
+        
+        this.node.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            self.toggleMenu();
+        });
+    };
+    
+    /**
+     * The action that toggles the menu
+     */
+    Button.prototype.toggleMenu = function () {
+        this.container.classList.toggle(
+            'hidden', !this.container.classList.contains('hidden')
+        );
+    };
+    
+    return new Button(document.getElementById('mini_panel').querySelector('.more'));
 })();
