@@ -4,7 +4,7 @@
         <ul class="clearfix right">
             <li class="status-bar failure" title="Status bar">
                 <i class="fa fa-exclamation-circle"></i>
-                Shit just happenned!
+                <span class="label">Shit just happenned!</span>
             </li>
             <li class="add">
                 <a href="#" title="Create...">

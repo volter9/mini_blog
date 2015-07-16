@@ -105,6 +105,45 @@ mini_blog.panel.add = (function () {
     return new Button(document.getElementById('mini_panel').querySelector('.add'));
 })();
 
+mini_blog.panel.status = (function () {
+    var Bar = function (node) {
+        node.style.display = 'none';
+        
+        this.node = node;
+        this.icon = node.querySelector('.fa');
+        this.label = node.querySelector('.label');
+    };
+    
+    Bar.prototype.note = function (text) {
+        this.node.style.display = 'block';
+        
+        this.node.className = 'status-bar';
+        this.icon.className = 'fa fa-meh-o';
+        
+        this.label.innerText = this.label.textContent = text;
+    };
+    
+    Bar.prototype.error = function (text) {
+        this.node.style.display = 'block';
+        
+        this.node.className = 'status-bar failure';
+        this.icon.className = 'fa fa-exclamation-circle';
+        
+        this.label.innerText = this.label.textContent = text;
+    };
+    
+    Bar.prototype.success = function (text) {
+        this.node.style.display = 'block';
+        
+        this.node.className = 'status-bar success';
+        this.icon.className = 'fa fa-check-circle';
+        
+        this.label.innerText = this.label.textContent = text;
+    };
+    
+    return new Bar(document.getElementById('mini_panel').querySelector('.status-bar'));
+})();
+
 mini_blog.panel.more = (function () {
     /**
      * More (three bars) button
@@ -116,6 +155,7 @@ mini_blog.panel.more = (function () {
         
         this.node = node.querySelector('.fa');
         this.container = node.querySelector('.dropdown');
+        this.pages = [];
         
         this.node.addEventListener('click', function (e) {
             e.preventDefault();
@@ -134,4 +174,12 @@ mini_blog.panel.more = (function () {
     };
     
     return new Button(document.getElementById('mini_panel').querySelector('.more'));
+})();
+
+mini_blog.page = (function () {
+    var Page = function () {
+        
+    };
+    
+    return Page;
 })();

@@ -15,6 +15,7 @@
  */
 function modules ($key = null, $value = null) {
     static $repo = null;
+    
     $repo or $repo = repo();
     
     return $repo($key, $value);
@@ -141,30 +142,4 @@ function module_url ($module, $file = '') {
     $path = sprintf('modules/%s/%s', $module, $file);
     
     return path($path);
-}
-
-/**
- * View module view
- * 
- * @param string $module
- * @param string $view
- * @param array $data
- * @param bool $as_fallback
- */
-function module_layout ($module, $view, array $data = array(), $as_fallback = false) {
-    $view_path = module_path($module, "views/$view");
-    
-    if ($as_fallback) {
-        $theme_view_path = view_path($view);
-        
-        if (ends_with($theme_view_path, '.php')) {
-            $theme_view_path = substr($theme_view_path, 0, -4);
-        }
-        
-        if (file_exists("$theme_view_path.php")) {
-            return layout($theme_view_path, $data);
-        }
-    }
-    
-    layout($view_path, $data);
 }

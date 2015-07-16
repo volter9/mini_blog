@@ -1,6 +1,12 @@
 <?php
 
 /**
+ * Snippets API
+ * 
+ * @package mini_blog
+ */
+
+/**
  * Snippets repository
  * 
  * @param mixed $key
