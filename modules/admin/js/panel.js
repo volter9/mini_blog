@@ -1,6 +1,6 @@
 // @todo refactor all that shit!!! or better
-//       port this shit to backbone
-//       or maybe write your own MV* framework
+//       port this shit to backbone or maybe 
+//       even write my own MV* framework
 
 /**
  * Admin panel
@@ -53,7 +53,13 @@ mini_blog.panel.add = (function () {
         });
         
         this.addAction('posts', '<i class="fa fa-fw fa-newspaper-o"></i> Post', function () {
-            self.createNode();
+            var empty = document.querySelector('.posts .empty');
+        
+            if (empty) {
+                empty.parentNode.removeChild(empty);
+            }
+            
+            self.createNode(document.querySelector('.posts'));
         });
     };
     
@@ -63,11 +69,16 @@ mini_blog.panel.add = (function () {
      * @param {String} item
      * @param {Node} destination
      */
-    Button.prototype.createNode = function () {
-        var url = ['admin', 'template', 'posts'];
+    Button.prototype.createNode = function (destination) {
+        var url = ['admin', 'template', 'posts'],
+            self = this;
+        
+        var callback = function (xhr, data) {
+            self.addNode(data, destination);
+        };
         
         mini_blog.ajax.post(url)
-                      .success(this.addNode.bind(this))
+                      .success(callback)
                       .send();
     };
     
@@ -77,15 +88,8 @@ mini_blog.panel.add = (function () {
      * @param {XMLHttpRequest} xhr
      * @param {Object} data
      */
-    Button.prototype.addNode = function (xhr, data) {
-        var empty = document.querySelector('.posts .empty');
-        
-        if (empty) {
-            empty.parentNode.removeChild(empty);
-        }
-        
-        var fragment    = document.createElement('div'),
-            destination = document.querySelector('.posts');
+    Button.prototype.addNode = function (data, destination) {
+        var fragment = document.createElement('div');
         
         fragment.innerHTML = data.html;
     
@@ -155,6 +159,7 @@ mini_blog.panel.more = (function () {
         
         this.node = node.querySelector('.fa');
         this.container = node.querySelector('.dropdown');
+        this.buttons = node.querySelector('.buttons');
         this.pages = [];
         
         this.node.addEventListener('click', function (e) {
@@ -173,12 +178,66 @@ mini_blog.panel.more = (function () {
         );
     };
     
+    /**
+     * Add a page
+     * 
+     * @param {mini_blog.page} page
+     */
+    Button.prototype.addPage = function (page) {
+        page.setContainer(this.container);
+        
+        this.pages.push(page);
+        this.addButton(page);
+    };
+    
+    /**
+     * Add a button
+     * 
+     * @param {mini_blog.page} page
+     */
+    Button.prototype.addButton = function (page) {
+        var button = document.createElement('button');
+        
+        button.className = 'button';
+        button.innerHTML = page.name;
+        button.page = page;
+        button.addEventListener('click', function () {
+            this.page.activate();
+        });
+        
+        this.buttons.appendChild(button);
+    };
+    
     return new Button(document.getElementById('mini_panel').querySelector('.more'));
 })();
 
 mini_blog.page = (function () {
-    var Page = function () {
+    /**
+     * Page constructor
+     * 
+     * @param {String} name
+     */
+    var Page = function (name) {
+        this.name = name;
+    };
+    
+    /**
+     * Set container and populate it with information
+     * 
+     * @param {Node} container
+     */
+    Page.prototype.setContainer = function (container) {
+        this.container = document.createElement('div');
         
+        container.appendChild(this.container);
+    };
+    
+    Page.prototype.activate = function () {
+        this.container.style.display = 'block';
+    };
+    
+    Page.prototype.deactivate = function () {
+        this.container.style.display = 'none';
     };
     
     return Page;

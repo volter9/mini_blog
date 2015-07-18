@@ -1,6 +1,12 @@
 <?php
 
 /**
+ * Admin modules and stuff
+ * 
+ * @package mini_blog
+ */
+
+/**
  * Flatten given array 
  * 
  * @param array $array

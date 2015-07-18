@@ -19,7 +19,8 @@
                 </a>
                 
                 <div class="dropdown hidden">
-                    Hello, world!
+                    <div class="clearfix title">Hello, world!</div>
+                    <div class="buttons"></div>
                 </div>
             </li>
             <li>

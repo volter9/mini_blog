@@ -3,7 +3,9 @@
 /**
  * mini_blog is a simple blog CMS written in procedural/functional PHP5 
  * using mini_framework framework
- *
+ * 
+ * This CMS suppose to work on PHP5.3+
+ * 
  * @author volter9
  * @package mini_blog
  */

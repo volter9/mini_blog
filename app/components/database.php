@@ -1,6 +1,12 @@
 <?php
 
 /**
+ * Database utilities
+ *
+ * @package mini_blog
+ */
+
+/**
  * Browse a table with pagination
  *
  * @param string $table

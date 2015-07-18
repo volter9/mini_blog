@@ -30,7 +30,7 @@ function action_template ($module) {
         'status' => 'ok',
         'data'   => $data,
         'html'   => $html
-    ));
+    ), JSON_UNESCAPED_UNICODE);
 }
 
 /**

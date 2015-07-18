@@ -112,6 +112,10 @@
     color: #d54;
 }
 
+#mini_panel .title {
+    margin-bottom: 1em;
+}
+
 /**
  * Dropdown
  */
@@ -129,10 +133,13 @@
 }
 
 .dropdown .button {
-    font-size: 13px;
     text-align: left;
     
     width: 100%;
+}
+
+.dropdown .button:last-child {
+    margin-bottom: 0px;
 }
 
 .dropdown .fa {

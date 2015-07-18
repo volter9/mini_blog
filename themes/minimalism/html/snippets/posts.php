@@ -22,9 +22,15 @@
     </ul>
     
     <h2 class="post-title">
+        <?php if (isset($post['url'])): ?> 
         <a href="<?php echo url('#post', array($post['url'])) ?>" data-name="title">
             <?php echo $post['title'] ?> 
         </a>
+        <?php else: ?>
+        <span data-name="title">
+            <?php echo $post['title'] ?>
+        </span>
+        <?php endif; ?> 
     </h2>
 
     <p class="description" data-name="description">

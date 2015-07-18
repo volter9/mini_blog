@@ -107,17 +107,6 @@ function modules_providers () {
 }
 
 /**
- * Get module's name from path
- * 
- * @param string $module_path
- */
-function module_name ($module_path) {
-    $directory = dirname($module_path);
-    
-    return after($directory, '/');
-}
-
-/**
  * Get path to a module
  * 
  * @param string $module

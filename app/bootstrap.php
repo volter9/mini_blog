@@ -29,9 +29,7 @@ set_error_handler(function ($type, $message, $file, $line) {
     $file = exclude($file, MF_BASEPATH);
     
     if (defined('MB_DEBUG')) {
-        show_error(new Exception(
-            "PHP error has occured: '$message' in '$file' at $line"
-        ));
+        show_error(new Exception("PHP error: '$message' in '$file' at $line"));
     }
     
     die('Something went wrong!');
