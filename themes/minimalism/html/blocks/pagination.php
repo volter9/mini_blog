@@ -12,7 +12,7 @@
 ?>
 <div class="pagination">
     <?php if ($page > 1): ?> 
-    <!-- &#8592; is left arrow -->
+    <!-- &#8592; is a left arrow unicode symbol -->
     <a class="button" href="<?php echo "$url/" . ($page - 1) ?>">&#8592;</a>
     <?php endif; ?> 
     
@@ -25,7 +25,7 @@
     <?php endforeach; ?> 
     
     <?php if ($page < $pages): ?> 
-    <!-- &#8594; is right arrow -->
+    <!-- &#8594; is a right arrow unicode symbol -->
     <a class="button" href="<?php echo "$url/" . ($page + 1) ?>">&#8594;</a>
     <?php endif; ?> 
 </div>

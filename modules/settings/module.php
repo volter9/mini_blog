@@ -2,6 +2,9 @@
 
 /**
  * Settings module initialize
+ * 
+ * Following function bootstraping some values from database into configs
+ * and adding JS files for loading
  */
 function settings_module_init () {
     load_model('settings', module_path('settings', 'models', true));

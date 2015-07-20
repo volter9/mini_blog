@@ -190,8 +190,18 @@ article.error ul li {
 
 .pagination a,
 .pagination span {
+    background-color: #f4f4f4;
+    border-radius: 5px;
     font-size: 14px;
+    
+    margin-right: 0.25em;
     padding: 4px 8px;
+}
+
+.pagination a:hover,
+.pagination span {
+    background-color: #e8e8e8;
+    color: #333;
 }
 
 /**

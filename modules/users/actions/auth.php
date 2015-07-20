@@ -4,13 +4,9 @@
  * View the form
  */
 function action_view () {
-    ?>
-    <form method="POST">
-        <input name="username" placeholder="user name" type="text"/> <br/>
-        <input name="password" placeholder="password" type="text"/> <br/>
-        <button type="submit">Log in!</button>
-    </form>
-    <?php
+    layout(module_path('users', 'views/form'), array(
+        'title' => 'Log in'
+    ));
 }
 
 /**
