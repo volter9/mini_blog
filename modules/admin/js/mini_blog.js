@@ -21,6 +21,41 @@ var mini_blog = {
  */
 
 /**
+ * EventEmitter mixin
+ * 
+ * @param {Object} proto
+ */
+mini_blog.events = function (proto) {
+    proto._events = {};
+    
+    /**
+     * Bind an event
+     * 
+     * @param {String} event
+     * @param {Function} callback
+     */
+    proto.on = function (event, callback) {
+        if (!this._events[event]) {
+            this._events[event] = [];
+        }
+        
+        this._events[event].push(callback);
+    };
+    
+    /**
+     * Emit an event
+     * 
+     * @param {String} event
+     * @param {Array} args
+     */
+    proto.emit = function (event, args) {
+        this._events[event].forEach(function (callback) {
+            callback.apply(null, args || []);
+        });
+    };
+};
+
+/**
  * Convert array-like object to array
  * 
  * @param {Object} arrayLikeObject

@@ -17,7 +17,7 @@ Settings.prototype = Object.create(mini_blog.component.prototype);
  * @param {Function} callback
  */
 Settings.prototype.save = function (callback) {
-    var url = ['admin', this.name, this.group],
+    var url = ['admin', this.name, 'save', this.group],
         data = this.collectData();
     
     mini_blog.ajax.post(url, data)

@@ -166,6 +166,10 @@
         this.addAction('code', '<i class="fa fa-code fa-fw"></i>', function () {
             document.execCommand('formatBlock', null, 'pre');
         });
+        
+        this.addAction('terminal', '<i class="fa fa-terminal fa-fw"></i>', function () {
+            document.execCommand('insertHTML', null, '<code>' + document.getSelection() + '</code>');
+        });
     };
     
     /**
@@ -178,19 +182,4 @@
     
     mini_blog.editor.disableMods();
     mini_blog.editor.enableMods(['edit']);
-    
-    /**
-     * Panel pages
-     */
-    var SettingsPage = (function () {
-        var Settings = function (name) {
-            mini_blog.page.call(this, name);
-        };
-        
-        Settings.prototype = Object.create(mini_blog.page.prototype);
-        
-        return Settings;
-    })();
-    
-    mini_blog.panel.more.addPage(new SettingsPage('<i class="fa fa-fw fa-list"></i> Settings'));
 })();

@@ -13,7 +13,6 @@ function admin_module_init () {
     admin('admin', array(
         'js' => array(
             "{$path}js/mini_blog.js",
-            "{$path}js/panel.js",
             "{$path}js/mods.js"
         )
     ));

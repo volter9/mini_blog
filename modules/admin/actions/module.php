@@ -89,7 +89,7 @@ function action_provider ($provider) {
     $provider  = array_get($providers, $provider);
     
     echo json_encode(array(
-        'status' => $provider,
+        'status' => $provider ? 'ok' : 'not_ok',
         'result' => is_callable($provider) ? $provider() : null
     ), JSON_UNESCAPED_UNICODE);
 }

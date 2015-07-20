@@ -184,14 +184,14 @@ article.error ul li {
  */
 
 .pagination {
-    text-align: center;
-    margin-bottom: 1em;
+    text-align: left;
+    margin-bottom: 2em;
 }
 
 .pagination a,
 .pagination span {
     font-size: 14px;
-    padding: 2px 4px
+    padding: 4px 8px;
 }
 
 /**
@@ -200,6 +200,10 @@ article.error ul li {
 
 .posts .post {
     margin-bottom: 4em;
+}
+
+.posts .post:last-child {
+    margin-bottom: 2em;
 }
 
 .post {
@@ -222,7 +226,7 @@ article.error ul li {
     color: #333;
     font-weight: normal;
     
-    margin-top: 1.6em;
+    margin-top: 1.25em;
     margin-bottom: 0.5em;
 }
 
@@ -292,11 +296,13 @@ article.error ul li {
 }
 
 .post p code {
-    border: 1px solid #ccf;
-    border-radius: 2px;
-    color: #08e;
-    font-size: 80%;
-    padding: 2px 4px;
+    background-color: #23241f;
+    border-radius: 3px;
+    color: #f8f8f2;
+    font-family: Menlo, Monaco, monospace;
+    font-size: 0.8em;
+    
+    padding: 2px 6px;
 }
 
 .post iframe {

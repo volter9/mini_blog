@@ -13,16 +13,6 @@
                 
                 <div class="dropdown hidden"></div>
             </li>
-            <li class="more">
-                <a href="#" title="More...">
-                    <i class="fa fa-bars"></i>
-                </a>
-                
-                <div class="dropdown hidden">
-                    <div class="clearfix title">Hello, world!</div>
-                    <div class="buttons"></div>
-                </div>
-            </li>
             <li>
                 <a href="<?php echo url('#signout') ?>" 
                    title="Signout out of '<?php echo users('user.username') ?>'">

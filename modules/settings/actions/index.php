@@ -24,3 +24,17 @@ function action_save ($group = 'default') {
         'status' => settings_save($group, $input) ? 'ok' : 'not_ok'
     ));
 }
+
+/**
+ * Get settings
+ * 
+ * @param string $group
+ */
+function action_get ($group = 'default') {
+    $settings = settings_get($group);
+    
+    echo json_encode(array(
+        'status'   => !empty($settings) ? 'ok' : 'not_ok',
+        'settings' => $settings
+    ));
+}

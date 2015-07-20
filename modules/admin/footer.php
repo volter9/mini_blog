@@ -2,5 +2,5 @@
 <script src="<?php echo $script ?>" type="text/javascript"></script>
 <?php endforeach; ?>
 <script type="text/javascript">
-    window.onload = mini_blog.init;
+    window.addEventListener('load', mini_blog.init);
 </script>

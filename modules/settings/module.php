@@ -10,6 +10,10 @@ function settings_module_init () {
         lang('settings.default', $language);
     }
     
+    if ($template = storage('settings.default.template')) {
+        views('templates.template', $template);
+    }
+    
     admin('settings', array(
         'js' => array(module_url('settings', 'js/module.js'))
     ));
