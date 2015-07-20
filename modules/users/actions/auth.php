@@ -4,7 +4,7 @@
  * View the form
  */
 function action_view () {
-    layout(module_path('users', 'views/form'), array(
+    view(module_path('users', 'views/form'), array(
         'title' => 'Log in'
     ));
 }

@@ -28,16 +28,16 @@ html,
 body {
     font-family: Ubuntu, sans-serif;
     margin: 0px;
-    padding: 0px
+    padding: 0px;
 }
 
 a {
     color: #aaa;
-    text-decoration: none
+    text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline
+    text-decoration: underline;
 }
 
 .clearfix:after {
@@ -47,15 +47,15 @@ a:hover {
     clear: both;
     display: block;
     height: 0px;
-    width: 100%
+    width: 100%;
 }
 
-.left  { float: left }
-.right { float: right }
+.left  { float: left; }
+.right { float: right; }
 
 .fluid {
     margin: 0px auto;
-    width: 700px
+    width: 700px;
 }
 
 /**
@@ -96,7 +96,7 @@ a:hover {
 }
 
 #header h1 a:hover {
-    text-decoration: none
+    text-decoration: none;
 }
 
 /**
@@ -148,7 +148,7 @@ article.error p {
     font-size: 14px;
     line-height: 150%;
     
-    margin-bottom: 15px
+    margin-bottom: 15px;
 }
 
 article.error pre {
@@ -163,20 +163,20 @@ article.error pre {
     overflow-x: auto;
     overflow-y: hidden;
     padding: 20px 0px;
-    padding-left: 20px
+    padding-left: 20px;
 }
 
 article.error code {
     background-color: #e8e8e8;
     border-radius: 3px;
     font-size: 0.9em;
-    padding: 1px 2px
+    padding: 1px 2px;
 }
 
 article.error ul li {
     font-size: 14px;
     line-height: 150%;
-    margin-bottom: 8px
+    margin-bottom: 8px;
 }
 
 /**
@@ -246,23 +246,23 @@ article.error ul li {
 .post h4 a,
 .post h5 a,
 .post h6 a {
-    color: #444
+    color: #444;
 }
 
 .post h1 {
-    font-size: 28px
+    font-size: 28px;
 }
 
 .post h2 {
-    font-size: 22px
+    font-size: 22px;
 }
 
 .post h3 {
-    font-size: 18px
+    font-size: 18px;
 }
 
 .post > *:last-child {
-    margin-bottom: 0px
+    margin-bottom: 0px;
 }
 
 .post p {
@@ -302,7 +302,7 @@ article.error ul li {
 .post p:last-child,
 .post blockquote:last-child,
 .post ul:last-child {
-    margin-bottom: 0px
+    margin-bottom: 0px;
 }
 
 .post p code {
@@ -373,6 +373,49 @@ article.error ul li {
 .post .description {
     font-size: 14px;
     margin-bottom: 15px
+}
+
+/**
+ * Authorization form
+ */
+
+.auth-form {
+    margin-top: 1em;
+    width: 320px;
+}
+
+.auth-form h1 {
+    font-size: 28px;
+    font-weight: normal;
+    
+    margin-bottom: 0.5em;
+}
+
+.auth-form input {
+    background-color: #fff;
+    border: 1px solid #d8d8d8;
+    border-radius: 6px;
+    font-size: 14px;
+    
+    display: block;
+    margin-bottom: 1em;
+    padding: 0.5em;
+    width: 100%;
+}
+
+.auth-form button {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 0px;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    text-transform: capitalize;
+    
+    display: block;
+    padding: 0.5em;
+    width: 100%;
 }
 
 /**
