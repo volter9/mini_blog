@@ -12,11 +12,10 @@
     top: 0px;
     left: 0px;
     
-    width: 45px;
+    width: 40px;
 }
 
-#mini_editor .button,
-.dropdown .button {
+#mini_editor .button {
     background-color: rgba(0, 0, 0, 0.75);
     border: 0px;
     border-radius: 4px;
@@ -26,8 +25,8 @@
     text-align: center;
     text-transform: capitalize;
     
-    margin-bottom: 6px;
-    padding: 8px 8px;
+    margin-bottom: 4px;
+    padding: 7px 7px;
 }
 
 #mini_editor .button:hover {

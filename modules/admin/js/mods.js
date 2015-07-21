@@ -1,8 +1,8 @@
 (function () {
     /**
-     * Mods
+     * Edit mod
      * 
-     * Save and edit mods
+     * @param {mini_blog.editor} editor
      */
     var EditMod = function (editor) {
         this.name = 'edit';
@@ -27,6 +27,11 @@
         });
     };
     
+    /**
+     * Remove mod
+     * 
+     * @param {mini_blog.editor}
+     */
     var RemoveMod = function (editor) {
         this.name = 'remove';
         
@@ -127,7 +132,7 @@
      * - Blockquote
      * - Header
      * - Clear formating (paragraph)
-     * - Code
+     * - Code (block and inline)
      */
     WysiwigMod.prototype.init = function () {
         var self = this;

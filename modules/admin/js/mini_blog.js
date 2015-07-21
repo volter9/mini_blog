@@ -48,9 +48,15 @@ mini_blog.events = function (proto) {
      * @param {String} event
      * @param {Array} args
      */
-    proto.emit = function (event, args) {
+    proto.emit = function (event) {
+        var args = mini_blog.toArray(arguments).slice(1);
+        
         this._events[event].forEach(function (callback) {
-            callback.apply(null, args || []);
+            if (!callback) {
+                return;
+            }
+            
+            callback.apply(callback, args);
         });
     };
 };
@@ -79,77 +85,33 @@ mini_blog.each = function (object, callback) {
     }
 };
 
-mini_blog.ajax = (function () {
-    /**
-     * AJAX constructor
-     * 
-     * @param {String} url
-     * @param {String} method
-     * @param {Object} data
-     */
-    function Ajax (url, method, data) {
-        this.url = url;
-        this.method = method || 'GET';
-        this.data = data || {};
-    }
+/**
+ * Central AJAX control
+ */
+mini_blog.ajax = {};
+
+/**
+ * Requests
+ * 
+ * @param {String} url
+ * @param {String} method
+ * @param {Object} data
+ */
+mini_blog.ajax.request = function (url, method, data) {
+    var ajax = new mini_blog.ajax.instance(this.url(url), method, data);
     
-    /**
-     * Send AJAX request
-     */
-    Ajax.prototype.send = function () {
-        var request = new XMLHttpRequest;
-        
-        var query = mini_blog.ajax.query(this.data),
-            method = this.method.toUpperCase(),
-            url = this.url;
-        
-        var self = this;
-    
-        if (method === 'GET') {
-            url += (url.indexOf('?') === -1 ? '?' : '&') + query;
+    ajax.on('data', function (xhr, data) {
+        if (data.status !== 'ok') {
+            ajax.emit('error', xhr, data.message);
         }
+    });
     
-        request.open(method, url);
-        request.onreadystatechange = function () {
-            var r = this.readyState,
-                s = this.status;
-            
-            if (r === 4 && s === 200 && self.successHandler) {
-                self.successHandler(this, JSON.parse(this.responseText));
-            }
-        };
-        
-        request.onerror = this.errorHandler || function () {};
-        
-        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        request.send(query);
-    };
+    ajax.on('error', function (xhr, message) {
+        console.log(message);
+    });
     
-    /**
-     * Set success handler
-     * 
-     * @param {Function} handler
-     */
-    Ajax.prototype.success = function (handler) {
-        this.successHandler = handler;
-        
-        return this;
-    };
-    
-    /**
-     * Set error handler
-     * 
-     * @param {Function} handler
-     */
-    Ajax.prototype.error = function (handler) {
-        this.errorHandler = handler;
-        
-        return this;
-    };
-    
-    return Ajax;
-})();
+    return ajax;
+};
 
 /**
  * AJAX post shortcut
@@ -159,7 +121,7 @@ mini_blog.ajax = (function () {
  * @param {Function} callback
  */
 mini_blog.ajax.post = function (url, data) { 
-    return new mini_blog.ajax(mini_blog.ajax.url(url), 'POST', data);
+    return this.request(url, 'POST', data);
 };
 
 /**
@@ -170,7 +132,7 @@ mini_blog.ajax.post = function (url, data) {
  * @param {Function} callback
  */
 mini_blog.ajax.get = function (url, data) { 
-    return new mini_blog.ajax(mini_blog.ajax.url(url), 'GET', data);
+    return this.request(url, 'GET', data);;
 };
 
 /**
@@ -208,6 +170,88 @@ mini_blog.ajax.query = function (object) {
     
     return result.substr(0, result.length - 1);
 };
+
+mini_blog.ajax.instance = (function () {
+    /**
+     * AJAX constructor
+     * 
+     * @param {String} url
+     * @param {String} method
+     * @param {Object} data
+     */
+    function Ajax (url, method, data) {
+        this.method = method || 'GET';
+        this.data   = data || {};
+        this.url    = url;
+    }
+    
+    /**
+     * Send AJAX request
+     */
+    Ajax.prototype.send = function () {
+        var request = new XMLHttpRequest;
+        
+        var query = mini_blog.ajax.query(this.data),
+            method = this.method.toUpperCase(),
+            url = this.url;
+        
+        var self = this;
+    
+        if (method === 'GET') {
+            url += (url.indexOf('?') === -1 ? '?' : '&') + query;
+        }
+    
+        request.open(method, url);
+        request.onreadystatechange = function () {
+            var r = this.readyState,
+                s = this.status;
+            
+            if (r === 4 && s === 200) {
+                try {
+                    self.emit('data', request, JSON.parse(this.responseText));
+                }
+                catch (e) {
+                    self.emit('error', request, 'Invalid JSON');
+                }
+            }
+        };
+        
+        request.onerror = function () {
+            self.emit('error', request, 'AJAX error');
+        };
+        
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        request.send(query);
+    };
+    
+    /**
+     * Set success handler
+     * 
+     * @param {Function} handler
+     */
+    Ajax.prototype.success = function (handler) {
+        this.on('data', handler);
+        
+        return this;
+    };
+    
+    /**
+     * Set error handler
+     * 
+     * @param {Function} handler
+     */
+    Ajax.prototype.error = function (handler) {
+        this.on('error', handler);
+        
+        return this;
+    };
+    
+    /* Add events */
+    mini_blog.events(Ajax.prototype);
+    
+    return Ajax;
+})();
 
 /**
  * Get all attributes from DOM element

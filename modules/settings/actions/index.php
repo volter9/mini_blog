@@ -21,7 +21,8 @@ function action_save ($group = 'default') {
     }
     
     echo json_encode(array(
-        'status' => settings_save($group, $input) ? 'ok' : 'not_ok'
+        'status'  => settings_save($group, $input) ? 'ok' : 'not_ok',
+        'message' => "Setting by group '$group' isn't exists"
     ));
 }
 

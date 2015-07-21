@@ -42,5 +42,3 @@ function action_signout () {
     
     redirect('#index');
 }
-
-?>
