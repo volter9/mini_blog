@@ -3,7 +3,8 @@
  */
 
 module.exports = {
-    mapper: require('./mapper'),
-    model:  require('./model'),
-    view:   require('./view')
+    collection: require('./collection'),
+    mapper:     require('./mapper'),
+    model:      require('./model'),
+    view:       require('./view')
 };

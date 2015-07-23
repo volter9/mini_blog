@@ -6,7 +6,9 @@ var events = function (proto) {
      * @param {Function} callback
      */
     proto.on = function (event, callback) {
-        this._events = this._events || (this._events = {});
+        if (!this._events) {
+            this._events = {};
+        }
         
         if (!this._events[event]) {
             this._events[event] = [];
@@ -22,8 +24,6 @@ var events = function (proto) {
      * @param {Array} args
      */
     proto.emit = function (event) {
-        this._events = this._events || (this._events = {});
-        
         if (!this._events || !this._events[event]) {
             return;
         }

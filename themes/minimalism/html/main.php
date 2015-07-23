@@ -12,8 +12,7 @@
         <?php view('blocks/head') ?> 
     </head>
     
-    <body data-baseurl="<?php echo router('settings.root') ?>"
-          data-lang="<?php echo lang('settings.default') ?>">
+    <body>
         <?php view('blocks/header') ?> 
         
         <div class="fluid" id="wrapper">

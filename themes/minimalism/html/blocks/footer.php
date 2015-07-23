@@ -10,11 +10,10 @@
 
 <script src="<?php echo asset_url('js/hljs.js') ?>" type="text/javascript"></script>
 <script type="text/javascript">
-    var pre = document.querySelectorAll('#wrapper pre');
+    var slice = Array.prototype.slice;
     
-    for (var i = 0, l = pre.length; i < l; ++i) {
-        hljs.highlightBlock(pre[i]);
-    }
+    slice.call(document.querySelectorAll('#wrapper pre'))
+         .forEach(hljs.highlightBlock);
 </script>
 
 <?php emit('blocks:footer') ?> 

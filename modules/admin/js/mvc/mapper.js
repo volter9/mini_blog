@@ -1,9 +1,10 @@
 var events = require('../helpers/events'),
-    utils = require('../helpers/utils'),
+    utils  = require('../helpers/utils'),
     ajax   = require('../helpers/ajax'),
     extend = require('./extend'),
     model  = require('./model');
 
+/* Default properties */
 var defaults = {
     baseurl: '/',
     model:   model
@@ -16,8 +17,6 @@ var defaults = {
  */
 var Mapper = function (options) {
     this.options = utils.merge(defaults, options);
-    
-    this.models = [];
 };
 
 events(Mapper.prototype);
@@ -33,6 +32,15 @@ Mapper.prototype.parse = function (data) {
 };
 
 /**
+ * Create a model and send it to server
+ * 
+ * @param {Object} data
+ */
+Mapper.prototype.create = function (data) {
+    return new self.options.model(data);
+};
+
+/**
  * Fetch a model from server
  * 
  * @param {Number} id
@@ -42,29 +50,23 @@ Mapper.prototype.fetch = function (id) {
     
     ajax.get([this.options.baseurl, 'get', id])
         .success(function (_, data) {
-            var model = new self.options.model(self.parse(data));
-            
-            self.models.push(model);
-            self.emit('add', model);
+            self.emit('get', new self.options.model(self.parse(data)));
         })
         .send();
 };
 
 /**
- * Create a model and send it to server
+ * Send a model on server
  * 
- * @param {Object} data
+ * @param {Model} model
  */
-Mapper.prototype.create = function (data) {
+Mapper.prototype.insert = function (model) {
     var self = this;
     
-    ajax.post([this.options.baseurl, 'add'], data)
-        .success(function (_, response) {
-            data.id = response.id;
+    ajax.get([this.options.baseurl, 'add'], model.data())
+        .success(function (_, data) {
+            model.id = data.id;
             
-            var model = new self.options.model(data);
-            
-            self.models.push(model);
             self.emit('add', model);
         })
         .send();
@@ -73,7 +75,7 @@ Mapper.prototype.create = function (data) {
 /**
  * Update (edit) the model
  * 
- * @param {mvc.model} model
+ * @param {Model} model
  */
 Mapper.prototype.update = function (model) {
     var self = this;
@@ -95,30 +97,30 @@ Mapper.prototype.remove = function (id) {
     
     ajax.post([this.options.baseurl, 'remove', id])
         .success(function () {
-            self.emit('destroy');
+            self.emit('destroy', id);
         })
         .send();
 };
 
 /**
- * Get the model by id
- * 
- * @param {Number} id
- * @return {mvc.model
- */
-Mapper.prototype.get = function (id) {
-    return this.models.filter(function (model) {
-        return model.id === id;
-    }).pop();
-};
-
-/**
  * Synchronize with the server
  * 
- * 
+ * @param {Collection} collection
  */
-Mapper.prototype.sync = function () {
-    
+Mapper.prototype.sync = function (collection) {
+    collection.forEach(function (model) {
+        if (model.isNew()) {
+            self.insert(model);
+        }
+        else if (model.isEmpty()) {
+            self.remove(model);
+            
+            collection.remove(model.id);
+        }
+        else if (model.isDirty()) {
+            self.update(model);
+        }
+    });
 };
 
 Mapper.extend = extend(Mapper);

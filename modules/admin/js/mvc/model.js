@@ -1,22 +1,21 @@
 var events = require('../helpers/events'),
     utils  = require('../helpers/utils'),
+    unique = require('../helpers/unique')(),
     extend = require('./extend');
 
 /**
  * @param {Object} data
  */
 var Model = function (data) {
-    var id = -1;
+    var id = data && data.id ? data.id : -unique();
     
     if (data && data.id) {
-        id = data.id;
-        
         delete data.id;
     }
     
     data = utils.merge(this.data || {}, data || {});
     
-    this.previous = data;
+    this.previous = utils.merge({}, data);
     this.data     = data;
     this.id       = id;
 };
@@ -39,7 +38,7 @@ Model.prototype.get = function (key) {
  * @return {Boolean}
  */
 Model.prototype.isNew = function () {
-    return this.id > 0;
+    return this.id < 0;
 };
 
 /**
@@ -48,7 +47,18 @@ Model.prototype.isNew = function () {
  * @return {Boolean}
  */
 Model.prototype.isDirty = function () {
+    var diff = utils.diff(this.data, this.previous);
     
+    return Object.keys(diff).length > 0;
+};
+
+/**
+ * Check whether the model was destroyed
+ * 
+ * @return {Boolean}
+ */
+Model.prototype.isEmpty = function () {
+    return Object.keys(this.data).length === 0;
 };
 
 /**
@@ -66,6 +76,20 @@ Model.prototype.set = function (key, value) {
     }
     
     this.emit('change', this);
+};
+
+/**
+ * Clear previous data cache
+ */
+Model.prototype.clear = function () {
+    this.previous = utils.merge({}, this.data);
+};
+
+/**
+ * Revert the changes
+ */
+Model.prototype.revert = function () {
+    this.data = utils.merge({}, this.previous);
 };
 
 /**

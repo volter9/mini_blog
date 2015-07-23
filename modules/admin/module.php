@@ -12,17 +12,16 @@ function admin_module_init () {
     
     admin('admin', array(
         'js' => array(
-            "{$path}js/mini_blog.js",
-            "{$path}js/framework.js",
+            "{$path}js/main.js",
             "{$path}js/mods.js"
         )
     ));
     
     bind('blocks:header', function () {
-        users('authorized') and view(module_path('admin', 'panel'));
+        users('authorized') and view(module_path('admin', 'views/panel'));
     });
     
     bind('blocks:footer', function () {
-        users('authorized') and view(module_path('admin', 'footer'));
+        users('authorized') and view(module_path('admin', 'views/footer'));
     });
 }
