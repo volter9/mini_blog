@@ -16,3 +16,5 @@
         hljs.highlightBlock(pre[i]);
     }
 </script>
+
+<?php emit('blocks:footer') ?> 

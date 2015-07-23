@@ -26,8 +26,6 @@ var mini_blog = {
  * @param {Object} proto
  */
 mini_blog.events = function (proto) {
-    proto._events = {};
-    
     /**
      * Bind an event
      * 
@@ -35,6 +33,8 @@ mini_blog.events = function (proto) {
      * @param {Function} callback
      */
     proto.on = function (event, callback) {
+        this._events = this._events || (this._events = {});
+        
         if (!this._events[event]) {
             this._events[event] = [];
         }
@@ -49,15 +49,19 @@ mini_blog.events = function (proto) {
      * @param {Array} args
      */
     proto.emit = function (event) {
-        var args = mini_blog.toArray(arguments).slice(1);
+        this._events = this._events || (this._events = {});
         
-        this._events[event].forEach(function (callback) {
-            if (!callback) {
-                return;
-            }
+        if (this._events && this._events[event]) {
+            var args = mini_blog.toArray(arguments).slice(1);
+        
+            this._events[event].forEach(function (callback) {
+                if (!callback) {
+                    return;
+                }
             
-            callback.apply(callback, args);
-        });
+                callback.apply(callback, args);
+            });
+        }
     };
 };
 
@@ -113,26 +117,21 @@ mini_blog.ajax.request = function (url, method, data) {
     return ajax;
 };
 
-/**
- * AJAX post shortcut
- * 
- * @param {String|Array} url
- * @param {Object} data
- * @param {Function} callback
- */
+/** AJAX shortcuts */
 mini_blog.ajax.post = function (url, data) { 
     return this.request(url, 'POST', data);
 };
 
-/**
- * AJAX get shortcut
- * 
- * @param {String|Array} url
- * @param {Object} data
- * @param {Function} callback
- */
 mini_blog.ajax.get = function (url, data) { 
     return this.request(url, 'GET', data);;
+};
+
+mini_blog.ajax.put = function (url, data) { 
+    return this.request(url, 'PUT', data);
+};
+
+mini_blog.ajax.delete = function (url, data) { 
+    return this.request(url, 'DELETE', data);
 };
 
 /**
@@ -197,7 +196,7 @@ mini_blog.ajax.instance = (function () {
         
         var self = this;
     
-        if (method === 'GET') {
+        if (method === 'GET' && query) {
             url += (url.indexOf('?') === -1 ? '?' : '&') + query;
         }
     
@@ -207,11 +206,17 @@ mini_blog.ajax.instance = (function () {
                 s = this.status;
             
             if (r === 4 && s === 200) {
+                var data;
+                
                 try {
-                    self.emit('data', request, JSON.parse(this.responseText));
+                    data = JSON.parse(this.responseText);
                 }
                 catch (e) {
                     self.emit('error', request, 'Invalid JSON');
+                }
+                
+                if (data) {
+                    self.emit('data', this, data);
                 }
             }
         };

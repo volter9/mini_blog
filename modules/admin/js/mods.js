@@ -175,6 +175,10 @@
         this.addAction('terminal', '<i class="fa fa-terminal fa-fw"></i>', function () {
             document.execCommand('insertHTML', null, '<code>' + document.getSelection() + '</code>');
         });
+        
+        this.addAction('ul-list', '<i class="fa fa-list fa-fw"></i>', function () {
+            document.execCommand('insertUnorderedList');
+        });
     };
     
     /**

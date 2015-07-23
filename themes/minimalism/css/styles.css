@@ -20,13 +20,32 @@ ul, ol {
     list-style: none;
 }
 
+pre.hljs {
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
+
+pre.hljs:before {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    content: attr(class);
+    color: #3B3D38;
+    
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    
+    padding: 4px 8px;
+}
+
 /**
  * Common styles
  */
 
 html,
 body {
-    font-family: Ubuntu, sans-serif;
+    font-family: Lato, sans-serif;
     margin: 0px;
     padding: 0px;
 }
@@ -38,6 +57,10 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.hidden {
+    display: none;
 }
 
 .clearfix:after {
@@ -79,6 +102,7 @@ a:hover {
 }
 
 #header h1 {
+    font-family: Open Sans, sans-serif;
     font-size: 40px;
     font-weight: 100;
 }
@@ -234,6 +258,7 @@ article.error ul li {
 .post h5,
 .post h6 {
     color: #333;
+    font-family: Lato, sans-serif;
     font-weight: normal;
     
     margin-top: 1.25em;
@@ -305,7 +330,7 @@ article.error ul li {
     margin-bottom: 0px;
 }
 
-.post p code {
+.post code {
     background-color: #23241f;
     border-radius: 3px;
     color: #f8f8f2;
@@ -322,15 +347,19 @@ article.error ul li {
     max-width: 95%;
 }
 
-.post ul {
+.post ul,
+.post ol {
     list-style-type: square;
     
     padding-left: 45px;
 }
 
-.post ul li {
+.post ul li,
+.post ol li {
     font-size: 14px;
     line-height: 150%;
+    
+    margin-bottom: 0.25em;
 }
 
 .post blockquote {

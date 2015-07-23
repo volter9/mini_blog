@@ -1,3 +1,5 @@
+<?php emit('blocks:header') ?> 
+
 <header id="header">
     <div class="clearfix fluid">
         <div class="left" 

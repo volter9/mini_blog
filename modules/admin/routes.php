@@ -10,7 +10,7 @@
 
 $path = module_path('admin', 'actions');
 
-route('POST #admin_get /admin/:any/get/:num', "$path/module:get");
+route('GET #admin_get /admin/:any/get/:num', "$path/module:get");
 route('POST #admin_add /admin/:any/add', "$path/module:add");
 route('POST #admin_edit /admin/:any/edit/:num', "$path/module:edit");
 route('POST #admin_remove /admin/:any/remove/:num', "$path/module:remove");

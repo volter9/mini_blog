@@ -8,7 +8,7 @@
 ?>
 <meta charset="UTF-8"/>
 <title>
-    <?php echo $title ?> - <?php echo storage('settings.default.sitename') ?> 
+    <?php echo $title ?>
 </title>
 <?php if (isset($description)): ?>
 <meta name="description" content="<?php echo $description ?>"/>
@@ -28,3 +28,5 @@
 <link rel="stylesheet" 
       href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
       type="text/css"/>
+
+<?php emit('blocks:head') ?>

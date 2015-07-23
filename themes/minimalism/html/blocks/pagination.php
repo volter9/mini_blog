@@ -18,9 +18,9 @@
     
     <?php foreach ($pagination as $number): ?> 
         <?php if ($page !== $number): ?> 
-        <a class="button" href="<?php echo "$url/$number" ?>"><?php echo $number ?></a>
+        <a href="<?php echo "$url/$number" ?>"><?php echo $number ?></a>
         <?php else: ?> 
-        <span class="button disabled"><?php echo $number ?></span>
+        <span><?php echo $number ?></span>
         <?php endif; ?> 
     <?php endforeach; ?> 
     

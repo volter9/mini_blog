@@ -38,4 +38,15 @@ function blog_module_admin_init () {
             'description' => array('strip_tags', 'trim')
         )
     ));
+    
+    admin('categories', array(
+        'keys' => array(
+            'title', 'url', 'description'
+        ),
+        
+        'filters' => array(
+            'title'       => array('strip_tags', 'trim'),
+            'description' => array('strip_tags', 'trim')
+        )
+    ));
 }
