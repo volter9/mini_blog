@@ -63,7 +63,7 @@ Mapper.prototype.fetch = function (id) {
 Mapper.prototype.insert = function (model) {
     var self = this;
     
-    ajax.get([this.options.baseurl, 'add'], model.data())
+    ajax.post([this.options.baseurl, 'add'], model.data())
         .success(function (_, data) {
             model.id = data.id;
             
@@ -80,7 +80,7 @@ Mapper.prototype.insert = function (model) {
 Mapper.prototype.update = function (model) {
     var self = this;
     
-    ajax.post([this.options.baseurl, 'edit', model.id], model.all())
+    ajax.post([this.options.baseurl, 'edit', model.id], model.delta())
         .success(function () {
             self.emit('change', model);
         })

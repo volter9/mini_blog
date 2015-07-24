@@ -7,12 +7,9 @@ var Post = function (attributes, node) {
     this.name = 'posts';
     this.data = {};
     this.id = node.getAttribute('data-id');
+    this.mods = ['wysiwig'];
     
     mini_blog.component.call(this, attributes, node);
-    
-    if (this.nodes.text) {
-        this.mods = ['wysiwig'];
-    }
 };
 
 Post.prototype = Object.create(mini_blog.component.prototype);

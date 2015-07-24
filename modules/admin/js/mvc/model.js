@@ -75,7 +75,7 @@ Model.prototype.set = function (key, value) {
         this.data = utils.merge(this.data, key);
     }
     
-    this.emit('change', this);
+    this.emit('change');
 };
 
 /**
@@ -102,6 +102,15 @@ Model.prototype.all = function () {
 };
 
 /**
+ * Get difference data from the `previous`
+ * 
+ * @return {Object}
+ */
+Model.prototype.delta = function () {
+    return utils.diff(this.previous, this.data);
+};
+
+/**
  * Destroy the model
  */
 Model.prototype.destroy = function () {
@@ -119,7 +128,18 @@ Model.prototype.destroy = function () {
 Model.prototype.reset = function (data) {
     this.data = data;
     
-    this.emit('change', this);
+    this.emit('change');
+};
+
+/**
+ * Reset model with new set of data
+ * 
+ * @param {Object} data
+ */
+Model.prototype.merge = function (data) {
+    this.data = utils.merge(this.data, data);
+    
+    this.emit('change');
 };
 
 Model.extend = extend(Model);

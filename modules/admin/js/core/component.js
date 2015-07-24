@@ -14,7 +14,10 @@ function Component (attributes, node) {
     this.nodes = {};
     
     this.setNodes(node);
+    this.initialize();
 }
+
+Component.prototype.initialize = function () {};
 
 /**
  * Setup nodes

@@ -4,9 +4,13 @@ var extend = require('./extend');
  * MVC view
  * 
  * This class is responsible for rendering data from models
+ * 
+ * @param {Node} node
+ * @param {Object} data
  */
-var View = function (node) {
+var View = function (node, data) {
     this.node = node;
+    this.data = data;
     
     this.initialize();
 };

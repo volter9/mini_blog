@@ -7,72 +7,43 @@
  * @package mini_blog
  */
 
-#mini_editor {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    
-    width: 40px;
+#mini_panel .separator {
+    border-top: 1px solid #eee;
 }
-
-#mini_editor .button {
-    background-color: rgba(0, 0, 0, 0.75);
-    border: 0px;
-    border-radius: 4px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    text-align: center;
-    text-transform: capitalize;
-    
-    margin-bottom: 4px;
-    padding: 7px 7px;
-}
-
-#mini_editor .button:hover {
-    text-decoration: underline;
-}
-
-#mini_editor.visible {
-    display: block;
-    opacity: 1;
-}
-
-#mini_editor.hidden {
-    display: none;
-    opacity: 0;
-}
-
-[contenteditable] {
-    display: block;
-}
-
-[data-component=add] {
-    background-color: #ddd;
-    border: 0px;
-    color: #666;
-    cursor: pointer;
-    font-size: 2em;
-    font-weight: bold;
-    
-    display: block;
-    margin-bottom: 8px;
-    padding: 8px;
-    padding-bottom: 10px;
-    width: 100%;
-}
-
-/**
- * mini_blog panel
- */
 
 #mini_panel {
     position: fixed;
     top: 0px;
     left: 0px;
-    right: 0px;
+    z-index: 9002;
     
-    padding: 0em 1em;
+    padding: 4px;
+}
+
+#mini_panel .button {
+    background-color: transparent;
+    border: 0px;
+    color: #000;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    
+    display: block;
+    padding: 12px;
+}
+
+#mini_panel .button:hover {
+    text-decoration: underline;
+}
+
+#mini_panel.visible {
+    display: block;
+    opacity: 1;
+}
+
+#mini_panel.hidden {
+    display: none;
+    opacity: 0;
 }
 
 #mini_panel a {
@@ -82,17 +53,6 @@
 #mini_panel a:hover {
     color: #556;
     text-decoration: none;
-}
-
-#mini_panel li {
-    font-size: 14px;
-    
-    position: relative;
-    top: 0px;
-    left: 0px;
-    
-    float: left;
-    padding: 1em 0.8em;
 }
 
 /**

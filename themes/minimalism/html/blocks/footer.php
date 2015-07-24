@@ -5,6 +5,12 @@
         <p data-name="copyright"><?php 
             echo storage('settings.default.copyright') 
         ?></p>
+        <p>
+            С уважением, 
+            <span data-name="sitename"><?php
+            echo storage('settings.default.sitename')
+            ?></span>
+        </p>
     </div>
 </footer>
 

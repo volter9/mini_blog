@@ -4,14 +4,7 @@ var utils = require('../helpers/utils');
  * Setup editor's container for buttons
  */
 function setupContainer () {
-    var container = document.createElement('div');
-    
-    container.id = 'mini_editor';
-    container.className = 'hidden';
-    
-    document.body.appendChild(container);
-    
-    this.container = container;
+    this.container = document.querySelector('#mini_panel .buttons');
 };
 
 /**
@@ -59,8 +52,6 @@ function setCurrent (node) {
     
     this.disableMods();
     this.enableMods(mods);
-    
-    this.move(node);
 };
 
 /**
@@ -75,33 +66,17 @@ function clearCurrent () {
     this.container.className = 'hidden';
 };
 
-/**
- * Move container with editor buttons
- * 
- * @param {Node} node
- */
-function move (node) {
-    this.container.className = 'visible';
-    
-    var x = node.offsetLeft - this.container.offsetWidth - 10,
-        y = node.offsetTop;
-    
-    this.container.style.left = x + 'px';
-    this.container.style.top = y + 'px';
-};
-
 var object = {
-    mods: {},
     current: null,
-    active: false,
+    active:  false,
+    mods:    {},
     
     setupContainer: setupContainer,
-    disableMods:    disableMods,
-    enableMods:     enableMods,
-    addMod:         addMod,
     clearCurrent:   clearCurrent,
+    disableMods:    disableMods,
     setCurrent:     setCurrent,
-    move:           move
+    enableMods:     enableMods,
+    addMod:         addMod
 };
 
 object.setupContainer();
