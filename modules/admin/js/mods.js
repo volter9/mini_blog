@@ -186,11 +186,11 @@
     /**
      * Register all mods and enable edit mod **only**
      */
-    mini_blog.editor.addMod('edit', new EditMod(mini_blog.editor));
-    mini_blog.editor.addMod('save', new SaveMod(mini_blog.editor));
-    mini_blog.editor.addMod('wysiwig', new WysiwigMod(mini_blog.editor));
-    mini_blog.editor.addMod('remove', new RemoveMod(mini_blog.editor));
+    mini_blog.panel.addMod('edit', new EditMod(mini_blog.panel));
+    mini_blog.panel.addMod('save', new SaveMod(mini_blog.panel));
+    mini_blog.panel.addMod('wysiwig', new WysiwigMod(mini_blog.panel));
+    mini_blog.panel.addMod('remove', new RemoveMod(mini_blog.panel));
     
-    mini_blog.editor.disableMods();
-    mini_blog.editor.enableMods(['edit']);
+    mini_blog.panel.disableMods();
+    mini_blog.panel.enableMods(['edit']);
 })();

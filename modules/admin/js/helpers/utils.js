@@ -74,10 +74,30 @@ var toArray = function (arrayLikeObject) {
     return Array.prototype.slice.call(arrayLikeObject);
 };
 
+/**
+ * Pick keys from object
+ * 
+ * @param {Object} object
+ * @param {Array} keys
+ * @return {Object}
+ */
+var pick = function (object, keys) {
+    var result = {};
+    
+    keys.forEach(function (key) {
+        if (object[key]) {
+            result[key] = object[key];
+        }
+    });
+    
+    return result;
+};
+
 module.exports = {
     toArray: toArray,
     extend:  extend,
     merge:   merge,
     diff:    diff,
-    each:    each
+    each:    each,
+    pick:    pick
 };

@@ -1,5 +1,5 @@
-var editor = require('./editor'),
-    dom    = require('../helpers/dom');
+var panel = require('./panel'),
+    dom   = require('../helpers/dom');
 
 /**
  * Components
@@ -58,7 +58,7 @@ Components.createComponent = function (node) {
     
     node.component = component;
     node.addEventListener('mouseenter', function () {
-        editor.setCurrent(this);
+        panel.setCurrent(this);
     });
 };
 
