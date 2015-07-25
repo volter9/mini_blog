@@ -1,4 +1,5 @@
 var utils  = require('../helpers/utils'),
+    events = require('../helpers/events'),
     extend = require('./extend');
 
 /**
@@ -8,6 +9,8 @@ var Collection = function (options) {
     this.options = options;
     this.models  = {};
 };
+
+events(Collection.prototype);
 
 /**
  * Get the model by id
@@ -22,11 +25,12 @@ Collection.prototype.get = function (id) {
 /**
  * Add a model to the collection
  * 
- * @param {Number} id
  * @param {Model} model
  */
-Collection.prototype.add = function (id, model) {
-    this.models[id] = model;
+Collection.prototype.add = function (model) {
+    this.models[model.id] = model;
+    
+    this.emit('add', model);
 };
 
 /**
@@ -35,7 +39,11 @@ Collection.prototype.add = function (id, model) {
  * @param {Number} id
  */
 Collection.prototype.remove = function (id) {
+    var model = this.models[id];
+    
     delete this.models[id];
+    
+    this.emit('remove', model);
 };
 
 /**
@@ -52,6 +60,27 @@ Collection.prototype.bootstrap = function (models) {};
  */
 Collection.prototype.forEach = function (callback) {
     utils.each(this.models, callback);
+};
+
+/**
+ * Bind mapper to collection
+ * 
+ * @param {Mapper} mapper
+ */
+Collection.prototype.bindTo = function (mapper) {
+    var self = this;
+    
+    mapper.on('get', function (model) {
+        self.add(model);
+    });
+    
+    mapper.on('add', function (model) {
+        self.add(model);
+    });
+    
+    mapper.on('remove', function (model) {
+        self.remove(model.id);
+    });
 };
 
 Collection.extend = extend(Collection);

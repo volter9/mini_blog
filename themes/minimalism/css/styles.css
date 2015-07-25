@@ -92,8 +92,8 @@ a:hover {
  */
 
 #header {
-    margin-top: 10px;
-    margin-bottom: 1em;
+    margin-top: 25px;
+    margin-bottom: 2em;
 }
 
 #header > div {
@@ -102,8 +102,6 @@ a:hover {
     position: relative;
     top: 0px;
     left: 0px;
-    
-    padding: 15px 0px;
 }
 
 #header h1 {

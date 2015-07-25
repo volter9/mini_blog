@@ -7,7 +7,12 @@ var events = require('../helpers/events'),
 /* Default properties */
 var defaults = {
     baseurl: '/',
-    model:   model
+    model:   model,
+    
+    get:    'get',
+    insert: 'add',
+    update: 'edit',
+    remove: 'remove',
 };
 
 /**
@@ -45,12 +50,14 @@ Mapper.prototype.create = function (data) {
  * 
  * @param {Number} id
  */
-Mapper.prototype.fetch = function (id) {
+Mapper.prototype.fetch = function (id, model) {
     var self = this;
     
-    ajax.get([this.options.baseurl, 'get', id])
+    ajax.get([this.options.baseurl, this.options.get, id])
         .success(function (_, data) {
-            self.emit('get', new self.options.model(self.parse(data)));
+            data = self.parse(data);
+            
+            self.emit('get', new self.options.model(data));
         })
         .send();
 };
@@ -63,7 +70,7 @@ Mapper.prototype.fetch = function (id) {
 Mapper.prototype.insert = function (model) {
     var self = this;
     
-    ajax.post([this.options.baseurl, 'add'], model.data())
+    ajax.post([this.options.baseurl, this.options.insert], model.all())
         .success(function (_, data) {
             model.id = data.id;
             
@@ -80,9 +87,9 @@ Mapper.prototype.insert = function (model) {
 Mapper.prototype.update = function (model) {
     var self = this;
     
-    ajax.post([this.options.baseurl, 'edit', model.id], model.delta())
+    ajax.post([this.options.baseurl, this.options.update, model.id], model.delta())
         .success(function () {
-            self.emit('change', model);
+            self.emit('update', model);
         })
         .send();
 };
@@ -90,14 +97,14 @@ Mapper.prototype.update = function (model) {
 /**
  * Remove model from database
  * 
- * @param {Number} id
+ * @param {Model} model
  */
-Mapper.prototype.remove = function (id) {
+Mapper.prototype.remove = function (model) {
     var self = this;
     
-    ajax.post([this.options.baseurl, 'remove', id])
+    ajax.post([this.options.baseurl, this.options.remove, model.id])
         .success(function () {
-            self.emit('destroy', id);
+            self.emit('destroy', model);
         })
         .send();
 };
@@ -115,7 +122,7 @@ Mapper.prototype.sync = function (collection) {
         else if (model.isEmpty()) {
             self.remove(model);
             
-            collection.remove(model.id);
+            collection.remove(model);
         }
         else if (model.isDirty()) {
             self.update(model);

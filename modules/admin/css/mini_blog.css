@@ -7,15 +7,18 @@
  * @package mini_blog
  */
 
-#mini_panel .separator {
-    border-top: 1px solid #eee;
-}
-
 #mini_panel {
+    background-color: rgba(255, 255, 255, 0.5);
+    
     position: fixed;
     top: 0px;
+    bottom: 0px;
     left: 0px;
     z-index: 9002;
+}
+
+#mini_panel .separator {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 #mini_panel .button {
@@ -27,7 +30,7 @@
     text-align: center;
     
     display: block;
-    padding: 16px;
+    padding: 14px;
 }
 
 #mini_panel .button:hover {
@@ -73,12 +76,15 @@
     position: absolute;
     top: 0px;
     right: 0px;
+    
+    font-size: 0px;
 }
 
 .m-editor .button {
     background-color: #444;
     border: 0px;
     color: #fff;
+    cursor: pointer;
     font-size: 14px;
     
     padding: 6px;

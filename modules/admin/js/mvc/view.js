@@ -17,6 +17,7 @@ var View = function (node, data) {
 
 /** Methods that should be extended in subclasses */
 View.prototype.initialize = function () {};
+
 View.prototype.render = function () {};
 
 /**

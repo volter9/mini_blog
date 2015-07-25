@@ -109,7 +109,7 @@ Model.prototype.all = function () {
  * @return {Object}
  */
 Model.prototype.delta = function () {
-    return utils.diff(this.previous, this.data);
+    return utils.diff(this.data, this.previous);
 };
 
 /**
@@ -139,6 +139,12 @@ Model.prototype.reset = function (data) {
  * @param {Object} data
  */
 Model.prototype.merge = function (data) {
+    if (data.id) {
+        this.id = data.id;
+        
+        delete data.id;
+    }
+    
     this.data = utils.merge(this.data, data);
     
     this.emit('change');

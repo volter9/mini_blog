@@ -1,10 +1,10 @@
 /**
  * mini_blog.js
  * 
- * JS library for inline edit and other stuff for mini_blog
+ * JS library/framework for inline edit and other stuff for mini_blog
  * 
  * Probably looks like one of those JS frameworks, but it's
- * not. It's more like a set of utilities.
+ * not. It's more like a set of utilities with MVC components.
  * 
  * @author volter9
  * @package mini_blog

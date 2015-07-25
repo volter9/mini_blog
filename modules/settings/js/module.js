@@ -22,7 +22,17 @@
         }
     });
 
-    var setting = new mini_blog.mvc.model;
+    var mapper = new mini_blog.mvc.mapper({
+        baseurl: 'admin/settings',
+        update:  'save',
+        get:     'get'
+    });
+    
+    mapper.parse = function (data) {
+        return data.settings;
+    };
+    
+    var settings = new mini_blog.mvc.collection;
 
     /**
      * Settings prototype
@@ -40,40 +50,57 @@
      * Initialize the setting
      */
     Settings.prototype.initialize = function () {
-        var self = this;
+        var self = this,
+            setting = settings.get(this.group);
         
-        this.notRemovable = true;
+        var callback = function (model) {
+            console.log(model);
+            
+            if (model.id === self.group && !self.view) {
+                self.createView(model);
+            }
+        };
+        
         this.group = this.node.getAttribute('data-group');
-        this.view  = new SettingsView(this.node, {
+        this.notRemovable = true;
+        
+        if (setting) {
+            callback(setting);
+        }
+        else {
+            mapper.on('get', callback);
+            mapper.fetch(this.group);
+        }
+    };
+    
+    /**
+     * Create a view 
+     * 
+     * @param {mini_blog.mvc.model} setting
+     */
+    Settings.prototype.createView = function (setting) {
+        this.setting = setting;
+        
+        this.view = new SettingsView(this.node, {
             setting: setting,
             nodes:   this.nodes
         });
-    
-        mini_blog.each(this.nodes, function (node, key) {
-            setting.set(key, node.innerHTML);
-        });
-        
-        setting.clear();
     };
     
+    /**
+     * Cancel the modifications
+     */
     Settings.prototype.cancel = function () {
-        setting.revert();
+        this.setting.revert();
     };
 
     /**
      * Save settings to the server
      */
     Settings.prototype.save = function () {
-        var url  = ['admin/settings/save', this.group],
-            data = this.collectData(),
-            ajax = mini_blog.ajax;
-    
-        ajax.post(url, data)
-            .success(function () { 
-                setting.merge(data);
-                setting.clear();
-            })
-            .send();
+        this.setting.merge(this.collectData());
+        
+        mapper.update(this.setting);
     };
 
     mini_blog.components.register('settings', Settings);

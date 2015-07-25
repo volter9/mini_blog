@@ -36,49 +36,13 @@ function enableMods (names) {
     });
 };
 
-/**
- * Set current editing component
- * 
- * @param {Node} node
- */
-function setCurrent (node) {
-    if (this.active || !node.component) {
-        return;
-    }
-    
-    var mods = ['edit'].concat(node.component.currentMods || []);
-    
-    this.current = node;
-    
-    this.disableMods();
-    this.enableMods(mods);
-};
-
-/**
- * Clear current editable target
- */
-function clearCurrent () {
-    if (!this.active) {
-        return;
-    }
-    
-    this.active = false;
-    this.container.className = 'hidden';
-};
-
 var object = {
-    current: null,
-    active:  false,
-    mods:    {},
+    mods: {},
+    container: document.querySelector('#mini_panel .buttons'),
     
-    setupContainer: setupContainer,
-    clearCurrent:   clearCurrent,
-    disableMods:    disableMods,
-    setCurrent:     setCurrent,
-    enableMods:     enableMods,
-    addMod:         addMod
+    disableMods: disableMods,
+    enableMods:  enableMods,
+    addMod:      addMod
 };
-
-object.setupContainer();
 
 module.exports = object;

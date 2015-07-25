@@ -36,6 +36,6 @@ function action_get ($group = 'default') {
     
     echo json_encode(array(
         'status'   => !empty($settings) ? 'ok' : 'not_ok',
-        'settings' => $settings
+        'settings' => array_merge($settings, array('id' => $group))
     ));
 }

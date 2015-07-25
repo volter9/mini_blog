@@ -1,6 +1,23 @@
 var mvc   = require('../mvc'),
     panel = require('./panel');
 
+var html = '<div class="edit">'
++ '    <button class="edit-button button">'
++ '        <i class="fa fa-fw fa-pencil"></i>'
++ '    </button>'
++ '    <button class="remove-button button">'
++ '        <i class="fa fa-fw fa-trash"></i>'
++ '    </button>'
++ '</div>'
++ '<div class="editing">'
++ '    <button class="save-button button">'
++ '        <i class="fa fa-fw fa-floppy-o"></i>'
++ '    </button>'
++ '    <button class="cancel-button button">'
++ '        <i class="fa fa-fw fa-times"></i>'
++ '    </button>'
++ '</div>';
+
 /**
  * Editor view
  */
@@ -13,16 +30,7 @@ var view = mvc.view.extend({
         
         this.node = document.createElement('div');
         this.node.className = 'm-editor';
-        
-        this.createButtonGroup('edit', [
-            {name: 'edit-button',   title: '<i class="fa fa-fw fa-pencil"></i>'},
-            {name: 'remove-button', title: '<i class="fa fa-fw fa-trash"></i>'}
-        ]);
-        
-        this.createButtonGroup('editing', [
-            {name: 'save-button',   title: '<i class="fa fa-fw fa-floppy-o"></i>'},
-            {name: 'cancel-button', title: '<i class="fa fa-fw fa-times"></i>'}
-        ]);
+        this.node.innerHTML = html;
         
         this.setupEvents();
         this.show(true);
@@ -64,30 +72,6 @@ var view = mvc.view.extend({
             
             self.show(true);
         });
-    },
-    
-    /**
-     * Create a button groups
-     * 
-     * @param {String} name
-     * @param {Array} groups
-     */
-    createButtonGroup: function (name, groups) {
-        var self    = this,
-            buttons = document.createElement('div');
-        
-        buttons.className = name;
-        
-        groups.forEach(function (object) {
-            var button = document.createElement('button');
-            
-            button.innerHTML = object.title;
-            button.className = object.name + ' button';
-            
-            buttons.appendChild(button);
-        });
-        
-        this.node.appendChild(buttons);
     },
     
     /**

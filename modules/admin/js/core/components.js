@@ -59,7 +59,6 @@ Components.createComponent = function (node) {
     
     var view = new editor.view(null, {component: component});
     
-    node.classList.add('m-editor-wrapper');
     node.component = component;
     node.appendChild(view.node);
 };
