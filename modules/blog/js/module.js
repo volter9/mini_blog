@@ -3,7 +3,6 @@
  * @param {Node} node
  */
 var Post = function (attributes, node) {
-    this.currentMods = ['remove'];
     this.name = 'posts';
     this.data = {};
     this.id = node.getAttribute('data-id');
@@ -43,6 +42,13 @@ Post.prototype.enable = function () {
     mini_blog.ajax.get(['admin', this.name, 'get', this.id])
                   .success(callback)
                   .send();
+};
+
+Post.prototype.disable = function () {
+    mini_blog.component.prototype.disable.call(this);
+    
+    mini_blog.toArray(this.node.querySelectorAll('pre'))
+             .forEach(hljs.highlightBlock);
 };
 
 /**
@@ -97,9 +103,6 @@ Post.prototype.save = function () {
         if (data.id) {
             self.id = data.id;
         }
-        
-        mini_blog.toArray(self.node.querySelectorAll('pre'))
-                 .forEach(hljs.highlightBlock);
     };
     
     mini_blog.ajax.post(url, data)

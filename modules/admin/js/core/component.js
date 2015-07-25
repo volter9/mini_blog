@@ -53,7 +53,7 @@ Component.prototype.disable = function () {
 };
 
 /**
- * Save component 
+ * Save and cancel component 
  */
 Component.prototype.save = function () {};
 Component.prototype.cancel = function () {};

@@ -1,5 +1,6 @@
-var panel = require('./panel'),
-    dom   = require('../helpers/dom');
+var editor = require('./editor'),
+    panel  = require('./panel'),
+    dom    = require('../helpers/dom');
 
 /**
  * Components
@@ -56,10 +57,11 @@ Components.createComponent = function (node) {
         return console.warn('Component "' + name + '" does not exists!');
     }
     
+    var view = new editor.view(null, {component: component});
+    
+    node.classList.add('m-editor-wrapper');
     node.component = component;
-    node.addEventListener('mouseenter', function () {
-        panel.setCurrent(this);
-    });
+    node.appendChild(view.node);
 };
 
 module.exports = Components;

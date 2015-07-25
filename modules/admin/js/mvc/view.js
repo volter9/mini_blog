@@ -19,6 +19,16 @@ var View = function (node, data) {
 View.prototype.initialize = function () {};
 View.prototype.render = function () {};
 
+/**
+ * Find an element by selector
+ * 
+ * @param {String} selector
+ * @return {Node}
+ */
+View.prototype.find = function (selector) {
+    return this.node.querySelector(selector);
+};
+
 View.extend = extend(View);
 
 module.exports = View;

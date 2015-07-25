@@ -90,6 +90,8 @@ Model.prototype.clear = function () {
  */
 Model.prototype.revert = function () {
     this.data = utils.merge({}, this.previous);
+    
+    this.emit('change');
 };
 
 /**

@@ -1,17 +1,15 @@
-<footer class="clearfix fluid" id="footer">
-    <div class="left"
-         data-component="settings"
-         data-group="default">
-        <p data-name="copyright"><?php 
-            echo storage('settings.default.copyright') 
-        ?></p>
-        <p>
-            С уважением, 
-            <span data-name="sitename"><?php
-            echo storage('settings.default.sitename')
-            ?></span>
-        </p>
-    </div>
+<footer class="clearfix fluid" id="footer"
+        data-component="settings"
+        data-group="default">
+    <p data-name="copyright"><?php 
+        echo storage('settings.default.copyright') 
+    ?></p>
+    <p>
+        С уважением, 
+        <span data-name="sitename"><?php
+        echo storage('settings.default.sitename')
+        ?></span>
+    </p>
 </footer>
 
 <script src="<?php echo asset_url('js/hljs.js') ?>" type="text/javascript"></script>

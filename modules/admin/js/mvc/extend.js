@@ -1,3 +1,5 @@
+var utils = require('../helpers/utils');
+
 /**
  * Helper function to make it easily extend other prototypes
  * 
@@ -18,7 +20,7 @@ var extend = function (proto) {
         
         F.prototype = Object.create(proto.prototype);
         
-        mini_blog.each(options, function (value, key) {
+        utils.each(options, function (value, key) {
             F.prototype[key] = value;
         });
     

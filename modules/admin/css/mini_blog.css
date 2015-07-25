@@ -16,8 +16,6 @@
     top: 0px;
     left: 0px;
     z-index: 9002;
-    
-    padding: 4px;
 }
 
 #mini_panel .button {
@@ -29,7 +27,7 @@
     text-align: center;
     
     display: block;
-    padding: 12px;
+    padding: 16px;
 }
 
 #mini_panel .button:hover {
@@ -69,4 +67,29 @@
 
 #mini_panel .failure {
     color: #d54;
+}
+
+.m-editor {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.m-editor .button {
+    background-color: #444;
+    border: 0px;
+    color: #fff;
+    font-size: 14px;
+    
+    padding: 6px;
+}
+
+.m-editor .button:last-child {
+    margin-left: 1px;
+}
+
+.m-editor .edit,
+.m-editor .editing {
+    border-radius: 4px;
+    overflow: hidden;
 }

@@ -98,6 +98,11 @@ a:hover {
 
 #header > div {
     box-sizing: border-box;
+    
+    position: relative;
+    top: 0px;
+    left: 0px;
+    
     padding: 15px 0px;
 }
 
@@ -241,6 +246,10 @@ article.error ul li {
 }
 
 .post {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    
     margin-bottom: 2em;
 }
 
@@ -452,6 +461,10 @@ article.error ul li {
  */
 
 #footer {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    
     box-sizing: border-box;
     padding-bottom: 40px;
 }
