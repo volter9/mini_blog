@@ -68,13 +68,9 @@ Model.prototype.isEmpty = function () {
  * @param {Object} value
  */
 Model.prototype.set = function (key, value) {
-    if (key && typeof value !== 'undefined') {
-        this.data[key] = value;
-    }
-    else {
-        this.data = utils.merge(this.data, key);
-    }
+    console.log(key, value);
     
+    this.data[key] = value;
     this.emit('change');
 };
 

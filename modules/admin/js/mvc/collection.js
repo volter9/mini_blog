@@ -1,13 +1,15 @@
 var utils  = require('../helpers/utils'),
     events = require('../helpers/events'),
-    extend = require('./extend');
+    extend = require('./extend'),
+    Model  = require('./model');
 
 /**
  * Model collection
+ * 
+ * @param {Object} models
  */
-var Collection = function (options) {
-    this.options = options;
-    this.models  = {};
+var Collection = function (models) {
+    this.models = models || {};
 };
 
 events(Collection.prototype);
@@ -51,7 +53,24 @@ Collection.prototype.remove = function (id) {
  * 
  * @param {Array} models
  */
-Collection.prototype.bootstrap = function (models) {};
+Collection.prototype.bootstrap = function (models) {
+    var self = this;
+    
+    var callback = function (data, id) {
+        data.id = data.id || id;
+        
+        var model = new Model(data);
+        
+        self.models[model.id] = model;
+    };
+    
+    if (Array.isArray(models)) {
+        models.forEach(callback);
+    }
+    else {
+        utils.each(models, callback);
+    }
+};
 
 /**
  * Iteration of colleciton

@@ -46,7 +46,7 @@ Mod.prototype.addAction = function (name, text, callback) {
     button.className = 'button';
     
     button.addEventListener('click', function () {
-        self.trigger(this.getAttribute('data-role'), self.editor.current);
+        self.trigger(this.dataset.role, self.editor.current);
     });
     
     this.editor.container.appendChild(button);

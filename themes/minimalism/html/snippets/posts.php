@@ -1,4 +1,4 @@
-<?php return function ($post) { ?>
+<?php return function ($post) { ?> 
 <div class="post" 
      data-component="post"
      data-id="<?php echo $post['id'] ?>">
@@ -28,11 +28,11 @@
         <a href="<?php echo url('#post', array($post['url'])) ?>" data-name="title">
             <?php echo $post['title'] ?> 
         </a>
-        <?php else: ?>
+        <?php else: ?> 
         <span data-name="title">
-            <?php echo $post['title'] ?>
+            <?php echo $post['title'] ?> 
         </span>
-        <?php endif; ?> 
+        <?php endif; ?>  
     </h2>
 
     <p class="description" data-name="description">

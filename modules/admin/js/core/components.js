@@ -45,7 +45,7 @@ Components.create = function (name, attributes, node) {
  * @param {Node} node
  */
 Components.createComponent = function (node) {
-    if (node.component || node.getAttribute('data-ignore')) {
+    if (node.component || node.dataset.ignore) {
         return;
     }
     

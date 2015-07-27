@@ -1,6 +1,7 @@
 var mvc   = require('../mvc'),
     panel = require('./panel');
 
+/** HTML template */
 var html = '<div class="edit">'
 + '    <button class="edit-button button">'
 + '        <i class="fa fa-fw fa-pencil"></i>'
@@ -43,7 +44,7 @@ var view = mvc.view.extend({
         var component = this.data.component,
             self      = this;
         
-        this.find('.edit-button').addEventListener('click', function () {
+        this.bind('.edit-button', 'click', function () {
             component.enable();
             
             panel.enableMods(component.mods || []);
@@ -51,13 +52,13 @@ var view = mvc.view.extend({
             self.show(false);
         });
         
-        this.find('.remove-button').addEventListener('click', function () {
+        this.bind('.remove-button', 'click', function () {
             component.remove();
             
             self.destroy();
         });
         
-        this.find('.save-button').addEventListener('click', function () {
+        this.bind('.save-button', 'click', function () {
             component.save();
             component.disable();
             panel.disableMods();
@@ -65,13 +66,24 @@ var view = mvc.view.extend({
             self.show(true);
         });
         
-        this.find('.cancel-button').addEventListener('click', function () {
+        this.bind('.cancel-button', 'click', function () {
             component.cancel();
             component.disable();
             panel.disableMods();
             
             self.show(true);
         });
+    },
+    
+    /**
+     * Bind an event to specific element
+     * 
+     * @param {String} selector
+     * @param {String} event
+     * @param {Function} callback
+     */
+    bind: function (selector, event, callback) {
+        this.find(selector).addEventListener(event, callback);
     },
     
     /**

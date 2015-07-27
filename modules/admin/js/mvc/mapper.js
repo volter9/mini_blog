@@ -40,24 +40,38 @@ Mapper.prototype.parse = function (data) {
  * Create a model and send it to server
  * 
  * @param {Object} data
+ * @param {Model} model
  */
-Mapper.prototype.create = function (data) {
-    return new self.options.model(data);
+Mapper.prototype.create = function (data, model) {
+    console.log('create', this.options.baseurl, data, model);
+    
+    if (model) {
+        model.merge(data);
+        
+        return model;
+    }
+    else {
+        return new this.options.model(data);
+    }
 };
 
 /**
  * Fetch a model from server
  * 
  * @param {Number} id
+ * @param {Model} model
  */
 Mapper.prototype.fetch = function (id, model) {
     var self = this;
     
     ajax.get([this.options.baseurl, this.options.get, id])
         .success(function (_, data) {
-            data = self.parse(data);
+            var isNew  = Boolean(model),
+                result = self.create(self.parse(data), model);
             
-            self.emit('get', new self.options.model(data));
+            if (!isNew) {
+                self.emit('get', result);
+            }
         })
         .send();
 };
@@ -92,6 +106,15 @@ Mapper.prototype.update = function (model) {
             self.emit('update', model);
         })
         .send();
+};
+
+/**
+ * Save (insert or update) model
+ * 
+ * @param {Model} model
+ */
+Mapper.prototype.save = function (model) {
+    model.isNew() ? this.insert(model) : this.update(model);
 };
 
 /**

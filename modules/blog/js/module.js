@@ -1,113 +1,120 @@
-/**
- * @param {Object} attributes
- * @param {Node} node
- */
-var Post = function (attributes, node) {
-    this.name = 'posts';
-    this.data = {};
-    this.id = node.getAttribute('data-id');
-    this.mods = ['wysiwig'];
+(function () {
+    /** Mapper */
+    var mapper = new mini_blog.mvc.mapper({
+        baseurl: 'admin/posts'
+    });
     
-    mini_blog.component.call(this, attributes, node);
-};
+    mapper.parse = function (data) {
+        return data.item;
+    };
+    
+    /** Posts collection */
+    var posts = new mini_blog.mvc.collection;
+    
+    posts.bindTo(mapper);
+    
+    /**
+     * Post view
+     */
+    var PostView = mini_blog.mvc.view.extend({
+        /**
+         * Initialize view
+         */
+        initialize: function () {
+            this.data.post.on('change', this.render.bind(this));
+        },
+    
+        /**
+         * Render the view
+         */
+        render: function () {
+            var data = this.data.post.all();
+            
+            mini_blog.each(this.data.nodes, function (node, key) {
+                data[key] && (node.innerHTML = data[key]);
+            });
+            
+            mini_blog.toArray(this.node.querySelectorAll('pre'))
+                 .forEach(hljs.highlightBlock);
+        }
+    });
+    
+    /**
+     * Post component constructor
+     * 
+     * @param {Object} attributes
+     * @param {Node} node
+     */
+    var Post = function (attributes, node) {
+        mini_blog.component.call(this, attributes, node);
+    };
 
-Post.prototype = Object.create(mini_blog.component.prototype);
-
-/**
- * Enable post with custom logic
- */
-Post.prototype.enable = function () {
-    mini_blog.component.prototype.enable.call(this);
+    Post.prototype = Object.create(mini_blog.component.prototype);
     
-    if (!this.id) {
-        return;
-    }
-    
-    var self = this;
-    
-    var callback = function (xhr, data) {
-        if (!data.item) {
-            return;
+    /**
+     * Initialize the component
+     */
+    Post.prototype.initialize = function () {
+        this.id   = this.node.dataset.id;
+        this.post = posts.get(this.id) || mapper.create();
+        this.mods = ['wysiwig'];
+        
+        if (this.post.isEmpty() && this.id) {
+            mapper.fetch(this.id, this.post);
         }
         
-        self.data = data.item;
-        
-        mini_blog.each(self.nodes, function (node, key) {
-            if (self.data[key]) {
-                node.innerHTML = self.data[key];
-            }
+        this.createView();
+    };
+    
+    /**
+     * Create view
+     */
+    Post.prototype.createView = function () {
+        this.view = new PostView(this.node, {
+            post:  this.post,
+            nodes: this.nodes
         });
     };
-    
-    mini_blog.ajax.get(['admin', this.name, 'get', this.id])
-                  .success(callback)
-                  .send();
-};
 
-Post.prototype.disable = function () {
-    mini_blog.component.prototype.disable.call(this);
-    
-    mini_blog.toArray(this.node.querySelectorAll('pre'))
-             .forEach(hljs.highlightBlock);
-};
-
-/**
- * Cancel editing
- */
-Post.prototype.cancel = function () {
-    if (this.id) {
-        return;
-    }
-    
-    this.node.parentNode.removeChild(this.node);
-    
-    mini_blog.editor.clearCurrent();
-};
-
-/**
- * Remove a post
- */
-Post.prototype.remove = function () {
-    if (!this.id) {
-        return;
-    }
-    
-    var self = this;
-    
-    var callback = function () {
-        self.id = null;
-        self.cancel();
-    };
-    
-    mini_blog.ajax.post(['admin', this.name, 'remove', this.id])
-                  .success(callback)
-                  .send();
-};
-
-/**
- * Save a post
- */
-Post.prototype.save = function () {
-    var url = ['admin', this.name, 'add'],
-        data, self = this;
-    
-    data = mini_blog.merge(this.data, this.collectData());
-    data = mini_blog.diff(data, this.data);
-    
-    if (this.id) {
-        url.splice(2, 1, 'edit');
-        url.push(this.id);
-    }
-    
-    var callback = function (_, data) {
-        if (data.id) {
-            self.id = data.id;
+    /**
+     * Cancel editing
+     */
+    Post.prototype.cancel = function () {
+        if (this.id) {
+            return;
         }
-    };
     
-    mini_blog.ajax.post(url, data)
-                  .success(callback)
-                  .send();
-};
+        this.node.parentNode.removeChild(this.node);
+    };
 
-mini_blog.components.register('post', Post);
+    /**
+     * Remove a post
+     */
+    Post.prototype.remove = function () {
+        if (!this.id) {
+            return;
+        }
+    
+        mapper.remove(this.post);
+        
+        this.id = null;
+        this.cancel();
+    };
+
+    /**
+     * Save a post
+     */
+    Post.prototype.save = function () {
+        this.post.merge(this.collectData());
+        
+        mapper.save(this.post);
+        
+        this.post.clear();
+    };
+
+    mini_blog.components.register('post', Post);
+    
+    mini_blog.posts = {
+        collection: posts
+    };
+})();

@@ -34,7 +34,7 @@ Component.prototype.setNodes = function (node) {
     Object.keys(nodes).forEach(function (key) {
         var node = nodes[key];
         
-        self.nodes[node.getAttribute('data-name')] = node;
+        self.nodes[node.dataset.name] = node;
     });
 };
 
@@ -67,7 +67,7 @@ Component.prototype.collectData = function () {
     var data = {};
 
     utils.each(this.nodes, function (node) {
-        data[node.getAttribute('data-name')] = node.innerHTML;
+        data[node.dataset.name] = node.innerHTML;
     });
     
     return data;

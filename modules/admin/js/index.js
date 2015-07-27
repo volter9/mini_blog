@@ -21,6 +21,7 @@ var mini_blog = {
     init:       require('./core/init'),
     mod:        require('./core/mod'),
     events:     require('./helpers/events'),
+    unique:     require('./helpers/unique'),
     ajax:       require('./helpers/ajax'),
     dom:        require('./helpers/dom'),
     mvc:        require('./mvc')

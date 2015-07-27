@@ -1,4 +1,17 @@
 (function () {
+    var mapper = new mini_blog.mvc.mapper({
+        baseurl: 'admin/settings',
+        update:  'save'
+    });
+    
+    mapper.parse = function (data) {
+        return data.settings;
+    };
+    
+    var settings = new mini_blog.mvc.collection;
+    
+    settings.bindTo(mapper);
+    
     /**
      * Setting view
      */
@@ -21,19 +34,7 @@
             });
         }
     });
-
-    var mapper = new mini_blog.mvc.mapper({
-        baseurl: 'admin/settings',
-        update:  'save',
-        get:     'get'
-    });
     
-    mapper.parse = function (data) {
-        return data.settings;
-    };
-    
-    var settings = new mini_blog.mvc.collection;
-
     /**
      * Settings prototype
      * 
@@ -50,27 +51,16 @@
      * Initialize the setting
      */
     Settings.prototype.initialize = function () {
-        var self = this,
-            setting = settings.get(this.group);
-        
-        var callback = function (model) {
-            console.log(model);
-            
-            if (model.id === self.group && !self.view) {
-                self.createView(model);
-            }
-        };
-        
-        this.group = this.node.getAttribute('data-group');
+        this.group        = this.node.dataset.group;
         this.notRemovable = true;
         
-        if (setting) {
-            callback(setting);
+        this.setting = settings.get(this.group) || mapper.create();
+        
+        if (this.setting.isEmpty()) {
+            mapper.fetch(this.group, this.setting);
         }
-        else {
-            mapper.on('get', callback);
-            mapper.fetch(this.group);
-        }
+        
+        this.createView();
     };
     
     /**
@@ -78,11 +68,9 @@
      * 
      * @param {mini_blog.mvc.model} setting
      */
-    Settings.prototype.createView = function (setting) {
-        this.setting = setting;
-        
+    Settings.prototype.createView = function () {
         this.view = new SettingsView(this.node, {
-            setting: setting,
+            setting: this.setting,
             nodes:   this.nodes
         });
     };
@@ -101,7 +89,12 @@
         this.setting.merge(this.collectData());
         
         mapper.update(this.setting);
+        
+        this.setting.clear();
     };
 
     mini_blog.components.register('settings', Settings);
+    mini_blog.settings = {
+        collection: settings
+    };
 })();
