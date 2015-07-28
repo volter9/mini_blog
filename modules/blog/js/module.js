@@ -32,16 +32,20 @@
             this.highlight();
         },
         
+        /**
+         * Render only the information from model
+         */
         subrender: function () {
             var data = this.data.post.all();
-            
-            console.log(data);
             
             mini_blog.each(this.data.nodes, function (node, key) {
                 data[key] && (node.innerHTML = data[key]);
             });
         },
         
+        /**
+         * Highlight the code
+         */
         highlight: function () {
             mini_blog.toArray(this.node.querySelectorAll('pre'))
                      .forEach(hljs.highlightBlock);

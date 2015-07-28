@@ -29,4 +29,4 @@ var mini_blog = {
 
 utils.extend(mini_blog, utils);
 
-global.mini_blog = mini_blog;
+module.exports = mini_blog;

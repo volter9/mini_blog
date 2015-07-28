@@ -15,7 +15,7 @@ var extend = function (proto) {
      */
     return function (options) {
         var F = function () {
-            proto.apply(this, mini_blog.toArray(arguments));
+            proto.apply(this, utils.toArray(arguments));
         };
         
         F.prototype = Object.create(proto.prototype);

@@ -8,10 +8,10 @@
 ?>
 <meta charset="UTF-8"/>
 <title>
-    <?php echo $title ?>
+    <?php echo htmlspecialchars($title) ?>
 </title>
 <?php if (isset($description)): ?>
-<meta name="description" content="<?php echo $description ?>"/>
+<meta name="description" content="<?php echo htmlspecialchars($description) ?>"/>
 <?php endif; ?>
 
 <link href="<?php echo asset_url('css/styles.css') ?>" 

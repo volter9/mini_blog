@@ -420,9 +420,18 @@ article.error ul li {
     width: 320px;
 }
 
+.auth-form p,
+.auth-form label {
+    font-size: 14px;
+    line-height: 140%;
+    
+    margin-bottom: 1em;
+}
+
 .auth-form h1 {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: normal;
+    text-align: center;
     
     margin-bottom: 0.5em;
 }
@@ -434,23 +443,25 @@ article.error ul li {
     font-size: 14px;
     
     display: block;
+    margin-top: 0.5em;
     margin-bottom: 1em;
     padding: 0.5em;
     width: 100%;
 }
 
 .auth-form button {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #26f;
     border: 0px;
     border-radius: 4px;
     color: #fff;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
     text-transform: capitalize;
     
     display: block;
-    padding: 0.5em;
+    margin-top: 2em;
+    padding: 0.75em 0.5em;
     width: 100%;
 }
 

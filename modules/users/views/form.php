@@ -6,15 +6,22 @@
 
     <body>
         <div class="fluid auth-form">
-            <h1>
-                Войти в админку
-            </h1>
+            <h1>mini_blog</h1>
+            
+            <p>Заполните форму ниже для того чтобы войти в систему</p>
     
             <form method="POST">
-                <input name="username" placeholder="User name" type="text"/>
-                <input name="password" placeholder="Password" type="password"/>
+                <label>
+                    Имя пользователя
+                    <input name="username" type="text"/>
+                </label>
+                
+                <label>
+                    Пароль
+                    <input name="password" type="password"/>
+                </label>
     
-                <button>Submit</button>
+                <button type="submit">Войти</button>
             </form>
         </div>
     </body>

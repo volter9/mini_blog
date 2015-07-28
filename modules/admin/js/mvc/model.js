@@ -47,7 +47,7 @@ Model.prototype.isNew = function () {
  * @return {Boolean}
  */
 Model.prototype.isDirty = function () {
-    return Object.keys(this.delta()).length > 0;
+    return Object.keys(this.diff()).length > 0;
 };
 
 /**
@@ -102,7 +102,7 @@ Model.prototype.all = function () {
  * 
  * @return {Object}
  */
-Model.prototype.delta = function () {
+Model.prototype.diff = function () {
     return utils.diff(this.previous, this.data);
 };
 

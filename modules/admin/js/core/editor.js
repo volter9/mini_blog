@@ -1,5 +1,7 @@
-var mvc   = require('../mvc'),
-    panel = require('./panel');
+var mvc  = require('../mvc'),
+    mods = require('./panel/mods');
+
+var editing = false;
 
 /** HTML template */
 var html = '<div class="edit">'
@@ -45,9 +47,13 @@ var view = mvc.view.extend({
             self      = this;
         
         this.bind('.edit-button', 'click', function () {
+            if (editing) return;
+            
+            editing = true
+            
             component.enable();
             
-            panel.enableMods(component.mods || []);
+            mods.enableMods(component.mods || []);
             
             self.show(false);
         });
@@ -61,7 +67,9 @@ var view = mvc.view.extend({
         this.bind('.save-button', 'click', function () {
             component.save();
             component.disable();
-            panel.disableMods();
+            mods.disableMods();
+            
+            editing = false;
             
             self.show(true);
         });
@@ -69,7 +77,9 @@ var view = mvc.view.extend({
         this.bind('.cancel-button', 'click', function () {
             component.cancel();
             component.disable();
-            panel.disableMods();
+            mods.disableMods();
+            
+            editing = false;
             
             self.show(true);
         });

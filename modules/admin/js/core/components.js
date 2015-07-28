@@ -1,5 +1,4 @@
 var editor = require('./editor'),
-    panel  = require('./panel'),
     dom    = require('../helpers/dom');
 
 /**
@@ -59,6 +58,7 @@ Components.createComponent = function (node) {
     var view = new editor.view(null, {component: component});
     
     node.component = component;
+    node.editor    = view;
     node.appendChild(view.node);
 };
 
