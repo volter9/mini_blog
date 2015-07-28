@@ -6,10 +6,9 @@
         mini_blog.settings.collection.bootstrap(<?php 
             echo json_encode(storage('settings'), JSON_UNESCAPED_UNICODE) 
         ?>);
-        
-        <?php if (isset($posts, $post)): ?> 
+        <?php if (isset($posts)): ?> 
         mini_blog.posts.collection.bootstrap(<?php 
-            echo json_encode($posts['items']) 
+            echo json_encode($posts['items'], JSON_UNESCAPED_UNICODE) 
         ?>);<?php elseif (isset($post)): ?> 
         mini_blog.posts.collection.bootstrap([<?php 
             echo json_encode($post, JSON_UNESCAPED_UNICODE) 

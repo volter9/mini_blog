@@ -1,4 +1,5 @@
 (function () {
+    /* Posts mapper */
     var mapper = new mini_blog.mvc.mapper({
         baseurl: 'admin/settings',
         update:  'save'
@@ -8,6 +9,7 @@
         return data.settings;
     };
     
+    /* Settings collection */
     var settings = new mini_blog.mvc.collection;
     
     settings.bindTo(mapper);
@@ -28,7 +30,7 @@
          */
         render: function () {
             var data = this.data.setting.all();
-        
+            
             mini_blog.each(this.data.nodes, function (node, key) {
                 data[key] && (node.innerHTML = data[key]);
             });
@@ -41,8 +43,8 @@
      * @param {Object} attributes
      * @param {Node} node
      */
-    var Settings = function (attributes, node) {
-        mini_blog.component.call(this, attributes, node);
+    var Settings = function (node) {
+        mini_blog.component.call(this, node);
     };
 
     Settings.prototype = Object.create(mini_blog.component.prototype);
@@ -94,6 +96,7 @@
     };
 
     mini_blog.components.register('settings', Settings);
+    
     mini_blog.settings = {
         collection: settings
     };

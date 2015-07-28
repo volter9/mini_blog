@@ -28,14 +28,23 @@
          * Render the view
          */
         render: function () {
+            this.subrender();
+            this.highlight();
+        },
+        
+        subrender: function () {
             var data = this.data.post.all();
+            
+            console.log(data);
             
             mini_blog.each(this.data.nodes, function (node, key) {
                 data[key] && (node.innerHTML = data[key]);
             });
-            
+        },
+        
+        highlight: function () {
             mini_blog.toArray(this.node.querySelectorAll('pre'))
-                 .forEach(hljs.highlightBlock);
+                     .forEach(hljs.highlightBlock);
         }
     });
     
@@ -45,8 +54,8 @@
      * @param {Object} attributes
      * @param {Node} node
      */
-    var Post = function (attributes, node) {
-        mini_blog.component.call(this, attributes, node);
+    var Post = function (node) {
+        mini_blog.component.call(this, node);
     };
 
     Post.prototype = Object.create(mini_blog.component.prototype);
@@ -64,6 +73,13 @@
         }
         
         this.createView();
+        this.view.highlight();
+    };
+    
+    Post.prototype.enable = function () {
+        mini_blog.component.prototype.enable.call(this);
+        
+        this.view.subrender();
     };
     
     /**
@@ -81,9 +97,9 @@
      */
     Post.prototype.cancel = function () {
         if (this.id) {
-            return;
+            return this.post.revert();
         }
-    
+        
         this.node.parentNode.removeChild(this.node);
     };
 

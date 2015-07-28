@@ -20,7 +20,7 @@ ajax.request = function (url, method, data) {
             return;
         }
         
-        ajax.emit('error', xhr, data.message);
+        request.emit('error', xhr, data.message);
     });
     
     request.on('error', function (xhr, message) {

@@ -1,4 +1,5 @@
 var ajax   = require('./ajax'),
+    utils  = require('./utils'),
     events = require('./events');
 
 /**
@@ -9,9 +10,13 @@ var ajax   = require('./ajax'),
  * @param {Object} data
  */
 var Ajax = function (url, method, data) {
-    this.method = method || 'GET';
-    this.data   = data   || {};
-    this.url    = url;
+    this.method  = method || 'GET';
+    this.data    = data   || {};
+    this.url     = url;
+    this.headers = {
+        'Content-type':     'application/x-www-form-urlencoded',
+        'X-Requested-With': 'XMLHttpRequest'
+    };
 };
 
 events(Ajax.prototype);
@@ -56,8 +61,10 @@ Ajax.prototype.send = function () {
         self.emit('error', request, 'AJAX Error');
     };
     
-    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    utils.each(this.headers, function (value, key) {
+        request.setRequestHeader(key, value);
+    });
+    
     request.send(query);
 };
 
@@ -79,6 +86,18 @@ Ajax.prototype.success = function (handler) {
  */
 Ajax.prototype.error = function (handler) {
     this.on('error', handler);
+    
+    return this;
+};
+
+/**
+ * Set request header
+ * 
+ * @param {String} name
+ * @param {String} value
+ */
+Ajax.prototype.header = function (name, value) {
+    this.headers[name] = value;
     
     return this;
 };

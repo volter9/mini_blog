@@ -5,11 +5,9 @@ var utils = require('../helpers/utils');
  * 
  * Base (skeleton) constructor for component objects
  * 
- * @param {Object} attributes
  * @param {Node} node
  */
-function Component (attributes, node) {
-    this.attrubutes = attributes;
+function Component (node) {
     this.node = node;
     this.nodes = {};
     

@@ -28,15 +28,15 @@ Components.register = function (name, constructor) {
  * Create an instance of component
  * 
  * @param {String} name
- * @param {Array} args
+ * @param {Node} node
  * @return {mini_blog.component}
  */
-Components.create = function (name, attributes, node) {
+Components.create = function (name, node) {
     if (!this.components[name]) {
         return false;
     }
     
-    return new this.components[name].constructor(attributes, node);
+    return new this.components[name].constructor(node);
 };
 
 /**
@@ -49,9 +49,8 @@ Components.createComponent = function (node) {
         return;
     }
     
-    var attributes = dom.dataAttributes(node),
-        name       = attributes['data-component'],
-        component  = Components.create(name, attributes, node);
+    var name       = node.dataset.component,
+        component  = Components.create(name, node);
     
     if (!component) {
         return console.warn('Component "' + name + '" does not exists!');

@@ -43,8 +43,6 @@ Mapper.prototype.parse = function (data) {
  * @param {Model} model
  */
 Mapper.prototype.create = function (data, model) {
-    console.log('create', this.options.baseurl, data, model);
-    
     if (model) {
         model.merge(data);
         
