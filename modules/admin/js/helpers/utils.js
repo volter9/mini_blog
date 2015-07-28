@@ -24,7 +24,7 @@ var diff = function (a, b) {
     
     for (var key in b) {
         if (typeof a[key] === 'undefined' || b[key] !== a[key]) {
-            c[key] = a[key];
+            c[key] = b[key] || a[key];
         }
     }
     

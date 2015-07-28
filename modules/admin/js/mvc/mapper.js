@@ -99,6 +99,12 @@ Mapper.prototype.insert = function (model) {
 Mapper.prototype.update = function (model) {
     var self = this;
     
+    console.log(
+        model.delta(),
+        utils.merge({}, model.data), 
+        utils.merge({}, model.previous)
+    );
+    
     ajax.post([this.options.baseurl, this.options.update, model.id], model.delta())
         .success(function () {
             self.emit('update', model);

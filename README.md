@@ -48,16 +48,11 @@ composer install
 return array(
     'autoload' => true,
     'default'  => array(
-        // Имя базы данных
-        'name'     => 'mini_blog',
-        // Хост БД
-        'host'     => 'localhost',
-        // Пользователь БД
-        'user'     => 'root',
-        // Пароль пользователя БД
-        'password' => '',
-        // Кодировка
-        'charset'  => 'utf8'
+        'name'     => 'mini_blog', // Имя базы данных
+        'host'     => 'localhost', // Хост БД
+        'user'     => 'root',      // Пользователь БД
+        'password' => '',          // Пароль пользователя БД
+        'charset'  => 'utf8'       // Кодировка
     )
 );
 ```
