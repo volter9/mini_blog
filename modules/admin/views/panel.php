@@ -1,8 +1,8 @@
 <!-- mini_blog admin panel -->
 <div id="mini_panel">
     <ul class="clearfix">
-        <li class="status-bar failure button" title="Status bar">
-            <i class="fa fa-fw fa-exclamation-circle"></i>
+        <li class="status-bar button" title="Status bar">
+            <i class="fa fa-fw fa-circle"></i>
         </li>
         <li class="add">
             <a class="button" href="#" title="Create...">

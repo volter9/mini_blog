@@ -1,4 +1,5 @@
-var settings = require('../core/settings');
+var settings = require('../core/settings'),
+    status   = require('../core/panel/status-bar');
 
 /**
  * Central AJAX control
@@ -24,7 +25,7 @@ ajax.request = function (url, method, data) {
     });
     
     request.on('error', function (xhr, message) {
-        console.log(message);
+        status.failure(message);
     });
     
     return request;

@@ -1,4 +1,4 @@
-var utils = require('../helpers/utils');
+var utils = require('../../helpers/utils');
 
 /**
  * Setup editor's container for buttons

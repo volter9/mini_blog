@@ -31,11 +31,11 @@ function action_save ($group = 'default') {
  * 
  * @param string $group
  */
-function action_get ($group = 'default') {
-    $settings = settings_get($group);
+function action_get ($id = 'default') {
+    $settings = settings_get($id);
     
     echo json_encode(array(
         'status'   => !empty($settings) ? 'ok' : 'not_ok',
-        'settings' => array_merge($settings, array('id' => $group))
+        'settings' => array_merge($settings, compact('id'))
     ));
 }

@@ -33,10 +33,6 @@
     padding: 14px;
 }
 
-#mini_panel .button:hover {
-    text-decoration: underline;
-}
-
 #mini_panel.visible {
     display: block;
     opacity: 1;
