@@ -58,8 +58,9 @@ Mapper.prototype.create = function (data, model) {
  * 
  * @param {Number} id
  * @param {Model} model
+ * @param {Function} callback
  */
-Mapper.prototype.fetch = function (id, model) {
+Mapper.prototype.fetch = function (id, model, callback) {
     var self = this;
     
     ajax.get([this.options.baseurl, this.options.get, id])
@@ -68,6 +69,7 @@ Mapper.prototype.fetch = function (id, model) {
                 result = self.create(self.parse(data), model);
             
             if (!isNew) {
+                callback && callback(model);
                 self.emit('get', result);
             }
         })
@@ -78,14 +80,16 @@ Mapper.prototype.fetch = function (id, model) {
  * Send a model on server
  * 
  * @param {Model} model
+ * @param {Function} callback
  */
-Mapper.prototype.insert = function (model) {
+Mapper.prototype.insert = function (model, callback) {
     var self = this;
     
     ajax.post([this.options.baseurl, this.options.insert], model.all())
         .success(function (_, data) {
             model.id = data.id;
             
+            callback && callback(model);
             self.emit('add', model);
         })
         .send();
@@ -95,12 +99,14 @@ Mapper.prototype.insert = function (model) {
  * Update (edit) the model
  * 
  * @param {Model} model
+ * @param {Function} callback
  */
 Mapper.prototype.update = function (model) {
     var self = this;
     
     ajax.post([this.options.baseurl, this.options.update, model.id], model.diff())
         .success(function () {
+            callback && callback(model);
             self.emit('update', model);
         })
         .send();
@@ -110,22 +116,29 @@ Mapper.prototype.update = function (model) {
  * Save (insert or update) model
  * 
  * @param {Model} model
+ * @param {Function} callback
  */
-Mapper.prototype.save = function (model) {
-    model.isNew() ? this.insert(model) : this.update(model);
+Mapper.prototype.save = function (model, callback) {
+    model.isNew() 
+        ? this.insert(model, callback) 
+        : this.update(model, callback);
 };
 
 /**
  * Remove model from database
  * 
  * @param {Model} model
+ * @param {Function} callback
  */
-Mapper.prototype.remove = function (model) {
+Mapper.prototype.remove = function (model, callback) {
     var self = this;
     
     ajax.post([this.options.baseurl, this.options.remove, model.id])
         .success(function () {
-            self.emit('destroy', model);
+            model.destroy();
+            
+            callback && callback(model);
+            self.emit('remove', model);
         })
         .send();
 };

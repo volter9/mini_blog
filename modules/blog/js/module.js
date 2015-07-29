@@ -100,7 +100,7 @@
      * Cancel editing
      */
     Post.prototype.cancel = function () {
-        if (this.id) {
+        if (!this.post.isNew()) {
             return this.post.revert();
         }
         
@@ -111,14 +111,15 @@
      * Remove a post
      */
     Post.prototype.remove = function () {
-        if (!this.id) {
+        if (this.post.isNew()) {
             return;
         }
-    
-        mapper.remove(this.post);
         
-        this.id = null;
-        this.cancel();
+        var self = this;
+        
+        mapper.remove(this.post, function () {
+            self.cancel();
+        });
     };
 
     /**
@@ -127,7 +128,9 @@
     Post.prototype.save = function () {
         this.post.merge(this.collectData());
         
-        mapper.save(this.post);
+        mapper.save(this.post, function () {
+            
+        });
         
         this.post.clear();
     };

@@ -46,15 +46,22 @@ var view = mvc.view.extend({
         var component = this.data.component,
             self      = this;
         
+        var callback = function () {
+            component.disable();
+            mods.disableMods();
+            
+            editing = false;
+            
+            self.show(true);
+        };
+        
         this.bind('.edit-button', 'click', function () {
             if (editing) return;
             
             editing = true
-            
             component.enable();
             
             mods.enableMods(component.mods || []);
-            
             self.show(false);
         });
         
@@ -66,22 +73,12 @@ var view = mvc.view.extend({
         
         this.bind('.save-button', 'click', function () {
             component.save();
-            component.disable();
-            mods.disableMods();
-            
-            editing = false;
-            
-            self.show(true);
+            callback();
         });
         
         this.bind('.cancel-button', 'click', function () {
             component.cancel();
-            component.disable();
-            mods.disableMods();
-            
-            editing = false;
-            
-            self.show(true);
+            callback();
         });
     },
     

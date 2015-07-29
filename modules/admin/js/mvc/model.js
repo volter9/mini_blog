@@ -111,7 +111,7 @@ Model.prototype.diff = function () {
  */
 Model.prototype.destroy = function () {
     this.data = {};
-    this.id   = -1;
+    this.id   = -unique();
     
     this.emit('destroy');
 };
