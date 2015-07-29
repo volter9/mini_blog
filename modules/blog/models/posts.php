@@ -20,7 +20,7 @@ function posts_init () {
 function posts_all ($page = 1, $pages = POSTS_PER_PAGE) {
     return paginate_query('
         SELECT
-            p.id, p.title, p.url, p.text, p.description, 
+            p.id, pds.title, p.url, p.text, p.description, 
             p.user_id, p.category_id, p.date, 
             u.username, 
             c.title as category, c.url as category_url

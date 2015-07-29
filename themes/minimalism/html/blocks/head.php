@@ -25,8 +25,12 @@
       rel="stylesheet" 
       type="text/css"/>
 <!-- FontAwesome -->
-<link rel="stylesheet" 
-      href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+      rel="stylesheet" 
       type="text/css"/>
+<!-- Fonts -->
+<link href="http://fonts.googleapis.com/css?family=Lato|Open+Sans:300" 
+      rel="stylesheet" 
+      type="text/css">
 
 <?php emit('blocks:head') ?>

@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>404 - Not Found</title>
-        <link href="<?php echo asset_url('css/styles.css') ?>" 
-              rel="stylesheet" 
-              type="text/css"/>
+        <?php view('blocks/head', array('title' => '404 - Not Found')) ?> 
     </head>
     
     <body>
@@ -13,5 +10,7 @@
         <article class="fluid error">
             <p>Sorry, this page wasn't found!</p>
         </article>
+        
+        <?php view('blocks/footer') ?> 
     </body>
 </html>

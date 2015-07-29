@@ -95,7 +95,7 @@
             nodes: this.nodes
         });
     };
-
+    
     /**
      * Cancel editing
      */
@@ -106,7 +106,7 @@
         
         this.node.parentNode.removeChild(this.node);
     };
-
+    
     /**
      * Remove a post
      */
@@ -121,20 +121,18 @@
             self.cancel();
         });
     };
-
+    
     /**
      * Save a post
      */
     Post.prototype.save = function () {
         this.post.merge(this.collectData());
         
-        mapper.save(this.post, function () {
-            
-        });
+        mapper.save(this.post);
         
         this.post.clear();
     };
-
+    
     mini_blog.components.register('post', Post);
     
     mini_blog.posts = {

@@ -21,10 +21,7 @@ if (!function_exists('str_clip')) {
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Error - Exception was thrown</title>
-        <link href="<?php echo asset_url('css/styles.css') ?>" 
-              rel="stylesheet" 
-              type="text/css"/>
+        <?php view('blocks/head', array('title' => 'Error - Exception was thrown')) ?> 
     </head>
     
     <body>
@@ -53,5 +50,7 @@ if (!function_exists('str_clip')) {
                 </ul>
             </div>
         </article>
+        
+        <?php view('blocks/footer') ?> 
     </body>
 </html>
