@@ -43,9 +43,7 @@ function db_find ($table, $id) {
  * @return array|bool
  */
 function db_edit ($table, array $data, $id) {
-    $criteria = ['id[=]' => $id];
-    
-    return db_update($table, $data, $criteria);
+    return db_update($table, $data, array('id[=]' => $id));
 }
 
 /**

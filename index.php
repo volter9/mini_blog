@@ -52,4 +52,4 @@ unset($intall);
  */
 require 'vendor/autoload.php';
 
-app_boot(sprintf('%sconfig', MF_APP_DIR));
+app_boot(app_path('config'));

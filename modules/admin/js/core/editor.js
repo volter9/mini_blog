@@ -55,42 +55,59 @@ var view = mvc.view.extend({
             self.show(true);
         };
         
-        this.bind('.edit-button', 'click', function () {
-            if (editing) return;
-            
-            editing = true
-            component.enable();
-            
-            mods.enableMods(component.mods || []);
-            self.show(false);
-        });
-        
-        this.bind('.remove-button', 'click', function () {
-            component.remove();
-            
-            self.destroy();
-        });
-        
-        this.bind('.save-button', 'click', function () {
-            component.save();
-            callback();
-        });
-        
-        this.bind('.cancel-button', 'click', function () {
-            component.cancel();
-            callback();
-        });
+        this.bind('.edit-button',   'click', this.edit);
+        this.bind('.remove-button', 'click', this.remove);
+        this.bind('.save-button',   'click', this.save);
+        this.bind('.cancel-button', 'click', this.cancel);
     },
     
     /**
-     * Bind an event to specific element
-     * 
-     * @param {String} selector
-     * @param {String} event
-     * @param {Function} callback
+     * Disable editing
      */
-    bind: function (selector, event, callback) {
-        this.find(selector).addEventListener(event, callback);
+    disable: function () {
+        this.data.component.disable();
+        mods.disableMods();
+        
+        editing = false;
+        
+        this.show(true);
+    },
+    
+    /**
+     * Enable editing
+     */
+    edit: function () {
+        if (editing) return;
+        
+        editing = true
+        mods.enableMods(component.mods || []);
+        
+        this.data.component.enable();
+        this.show(false);
+    },
+    
+    /**
+     * Remove the item from database
+     */
+    remove: function () {
+        this.data.component.remove();
+        this.destroy();
+    },
+    
+    /**
+     * Save edited content
+     */
+    save: function () {
+        this.disable();
+        this.data.component.save();
+    },
+    
+    /**
+     * Cancel editing
+     */
+    cancel: function () {
+        this.disable();
+        this.data.component.cancel();
     },
     
     /**

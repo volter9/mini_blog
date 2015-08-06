@@ -18,7 +18,7 @@
 }
 
 #mini_panel .separator {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 1em;
 }
 
 #mini_panel .button {
@@ -47,7 +47,8 @@
     color: #888;
 }
 
-#mini_panel a:hover {
+#mini_panel a:hover,
+#mini_panel .button:hover {
     color: #556;
     text-decoration: none;
 }

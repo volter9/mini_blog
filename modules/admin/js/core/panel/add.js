@@ -7,7 +7,7 @@ var AddView = view.extend({
      * Bind the action 
      */
     initialize: function () {
-        this.find('.fa').addEventListener('click', this.addView.bind(this));
+        this.find('.button').addEventListener('click', this.addView.bind(this));
     },
     
     /**

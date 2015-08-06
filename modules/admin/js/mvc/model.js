@@ -140,7 +140,6 @@ Model.prototype.merge = function (data) {
     }
     
     this.data = utils.merge(this.data, data);
-    
     this.emit('change');
 };
 

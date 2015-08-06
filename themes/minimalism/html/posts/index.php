@@ -19,9 +19,9 @@
 </article>
 
 <?php if ($posts['pages']['pages'] > 1): ?> 
-<div class="fluid"><?php 
+<?php 
     $pages = array_merge($posts['pages'], compact('url'));
     
     view('blocks/pagination', $pages, false); 
-?></div>
+?>
 <?php endif; ?> 

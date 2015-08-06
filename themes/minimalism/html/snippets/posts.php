@@ -2,6 +2,26 @@
 <div class="post" 
      data-component="post"
      data-id="<?php echo $post['id'] ?>">
+    <h2 class="post-title">
+        <?php if (isset($post['url'])): ?> 
+        <a href="<?php echo url('#post', array($post['url'])) ?>" data-name="title">
+            <?php echo $post['title'] ?> 
+        </a>
+        <?php else: ?> 
+        <span data-name="title">
+            <?php echo $post['title'] ?> 
+        </span>
+        <?php endif; ?>  
+    </h2>
+
+    <p class="description" data-name="description">
+        <?php echo $post['description'] ?> 
+    </p>
+    
+    <div data-name="text">
+        <?php echo $post['text'] ?> 
+    </div>
+    
     <ul class="info">
         <li> 
             <i class="fa fa-calendar"></i> 
@@ -22,25 +42,5 @@
             <?php echo $post['username'] ?> 
         </li>
     </ul>
-    
-    <h2 class="post-title">
-        <?php if (isset($post['url'])): ?> 
-        <a href="<?php echo url('#post', array($post['url'])) ?>" data-name="title">
-            <?php echo $post['title'] ?> 
-        </a>
-        <?php else: ?> 
-        <span data-name="title">
-            <?php echo $post['title'] ?> 
-        </span>
-        <?php endif; ?>  
-    </h2>
-
-    <p class="description" data-name="description">
-        <?php echo $post['description'] ?> 
-    </p>
-    
-    <div data-name="text">
-        <?php echo $post['text'] ?> 
-    </div>
 </div>
 <?php } ?>
