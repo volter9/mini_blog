@@ -1,7 +1,7 @@
 (function () {
     /* Posts mapper */
     var mapper = new mini_blog.mvc.mapper({
-        baseurl: 'admin/settings',
+        baseurl: 'api/settings',
         update:  'save'
     });
     

@@ -43,18 +43,6 @@ var view = mvc.view.extend({
      * Setup events
      */
     setupEvents: function () {
-        var component = this.data.component,
-            self      = this;
-        
-        var callback = function () {
-            component.disable();
-            mods.disableMods();
-            
-            editing = false;
-            
-            self.show(true);
-        };
-        
         this.bind('.edit-button',   'click', this.edit);
         this.bind('.remove-button', 'click', this.remove);
         this.bind('.save-button',   'click', this.save);
@@ -80,7 +68,7 @@ var view = mvc.view.extend({
         if (editing) return;
         
         editing = true
-        mods.enableMods(component.mods || []);
+        mods.enableMods(this.data.component.mods || []);
         
         this.data.component.enable();
         this.show(false);

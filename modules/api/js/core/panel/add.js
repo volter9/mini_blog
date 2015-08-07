@@ -31,7 +31,7 @@ var AddView = view.extend({
             self.appendNode(data, destination);
         };
         
-        ajax.post('admin/template/posts')
+        ajax.post('api/template/posts')
             .success(callback)
             .send();
     },

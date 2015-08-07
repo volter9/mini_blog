@@ -20,9 +20,11 @@ function action_save ($group = 'default') {
         }
     }
     
+    $result = settings_save($group, $input);
+    
     echo json_encode(array(
-        'status'  => settings_save($group, $input) ? 'ok' : 'not_ok',
-        'message' => "Setting by group '$group' isn't exists"
+        'status'  => $result ? 'ok' : 'not_ok',
+        'message' => $result ? '' : "Setting by group '$group' isn't exists"
     ));
 }
 

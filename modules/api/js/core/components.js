@@ -55,7 +55,10 @@ Components.createComponent = function (node) {
         return console.warn('Component "' + name + '" does not exists!');
     }
     
-    var view = new editor.view(null, {component: component});
+    var view = new editor.view(null, {
+        node:      node,
+        component: component
+    });
     
     node.component = component;
     node.editor    = view;

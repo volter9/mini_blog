@@ -1,7 +1,7 @@
 (function () {
     /** Mapper */
     var mapper = new mini_blog.mvc.mapper({
-        baseurl: 'admin/posts'
+        baseurl: 'api/posts'
     });
     
     mapper.parse = function (data) {

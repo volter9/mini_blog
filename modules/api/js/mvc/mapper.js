@@ -101,7 +101,7 @@ Mapper.prototype.insert = function (model, callback) {
  * @param {Model} model
  * @param {Function} callback
  */
-Mapper.prototype.update = function (model) {
+Mapper.prototype.update = function (model, callback) {
     var self = this;
     
     ajax.post([this.options.baseurl, this.options.update, model.id], model.diff())
