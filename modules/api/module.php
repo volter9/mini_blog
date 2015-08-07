@@ -13,8 +13,7 @@ function api_module_init () {
     admin('api', array(
         'js' => array(
             "{$path}js/main.js",
-            "{$path}js/mods.js",
-            "{$path}js/squire.js"
+            "{$path}js/mods.js"
         )
     ));
     

@@ -39,6 +39,18 @@ dom.dataAttributes = function (element) {
     return attributes;
 };
 
+dom.hasParent = function (node, callback) {
+    if (callback(node.parentNode)) {
+        return true;
+    }
+    
+    if (node.parentNode === document.documentElement) {
+        return false;
+    }
+    
+    return dom.hasParent(node.parentNode, callback)
+};
+
 /**
  * Make argument node HTML5 editable
  * 
@@ -46,6 +58,7 @@ dom.dataAttributes = function (element) {
  */
 dom.makeEditable = function (node) {
     node.setAttribute('contenteditable', 'true');
+    node.classList.add('m-editable');
     
     if (node.isEditable) {
         return;
@@ -64,8 +77,16 @@ dom.makeEditable = function (node) {
     });
 
     node.addEventListener('keyup', function (e) {
-        if (e.keyCode === 13) {
-            document.execCommand('formatBlock', null, 'p');
+        if (e.keyCode === 13 && (!e.shiftKey || !e.ctrlKey)) {
+            var selection = document.getSelection();
+            
+            var inList = dom.hasParent(selection.anchorNode, function (node) {
+                return node.nodeName.toLowerCase() === 'li';
+            });
+            
+            if (!inList) {
+                document.execCommand('formatBlock', null, 'p');
+            }
         }
     });
     
@@ -80,6 +101,7 @@ dom.makeEditable = function (node) {
  */
 dom.unmakeEditable = function (node) {
     node.removeAttribute('contenteditable');
+    node.classList.remove('m-editable');
 };
 
 module.exports = dom;

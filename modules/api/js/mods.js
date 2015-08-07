@@ -25,6 +25,10 @@
         
         this.name = 'wysiwig';
         
+        this.addAction('header', '<i class="fa fa-header fa-fw"></i>', function () {
+            document.execCommand('formatBlock', null, 'h1');
+        });
+        
         this.addAction('bold', '<i class="fa fa-bold fa-fw"></i>', function () {
             document.execCommand('bold');
         });
@@ -37,11 +41,7 @@
             document.execCommand('formatBlock', null, 'blockquote');
         });
         
-        this.addAction('header', '<i class="fa fa-header fa-fw"></i>', function () {
-            document.execCommand('formatBlock', null, 'h1');
-        });
-        
-        this.addAction('paragraph', '<i class="fa fa-paragraph fa-fw"></i>', function () {
+        /* this.addAction('paragraph', '<i class="fa fa-paragraph fa-fw"></i>', function () {
             document.execCommand('formatBlock', null, 'p');
             
             var selection = document.getSelection(),
@@ -52,17 +52,13 @@
             }
             
             p.innerHTML = p.innerText || p.textContent;
-        });
+        }); */
         
         this.addAction('code', '<i class="fa fa-code fa-fw"></i>', function () {
             document.execCommand('formatBlock', null, 'pre');
         });
         
-        this.addAction('terminal', '<i class="fa fa-terminal fa-fw"></i>', function () {
-            document.execCommand('insertHTML', null, '<code>' + document.getSelection() + '</code>');
-        });
-        
-        this.addAction('ul-list', '<i class="fa fa-list fa-fw"></i>', function () {
+        this.addAction('ul-list', '<i class="fa fa-list-ul fa-fw"></i>', function () {
             document.execCommand('insertUnorderedList');
         });
     };

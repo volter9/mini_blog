@@ -5,7 +5,7 @@
     </head>
 
     <body>
-        <div class="fluid auth-form">
+        <div class="auth-form">
             <h1>mini_blog</h1>
             
             <p>Заполните форму ниже для того чтобы войти в систему</p>

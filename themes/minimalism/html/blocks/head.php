@@ -14,10 +14,10 @@
 <meta name="description" content="<?php echo htmlspecialchars($description) ?>"/>
 <?php endif; ?>
 
-<link href="<?php echo asset_url('css/styles.css') ?>" 
+<link href="<?php echo module_url('api', 'css/mini_blog.css') ?>" 
       rel="stylesheet" 
       type="text/css"/>
-<link href="<?php echo module_url('api', 'css/mini_blog.css') ?>" 
+<link href="<?php echo asset_url('css/styles.css') ?>" 
       rel="stylesheet" 
       type="text/css"/>
 <!-- Highlight.js theme -->
