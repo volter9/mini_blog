@@ -1,9 +1,11 @@
-<footer class="clearfix fluid" id="footer"
-        data-component="settings"
-        data-group="default">
-    <p data-name="copyright"><?php 
-        echo storage('settings.default.copyright') 
-    ?></p>
+<footer class="fluid" id="footer">
+    <div class="settings"
+         data-component="settings"
+         data-group="default">
+        <p data-name="copyright"><?php 
+            echo storage('settings.default.copyright') 
+        ?></p>
+    </div>
 </footer>
 
 <script src="<?php echo asset_url('js/hljs.js') ?>" type="text/javascript"></script>

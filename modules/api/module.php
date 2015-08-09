@@ -17,6 +17,10 @@ function api_module_init () {
         )
     ));
     
+    bind('blocks:head', function () {
+        users('authorized') and view(module_path('api', 'views/head'));
+    });
+    
     bind('blocks:header', function () {
         users('authorized') and view(module_path('api', 'views/panel'));
     });

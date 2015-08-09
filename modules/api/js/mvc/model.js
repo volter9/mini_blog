@@ -33,33 +33,6 @@ Model.prototype.get = function (key) {
 };
 
 /**
- * Check whether the model is new
- * 
- * @return {Boolean}
- */
-Model.prototype.isNew = function () {
-    return this.id < 0;
-};
-
-/**
- * Check whether the model was modified
- * 
- * @return {Boolean}
- */
-Model.prototype.isDirty = function () {
-    return Object.keys(this.diff()).length > 0;
-};
-
-/**
- * Check whether the model was destroyed
- * 
- * @return {Boolean}
- */
-Model.prototype.isEmpty = function () {
-    return Object.keys(this.data).length === 0;
-};
-
-/**
  * Set the value by key
  * 
  * @param {String} key
@@ -141,6 +114,33 @@ Model.prototype.merge = function (data) {
     
     this.data = utils.merge(this.data, data);
     this.emit('change');
+};
+
+/**
+ * Check whether the model is new
+ * 
+ * @return {Boolean}
+ */
+Model.prototype.isNew = function () {
+    return this.id < 0;
+};
+
+/**
+ * Check whether the model was modified
+ * 
+ * @return {Boolean}
+ */
+Model.prototype.isDirty = function () {
+    return Object.keys(this.diff()).length > 0;
+};
+
+/**
+ * Check whether the model was destroyed
+ * 
+ * @return {Boolean}
+ */
+Model.prototype.isEmpty = function () {
+    return Object.keys(this.data).length === 0;
 };
 
 Model.extend = extend(Model);

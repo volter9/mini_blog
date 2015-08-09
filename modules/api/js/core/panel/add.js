@@ -56,7 +56,7 @@ var AddView = view.extend({
         components.createComponent(div);
         
         div.component.post.merge(data.data);
-        div.editor.find('.edit-button').click()
+        div.editor.edit();
     }
 });
 

@@ -17,8 +17,7 @@
      * - Italic
      * - Blockquote
      * - Header
-     * - Clear formating (paragraph)
-     * - Code (block and inline)
+     * - Code (block)
      */
     WysiwigMod.prototype.init = function () {
         var self = this;
@@ -60,6 +59,10 @@
         
         this.addAction('ul-list', '<i class="fa fa-list-ul fa-fw"></i>', function () {
             document.execCommand('insertUnorderedList');
+        });
+        
+        this.addAction('ol-list', '<i class="fa fa-list-ol fa-fw"></i>', function () {
+            document.execCommand('insertOrderedList');
         });
     };
     

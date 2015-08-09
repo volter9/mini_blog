@@ -81,7 +81,12 @@ dom.makeEditable = function (node) {
             var selection = document.getSelection();
             
             var inList = dom.hasParent(selection.anchorNode, function (node) {
-                return node.nodeName.toLowerCase() === 'li';
+                var name = node.nodeName.toLowerCase();
+                
+                console.log(name);
+                
+                return name === 'li'
+                    || name === 'pre';
             });
             
             if (!inList) {

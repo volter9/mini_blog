@@ -22,61 +22,12 @@ function users_init () {
     $user = user_by_id((int)session('user_id'));
     
     if ($user) {
-        $privileges = array_map(
-            function ($privilege) {
-                return trim($privilege);
-            },
-            explode('|', $user['privileges'])
-        );
-        
         users('user', $user);
         users('authorized', true);
-        users('privileges', $privileges);
     }
     else {
         session('user_id', false);
     }
-}
-
-/**
- * Is user allowed to perform specific action
- * 
- * @param string $action
- * @return bool
- */
-function is_allowed ($action) {
-    $privileges = users('privileges');
-    $privileges = $privileges ? $privileges : array();
-    
-    if (contains($action, ':')) {
-        list($name, $parameters) = explode(':', $action);
-        
-        $filtered = array_filter($privileges, function ($privilege) use ($name) {
-            return starts_with($privilege, $name);
-        });
-        
-        foreach ($filtered as $privilege) {
-            $privilege = str_replace('*', '[^,]+', $privilege);
-            $regex = "#^$privilege$#i";
-            
-            if (preg_match($regex, $action)) {
-                return true;
-            }
-        }
-    }
-    
-    return in_array($action, $privileges)
-        || in_array('*', $privileges);
-}
-
-/**
- * Check for specific role
- * 
- * @param string
- * @return bool
- */
-function is_role ($role) {
-    return users('user.role') === $role;
 }
 
 /**
@@ -87,12 +38,9 @@ function is_role ($role) {
  */
 function user_by_id ($id) {
     return db_select('
-        SELECT 
-            u.id, u.username, u.mail, 
-            g.name as role, g.privileges
-        FROM users u
-        LEFT JOIN groups g ON (u.group_id = g.id)
-        WHERE u.id = ?',
+        SELECT id, username, mail
+        FROM users
+        WHERE id = ?',
         array($id), true
     );
 }

@@ -77,9 +77,9 @@ a:hover {
 .right { float: right; }
 
 .fluid {
-    margin-left: 4em;
-    width: 50%;
+    margin-left: 2em;
     min-width: 700px;
+    width: 50%;
 }
 
 /**
@@ -97,9 +97,7 @@ a:hover {
     margin-bottom: 3em;
 }
 
-#header > div {
-    box-sizing: border-box;
-    
+.settings {
     position: relative;
     top: 0px;
     left: 0px;
@@ -115,7 +113,7 @@ a:hover {
     color: #666;
     font-size: 14px;
     
-    margin-top: 0.25em;
+    margin-top: 0.75em;
     margin-bottom: 0px;
 }
 
@@ -316,7 +314,7 @@ article.error ul li {
 
 .post .info li {
     display: inline-block;
-    margin-right: 0.8em;
+    margin-right: 1.5em;
 }
 
 .post .info .fa {
@@ -360,7 +358,11 @@ article.error ul li {
 .post ol {
     list-style-type: square;
     
-    padding-left: 45px;
+    padding-left: 2em;
+}
+
+.post ol {
+    list-style-type: decimal;
 }
 
 .post ul li,

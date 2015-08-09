@@ -24,11 +24,9 @@
     
     <ul class="info">
         <li> 
-            <i class="fa fa-calendar"></i> 
             <?php echo date('d.m.Y', strtotime($post['date'])) ?> 
         </li>
         <li>
-            <i class="fa fa-tag"></i> 
             <?php if (!empty($post['category'])): ?> 
             <a href="<?php echo url('#category', array($post['category_url'])) ?>">
                 <?php echo $post['category'] ?> 
@@ -36,10 +34,6 @@
             <?php else: ?>
             <a href="<?php echo url('#posts') ?>">Без категории</a>
             <?php endif; ?> 
-        </li>
-        <li>
-            <i class="fa fa-user"></i> 
-            <?php echo $post['username'] ?> 
         </li>
     </ul>
 </div>

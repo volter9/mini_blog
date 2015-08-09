@@ -7,14 +7,19 @@
  * @package mini_blog
  */
 
+body {
+    padding-left: 2.5em !important;
+}
+
 #mini_panel {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: #fff;
     
     position: fixed;
     top: 0px;
     bottom: 0px;
     left: 0px;
     z-index: 9002;
+    width: 3em;
 }
 
 #mini_panel .separator {
@@ -84,11 +89,12 @@
     cursor: pointer;
     font-size: 14px;
     
+    margin-right: 1px;
     padding: 6px;
 }
 
 .m-editor .button:last-child {
-    margin-left: 1px;
+    margin-right: 0px;
 }
 
 .m-editor .edit,

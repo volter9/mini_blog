@@ -5,12 +5,9 @@ var editing = false;
 
 /** HTML template */
 var html = '<div class="edit">'
-+ '    <button class="edit-button button">'
++ '    <!-- <button class="edit-button button">'
 + '        <i class="fa fa-fw fa-pencil"></i>'
-+ '    </button>'
-+ '    <button class="remove-button button">'
-+ '        <i class="fa fa-fw fa-trash"></i>'
-+ '    </button>'
++ '    </button> -->'
 + '</div>'
 + '<div class="editing">'
 + '    <button class="save-button button">'
@@ -18,6 +15,9 @@ var html = '<div class="edit">'
 + '    </button>'
 + '    <button class="cancel-button button">'
 + '        <i class="fa fa-fw fa-times"></i>'
++ '    </button>'
++ '    <button class="remove-button button">'
++ '        <i class="fa fa-fw fa-trash"></i>'
 + '    </button>'
 + '</div>';
 
@@ -43,10 +43,11 @@ var view = mvc.view.extend({
      * Setup events
      */
     setupEvents: function () {
-        this.bind('.edit-button',   'click', this.edit);
-        this.bind('.remove-button', 'click', this.remove);
+        this.data.node.addEventListener('dblclick', this.edit.bind(this));
+        
         this.bind('.save-button',   'click', this.save);
         this.bind('.cancel-button', 'click', this.cancel);
+        this.bind('.remove-button', 'click', this.remove);
     },
     
     /**
@@ -78,8 +79,11 @@ var view = mvc.view.extend({
      * Remove the item from database
      */
     remove: function () {
-        this.data.component.remove();
-        this.destroy();
+        if (window.confirm('Are you sure you want to delete this entry?')) {
+            this.disable();
+            this.data.component.remove();
+            this.destroy();
+        }
     },
     
     /**

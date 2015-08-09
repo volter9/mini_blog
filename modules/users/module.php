@@ -13,5 +13,4 @@ function users_module_init () {
     $path = module_path('users', 'models', true);
     
     load_model('users', $path);
-    load_model('groups', $path);
 }
