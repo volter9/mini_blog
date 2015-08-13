@@ -107,7 +107,7 @@ body {
     border: 1px solid transparent;
     border-bottom: 1px dashed rgba(0, 0, 0, 0.18);
     
-    display: block;
+    display: block !important;
     outline: none;
     padding-bottom: 2px;
 }

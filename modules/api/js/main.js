@@ -42,7 +42,7 @@ e[s.nodeName]=s.nodeValue}return e},o.dataAttributes=function(t){var e=mini_blog
 return Object.keys(e).forEach(function(t){0!==t.indexOf("data-")&&delete e[t]}),e},o.hasParent=function(t,e){return e(t.parentNode)?!0:t.parentNode===document.documentElement?!1:o.hasParent(t.parentNode,e)},o.makeEditable=function(t){t.setAttribute("contenteditable","true"),t.classList.add("m-editable"),t.isEditable||(t.addEventListener("paste",function(t){t.preventDefault()
 var e=t.clipboardData.getData("text/plain").replace(/\</g,"&lt;").replace(/\>/g,"&gt;").replace(/\n\r?/g,"<br/>\n")
 document.execCommand("insertHTML",!1,e)}),t.addEventListener("keyup",function(t){if(!(13!==t.keyCode||t.shiftKey&&t.ctrlKey)){var e=document.getSelection(),n=o.hasParent(e.anchorNode,function(t){var e=t.nodeName.toLowerCase()
-return console.log(e),"li"===e||"pre"===e})
+return"li"===e||"pre"===e})
 n||document.execCommand("formatBlock",null,"p")}}),t.isEditable=!0)},o.unmakeEditable=function(t){t.removeAttribute("contenteditable"),t.classList.remove("m-editable")},e.exports=o},{}],14:[function(t,e,n){var o=function(t){t.on=function(t,e){this._events||(this._events={}),this._events[t]||(this._events[t]=[]),this._events[t].push(e)},t.emit=function(t){if(this._events&&this._events[t]){var e=mini_blog.toArray(arguments).slice(1)
 this._events[t].forEach(function(t){t&&t.apply(t,e)})}}}
 e.exports=o},{}],15:[function(t,e,n){var o=function(t){return t=t||(t=0),function(){return++t}}

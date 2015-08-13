@@ -36,11 +36,32 @@
             document.execCommand('italic');
         });
         
+        this.addAction('link', '<i class="fa fa-link fa-fw"></i>', function () {
+            var isLink = !mini_blog.dom.hasParent(document.getSelection().anchorNode, function (node) {
+                return node.nodeName.toLowerCase() === 'a';
+            });
+            
+        	if (isLink) {
+        	    var link = window.prompt('Enter the link', '');
+        	    
+                document.execCommand('createLink', false, link);
+            }
+            else {
+                document.execCommand('unlink');
+            }
+        });
+        
+        this.addAction('image', '<i class="fa fa-picture-o fa-fw"></i>', function () {
+            var url = window.prompt('Enter image URL:', '');
+            
+            document.execCommand('insertImage', null, url);
+        });
+        
         this.addAction('quote', '<i class="fa fa-quote-right fa-fw"></i>', function () {
             document.execCommand('formatBlock', null, 'blockquote');
         });
         
-        /* this.addAction('paragraph', '<i class="fa fa-paragraph fa-fw"></i>', function () {
+        this.addAction('paragraph', '<i class="fa fa-paragraph fa-fw"></i>', function () {
             document.execCommand('formatBlock', null, 'p');
             
             var selection = document.getSelection(),
@@ -51,7 +72,7 @@
             }
             
             p.innerHTML = p.innerText || p.textContent;
-        }); */
+        });
         
         this.addAction('code', '<i class="fa fa-code fa-fw"></i>', function () {
             document.execCommand('formatBlock', null, 'pre');

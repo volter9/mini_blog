@@ -51,7 +51,7 @@ body {
 }
 
 a {
-    color: #aaa;
+    color: blue;
     text-decoration: none;
 }
 
@@ -405,11 +405,11 @@ article.error ul li {
 }
 
 .post img {
-    margin: 20px;
-    margin-top: 0px
+    max-width: 100%;
 }
 
 .post .description {
+    display: none;
     font-size: 14px;
     margin-bottom: 15px
 }
