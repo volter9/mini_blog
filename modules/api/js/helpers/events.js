@@ -31,11 +31,7 @@ var events = function (proto) {
         var args = mini_blog.toArray(arguments).slice(1);
     
         this._events[event].forEach(function (callback) {
-            if (!callback) {
-                return;
-            }
-        
-            callback.apply(callback, args);
+            callback && callback.apply(callback, args);
         });
     };
 };

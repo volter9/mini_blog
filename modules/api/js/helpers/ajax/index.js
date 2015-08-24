@@ -1,5 +1,4 @@
-var settings = require('../core/settings'),
-    status   = require('../core/panel/status-bar');
+var settings = require('../../core/settings');
 
 /**
  * Central AJAX control
@@ -17,21 +16,26 @@ ajax.request = function (url, method, data) {
     var request = new this.instance(this.url(url), method, data);
     
     request.on('data', function (xhr, data) {
-        if (data.status === 'ok') {
-            return;
-        }
-        
-        request.emit('error', xhr, data.message);
+        data.status === 'ok' 
+            ? request.emit('success', xhr, data)
+            : request.emit('error', xhr, data.message);
     });
     
     request.on('error', function (xhr, message) {
-        status.failure(message);
+        console.error(message);
     });
     
     return request;
 };
 
-/** AJAX shortcuts */
+/** 
+ * AJAX shortcuts 
+ * 
+ * @method get 
+ * @method post
+ * @method put
+ * @method delete 
+ */
 ['get', 'post', 'put', 'delete'].forEach(function (method) {
     var name = method.toUpperCase();
     
@@ -57,6 +61,6 @@ ajax.url = function (url) {
     return url.join('/').replace(/\/+/, '/');
 };
 
-ajax.instance = require('./ajax_instance');
+ajax.instance = require('./request');
 
 module.exports = ajax;

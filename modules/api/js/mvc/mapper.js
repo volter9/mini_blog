@@ -1,13 +1,14 @@
 var events = require('../helpers/events'),
-    utils  = require('../helpers/utils'),
-    ajax   = require('../helpers/ajax'),
     extend = require('./extend'),
-    model  = require('./model');
+    Model  = require('./model'),
+    utils  = require('../helpers/utils'),
+    ajax   = require('./adapters/ajax');
 
 /* Default properties */
 var defaults = {
     baseurl: '/',
-    model:   model,
+    adapter: ajax,
+    model:   Model,
     
     get:    'get',
     insert: 'add',
@@ -22,6 +23,7 @@ var defaults = {
  */
 var Mapper = function (options) {
     this.options = utils.merge(defaults, options);
+    this.adapter = this.options.adapter;
 };
 
 events(Mapper.prototype);
@@ -43,7 +45,7 @@ Mapper.prototype.parse = function (data) {
  * @param {Model} model
  */
 Mapper.prototype.create = function (data, model) {
-    if (model) {
+    if (model && model instanceof Model) {
         model.merge(data);
         
         return model;
@@ -60,20 +62,8 @@ Mapper.prototype.create = function (data, model) {
  * @param {Model} model
  * @param {Function} callback
  */
-Mapper.prototype.fetch = function (id, model, callback) {
-    var self = this;
-    
-    ajax.get([this.options.baseurl, this.options.get, id])
-        .success(function (_, data) {
-            var isNew  = Boolean(model),
-                result = self.create(self.parse(data), model);
-            
-            if (!isNew) {
-                callback && callback(model);
-                self.emit('get', result);
-            }
-        })
-        .send();
+Mapper.prototype.fetch = function (model, callback) {
+    this.adapter.fetch(this, model, callback);
 };
 
 /**
@@ -83,16 +73,7 @@ Mapper.prototype.fetch = function (id, model, callback) {
  * @param {Function} callback
  */
 Mapper.prototype.insert = function (model, callback) {
-    var self = this;
-    
-    ajax.post([this.options.baseurl, this.options.insert], model.all())
-        .success(function (_, data) {
-            model.id = data.id;
-            
-            callback && callback(model);
-            self.emit('add', model);
-        })
-        .send();
+    this.adapter.insert(this, model, callback);
 };
 
 /**
@@ -102,14 +83,7 @@ Mapper.prototype.insert = function (model, callback) {
  * @param {Function} callback
  */
 Mapper.prototype.update = function (model, callback) {
-    var self = this;
-    
-    ajax.post([this.options.baseurl, this.options.update, model.id], model.diff())
-        .success(function () {
-            callback && callback(model);
-            self.emit('update', model);
-        })
-        .send();
+    this.adapter.update(this, model, callback);
 };
 
 /**
@@ -131,16 +105,7 @@ Mapper.prototype.save = function (model, callback) {
  * @param {Function} callback
  */
 Mapper.prototype.remove = function (model, callback) {
-    var self = this;
-    
-    ajax.post([this.options.baseurl, this.options.remove, model.id])
-        .success(function () {
-            model.destroy();
-            
-            callback && callback(model);
-            self.emit('remove', model);
-        })
-        .send();
+    this.adapter.remove(this, model, callback);
 };
 
 /**
@@ -156,7 +121,7 @@ Mapper.prototype.sync = function (collection) {
         else if (model.isEmpty()) {
             self.remove(model);
             
-            collection.remove(model);
+            collection.remove(model.id);
         }
         else if (model.isDirty()) {
             self.update(model);

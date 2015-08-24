@@ -60,6 +60,7 @@ Components.createComponent = function (node) {
         component: component
     });
     
+    node.setAttribute('title', 'Double-click to edit');
     node.component = component;
     node.editor    = view;
     node.appendChild(view.node);

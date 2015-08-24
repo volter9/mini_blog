@@ -64,12 +64,9 @@ Collection.prototype.bootstrap = function (models) {
         self.models[model.id] = model;
     };
     
-    if (Array.isArray(models)) {
-        models.forEach(callback);
-    }
-    else {
-        utils.each(models, callback);
-    }
+    Array.isArray(models)
+        ? models.forEach(callback)
+        : utils.each(models, callback);
 };
 
 /**
@@ -87,19 +84,11 @@ Collection.prototype.forEach = function (callback) {
  * @param {Mapper} mapper
  */
 Collection.prototype.bindTo = function (mapper) {
-    var self = this;
+    var add = this.add.bind(this);
     
-    mapper.on('get', function (model) {
-        self.add(model);
-    });
-    
-    mapper.on('add', function (model) {
-        self.add(model);
-    });
-    
-    mapper.on('remove', function (model) {
-        self.remove(model.id);
-    });
+    mapper.on('get', add);
+    mapper.on('add', add);
+    mapper.on('remove', this.remove.bind(this));
 };
 
 Collection.extend = extend(Collection);

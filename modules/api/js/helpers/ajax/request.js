@@ -1,6 +1,5 @@
-var ajax   = require('./ajax'),
-    utils  = require('./utils'),
-    events = require('./events');
+var utils  = require('../utils'),
+    events = require('../events');
 
 /**
  * AJAX constructor
@@ -9,7 +8,7 @@ var ajax   = require('./ajax'),
  * @param {String} method
  * @param {Object} data
  */
-var Ajax = function (url, method, data) {
+var Request = function (url, method, data) {
     this.method  = method || 'GET';
     this.data    = data   || {};
     this.url     = url;
@@ -19,12 +18,12 @@ var Ajax = function (url, method, data) {
     };
 };
 
-events(Ajax.prototype);
+events(Request.prototype);
 
 /**
  * Send AJAX request
  */
-Ajax.prototype.send = function () {
+Request.prototype.send = function () {
     var request = new XMLHttpRequest;
     
     var method = this.method.toUpperCase(),
@@ -58,7 +57,7 @@ Ajax.prototype.send = function () {
     };
     
     request.onerror = function () {
-        self.emit('error', request, 'AJAX Error');
+        self.emit('error', request, 'Connection error');
     };
     
     utils.each(this.headers, function (value, key) {
@@ -73,8 +72,8 @@ Ajax.prototype.send = function () {
  * 
  * @param {Function} handler
  */
-Ajax.prototype.success = function (handler) {
-    this.on('data', handler);
+Request.prototype.success = function (handler) {
+    this.on('success', handler);
     
     return this;
 };
@@ -84,7 +83,7 @@ Ajax.prototype.success = function (handler) {
  * 
  * @param {Function} handler
  */
-Ajax.prototype.error = function (handler) {
+Request.prototype.error = function (handler) {
     this.on('error', handler);
     
     return this;
@@ -96,7 +95,7 @@ Ajax.prototype.error = function (handler) {
  * @param {String} name
  * @param {String} value
  */
-Ajax.prototype.header = function (name, value) {
+Request.prototype.header = function (name, value) {
     this.headers[name] = value;
     
     return this;
@@ -108,7 +107,7 @@ Ajax.prototype.header = function (name, value) {
  * @param {Object} object
  * @return {String}
  */
-Ajax.prototype.query = function (object) {
+Request.prototype.query = function (object) {
     var result = '',
         keys = Object.keys(object);
     
@@ -121,4 +120,4 @@ Ajax.prototype.query = function (object) {
     return result.substr(0, result.length - 1);
 };
 
-module.exports = Ajax;
+module.exports = Request;

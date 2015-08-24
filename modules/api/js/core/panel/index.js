@@ -10,8 +10,7 @@
 var utils = require('../../helpers/utils');
 
 var panel = {
-    status: require('./status-bar'),
-    add:    require('./add')
+    add: require('./add')
 };
 
 utils.extend(panel, require('./mods'));
