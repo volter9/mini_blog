@@ -9,6 +9,7 @@
         
         <article class="fluid error">
             <p>Sorry, this page wasn't found!</p>
+            <img src="http://theheightsanimalhospital.com/clients/15389/images/playful-kitten-6683.jpg" alt="Sad kitten"/>
         </article>
         
         <?php view('blocks/footer') ?> 

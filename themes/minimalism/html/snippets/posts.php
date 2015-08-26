@@ -1,14 +1,19 @@
-<?php return function ($post) { ?> 
+<?php return function ($post) { 
+    $category_url = !empty($post['category_url']) ? $post['category_url'] : '';
+    ?> 
 <div class="post" 
      data-component="post"
      data-id="<?php echo $post['id'] ?>">
     <h2 class="post-title">
         <?php if (isset($post['url'])): ?> 
-        <a href="<?php echo url('#post', array($post['url'])) ?>" data-name="title">
+        <a href="<?php echo url('#post', array($post['url'])) ?>" 
+           data-name="title"
+           data-type="input">
             <?php echo $post['title'] ?> 
         </a>
         <?php else: ?> 
-        <span data-name="title">
+        <span data-name="title"
+              data-type="input">
             <?php echo $post['title'] ?> 
         </span>
         <?php endif; ?>  
@@ -18,7 +23,14 @@
         <?php echo $post['description'] ?> 
     </p>
     
-    <div data-name="text">
+    <p class="url" 
+       data-name="url"
+       data-type="input">
+        <?php echo $post['url'] ?>
+    </p>
+    
+    <div data-name="text"
+         data-type="text">
         <?php echo $post['text'] ?> 
     </div>
     
@@ -27,13 +39,11 @@
             <?php echo date('d.m.Y', strtotime($post['date'])) ?> 
         </li>
         <li>
-            <?php if (!empty($post['category'])): ?> 
-            <a href="<?php echo url('#category', array($post['category_url'])) ?>">
+            <a href="<?php echo url('#category', array($category_url)) ?>">
+            <?php if ($category_url): ?> 
                 <?php echo $post['category'] ?> 
-            </a>
-            <?php else: ?>
-            <a href="<?php echo url('#posts') ?>">Без категории</a>
             <?php endif; ?> 
+            </a>
         </li>
     </ul>
 </div>

@@ -5,16 +5,16 @@
  * 
  * This module is responsible for managing all content
  * via AJAX
+ * 
+ * @author volter9
+ * @package mini_blog
  */
 
 function api_module_init () {
     $path = module_url('api');
     
     admin('api', array(
-        'js' => array(
-            "{$path}js/main.js",
-            "{$path}js/mods.js"
-        )
+        'js' => array("{$path}js/main.js")
     ));
     
     bind('blocks:head', function () {

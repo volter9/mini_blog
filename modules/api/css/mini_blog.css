@@ -58,22 +58,6 @@ body {
     text-decoration: none;
 }
 
-/**
- * Status bar 
- */
-
-#mini_panel .status-bar {
-    color: #666;
-}
-
-#mini_panel .success {
-    color: #5c4;
-}
-
-#mini_panel .failure {
-    color: #d54;
-}
-
 .m-editor {
     position: absolute;
     top: 0px;
@@ -109,5 +93,25 @@ body {
     
     display: block !important;
     outline: none;
+    margin-bottom: 1em;
     padding-bottom: 2px;
+}
+
+.m-hidden {
+    display: none;
+}
+
+.m-input-field {
+    font-size: 16px;
+    line-height: 1.375em;
+    
+    width: 100%;
+}
+
+.m-text-field {
+    font-size: 16px;
+    line-height: 1.5em;
+    
+    height: 300px;
+    width: 100%;
 }

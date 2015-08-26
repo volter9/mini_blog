@@ -1,4 +1,4 @@
-var components = require('./components'),
+var components = require('./components/collection'),
     settings   = require('./settings'),
     utils      = require('../helpers/utils');
 

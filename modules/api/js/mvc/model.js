@@ -39,8 +39,6 @@ Model.prototype.get = function (key) {
  * @param {Object} value
  */
 Model.prototype.set = function (key, value) {
-    console.log(key, value);
-    
     this.data[key] = value;
     this.emit('change');
 };

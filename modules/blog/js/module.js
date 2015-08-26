@@ -1,4 +1,6 @@
 (function () {
+    var View = mini_blog.component.view;
+    
     /** Mapper */
     var mapper = new mini_blog.mvc.mapper({
         baseurl: 'api/posts'
@@ -16,14 +18,7 @@
     /**
      * Post view
      */
-    var PostView = mini_blog.mvc.view.extend({
-        /**
-         * Initialize view
-         */
-        initialize: function () {
-            this.data.post.on('change', this.render.bind(this));
-        },
-    
+    var PostView = mini_blog.component.view.extend({
         /**
          * Render the view
          */
@@ -33,14 +28,10 @@
         },
         
         /**
-         * Render only the information from model
+         * Subrender
          */
         subrender: function () {
-            var data = this.data.post.all();
-            
-            mini_blog.each(this.data.nodes, function (node, key) {
-                data[key] && (node.innerHTML = data[key]);
-            });
+            View.prototype.render.call(this);
         },
         
         /**
@@ -70,7 +61,6 @@
     Post.prototype.initialize = function () {
         this.id   = this.node.dataset.id;
         this.post = posts.get(this.id) || mapper.create();
-        this.mods = ['wysiwig'];
         
         if (this.post.isEmpty() && this.id) {
             mapper.fetch(this.id, this.post);
@@ -91,8 +81,7 @@
      */
     Post.prototype.createView = function () {
         this.view = new PostView(this.node, {
-            post:  this.post,
-            nodes: this.nodes
+            model: this.post
         });
     };
     
@@ -126,7 +115,7 @@
      * Save a post
      */
     Post.prototype.save = function () {
-        this.post.merge(this.collectData());
+        this.post.merge(this.view.collectData());
         
         mapper.save(this.post);
         

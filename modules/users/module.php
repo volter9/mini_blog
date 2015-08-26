@@ -3,6 +3,7 @@
 /**
  * Users module
  * 
+ * @author volter9
  * @package mini_blog
  */
 

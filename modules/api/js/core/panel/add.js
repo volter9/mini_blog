@@ -1,13 +1,13 @@
-var view       = require('../../mvc/view'),
+var components = require('../components/collection'),
     ajax       = require('../../helpers/ajax'),
-    components = require('../components');
+    view       = require('../../mvc/view');
 
 var AddView = view.extend({
     /**
      * Bind the action 
      */
     initialize: function () {
-        this.find('.button').addEventListener('click', this.addView.bind(this));
+        this.bind('.button', 'click', this.addView.bind(this));
     },
     
     /**

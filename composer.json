@@ -6,6 +6,6 @@
     "type": "project",
     
     "require": {
-        "volter/mini_framework": "dev-master"
+        "volter/mini_framework": "1.2.4"
     }
 }

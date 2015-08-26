@@ -1,6 +1,15 @@
 <?php
 
 /**
+ * mini_blog blog module
+ * 
+ * This module provides few controllers for viewing and listing posts. 
+ * 
+ * @author volter9
+ * @package mini_blog
+ */
+
+/**
  * Blog module initialize
  */
 function blog_module_init () {

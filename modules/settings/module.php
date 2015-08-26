@@ -5,6 +5,9 @@
  * 
  * Following function bootstraping some values from database into configs
  * and adding JS files for loading
+ * 
+ * @author volter9
+ * @package mini_blog
  */
 function settings_module_init () {
     load_model('settings', module_path('settings', 'models', true));

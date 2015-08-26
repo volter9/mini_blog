@@ -39,6 +39,12 @@ dom.dataAttributes = function (element) {
     return attributes;
 };
 
+/**
+ * Check whether node has a parent in the node chain
+ * 
+ * @param {Node} node
+ * @param {Function} callback
+ */
 dom.hasParent = function (node, callback) {
     if (callback(node.parentNode)) {
         return true;
@@ -52,59 +58,13 @@ dom.hasParent = function (node, callback) {
 };
 
 /**
- * Make argument node HTML5 editable
+ * Insert node after the target node
  * 
+ * @param {Node} target
  * @param {Node} node
  */
-dom.makeEditable = function (node) {
-    node.setAttribute('contenteditable', 'true');
-    node.classList.add('m-editable');
-    
-    if (node.isEditable) {
-        return;
-    }
-    
-    node.addEventListener('paste', function(e) {
-        e.preventDefault();
-
-        var text = e.clipboardData
-                    .getData('text/plain')
-                    .replace(/\</g, '&lt;')
-                    .replace(/\>/g, '&gt;')
-                    .replace(/\n\r?/g, '<br/>\n');
-
-        document.execCommand('insertHTML', false, text);
-    });
-
-    node.addEventListener('keyup', function (e) {
-        if (e.keyCode === 13 && (!e.shiftKey || !e.ctrlKey)) {
-            var selection = document.getSelection();
-            
-            var inList = dom.hasParent(selection.anchorNode, function (node) {
-                var name = node.nodeName.toLowerCase();
-                
-                return name === 'li'
-                    || name === 'pre';
-            });
-            
-            if (!inList) {
-                document.execCommand('formatBlock', null, 'p');
-            }
-        }
-    });
-    
-    // Custom attribute
-    node.isEditable = true;
-};
-
-/**
- * Unmake argument node HTML5 editable
- * 
- * @param {Node} node
- */
-dom.unmakeEditable = function (node) {
-    node.removeAttribute('contenteditable');
-    node.classList.remove('m-editable');
+dom.insertAfter = function (target, node) {
+    target.parentNode.insertBefore(node, target.nextSibling);
 };
 
 module.exports = dom;

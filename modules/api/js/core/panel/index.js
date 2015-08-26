@@ -9,10 +9,6 @@
 
 var utils = require('../../helpers/utils');
 
-var panel = {
+module.exports = {
     add: require('./add')
 };
-
-utils.extend(panel, require('./mods'));
-
-module.exports = panel;

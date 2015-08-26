@@ -20,6 +20,10 @@ ul, ol {
     list-style: none;
 }
 
+img {
+    max-width: 100%;
+}
+
 pre.hljs {
     position: relative;
     left: 0px;
@@ -51,12 +55,13 @@ body {
 }
 
 a {
-    color: blue;
+    color: #07c;
+    border-bottom: 1px solid rgba(0, 119, 204, 0.2);
     text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+    border-bottom: 1px solid rgba(0, 119, 204, 0.6);
 }
 
 .hidden {
@@ -78,8 +83,8 @@ a:hover {
 
 .fluid {
     margin-left: 2em;
-    min-width: 700px;
-    width: 50%;
+    max-width: 700px;
+    width: 60%;
 }
 
 /**
@@ -118,37 +123,12 @@ a:hover {
 }
 
 #header h1 a {
-    color: #000
+    border-bottom: 0px;
+    color: #000;
 }
 
 #header h1 a:hover {
     text-decoration: none;
-}
-
-/**
- * Header navigation
- */
-
-#navigation {
-    padding: 0px 0px;
-}
-
-#navigation ul li {
-    font-size: 14px;
-    float: left;
-}
-
-#navigation ul li a {
-    color: #999;
-    display: block;
-    margin-left: 20px;
-    margin-top: 20px;
-    
-    padding-bottom: 4px;
-}
-
-#navigation ul li a:hover {
-    color: #bbb;
 }
 
 /**
@@ -172,7 +152,7 @@ article.error > .right {
 
 article.error p {
     font-size: 14px;
-    line-height: 150%;
+    line-height: 1.375em;
     
     margin-bottom: 15px;
 }
@@ -181,7 +161,7 @@ article.error pre {
     background-color: #f4f4f4;
     font-family: Menlo, Monaco, monospace;
     font-size: 12px;
-    line-height: 150%;
+    line-height: 1.375em;
     
     margin-bottom: 20px;
     margin-left: 10px;
@@ -201,7 +181,7 @@ article.error code {
 
 article.error ul li {
     font-size: 14px;
-    line-height: 150%;
+    line-height: 1.375em;
     margin-bottom: 8px;
 }
 
@@ -235,7 +215,7 @@ article.error ul li {
  */
 
 .posts .post {
-    margin-bottom: 4em;
+    margin-bottom: 3em;
 }
 
 .posts .post:last-child {
@@ -250,11 +230,17 @@ article.error ul li {
     margin-bottom: 2em;
 }
 
-.post .post-title {
-    font-size: 32px;
+.post .post-title,
+.post .post-title input {
+    font-size: 36px;
+    font-weight: normal;
     
     margin-top: 0px;
     margin-bottom: 0.4em;
+}
+
+.post .post-title a {
+    border: 0px;
 }
 
 .post h1,
@@ -263,12 +249,13 @@ article.error ul li {
 .post h4,
 .post h5,
 .post h6 {
-    color: #333;
+    color: #000;
     font-family: Lato, sans-serif;
+    font-size: 20px;
     font-weight: normal;
     
-    margin-top: 1.25em;
-    margin-bottom: 0.5em;
+    margin-top: 1.5em;
+    margin-bottom: 0.7em;
 }
 
 .post h1 a,
@@ -277,9 +264,10 @@ article.error ul li {
 .post h4 a,
 .post h5 a,
 .post h6 a {
-    color: #444;
+    color: #000;
 }
 
+/* 
 .post h1 {
     font-size: 28px;
 }
@@ -291,15 +279,16 @@ article.error ul li {
 .post h3 {
     font-size: 18px;
 }
+*/
 
 .post > *:last-child {
     margin-bottom: 0px;
 }
 
 .post p {
-    color: #333;
+    color: #000;
     font-size: 16px;
-    line-height: 150%;
+    line-height: 1.375em;
 }
 
 .post .info {
@@ -308,7 +297,7 @@ article.error ul li {
     list-style: none;
     
     margin: 0px;
-    margin-top: 1em;
+    margin-top: 1.5em;
     padding: 0px;
 }
 
@@ -317,17 +306,20 @@ article.error ul li {
     margin-right: 1.5em;
 }
 
-.post .info .fa {
-    margin-right: 0.2em;
-}
-
 .post .info a {
     color: #777;
+    border-bottom: 1px solid rgba(119, 119, 119, 0.2);
+}
+
+.post .info a:hover {
+    border-bottom: 1px solid rgba(119, 119, 119, 0.5);
 }
 
 .post p,
 .post blockquote,
-.post ul {
+.post ul,
+.post ol,
+.post iframe {
     margin-bottom: 1em;
 }
 
@@ -337,49 +329,34 @@ article.error ul li {
     margin-bottom: 0px;
 }
 
-.post code {
-    background-color: #23241f;
-    border-radius: 3px;
-    color: #f8f8f2;
-    font-family: Menlo, Monaco, monospace;
-    font-size: 0.8em;
-    
-    padding: 2px 6px;
-}
-
-.post iframe {
-    display: block;
-    margin: 0px auto;
-    margin-bottom: 1em;
-    max-width: 95%;
-}
-
 .post ul,
 .post ol {
-    list-style-type: square;
+    list-style-type: none;
     
-    padding-left: 2em;
-}
-
-.post ol {
-    list-style-type: decimal;
+    padding-left: 1.25em;
 }
 
 .post ul li,
 .post ol li {
     font-size: 14px;
-    line-height: 150%;
+    line-height: 1.375em;
     
     margin-bottom: 0.25em;
 }
 
+.post iframe {
+    display: block;
+    margin: 0px auto;
+    max-width: 95%;
+}
+
 .post blockquote {
-    border-left: 3px solid #ccc;
     color: #666;
-    line-height: 150%;
+    line-height: 1.375em;
     font-size: 14px;
     
-    padding: 2px 10px;
+    padding: 2px 1.25em;
+    padding-right: 0.5em;
 }
 
 .post blockquote p {
@@ -391,7 +368,7 @@ article.error ul li {
     border-radius: 10px;
     font-family: Menlo, Monaco, monospace;
     font-size: 14px;
-    line-height: 150%;
+    line-height: 1.375em;
     
     display: block;
     margin-bottom: 20px;
@@ -412,6 +389,10 @@ article.error ul li {
     display: none;
     font-size: 14px;
     margin-bottom: 15px
+}
+
+.post .url {
+    display: none;
 }
 
 /**

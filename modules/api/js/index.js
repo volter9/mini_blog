@@ -13,13 +13,12 @@
 var utils = require('./helpers/utils');
 
 var mini_blog = {
-    components: require('./core/components'),
-    component:  require('./core/component'),
+    components: require('./core/components/collection'),
+    component:  require('./core/components/component'),
     settings:   require('./core/settings'),
     editor:     require('./core/editor'),
     panel:      require('./core/panel'),
     init:       require('./core/init'),
-    mod:        require('./core/mod'),
     events:     require('./helpers/events'),
     unique:     require('./helpers/unique'),
     ajax:       require('./helpers/ajax'),
@@ -28,5 +27,7 @@ var mini_blog = {
 };
 
 utils.extend(mini_blog, utils);
+
+mini_blog.component.view = require('./core/components/view');
 
 module.exports = mini_blog;

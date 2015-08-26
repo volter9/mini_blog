@@ -14,12 +14,14 @@
  * mini_blog constants
  * 
  * @const string MB_VERSION Version string
- * @const bool MB_DEBUG Debug flag
  * @const float MB_START Execution time started
+ * @const bool MB_DEBUG Debug flag
  */
 define('MB_VERSION', 'v1.3');
-define('MB_DEBUG'  , true);
 define('MB_START'  , microtime(true));
+define('MB_DEBUG'  , true);
+
+// Добавь overlay
 
 /**
  * mini_framework constants

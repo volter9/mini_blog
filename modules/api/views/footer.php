@@ -1,6 +1,6 @@
-<?php foreach (admin_scripts() as $script): ?>
+<?php foreach (admin_scripts() as $script): ?> 
 <script src="<?php echo $script ?>" type="text/javascript"></script>
-<?php endforeach; ?>
+<?php endforeach; ?> 
 <script type="text/javascript">
     window.addEventListener('load', function () {
         mini_blog.settings.collection.bootstrap(<?php 

@@ -1,4 +1,6 @@
 (function () {
+    var View = mini_blog.component.view;
+    
     /* Posts mapper */
     var mapper = new mini_blog.mvc.mapper({
         baseurl: 'api/settings',
@@ -17,25 +19,7 @@
     /**
      * Setting view
      */
-    var SettingsView = mini_blog.mvc.view.extend({
-        /**
-         * Initialize view
-         */
-        initialize: function () {
-            this.data.setting.on('change', this.render.bind(this));
-        },
-    
-        /**
-         * Render the view
-         */
-        render: function () {
-            var data = this.data.setting.all();
-            
-            mini_blog.each(this.data.nodes, function (node, key) {
-                data[key] && (node.innerHTML = data[key]);
-            });
-        }
-    });
+    var SettingsView = View.extend({});
     
     /**
      * Settings prototype
@@ -72,8 +56,7 @@
      */
     Settings.prototype.createView = function () {
         this.view = new SettingsView(this.node, {
-            setting: this.setting,
-            nodes:   this.nodes
+            model: this.setting
         });
     };
     
@@ -88,7 +71,7 @@
      * Save settings to the server
      */
     Settings.prototype.save = function () {
-        this.setting.merge(this.collectData());
+        this.setting.merge(this.view.collectData());
         
         mapper.update(this.setting);
         
@@ -96,7 +79,6 @@
     };
 
     mini_blog.components.register('settings', Settings);
-    
     mini_blog.settings = {
         collection: settings
     };

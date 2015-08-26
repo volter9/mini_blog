@@ -1,7 +1,5 @@
-var mvc  = require('../mvc'),
-    mods = require('./panel/mods');
-
-var editing = false;
+var mvc = require('../mvc'),
+    editing = false;
 
 /** HTML template */
 var html = '<div class="edit">'
@@ -55,7 +53,6 @@ var view = mvc.view.extend({
      */
     disable: function () {
         this.data.component.disable();
-        mods.disableMods();
         
         editing = false;
         
@@ -69,7 +66,6 @@ var view = mvc.view.extend({
         if (editing) return;
         
         editing = true
-        mods.enableMods(this.data.component.mods || []);
         
         this.data.component.enable();
         this.show(false);

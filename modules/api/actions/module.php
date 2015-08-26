@@ -10,7 +10,7 @@ function action_get ($module, $id) {
     $result = db_find($module, $id);
     
     echo json_encode(array(
-        'status' => $result ? 'ok' : 'not_ok',
+        'status' => $result ? 'ok' : 'error',
         'item'   => $result
     ));
 }
@@ -45,7 +45,7 @@ function action_add ($module) {
     $result = db_insert($module, $data);
     
     echo json_encode(array(
-        'status' => $result ? 'ok' : 'not_ok',
+        'status' => $result ? 'ok' : 'error',
         'id'     => $result
     ));
 }
@@ -61,7 +61,7 @@ function action_edit ($module, $id) {
     $result = db_edit($module, $data, $id);
     
     echo json_encode(array(
-        'status' => $result ? 'ok' : 'not_ok',
+        'status' => $result ? 'ok' : 'error',
     ));
 }
 
@@ -75,7 +75,7 @@ function action_remove ($module, $id) {
     $result = db_remove($module, $id);
     
     echo json_encode(array(
-        'status' => $result ? 'ok' : 'not_ok',
+        'status' => $result ? 'ok' : 'error',
     ));
 }
 
@@ -89,7 +89,7 @@ function action_provider ($provider) {
     $provider  = array_get($providers, $provider);
     
     echo json_encode(array(
-        'status' => $provider ? 'ok' : 'not_ok',
+        'status' => $provider ? 'ok' : 'error',
         'result' => is_callable($provider) ? $provider() : null
     ), JSON_UNESCAPED_UNICODE);
 }

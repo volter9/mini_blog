@@ -63,7 +63,7 @@ function posts_by_category ($id, $page = 1, $pages = POSTS_PER_PAGE) {
 function post_by_url ($url) {
     return db_select('
         SELECT
-            p.id, p.title, p.text, p.description, 
+            p.id, p.url, p.title, p.text, p.description, 
             p.user_id, p.category_id, p.date, 
             u.username, 
             c.title as category, c.url as category_url
