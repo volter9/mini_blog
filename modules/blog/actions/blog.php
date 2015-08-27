@@ -14,7 +14,7 @@ function actions_init () {
  */
 function action_list ($page = 1) {
     layout('posts/index', array(
-        'title' => i18n('main'),
+        'title' => i18n('main') ." — стр. $page",
         'url'   => url('#posts'),
         'posts' => posts_all($page)
     ));

@@ -7,11 +7,9 @@ var components = require('./components/collection'),
  * 
  * @param {Object} meta - settings
  */
-var init = function (meta) {
+module.exports = function (meta) {
     settings.assign(meta);
     
     utils.toArray(document.querySelectorAll('[data-component]'))
          .forEach(components.createComponent);
 };
-
-module.exports = init;

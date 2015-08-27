@@ -19,6 +19,7 @@ module.exports = {
             
                 if (!isNew) {
                     callback && callback(model);
+                    
                     mapper.emit('get', result);
                 }
             })
@@ -40,6 +41,7 @@ module.exports = {
                 model.id = data.id;
             
                 callback && callback(model);
+                
                 mapper.emit('add', model);
             })
             .send();
@@ -58,6 +60,7 @@ module.exports = {
         ajax.post([options.baseurl, options.update, model.id], model.diff())
             .success(function () {
                 callback && callback(model);
+                
                 mapper.emit('update', model);
             })
             .send();
@@ -75,7 +78,10 @@ module.exports = {
         
         ajax.post([options.baseurl, options.remove, model.id])
             .success(function () {
+                model.destroy();
+                
                 callback && callback(model);
+                
                 mapper.emit('remove', model);
             })
             .send();

@@ -1,6 +1,5 @@
 # Waste
 .DS_Store
-.sass-cache
 
 # Composer stuff
 vendor/

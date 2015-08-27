@@ -7,12 +7,13 @@
              data-group="default">
             <h1>
                 <a href="<?php echo url('#index') ?>" 
+                   class="header"
                    data-name="sitename"><?php 
                     echo storage('settings.default.sitename')
                 ?></a>
             </h1>
         
-            <p data-name="sitedescription"><?php 
+            <p class="site-description" data-name="sitedescription"><?php 
                 echo storage('settings.default.sitedescription')
             ?></p>
         </div>

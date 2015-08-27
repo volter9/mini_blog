@@ -21,7 +21,7 @@ var ComponentView = View.extend({
         var data = this.data.model.all();
         
         utils.each(this.nodes, function (node, key) {
-            data[key] && (node.view.innerHTML = data[key]);
+            data[key] && (node.node.innerHTML = data[key]);
         });
     },
     
@@ -40,10 +40,7 @@ var ComponentView = View.extend({
             
             node.dataset.type = type;
             
-            self.nodes[node.dataset.name] = {
-                view: node,
-                edit: fields[type].create(node)
-            };
+            self.nodes[node.dataset.name] = new fields[node.dataset.type](node);
         });
     },
     
@@ -56,21 +53,24 @@ var ComponentView = View.extend({
         var data = {};
 
         utils.each(this.nodes, function (node) {
-            data[node.view.dataset.name] = node.edit.value;
+            data[node.name] = node.value();
         });
     
         return data;
     },
     
+    /**
+     * Activate the view
+     */
     activate: function () {
         utils.each(this.nodes, function (node) {
-            fields[node.view.dataset.type].activate(node.edit, node.view);
+            node.activate();
         });
     },
     
     deactivate: function () {
         utils.each(this.nodes, function (node) {
-            fields[node.view.dataset.type].deactivate(node.edit, node.view);
+            node.deactivate();
         });
     }
 });

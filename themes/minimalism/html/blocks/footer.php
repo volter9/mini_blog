@@ -2,7 +2,7 @@
     <div class="settings"
          data-component="settings"
          data-group="default">
-        <p data-name="copyright"><?php 
+        <p class="copyright" data-name="copyright"><?php 
             echo storage('settings.default.copyright') 
         ?></p>
     </div>
