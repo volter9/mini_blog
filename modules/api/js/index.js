@@ -17,6 +17,8 @@ var mini_blog = {
     component:  require('./core/components/component'),
     settings:   require('./core/settings'),
     editor:     require('./core/editor'),
+    fields:     require('./core/fields'),
+    field:      require('./core/fields/field'),
     panel:      require('./core/panel'),
     init:       require('./core/init'),
     events:     require('./helpers/events'),

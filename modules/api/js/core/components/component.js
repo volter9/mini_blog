@@ -1,4 +1,5 @@
-var utils = require('../../helpers/utils');
+var utils = require('../../helpers/utils'),
+    overlay = require('../overlay');
 
 /**
  * Component
@@ -19,6 +20,10 @@ Component.prototype.initialize = function () {};
  * Enable component for modification
  */
 Component.prototype.enable = function () {
+    this.node.style.position = 'relative';
+    this.node.style.zIndex = 9000;
+    overlay.show();
+    
     this.view.activate();
 };
 
@@ -26,7 +31,17 @@ Component.prototype.enable = function () {
  * Disable component for modification
  */
 Component.prototype.disable = function () {
+    this.node.style.position = '';
+    this.node.style.zIndex = '';
+    overlay.hide();
+    
     this.view.deactivate();
+};
+
+Component.prototype.insertEditor = function (editor) {
+    this.editor = editor;
+    
+    this.node.appendChild(editor.node);
 };
 
 /**

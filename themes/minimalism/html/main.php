@@ -13,12 +13,14 @@
     </head>
     
     <body>
+        <div id="wrapper">
         <?php view('blocks/header') ?> 
         
-        <div class="fluid" id="wrapper">
+        <div class="fluid">
             <?php view($view) ?> 
         </div>
         
         <?php view('blocks/footer') ?> 
+        </div>
     </body>
 </html>

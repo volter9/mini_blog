@@ -11,6 +11,10 @@
     padding: 0px;
 }
 
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -82,7 +86,6 @@ a:hover {
 .right { float: right; }
 
 .fluid {
-    margin-left: 2em;
     max-width: 700px;
     width: 60%;
 }
@@ -91,7 +94,10 @@ a:hover {
  * Site specific styles
  */
 
-#wrapper {}
+#wrapper {
+    margin-top: 2.5em;
+    margin-left: 3em;
+}
 
 /**
  * Header
@@ -306,6 +312,8 @@ article.error ul li {
 }
 
 .post .info li {
+    vertical-align: top;
+    
     display: inline-block;
     margin-right: 1.5em;
 }
@@ -317,6 +325,22 @@ article.error ul li {
 
 .post .info a:hover {
     border-bottom: 1px solid rgba(119, 119, 119, 0.5);
+}
+
+.post .info .m-editor a {
+    background-color: transparent;
+    
+    display: block;
+    float: left;
+    margin-right: 14px;
+    padding: 0px;
+    padding-bottom: 2px;
+}
+
+.post .info .edit,
+.post .info .editing {
+    border-radius: 0px;
+    overflow: none;
 }
 
 .post p,
@@ -400,6 +424,10 @@ article.error ul li {
 
 .post .url {
     display: none;
+}
+
+.post .text {
+    font-family: Lato, sans-serif;
 }
 
 /**

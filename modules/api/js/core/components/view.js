@@ -32,7 +32,7 @@ var ComponentView = View.extend({
      */
     setNodes: function (node) {
         var nodes = utils.toArray(node.querySelectorAll('[data-name]')),
-            self = this;
+            self  = this;
     
         nodes.forEach(function (node) {
             var name = node.dataset.name,

@@ -1,28 +1,24 @@
-var mvc = require('../mvc'),
-    editing = false;
+var mvc = require('../mvc');
 
 /** HTML template */
 var html = '<div class="edit">'
-+ '    <!-- <button class="edit-button button">'
++ '    <a class="edit-button button">'
 + '        <i class="fa fa-fw fa-pencil"></i>'
-+ '    </button> -->'
++ '    </a>'
++ '    <a class="remove-button button">'
++ '        <i class="fa fa-fw fa-trash"></i>'
++ '    </a>'
 + '</div>'
 + '<div class="editing">'
-+ '    <button class="save-button button">'
++ '    <a class="save-button button">'
 + '        <i class="fa fa-fw fa-floppy-o"></i>'
-+ '    </button>'
-+ '    <button class="cancel-button button">'
-+ '        <i class="fa fa-fw fa-times"></i>'
-+ '    </button>'
-+ '    <button class="remove-button button">'
-+ '        <i class="fa fa-fw fa-trash"></i>'
-+ '    </button>'
++ '    </a>'
 + '</div>';
 
 /**
  * Editor view
  */
-var view = mvc.view.extend({
+var Editor = mvc.view.extend({
     /**
      * Initialize 
      */
@@ -30,7 +26,7 @@ var view = mvc.view.extend({
         var self = this;
         
         this.node = document.createElement('div');
-        this.node.className = 'm-editor';
+        this.node.className = 'm-editor m-dynamic';
         this.node.innerHTML = html;
         
         this.setupEvents();
@@ -43,8 +39,8 @@ var view = mvc.view.extend({
     setupEvents: function () {
         this.data.node.addEventListener('dblclick', this.edit.bind(this));
         
+        this.bind('.edit-button',   'click', this.edit);
         this.bind('.save-button',   'click', this.save);
-        this.bind('.cancel-button', 'click', this.cancel);
         this.bind('.remove-button', 'click', this.remove);
     },
     
@@ -54,7 +50,7 @@ var view = mvc.view.extend({
     disable: function () {
         this.data.component.disable();
         
-        editing = false;
+        Editor.editing = false;
         
         this.show(true);
     },
@@ -63,9 +59,9 @@ var view = mvc.view.extend({
      * Enable editing
      */
     edit: function () {
-        if (editing) return;
+        if (Editor.editing) return;
         
-        editing = true
+        Editor.editing = true
         
         this.data.component.enable();
         this.show(false);
@@ -91,14 +87,6 @@ var view = mvc.view.extend({
     },
     
     /**
-     * Cancel editing
-     */
-    cancel: function () {
-        this.disable();
-        this.data.component.cancel();
-    },
-    
-    /**
      * Destroy the view
      */
     destroy: function () {
@@ -115,7 +103,17 @@ var view = mvc.view.extend({
         if (this.data.component.notRemovable) {
             this.find('.remove-button').style.display = 'none';
         }
+    },
+    
+    inline: function () {
+        this.node.classList.remove('m-dynamic');
+        
+        this.find('.edit-button').innerHTML = 'Редактировать';
+        this.find('.save-button').innerHTML = 'Сохранить';
+        this.find('.remove-button').innerHTML = 'Удалить';
     }
 });
 
-module.exports = {view: view};
+Editor.editing = false;
+
+module.exports = Editor;

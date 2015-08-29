@@ -1,11 +1,11 @@
 var dom   = require('../../helpers/dom'),
-    Field = require('./field');
+    Input = require('./Input');
 
 var Text = function () {
-    Field.apply(this, arguments);
+    Input.apply(this, arguments);
 };
 
-Text.prototype = Object.create(Field.prototype);
+Text.prototype = Object.create(Input.prototype);
 
 Text.prototype.create = function (node) {
     var text = document.createElement('textarea');
@@ -22,17 +22,9 @@ Text.prototype.create = function (node) {
 };
 
 Text.prototype.activate = function () {
-    this.field.classList.add('m-editable');
-    this.field.classList.remove('m-hidden');
+    Input.prototype.activate.call(this);
     
-    this.node.classList.add('m-hidden');
-};
-
-Text.prototype.deactivate = function () {
-    this.field.classList.remove('m-editable');
-    this.field.classList.add('m-hidden');
-    
-    this.node.classList.remove('m-hidden');
+    this.field.style.height = this.field.scrollHeight + 6 + 'px';
 };
 
 module.exports = Text;

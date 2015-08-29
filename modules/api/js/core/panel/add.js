@@ -1,4 +1,5 @@
 var components = require('../components/collection'),
+    editor     = require('../editor'),
     ajax       = require('../../helpers/ajax'),
     view       = require('../../mvc/view');
 
@@ -16,7 +17,9 @@ var AddView = view.extend({
     addView: function (event) {
         event.preventDefault();
         
-        this.createNode(document.querySelector('.posts'));
+        if (!editor.editing) {
+            this.createNode(document.querySelector('.posts'));
+        }
     },
     
     /**

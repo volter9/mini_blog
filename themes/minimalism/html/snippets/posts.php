@@ -29,7 +29,8 @@
         <?php echo $post['url'] ?>
     </p>
     
-    <div data-name="text"
+    <div class="text"
+         data-name="text"
          data-type="text">
         <?php echo $post['text'] ?> 
     </div>

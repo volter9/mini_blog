@@ -33,9 +33,9 @@ function blog_module_admin_init () {
         
         'default' => array(
             'id'          => 0,
-            'title'       => 'Заголовок',
-            'description' => 'Описание',
-            'text'        => '<p>Тут идет текст...</p>',
+            'title'       => '',
+            'description' => '',
+            'text'        => '',
             'url'         => md5(microtime()),
             'date'        => date('Y-m-d H:i:s'),
             'user_id'     => array_get($user, 'id', 1),
@@ -46,17 +46,6 @@ function blog_module_admin_init () {
             'title'       => array('strip_tags', 'trim'),
             'description' => array('strip_tags', 'trim'),
             'text'        => array('trim')
-        )
-    ));
-    
-    admin('categories', array(
-        'keys' => array(
-            'title', 'url', 'description'
-        ),
-        
-        'filters' => array(
-            'title'       => array('strip_tags', 'trim'),
-            'description' => array('strip_tags', 'trim')
         )
     ));
 }

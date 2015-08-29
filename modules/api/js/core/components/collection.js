@@ -55,15 +55,15 @@ Components.createComponent = function (node) {
         return console.warn('Component "' + name + '" does not exists!');
     }
     
-    var view = new editor.view(null, {
+    var view = new editor(null, {
         node:      node,
         component: component
     });
     
-    node.setAttribute('title', 'Double-click to edit');
+    component.insertEditor(view);
+    
     node.component = component;
     node.editor    = view;
-    node.appendChild(view.node);
 };
 
 module.exports = Components;

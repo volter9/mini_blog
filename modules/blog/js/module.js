@@ -122,6 +122,17 @@
         this.post.clear();
     };
     
+    Post.prototype.insertEditor = function (editor) {
+        this.editor = editor;
+        
+        var li = document.createElement('li');
+        
+        li.appendChild(editor.node);
+        editor.inline();
+        
+        this.view.find('.info').appendChild(li);
+    };
+    
     mini_blog.components.register('post', Post);
     
     mini_blog.posts = {

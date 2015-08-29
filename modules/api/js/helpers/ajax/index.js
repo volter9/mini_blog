@@ -1,4 +1,5 @@
-var settings = require('../../core/settings');
+var settings = require('../../core/settings'),
+    instance = require('./request');
 
 /**
  * Central AJAX control
@@ -13,7 +14,7 @@ var ajax = {};
  * @param {Object} data
  */
 ajax.request = function (url, method, data) {
-    var request = new this.instance(this.url(url), method, data);
+    var request = new instance(this.url(url), method, data);
     
     request.on('data', function (xhr, data) {
         data.status === 'ok' 
@@ -60,7 +61,5 @@ ajax.url = function (url) {
     
     return url.join('/').replace(/\/+/, '/');
 };
-
-ajax.instance = require('./request');
 
 module.exports = ajax;
