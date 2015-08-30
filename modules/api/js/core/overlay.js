@@ -1,3 +1,5 @@
+var dom = require('../helpers/dom');
+
 module.exports = {
     element: null,
     
@@ -6,8 +8,7 @@ module.exports = {
      */
     show: function () {
         if (!this.element) {
-            this.element = document.createElement('div');
-            this.element.className = 'm-hidden m-overlay';
+            this.element = dom.node('<div class="m-hidden m-overlay"></div>');
             
             document.body.appendChild(this.element);
         }

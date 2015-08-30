@@ -1,5 +1,5 @@
 var events = require('../helpers/events'),
-    extend = require('./extend'),
+    extend = require('../helpers/extend'),
     utils  = require('../helpers/utils');
 
 /* Default properties */

@@ -35,7 +35,7 @@
                 target: '[data-name=title]',
                 set: function (value) {
                     this.field.value = value;
-                    this.node.href = mini_blog.ajax.url(['blog', value]);
+                    this.node.href = mini_blog.ajax.url(value);
                 }
             },
             text: {
@@ -84,12 +84,6 @@
             this.view.highlight();
         },
         
-        enable: function () {
-            mini_blog.component.prototype.enable.call(this);
-        
-            this.view.subrender();
-        },
-    
         /**
          * Create view
          */

@@ -1,7 +1,7 @@
 var events = require('../helpers/events'),
     utils  = require('../helpers/utils'),
     unique = require('../helpers/unique')(),
-    extend = require('./extend');
+    extend = require('../helpers/extend');
 
 /**
  * @param {Object} data

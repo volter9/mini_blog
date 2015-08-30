@@ -98,19 +98,17 @@ body {
 .m-field {
     background-color: transparent;
     border: 0px;
-    border: 1px solid transparent;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     
     display: block !important;
     outline: none;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+    padding: 4px;
 }
 
 .m-input-field {
     font-size: 16px;
     line-height: 1.375em;
     
-    padding: 4px 0px;
     width: 100%;
 }
 

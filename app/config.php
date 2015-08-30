@@ -36,8 +36,8 @@ return array(
      */
     'routing' => array(
         'symbols' => array(
-            '/:any' => '/?([\d\w\-\_]+)',
-            '/:num' => '/?(\d+)'
+            ':any' => '([\d\w\-\_]+)',
+            ':num' => '(\d+)'
         )
     ),
     

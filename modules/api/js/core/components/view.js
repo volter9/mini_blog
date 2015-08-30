@@ -1,10 +1,10 @@
 var Fields = require('../fields'),
     View   = require('../../mvc/view'),
-    extend = require('../../mvc/extend'),
+    extend = require('../../helpers/extend'),
     utils  = require('../../helpers/utils'),
     dom    = require('../../helpers/dom');
 
-var ComponentView = View.extend({
+module.exports = View.extend({
     /**
      * Initialize the view
      */
@@ -47,7 +47,7 @@ var ComponentView = View.extend({
             self.form.appendChild(field.field);
         });
         
-        this.node.appendChild(this.form);
+        this.node.insertBefore(this.form, this.node.children[0]);
     },
     
     /**
@@ -102,7 +102,3 @@ var ComponentView = View.extend({
         });
     }
 });
-
-ComponentView.extend = extend(ComponentView);
-
-module.exports = ComponentView;

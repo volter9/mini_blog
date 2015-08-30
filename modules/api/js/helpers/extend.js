@@ -1,4 +1,4 @@
-var utils = require('../helpers/utils');
+var utils = require('./utils');
 
 /**
  * Helper function to make it easily extend other prototypes
@@ -14,8 +14,8 @@ var extend = function (proto) {
      * @return {Function}
      */
     return function (options) {
-        var F = function () {
-            proto.apply(this, utils.toArray(arguments));
+        var F = function () {            
+            proto.apply(this, arguments);
         };
         
         F.prototype = Object.create(proto.prototype);
@@ -23,7 +23,9 @@ var extend = function (proto) {
         utils.each(options, function (value, key) {
             F.prototype[key] = value;
         });
-    
+        
+        F.extend = extend(F);
+        
         return F;
     };
 };

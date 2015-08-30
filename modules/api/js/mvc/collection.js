@@ -1,6 +1,6 @@
 var utils  = require('../helpers/utils'),
     events = require('../helpers/events'),
-    extend = require('./extend'),
+    extend = require('../helpers/extend'),
     Model  = require('./model');
 
 /**

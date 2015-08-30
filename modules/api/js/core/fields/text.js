@@ -1,26 +1,20 @@
 var dom   = require('../../helpers/dom'),
-    Input = require('./Input');
+    Input = require('./input');
 
-var Text = function () {
-    Input.apply(this, arguments);
-};
-
-Text.prototype = Object.create(Input.prototype);
-
-Text.prototype.create = function (node) {
-    var text = dom.node('<textarea class="m-text-field m-hidden"></textarea>');
+module.exports = Input.extend({
+    create: function (node) {
+        var text = dom.node('<textarea class="m-text-field m-field"></textarea>');
     
-    if (node) {
-        text.className += ' ' + node.className;
+        if (node) {
+            text.className += ' ' + node.className;
+        }
+    
+        return text;
+    },
+
+    activate: function () {
+        Input.prototype.activate.call(this);
+    
+        this.field.style.height = this.field.scrollHeight + 6 + 'px';
     }
-    
-    return text;
-};
-
-Text.prototype.activate = function () {
-    Input.prototype.activate.call(this);
-    
-    this.field.style.height = this.field.scrollHeight + 6 + 'px';
-};
-
-module.exports = Text;
+});

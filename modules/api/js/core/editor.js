@@ -1,4 +1,4 @@
-var view = require('../mvc/view'),
+var View = require('../mvc/view'),
     dom  = require('../helpers/dom');
 
 /** HTML template */
@@ -17,7 +17,7 @@ var html = '<div class="m-editor m-dynamic">'
 /**
  * Editor view
  */
-var Editor = view.extend({
+var Editor = View.extend({
     /**
      * Initialize 
      */
@@ -40,8 +40,6 @@ var Editor = view.extend({
      * Setup events
      */
     setupEvents: function () {
-        dom.on(this.data.node, 'dblclick', this.edit.bind(this));
-        
         this.bind('.edit-button',   'click', this.edit);
         this.bind('.save-button',   'click', this.save);
         this.bind('.remove-button', 'click', this.remove);

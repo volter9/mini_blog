@@ -1,3 +1,5 @@
+var extend = require('../../helpers/extend');
+
 /**
  * Base field prototype
  * 
@@ -50,5 +52,7 @@ Field.prototype.deactivate = function () {};
 Field.prototype.value = function () {
     return this.field.value;
 };
+
+Field.extend = extend(Field);
 
 module.exports = Field;

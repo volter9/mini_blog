@@ -18,106 +18,111 @@ var Request = function (url, method, data) {
     };
 };
 
-events(Request.prototype);
-
 /**
  * Send AJAX request
  */
-Request.prototype.send = function () {
-    var request = new XMLHttpRequest;
+Request.prototype = {
+    /**
+     * Send the request
+     */
+    send: function () {
+        var request = new XMLHttpRequest;
     
-    var method = this.method.toUpperCase(),
-        query  = this.query(this.data),
-        url    = this.url;
+        var method = this.method.toUpperCase(),
+            query  = this.query(this.data),
+            url    = this.url;
     
-    var self = this;
+        var self = this;
 
-    if (method === 'GET' && query) {
-        url += (url.indexOf('?') === -1 ? '?' : '&') + query;
-    }
-
-    request.open(method, url);
-    request.onreadystatechange = function () {
-        var r = this.readyState,
-            s = this.status,
-            data;
-        
-        if (r === 4 && s === 200) {
-            try {
-                data = JSON.parse(this.responseText);
-            }
-            catch (e) {
-                self.emit('error', request, 'Invalid JSON');
-            }
-            
-            if (data) {
-                self.emit('data', this, data);
-            }
+        if (method === 'GET' && query) {
+            url += (url.indexOf('?') === -1 ? '?' : '&') + query;
         }
-    };
+
+        request.open(method, url);
+        request.onreadystatechange = function () {
+            var r = this.readyState,
+                s = this.status,
+                data;
+        
+            if (r === 4 && s === 200) {
+                try {
+                    data = JSON.parse(this.responseText);
+                }
+                catch (e) {
+                    self.emit('error', request, 'Invalid JSON');
+                }
+                
+                if (data) {
+                    self.emit('data', this, data);
+                }
+            }
+        };
     
-    request.onerror = function () {
-        self.emit('error', request, 'Connection error');
-    };
+        request.onerror = function () {
+            self.emit('error', request, 'Connection error');
+        };
     
-    utils.each(this.headers, function (value, key) {
-        request.setRequestHeader(key, value);
-    });
+        utils.each(this.headers, function (value, key) {
+            request.setRequestHeader(key, value);
+        });
     
-    request.send(query);
+        request.send(query);
+    },
+
+    /**
+     * Set success handler
+     * 
+     * @param {Function} handler
+     */
+    success: function (handler) {
+        this.on('success', handler);
+    
+        return this;
+    },
+
+    /**
+     * Set error handler
+     * 
+     * @param {Function} handler
+     */
+    error: function (handler) {
+        this.on('error', handler);
+    
+        return this;
+    },
+
+    /**
+     * Set request header
+     * 
+     * @param {String} name
+     * @param {String} value
+     */
+    header: function (name, value) {
+        this.headers[name] = value;
+    
+        return this;
+    },
+
+    /**
+     * Encode object into query string
+     * 
+     * @param {Object} object
+     * @return {String}
+     */
+    query: function (object) {
+        var result = '',
+            keys = Object.keys(object);
+    
+        keys.forEach(function (v, k) {
+            result += encodeURIComponent(v) 
+                   + '=' 
+                   + encodeURIComponent(object[v]) + '&';
+        });
+    
+        return result.substr(0, result.length - 1);
+    }
 };
 
-/**
- * Set success handler
- * 
- * @param {Function} handler
- */
-Request.prototype.success = function (handler) {
-    this.on('success', handler);
-    
-    return this;
-};
-
-/**
- * Set error handler
- * 
- * @param {Function} handler
- */
-Request.prototype.error = function (handler) {
-    this.on('error', handler);
-    
-    return this;
-};
-
-/**
- * Set request header
- * 
- * @param {String} name
- * @param {String} value
- */
-Request.prototype.header = function (name, value) {
-    this.headers[name] = value;
-    
-    return this;
-};
-
-/**
- * Encode object into query string
- * 
- * @param {Object} object
- * @return {String}
- */
-Request.prototype.query = function (object) {
-    var result = '',
-        keys = Object.keys(object);
-    
-    keys.forEach(function (v, k) {
-        result += encodeURIComponent(v) 
-               + '=' 
-               + encodeURIComponent(object[v]) + '&';
-    });
-    
-    return result.substr(0, result.length - 1);
-};
+events(Request.prototype);
 
 module.exports = Request;

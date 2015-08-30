@@ -1,5 +1,5 @@
 var utils   = require('../../helpers/utils'),
-    extend  = require('../../mvc/extend'),
+    extend  = require('../../helpers/extend'),
     overlay = require('../overlay');
 
 /**
@@ -15,42 +15,44 @@ function Component (node) {
     this.initialize();
 }
 
-Component.prototype.initialize = function () {};
-
-/**
- * Enable component for modification
- */
-Component.prototype.enable = function () {
-    overlay.show();
+Component.prototype = {
+    initialize: function () {},
     
-    this.view.activate();
-};
-
-/**
- * Disable component for modification
- */
-Component.prototype.disable = function () {
-    overlay.hide();
+    /**
+     * Enable component for modification
+     */
+    enable: function () {
+        overlay.show();
     
-    this.view.deactivate();
-};
+        this.view.activate();
+    },
 
-/**
- * Insert editor
- * 
- * @param {Editor} editor
- */
-Component.prototype.insertEditor = function (editor) {
-    this.editor = editor;
+    /**
+     * Disable component for modification
+     */
+    disable: function () {
+        overlay.hide();
     
-    this.node.appendChild(editor.node);
-};
+        this.view.deactivate();
+    },
 
-/**
- * Save and cancel component actions 
- */
-Component.prototype.save = function () {};
-Component.prototype.cancel = function () {};
+    /**
+     * Insert editor
+     * 
+     * @param {Editor} editor
+     */
+    insertEditor: function (editor) {
+        this.editor = editor;
+    
+        this.node.appendChild(editor.node);
+    },
+
+    /**
+     * Save and cancel component actions 
+     */
+    save: function () {},
+    cancel: function () {}
+};
 
 Component.extend = extend(Component);
 

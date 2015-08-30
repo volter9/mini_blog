@@ -1,10 +1,12 @@
+var utils = {};
+
 /**
  * Simple $.each, only for objects
  * 
  * @param {Object} object
  * @param {Function} callback
  */
-var each = function (object, callback) {
+utils.each = function (object, callback) {
     for (var key in object) {
         if (object.hasOwnProperty(key)) {
             callback(object[key], key);
@@ -19,7 +21,7 @@ var each = function (object, callback) {
  * @param {Object} b
  * @return {Object}
  */
-var diff = function (a, b) {
+utils.diff = function (a, b) {
     var c = {};
     
     for (var key in b) {
@@ -38,7 +40,7 @@ var diff = function (a, b) {
  * @param {Object} b
  * @return {Object}
  */
-var merge = function (a, b) {
+utils.merge = function (a, b) {
     var c = {}, key;
     
     for (key in a) {
@@ -58,7 +60,7 @@ var merge = function (a, b) {
  * @param {Object} a
  * @param {Object} b
  */
-var extend = function (a, b) {
+utils.extend = function (a, b) {
     for (var key in b) {
         a[key] = b[key];
     }
@@ -70,7 +72,7 @@ var extend = function (a, b) {
  * @param {Object} arrayLikeObject
  * @return {Array}
  */
-var toArray = function (arrayLikeObject) {
+utils.toArray = function (arrayLikeObject) {
     return Array.prototype.slice.call(arrayLikeObject);
 };
 
@@ -81,7 +83,7 @@ var toArray = function (arrayLikeObject) {
  * @param {Array} keys
  * @return {Object}
  */
-var pick = function (object, keys) {
+utils.pick = function (object, keys) {
     var result = {};
     
     keys.forEach(function (key) {
@@ -93,11 +95,4 @@ var pick = function (object, keys) {
     return result;
 };
 
-module.exports = {
-    toArray: toArray,
-    extend:  extend,
-    merge:   merge,
-    diff:    diff,
-    each:    each,
-    pick:    pick
-};
+module.exports = utils;
