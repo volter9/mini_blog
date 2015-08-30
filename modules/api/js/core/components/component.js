@@ -1,4 +1,5 @@
-var utils = require('../../helpers/utils'),
+var utils   = require('../../helpers/utils'),
+    extend  = require('../../mvc/extend'),
     overlay = require('../overlay');
 
 /**
@@ -20,8 +21,6 @@ Component.prototype.initialize = function () {};
  * Enable component for modification
  */
 Component.prototype.enable = function () {
-    this.node.style.position = 'relative';
-    this.node.style.zIndex = 9000;
     overlay.show();
     
     this.view.activate();
@@ -31,13 +30,16 @@ Component.prototype.enable = function () {
  * Disable component for modification
  */
 Component.prototype.disable = function () {
-    this.node.style.position = '';
-    this.node.style.zIndex = '';
     overlay.hide();
     
     this.view.deactivate();
 };
 
+/**
+ * Insert editor
+ * 
+ * @param {Editor} editor
+ */
 Component.prototype.insertEditor = function (editor) {
     this.editor = editor;
     
@@ -49,5 +51,7 @@ Component.prototype.insertEditor = function (editor) {
  */
 Component.prototype.save = function () {};
 Component.prototype.cancel = function () {};
+
+Component.extend = extend(Component);
 
 module.exports = Component;

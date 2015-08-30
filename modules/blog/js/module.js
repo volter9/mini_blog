@@ -20,6 +20,31 @@
      */
     var PostView = mini_blog.component.view.extend({
         /**
+         * Post fields
+         */
+        fields: {
+            title: {
+                type: 'input',
+                target: '[data-name=title]'
+            },
+            description: {
+                type: 'input'
+            },
+            url: {
+                type: 'input',
+                target: '[data-name=title]',
+                set: function (value) {
+                    this.field.value = value;
+                    this.node.href = mini_blog.ajax.url(['blog', value]);
+                }
+            },
+            text: {
+                type: 'text',
+                target: '[data-name=text]'
+            }
+        },
+        
+        /**
          * Render the view
          */
         render: function () {
@@ -43,98 +68,76 @@
         }
     });
     
-    /**
-     * Post component constructor
-     * 
-     * @param {Object} attributes
-     * @param {Node} node
-     */
-    var Post = function (node) {
-        mini_blog.component.call(this, node);
-    };
+    var Post = mini_blog.component.extend({
+        /**
+         * Initialize the component
+         */
+        initialize: function () {
+            this.id   = this.node.dataset.id;
+            this.post = posts.get(this.id) || mapper.create();
+        
+            if (this.post.isEmpty() && this.id) {
+                mapper.fetch(this.id, this.post);
+            }
+        
+            this.createView();
+            this.view.highlight();
+        },
+        
+        enable: function () {
+            mini_blog.component.prototype.enable.call(this);
+        
+            this.view.subrender();
+        },
+    
+        /**
+         * Create view
+         */
+        createView: function () {
+            this.view = new PostView(this.node, {
+                model: this.post
+            });
+        },
 
-    Post.prototype = Object.create(mini_blog.component.prototype);
-    
-    /**
-     * Initialize the component
-     */
-    Post.prototype.initialize = function () {
-        this.id   = this.node.dataset.id;
-        this.post = posts.get(this.id) || mapper.create();
-        
-        if (this.post.isEmpty() && this.id) {
-            mapper.fetch(this.id, this.post);
+        /**
+         * Cancel editing
+         */
+        cancel: function () {
+            if (!this.post.isNew()) {
+                return this.post.revert();
+            }
+
+            this.node.parentNode.removeChild(this.node);
+        },
+
+        /**
+         * Remove a post
+         */
+        remove: function () {
+            if (this.post.isNew()) {
+                return;
+            }
+
+            var self = this;
+
+            mapper.remove(this.post, function () {
+                self.cancel();
+            });
+        },
+
+        /**
+         * Save a post
+         */
+        save: function () {
+            this.post.merge(this.view.collectData());
+
+            mapper.save(this.post);
+
+            this.post.clear();
         }
-        
-        this.createView();
-        this.view.highlight();
-    };
-    
-    Post.prototype.enable = function () {
-        mini_blog.component.prototype.enable.call(this);
-        
-        this.view.subrender();
-    };
-    
-    /**
-     * Create view
-     */
-    Post.prototype.createView = function () {
-        this.view = new PostView(this.node, {
-            model: this.post
-        });
-    };
-    
-    /**
-     * Cancel editing
-     */
-    Post.prototype.cancel = function () {
-        if (!this.post.isNew()) {
-            return this.post.revert();
-        }
-        
-        this.node.parentNode.removeChild(this.node);
-    };
-    
-    /**
-     * Remove a post
-     */
-    Post.prototype.remove = function () {
-        if (this.post.isNew()) {
-            return;
-        }
-        
-        var self = this;
-        
-        mapper.remove(this.post, function () {
-            self.cancel();
-        });
-    };
-    
-    /**
-     * Save a post
-     */
-    Post.prototype.save = function () {
-        this.post.merge(this.view.collectData());
-        
-        mapper.save(this.post);
-        
-        this.post.clear();
-    };
-    
-    Post.prototype.insertEditor = function (editor) {
-        this.editor = editor;
-        
-        var li = document.createElement('li');
-        
-        li.appendChild(editor.node);
-        editor.inline();
-        
-        this.view.find('.info').appendChild(li);
-    };
+    });
     
     mini_blog.components.register('post', Post);
-    
     mini_blog.posts = {
         collection: posts
     };

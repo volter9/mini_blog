@@ -5,6 +5,7 @@
     </head>
     
     <body>
+        <div id="wrapper">
         <?php view('blocks/header') ?> 
         
         <article class="fluid error">
@@ -13,5 +14,6 @@
         </article>
         
         <?php view('blocks/footer') ?> 
+        </div>
     </body>
 </html>

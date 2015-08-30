@@ -1,6 +1,4 @@
 (function () {
-    var View = mini_blog.component.view;
-    
     /* Posts mapper */
     var mapper = new mini_blog.mvc.mapper({
         baseurl: 'api/settings',
@@ -16,10 +14,26 @@
     
     settings.bindTo(mapper);
     
-    /**
-     * Setting view
-     */
-    var SettingsView = View.extend({});
+    var SettingsView = mini_blog.component.view.extend({
+        /**
+         * Setup fields
+         * 
+         * @param {Node} node
+         */
+        initiateFields: function (node) {
+            var nodes = mini_blog.toArray(node.querySelectorAll('[data-name]')),
+                self  = this;
+    
+            nodes.forEach(function (node) {
+                var name = node.dataset.name,
+                    type = node.dataset.type || 'input';
+            
+                self.nodes[name] = new mini_blog.fields[type](node, {
+                    name: name
+                });
+            });
+        }
+    });
     
     /**
      * Settings prototype
@@ -37,8 +51,8 @@
      * Initialize the setting
      */
     Settings.prototype.initialize = function () {
-        this.group        = this.node.dataset.group;
         this.notRemovable = true;
+        this.group        = this.node.dataset.group;
         
         this.setting = settings.get(this.group) || mapper.create();
         

@@ -1,14 +1,12 @@
 var events = require('../helpers/events'),
     extend = require('./extend'),
-    Model  = require('./model'),
-    utils  = require('../helpers/utils'),
-    ajax   = require('./adapters/ajax');
+    utils  = require('../helpers/utils');
 
 /* Default properties */
 var defaults = {
     baseurl: '/',
-    adapter: ajax,
-    model:   Model,
+    adapter: require('./adapters/ajax'),
+    model:   require('./model'),
     
     get:    'get',
     insert: 'add',
@@ -62,8 +60,8 @@ Mapper.prototype.create = function (data, model) {
  * @param {Model} model
  * @param {Function} callback
  */
-Mapper.prototype.fetch = function (model, callback) {
-    this.adapter.fetch(this, model, callback);
+Mapper.prototype.fetch = function (id, model, callback) {
+    this.adapter.fetch(this, id, model, callback);
 };
 
 /**

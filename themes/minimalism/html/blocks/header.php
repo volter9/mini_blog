@@ -2,8 +2,7 @@
 
 <header id="header">
     <div class="fluid">
-        <div class="settings"
-             data-component="settings"     
+        <div data-component="settings"     
              data-group="default">
             <h1>
                 <a href="<?php echo url('#index') ?>" 

@@ -5,12 +5,12 @@ module.exports = {
      * Fetch an item from server
      * 
      * @param {Mapper} mapper
-     * @param {Model|Number} model
+     * @param {Number} id
+     * @param {Model} model
      * @param {Fucntion}
      */
-    fetch: function (mapper, model, callback) {
-        var options = mapper.options,
-            id      = !isNaN(model) ? model : model.id;
+    fetch: function (mapper, id, model, callback) {
+        var options = mapper.options;
         
         ajax.get([options.baseurl, options.get, id])
             .success(function (_, data) {

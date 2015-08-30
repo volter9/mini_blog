@@ -8,31 +8,25 @@ var Input = function () {
 Input.prototype = Object.create(Field.prototype);
 
 Input.prototype.create = function (node) {
-    var text = document.createElement('input');
+    var text = dom.node('<input class="m-input-field m-field">');
     
-    text.classList.add('m-input-field');
-    text.classList.add('m-hidden');
-    
-    text.value = node.innerHTML.trim();
-    text.className += ' ' + node.className;
-    
-    dom.insertAfter(node, text);
+    if (node) {
+        text.className += ' ' + node.className;
+    }
     
     return text;
 };
 
 Input.prototype.activate = function () {
-    this.field.classList.add('m-editable');
-    this.field.classList.remove('m-hidden');
-    
-    this.node.classList.add('m-hidden');
+    if (this.node) {
+        this.node.classList.add('m-hidden');
+    }
 };
 
 Input.prototype.deactivate = function () {
-    this.field.classList.remove('m-editable');
-    this.field.classList.add('m-hidden');
-    
-    this.node.classList.remove('m-hidden');
+    if (this.node) {
+        this.node.classList.remove('m-hidden');
+    }
 };
 
 module.exports = Input;

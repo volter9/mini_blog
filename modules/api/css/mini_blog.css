@@ -73,25 +73,18 @@ body {
     cursor: pointer;
     font-size: 14px;
     
-    display: block;
-    margin-right: 1px;
+    display: inline-block;
     padding: 10px;
-}
-
-.m-editor.m-dynamic {
-    position: absolute;
-    top: 0px;
-    right: 0px;
 }
 
 .m-editor .button:last-child {
     margin-right: 0px;
 }
 
-.m-editor .edit,
-.m-editor .editing {
-    border-radius: 4px;
-    overflow: hidden;
+.m-editor.m-dynamic {
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }
 
 /**
@@ -102,10 +95,15 @@ body {
     display: none;
 }
 
-.m-input-field,
-.m-text-field {
+.m-field {
     background-color: transparent;
     border: 0px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    
+    display: block !important;
+    outline: none;
+    margin-bottom: 12px;
 }
 
 .m-input-field {
@@ -125,14 +123,32 @@ body {
     width: 100%;
 }
 
-.m-editable {
-    border: 1px solid transparent;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    
-    display: block !important;
-    outline: none;
-    margin-bottom: 12px;
+.m-anchor {
+    position: relative;
+    left: 0px;
+    top: 0px;
 }
+
+.m-editing {
+    z-index: 9000;
+}
+
+/**
+ * Visibility of buttons
+ */
+
+.m-anchor .m-editor {
+    visibility: hidden;
+}
+
+.m-anchor:hover .m-editor,
+.m-editing .m-editor {
+    visibility: visible;
+}
+
+/**
+ * Overlay styles
+ */
 
 .m-overlay {
     background-color: rgba(255, 255, 255, 0.85);

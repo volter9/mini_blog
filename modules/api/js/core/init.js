@@ -1,6 +1,7 @@
 var components = require('./components/collection'),
     settings   = require('./settings'),
-    utils      = require('../helpers/utils');
+    utils      = require('../helpers/utils'),
+    dom        = require('../helpers/dom');
 
 /**
  * Initialize the system
@@ -10,6 +11,6 @@ var components = require('./components/collection'),
 module.exports = function (meta) {
     settings.assign(meta);
     
-    utils.toArray(document.querySelectorAll('[data-component]'))
+    utils.toArray(dom.findAll('[data-component]'))
          .forEach(components.createComponent);
 };

@@ -9,8 +9,8 @@
 
 $path = module_path('users', 'actions');
 
-route('POST #auth /login', "$path/auth");
-route('GET #login /login', "$path/auth:view");
+route('POST #auth /api/login', "$path/auth");
+route('GET #login /api/login', "$path/auth:view");
 route('* #signout /signout', "$path/auth:signout");
 
 bind('router:found', function ($route) {

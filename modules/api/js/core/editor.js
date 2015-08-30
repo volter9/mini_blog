@@ -1,33 +1,36 @@
-var mvc = require('../mvc');
+var view = require('../mvc/view'),
+    dom  = require('../helpers/dom');
 
 /** HTML template */
-var html = '<div class="edit">'
-+ '    <a class="edit-button button">'
-+ '        <i class="fa fa-fw fa-pencil"></i>'
-+ '    </a>'
-+ '    <a class="remove-button button">'
-+ '        <i class="fa fa-fw fa-trash"></i>'
-+ '    </a>'
-+ '</div>'
-+ '<div class="editing">'
-+ '    <a class="save-button button">'
-+ '        <i class="fa fa-fw fa-floppy-o"></i>'
-+ '    </a>'
+var html = '<div class="m-editor m-dynamic">'
++ '<a class="remove-button button">'
++ '    <i class="fa fa-fw fa-trash"></i>'
++ '</a>'
++ '<a class="edit-button button">'
++ '    <i class="fa fa-fw fa-pencil"></i>'
++ '</a>'
++ '<a class="save-button button">'
++ '    <i class="fa fa-fw fa-hdd-o"></i>'
++ '</a>'
 + '</div>';
 
 /**
  * Editor view
  */
-var Editor = mvc.view.extend({
+var Editor = view.extend({
     /**
      * Initialize 
      */
     initialize: function () {
         var self = this;
         
-        this.node = document.createElement('div');
-        this.node.className = 'm-editor m-dynamic';
-        this.node.innerHTML = html;
+        this.node = dom.node(html);
+        
+        this.buttons = {
+            edit: this.find('.edit-button'),
+            save: this.find('.save-button'),
+            remove: this.find('.remove-button'),
+        };
         
         this.setupEvents();
         this.show(true);
@@ -37,7 +40,7 @@ var Editor = mvc.view.extend({
      * Setup events
      */
     setupEvents: function () {
-        this.data.node.addEventListener('dblclick', this.edit.bind(this));
+        dom.on(this.data.node, 'dblclick', this.edit.bind(this));
         
         this.bind('.edit-button',   'click', this.edit);
         this.bind('.save-button',   'click', this.save);
@@ -96,21 +99,14 @@ var Editor = mvc.view.extend({
     /**
      * Show/hide buttons
      */
-    show: function (editing) {
-        this.find('.edit').style.display    = editing ? 'block' : 'none';
-        this.find('.editing').style.display = editing ? 'none' : 'block';
+    show: function (flag) {
+        this.buttons.edit.style.display = flag ? '' : 'none';
+        this.buttons.save.style.display = flag ? 'none' : '';
+        this.buttons.remove.style.display = flag ? '' : 'none';
         
         if (this.data.component.notRemovable) {
-            this.find('.remove-button').style.display = 'none';
+            this.buttons.remove.style.display = 'none';
         }
-    },
-    
-    inline: function () {
-        this.node.classList.remove('m-dynamic');
-        
-        this.find('.edit-button').innerHTML = 'Редактировать';
-        this.find('.save-button').innerHTML = 'Сохранить';
-        this.find('.remove-button').innerHTML = 'Удалить';
     }
 });
 

@@ -64,6 +64,7 @@ Components.createComponent = function (node) {
     
     node.component = component;
     node.editor    = view;
+    node.classList.add('m-anchor');
 };
 
 module.exports = Components;

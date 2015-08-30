@@ -1,6 +1,5 @@
 <footer class="fluid" id="footer">
-    <div class="settings"
-         data-component="settings"
+    <div data-component="settings"
          data-group="default">
         <p class="copyright" data-name="copyright"><?php 
             echo storage('settings.default.copyright') 

@@ -28,25 +28,6 @@ img {
     max-width: 100%;
 }
 
-pre.hljs {
-    position: relative;
-    left: 0px;
-    top: 0px;
-}
-
-pre.hljs:before {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
-    content: attr(class);
-    color: #3B3D38;
-    
-    position: absolute;
-    bottom: 6px;
-    right: 6px;
-    
-    padding: 4px 8px;
-}
-
 /**
  * Common styles
  */
@@ -108,12 +89,6 @@ a:hover {
     margin-bottom: 3em;
 }
 
-.settings {
-    position: relative;
-    top: 0px;
-    left: 0px;
-}
-
 #header .header {
     font-family: Open Sans, sans-serif;
     font-size: 40px;
@@ -164,14 +139,11 @@ article.error p {
 }
 
 article.error pre {
-    background-color: #f4f4f4;
     font-family: Menlo, Monaco, monospace;
     font-size: 12px;
     line-height: 1.375em;
     
     margin-bottom: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
     overflow-x: auto;
     overflow-y: hidden;
     padding: 20px 0px;
@@ -229,10 +201,6 @@ article.error ul li {
 }
 
 .post {
-    position: relative;
-    top: 0px;
-    left: 0px;
-    
     margin-bottom: 2em;
 }
 
@@ -277,9 +245,10 @@ article.error ul li {
     color: #000;
 }
 
-/* 
 .post h1 {
     font-size: 28px;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
 }
 
 .post h2 {
@@ -289,7 +258,6 @@ article.error ul li {
 .post h3 {
     font-size: 18px;
 }
-*/
 
 .post > *:last-child {
     margin-bottom: 0px;
@@ -327,28 +295,19 @@ article.error ul li {
     border-bottom: 1px solid rgba(119, 119, 119, 0.5);
 }
 
-.post .info .m-editor a {
-    background-color: transparent;
-    
-    display: block;
-    float: left;
-    margin-right: 14px;
-    padding: 0px;
-    padding-bottom: 2px;
-}
-
-.post .info .edit,
-.post .info .editing {
-    border-radius: 0px;
-    overflow: none;
-}
-
 .post p,
 .post blockquote,
 .post ul,
 .post ol,
 .post iframe {
     margin-bottom: 1em;
+}
+
+.post ul ul,
+.post ul ol,
+.post ol ol,
+.post ol ul {
+    margin-top: 0.25em;
 }
 
 .post p:last-child,
@@ -396,7 +355,6 @@ article.error ul li {
 }
 
 .post pre {
-    border-radius: 10px;
     font-family: Menlo, Monaco, monospace;
     font-size: 14px;
     line-height: 1.375em;
@@ -408,12 +366,18 @@ article.error ul li {
     padding: 10px;
 }
 
-.post pre:not(.hljs) {
-    background-color: #f0f0f0;
-}
-
 .post img {
     max-width: 100%;
+    margin-bottom: 1em;
+}
+
+.post img.centered {
+    display: block;
+    margin: 0px auto;
+}
+
+.post img.full {
+    width: 100%;
 }
 
 .post .description {

@@ -1,14 +1,15 @@
 var components = require('../components/collection'),
     editor     = require('../editor'),
     ajax       = require('../../helpers/ajax'),
-    view       = require('../../mvc/view');
+    view       = require('../../mvc/view'),
+    dom        = require('../../helpers/dom');
 
 var AddView = view.extend({
     /**
      * Bind the action 
      */
     initialize: function () {
-        this.bind('.button', 'click', this.addView.bind(this));
+        this.bind('.button', 'click', this.addView);
     },
     
     /**
@@ -18,17 +19,20 @@ var AddView = view.extend({
         event.preventDefault();
         
         if (!editor.editing) {
-            this.createNode(document.querySelector('.posts'));
+            this.createNode(dom.find('.posts'));
         }
     },
     
     /**
      * Create a node from template requested via AJAX
      * 
-     * @param {String} item
      * @param {Node} destination
      */
     createNode: function (destination) {
+        if (!destination) {
+            return;
+        }
+        
         var self = this;
         var callback = function (xhr, data) {
             self.appendNode(data, destination);
@@ -46,13 +50,9 @@ var AddView = view.extend({
      * @param {Node} destination
      */
     appendNode: function (data, destination) {
-        var fragment = document.createElement('div');
+        var div = dom.node(data.html);
         
-        fragment.innerHTML = data.html;
-    
-        var div = fragment.children[0];
-    
-        div.removeAttribute('data-id');    
+        div.removeAttribute('data-id'); 
         
         destination.insertBefore(div, destination.children[0]);
         
@@ -63,4 +63,4 @@ var AddView = view.extend({
     }
 });
 
-module.exports = new AddView(document.querySelector('#mini_panel .add'));
+module.exports = new AddView(dom.find('#mini_panel .add'));

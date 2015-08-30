@@ -5,29 +5,13 @@
      data-component="post"
      data-id="<?php echo $post['id'] ?>">
     <h2 class="post-title">
-        <?php if (isset($post['url'])): ?> 
-        <a href="<?php echo url('#post', array($post['url'])) ?>" 
+        <a class="post-title"
+           href="<?php echo url('#post', array($post['url'])) ?>" 
            data-name="title"
            data-type="input">
             <?php echo $post['title'] ?> 
         </a>
-        <?php else: ?> 
-        <span data-name="title"
-              data-type="input">
-            <?php echo $post['title'] ?> 
-        </span>
-        <?php endif; ?>  
     </h2>
-
-    <p class="description" data-name="description">
-        <?php echo $post['description'] ?> 
-    </p>
-    
-    <p class="url" 
-       data-name="url"
-       data-type="input">
-        <?php echo $post['url'] ?>
-    </p>
     
     <div class="text"
          data-name="text"

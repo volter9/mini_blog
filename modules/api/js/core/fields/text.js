@@ -8,15 +8,11 @@ var Text = function () {
 Text.prototype = Object.create(Input.prototype);
 
 Text.prototype.create = function (node) {
-    var text = document.createElement('textarea');
+    var text = dom.node('<textarea class="m-text-field m-hidden"></textarea>');
     
-    text.classList.add('m-text-field');
-    text.classList.add('m-hidden');
-    
-    text.value = node.innerHTML.trim();
-    text.className += ' ' + node.className;
-    
-    dom.insertAfter(node, text);
+    if (node) {
+        text.className += ' ' + node.className;
+    }
     
     return text;
 };

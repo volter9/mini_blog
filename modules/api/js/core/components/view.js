@@ -1,17 +1,53 @@
-var View   = require('../../mvc/view'),
-    utils  = require('../../helpers/utils'),
+var Fields = require('../fields'),
+    View   = require('../../mvc/view'),
     extend = require('../../mvc/extend'),
-    fields = require('../fields');
+    utils  = require('../../helpers/utils'),
+    dom    = require('../../helpers/dom');
 
 var ComponentView = View.extend({
     /**
      * Initialize the view
      */
     initialize: function () {
-        this.nodes = {};
-        this.setNodes(this.node);
+        this.fields = this.fields || {};
+        this.nodes  = this.nodes  || {};
+        
+        this.initiateFields(this.node, this.fields);
+        this.initiateForm(this.nodes);
         
         this.data.model.on('change', this.render.bind(this));
+        this.render();
+    },
+    
+    /**
+     * Setup fields
+     * 
+     * @param {Node} node
+     * @param {Object} fields
+     */
+    initiateFields: function (node, fields) {
+        var self = this;
+        
+        utils.each(fields, function (field, name) {
+            var type   = field.type,
+                target = dom.find(field.target, node);
+            
+            field.name = name;
+            
+            self.nodes[name] = new Fields[type](target, field);
+        });
+    },
+    
+    initiateForm: function (nodes) {
+        var self = this;
+        
+        this.form = dom.node('<div class="m-hidden"></div>');
+        
+        utils.each(nodes, function (field) {
+            self.form.appendChild(field.field);
+        });
+        
+        this.node.appendChild(this.form);
     },
     
     /**
@@ -21,26 +57,9 @@ var ComponentView = View.extend({
         var data = this.data.model.all();
         
         utils.each(this.nodes, function (node, key) {
-            data[key] && (node.node.innerHTML = data[key]);
-        });
-    },
-    
-    /**
-     * Setup nodes
-     * 
-     * @param {Node} node
-     */
-    setNodes: function (node) {
-        var nodes = utils.toArray(node.querySelectorAll('[data-name]')),
-            self  = this;
-    
-        nodes.forEach(function (node) {
-            var name = node.dataset.name,
-                type = node.dataset.type || 'input';
-            
-            node.dataset.type = type;
-            
-            self.nodes[node.dataset.name] = new fields[node.dataset.type](node);
+            if (key in data) {
+                node.set(data[key]);
+            }
         });
     },
     
@@ -51,7 +70,7 @@ var ComponentView = View.extend({
      */
     collectData: function () {
         var data = {};
-
+        
         utils.each(this.nodes, function (node) {
             data[node.name] = node.value();
         });
@@ -63,12 +82,21 @@ var ComponentView = View.extend({
      * Activate the view
      */
     activate: function () {
+        this.node.classList.add('m-editing');
+        this.form.classList.remove('m-hidden');
+        
         utils.each(this.nodes, function (node) {
             node.activate();
         });
     },
     
+    /**
+     * Deactivate the view
+     */
     deactivate: function () {
+        this.node.classList.remove('m-editing');
+        this.form.classList.add('m-hidden');
+        
         utils.each(this.nodes, function (node) {
             node.deactivate();
         });

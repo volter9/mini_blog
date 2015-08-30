@@ -1,60 +1,57 @@
-var dom = {};
+var dom = {},
+    div = document.createElement('div');
 
 /**
- * Get all attributes from DOM element
+ * Attach an event listener to a reference
  * 
- * @link http://stackoverflow.com/questions/2048720/
- *       get-all-attributes-from-a-html-element-with-javascript-jquery
- * @param {Node} element
- * @return {Object}
- */
-dom.attributes = function (element) {
-    var result = {},
-        attributes = element.attributes;
-    
-    for (var i = 0, l = attributes.length; i < l; i ++) {
-        var attribute = attributes[i];
-        
-        result[attribute.nodeName] = attribute.nodeValue;
-    }
-    
-    return result;
-};
-
-/**
- * Get all data attributes from DOM element
- * 
- * @param {Node} element
- * @return {Object}
- */
-dom.dataAttributes = function (element) {
-    var attributes = mini_blog.dom.attributes(element);
-    
-    Object.keys(attributes).forEach(function (key) {
-        if (key.indexOf('data-') !== 0) {
-            delete attributes[key];
-        }
-    });
-    
-    return attributes;
-};
-
-/**
- * Check whether node has a parent in the node chain
- * 
- * @param {Node} node
+ * @param {Node} reference
+ * @param {String} event
  * @param {Function} callback
  */
-dom.hasParent = function (node, callback) {
-    if (callback(node.parentNode)) {
-        return true;
+dom.on = function (reference, event, callback) {
+    reference = reference || document;
+    
+    reference.addEventListener(event, callback);
+};
+
+/**
+ * Find an element
+ * 
+ * @param {String} selector
+ * @param {Node} reference
+ * @return {Node|null}
+ */
+dom.find = function (selector, reference) {
+    return (reference || document).querySelector(selector);
+};
+
+/**
+ * Find all elements 
+ * 
+ * @param {String} selector
+ * @param {Node} reference
+ * @return {NodeList|null}
+ */
+dom.findAll = function (selector, reference) {
+    return (reference || document).querySelectorAll(selector);
+};
+
+/**
+ * Create new node from HTML or tag name
+ * 
+ * @param {String} html
+ * @return {Node}
+ */
+dom.node = function (html) {
+    html = html.trim();
+    
+    if (html[0] !== '<') {
+        return document.createElement(html);
     }
     
-    if (node.parentNode === document.documentElement) {
-        return false;
-    }
+    div.innerHTML = html;
     
-    return dom.hasParent(node.parentNode, callback)
+    return div.children[0];
 };
 
 /**
