@@ -3,7 +3,10 @@ var dom   = require('../../helpers/dom'),
 
 module.exports = Input.extend({
     create: function (node) {
-        var text = dom.node('<textarea class="m-text-field m-field"></textarea>');
+        var text = dom.node(
+            '<textarea class="m-text-field m-field" ' +
+            'placeholder="' + this.name + '"></textarea>'
+        );
     
         if (node) {
             text.className += ' ' + node.className;

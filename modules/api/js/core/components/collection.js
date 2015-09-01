@@ -17,9 +17,7 @@ var Components = {
      * @param {Function} constructor
      */
     register: function (name, constructor) {
-        this.components[name] = {
-            constructor: constructor
-        };
+        this.components[name] = constructor;
     },
 
     /**
@@ -34,7 +32,7 @@ var Components = {
             return false;
         }
     
-        return new this.components[name].constructor(node);
+        return new this.components[name](node);
     },
 
     /**
@@ -60,7 +58,7 @@ var Components = {
         });
     
         component.insertEditor(view);
-    
+        
         node.component = component;
         node.editor    = view;
         node.classList.add('m-anchor');

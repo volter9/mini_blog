@@ -34,9 +34,9 @@ function blog_module_admin_init () {
         'default' => array(
             'id'          => 0,
             'title'       => '',
-            'description' => '',
             'text'        => '',
-            'url'         => md5(microtime()),
+            'url'         => '',
+            'description' => '',
             'date'        => date('Y-m-d H:i:s'),
             'user_id'     => array_get($user, 'id', 1),
             'username'    => array_get($user, 'username', 'admin')

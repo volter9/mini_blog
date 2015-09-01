@@ -7,7 +7,7 @@ module.exports = {
      * Show overlay
      */
     show: function () {
-        if (!this.element) {
+        if (this.element === null) {
             this.element = dom.node('<div class="m-hidden m-overlay"></div>');
             
             document.body.appendChild(this.element);

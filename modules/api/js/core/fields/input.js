@@ -3,7 +3,10 @@ var dom   = require('../../helpers/dom'),
 
 module.exports = Field.extend({
     create: function (node) {
-        var text = dom.node('<input class="m-input-field m-field">');
+        var text = dom.node(
+            '<input class="m-input-field m-field"' + 
+            ' placeholder="' + this.name + '">'
+        );
     
         if (node) {
             text.className += ' ' + node.className;

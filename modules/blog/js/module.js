@@ -15,9 +15,31 @@
     
     posts.bindTo(mapper);
     
-    /**
-     * Post view
-     */
+    var Url = mini_blog.field.extend({
+        create: function () {
+            return mini_blog.dom.node('<label class="m-field m-url-field">' 
+                + 'Заметка будет размещена по этому адресу: '
+                + '<span class="url">' + mini_blog.ajax.url('')
+                + '<input class="m-input-field m-field url-field">'
+                + '</span></label>');
+        },
+        
+        /**
+         * @param {String} value
+         */
+        set: function (value) {
+            this.field.querySelector('.url-field').value = value;
+            this.node.href = mini_blog.ajax.url(value);
+        },
+        
+        /**
+         * @return {String}
+         */
+        value: function () {
+            return this.field.querySelector('.url-field').value;
+        }
+    });
+    
     var PostView = mini_blog.component.view.extend({
         /**
          * Post fields
@@ -30,17 +52,13 @@
             description: {
                 type: 'input'
             },
-            url: {
-                type: 'input',
-                target: '[data-name=title]',
-                set: function (value) {
-                    this.field.value = value;
-                    this.node.href = mini_blog.ajax.url(value);
-                }
-            },
             text: {
                 type: 'text',
                 target: '[data-name=text]'
+            },
+            url: {
+                type: 'url',
+                target: '[data-name=title]'
             }
         },
         
@@ -123,7 +141,13 @@
          * Save a post
          */
         save: function () {
-            this.post.merge(this.view.collectData());
+            var data = this.view.collectData();
+            
+            if (Object.keys(data).length === 0) {
+                return;
+            }
+            
+            this.post.merge(data);
 
             mapper.save(this.post);
 
@@ -131,7 +155,10 @@
         }
     });
     
+    /* Registering URL field and Post component */
+    mini_blog.fields.url = Url;
     mini_blog.components.register('post', Post);
+    
     mini_blog.posts = {
         collection: posts
     };

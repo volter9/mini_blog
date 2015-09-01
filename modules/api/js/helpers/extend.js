@@ -5,6 +5,7 @@ var utils = require('./utils');
  * 
  * @param {Function} proto
  * @return {Function}
+ * @author volter9
  */
 var extend = function (proto) {
     /**

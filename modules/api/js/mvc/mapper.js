@@ -1,12 +1,13 @@
 var events = require('../helpers/events'),
     extend = require('../helpers/extend'),
-    utils  = require('../helpers/utils');
+    utils  = require('../helpers/utils'),
+    Model  = require('./model');
 
 /* Default properties */
 var defaults = {
     baseurl: '/',
     adapter: require('./adapters/ajax'),
-    model:   require('./model'),
+    model:   Model,
     
     get:    'get',
     insert: 'add',

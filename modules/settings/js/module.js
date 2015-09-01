@@ -28,69 +28,57 @@
                 var name = node.dataset.name,
                     type = node.dataset.type || 'input';
             
-                self.nodes[name] = new mini_blog.fields[type](node, {
-                    name: name
-                });
+                self.nodes[name] = new mini_blog.fields[type](node, { name: name });
             });
         }
     });
     
-    /**
-     * Settings prototype
-     * 
-     * @param {Object} attributes
-     * @param {Node} node
-     */
-    var Settings = function (node) {
-        mini_blog.component.call(this, node);
-    };
-
-    Settings.prototype = Object.create(mini_blog.component.prototype);
-
-    /**
-     * Initialize the setting
-     */
-    Settings.prototype.initialize = function () {
-        this.notRemovable = true;
-        this.group        = this.node.dataset.group;
+    var Settings = mini_blog.component.extend({
+        /**
+         * Initialize the setting
+         */
+        initialize: function () {
+            this.notRemovable = true;
+            this.group        = this.node.dataset.group;
         
-        this.setting = settings.get(this.group) || mapper.create();
+            this.setting = settings.get(this.group) || mapper.create();
         
-        if (this.setting.isEmpty()) {
-            mapper.fetch(this.group, this.setting);
+            if (this.setting.isEmpty()) {
+                mapper.fetch(this.group, this.setting);
+            }
+        
+            this.createView();
+        },
+    
+        /**
+         * Create a view 
+         * 
+         * @param {mini_blog.mvc.model} setting
+         */
+        createView: function () {
+            this.view = new SettingsView(this.node, {
+                model: this.setting
+            });
+        },
+    
+        /**
+         * Cancel the modifications
+         */
+        cancel: function () {
+            this.setting.revert();
+        },
+
+        /**
+         * Save settings to the server
+         */
+        save: function () {
+            this.setting.merge(this.view.collectData());
+        
+            mapper.update(this.setting);
+        
+            this.setting.clear();
         }
-        
-        this.createView();
-    };
-    
-    /**
-     * Create a view 
-     * 
-     * @param {mini_blog.mvc.model} setting
-     */
-    Settings.prototype.createView = function () {
-        this.view = new SettingsView(this.node, {
-            model: this.setting
-        });
-    };
-    
-    /**
-     * Cancel the modifications
-     */
-    Settings.prototype.cancel = function () {
-        this.setting.revert();
-    };
-
-    /**
-     * Save settings to the server
-     */
-    Settings.prototype.save = function () {
-        this.setting.merge(this.view.collectData());
-        
-        mapper.update(this.setting);
-        
-        this.setting.clear();
-    };
+    });
 
     mini_blog.components.register('settings', Settings);
     mini_blog.settings = {

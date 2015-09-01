@@ -50,7 +50,7 @@ Component.prototype = {
     /**
      * Save and cancel component actions 
      */
-    save: function () {},
+    save:   function () {},
     cancel: function () {}
 };
 

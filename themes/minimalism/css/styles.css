@@ -204,8 +204,8 @@ article.error ul li {
     margin-bottom: 2em;
 }
 
-.post .post-title,
-.post .post-title input {
+.post .post-title {
+    font-family: inherit;
     font-size: 36px;
     font-weight: normal;
     
@@ -373,25 +373,32 @@ article.error ul li {
 
 .post img.centered {
     display: block;
-    margin: 0px auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .post img.full {
     width: 100%;
 }
 
-.post .description {
-    display: none;
-    font-size: 14px;
-    margin-bottom: 15px
-}
-
 .post .url {
-    display: none;
+    color: #666;
 }
 
-.post .text {
-    font-family: Lato, sans-serif;
+.post .m-url-field {
+    color: #888;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+.post .url-field {
+    border-bottom: 1px solid #e8e8e8;
+    font-size: 14px;
+    
+    display: inline-block;
+    margin-left: 2px;
+    padding: 0px;
+    width: auto;
 }
 
 /**

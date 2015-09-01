@@ -9,9 +9,9 @@ var extend = require('../../helpers/extend');
 var Field = function (node, options) {
     this.options = options;
     
-    this.field = this.create(node);
     this.name  = options.name;
     this.node  = node;
+    this.field = this.create(node);
     
     if (this.options.set) {
         this.set = this.options.set;

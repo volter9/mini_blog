@@ -21,8 +21,6 @@ define('MB_VERSION', 'v1.3');
 define('MB_START'  , microtime(true));
 define('MB_DEBUG'  , true);
 
-// Добавь overlay
-
 /**
  * mini_framework constants
  * 

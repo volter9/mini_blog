@@ -6,6 +6,9 @@ var html = '<div class="m-editor m-dynamic">'
 + '<a class="remove-button button">'
 + '    <i class="fa fa-fw fa-trash"></i>'
 + '</a>'
++ '<a class="cancel-button button">'
++ '    <i class="fa fa-fw fa-times"></i>'
++ '</a>'
 + '<a class="edit-button button">'
 + '    <i class="fa fa-fw fa-pencil"></i>'
 + '</a>'
@@ -30,6 +33,7 @@ var Editor = View.extend({
             edit: this.find('.edit-button'),
             save: this.find('.save-button'),
             remove: this.find('.remove-button'),
+            cancel: this.find('.cancel-button')
         };
         
         this.setupEvents();
@@ -43,6 +47,7 @@ var Editor = View.extend({
         this.bind('.edit-button',   'click', this.edit);
         this.bind('.save-button',   'click', this.save);
         this.bind('.remove-button', 'click', this.remove);
+        this.bind('.cancel-button', 'click', this.cancel);
     },
     
     /**
@@ -88,6 +93,14 @@ var Editor = View.extend({
     },
     
     /**
+     * Cancel edited content
+     */
+    cancel: function () {
+        this.disable();
+        this.data.component.cancel();
+    },
+    
+    /**
      * Destroy the view
      */
     destroy: function () {
@@ -100,6 +113,7 @@ var Editor = View.extend({
     show: function (flag) {
         this.buttons.edit.style.display = flag ? '' : 'none';
         this.buttons.save.style.display = flag ? 'none' : '';
+        this.buttons.cancel.style.display = flag ? 'none' : '';
         this.buttons.remove.style.display = flag ? '' : 'none';
         
         if (this.data.component.notRemovable) {
