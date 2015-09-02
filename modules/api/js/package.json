@@ -1,0 +1,10 @@
+{
+    "name": "mini_blog",
+    "description": "core front-end library of mini_blog",
+    "version": "0.1.0",
+    "license": "MIT",
+    
+    "dependencies": {
+        "marked": ""
+    }
+}

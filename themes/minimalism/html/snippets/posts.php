@@ -16,7 +16,7 @@
     <div class="text"
          data-name="text"
          data-type="text">
-<?php echo $post['text'] ?> 
+<?php echo markdown($post['text']) ?> 
     </div>
     
     <ul class="info">

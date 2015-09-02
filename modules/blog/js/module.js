@@ -53,7 +53,11 @@
             },
             text: {
                 type: 'text',
-                target: '[data-name=text]'
+                target: '[data-name=text]',
+                set: function (text) {
+                    this.field.value = text;
+                    this.node.innerHTML = markdown(text);
+                }
             },
             url: {
                 type: 'url',

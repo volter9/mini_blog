@@ -30,6 +30,22 @@ function array_flatten (array $array) {
 }
 
 /**
+ * Shortcut for parsedown
+ * 
+ * @param string $text
+ * @return string
+ */
+function markdown ($text) {
+    static $parsedown = null;
+    
+    if (!$parsedown) {
+        $parsedown = new Parsedown;
+    }
+    
+    return $parsedown->text($text);
+}
+
+/**
  * Admin container
  * 
  * @param mixed $key
@@ -85,7 +101,7 @@ function admin_filter ($module, array $data) {
 /**
  * Get bootstrapped JS strings (for collections)
  * 
- * 
+ * @return string
  */
 function admin_js_bootstrap () {
     $js = '';

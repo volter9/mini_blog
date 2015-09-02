@@ -1,8 +1,9 @@
 # Waste
 .DS_Store
 
-# Composer stuff
-vendor/
+# Composer and NPM stuff
+vendor
+node_modules
 composer.lock
 
 # Local stuff

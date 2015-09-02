@@ -32,4 +32,6 @@ utils.extend(mini_blog, utils);
 
 mini_blog.component.view = require('./core/components/view');
 
+global.markdown = require('marked');
+
 module.exports = mini_blog;
