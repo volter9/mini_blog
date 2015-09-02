@@ -84,19 +84,15 @@ function settings_save ($group, array $data) {
  * @param bool $exists
  */
 function setting_save ($group, $name, $value, $exists) {
-    $value = compact('group', 'name', 'value');
-    
     if ($exists) {
-        unset($value['name'], $value['group']);
-        
         $criteria = array(
             'group[=]' => $group,
             'name[=]'  => $name
         );
         
-        return db_update('settings', $value, $criteria);
+        return db_update('settings', compact('value'), $criteria);
     }
     else {
-        return db_insert('settings', $value);
+        return db_insert('settings', compact('group', 'name', 'value'));
     }
 }

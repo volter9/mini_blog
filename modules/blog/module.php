@@ -16,8 +16,7 @@ function blog_module_init () {
     load_language('app', module_path('blog', 'i18n/site'));
     
     admin('posts', array(
-        'js' => array(module_url('blog', 'js/module.js')),
-        'js_bootstrap' => 'blog_bootstrap'
+        'js' => array(module_url('blog', 'js/module.js'))
     ));
 }
 
@@ -27,42 +26,23 @@ function blog_module_init () {
 function blog_module_admin_init () {
     $user = users('user');
     
+    $strip = function ($value) { return strip_tags($value); };
+    $trim  = function ($value) { return trim($value); };
+    
     admin('posts', array(
         'keys' => array(
-            'title', 'url', 'text', 'date', 'user_id'
+            'title', 'url', 'text', 'date'
         ),
         'default' => array(
-            'id'          => 0,
-            'title'       => '',
-            'text'        => '',
-            'url'         => '',
-            'date'        => date('Y-m-d H:i:s'),
-            'user_id'     => array_get($user, 'id', 1),
-            'username'    => array_get($user, 'username', 'admin')
+            'title' => '',
+            'text'  => '',
+            'date'  => date('Y-m-d H:i:s'),
+            'url'   => '',
+            'id'    => 0
         ),
         'filters' => array(
-            'title'       => array('strip_tags', 'trim'),
-            'text'        => array('trim')
+            'title' => array($strip, $trim),
+            'text'  => array($trim)
         )
     ));
-}
-
-/**
- * @return string
- */
-function blog_bootstrap () {    
-    $js = '';
-    
-    if ($posts = views('data.posts')) {
-        $posts = json($posts['items']);
-        
-        $js .= "mini_blog.posts.collection.bootstrap($posts);";
-    }
-    else if ($post = views('data.post')) {
-        $post = json($post);
-        
-        $js .= "mini_blog.posts.collection.bootstrap([$post]);";
-    }
-    
-    return $js;
 }

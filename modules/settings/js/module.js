@@ -81,7 +81,5 @@
     });
 
     mini_blog.components.register('settings', Settings);
-    mini_blog.settings = {
-        collection: settings
-    };
+    mini_blog.settings.collection = settings;
 })();

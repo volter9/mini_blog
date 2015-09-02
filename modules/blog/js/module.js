@@ -42,7 +42,7 @@
         }
     });
     
-    var PostView = mini_blog.component.view.extend({
+    var PostView = View.extend({
         /**
          * Post fields
          */
@@ -63,29 +63,6 @@
                 type: 'url',
                 target: '[data-name=title]'
             }
-        },
-        
-        /**
-         * Render the view
-         */
-        render: function () {
-            this.subrender();
-            this.highlight();
-        },
-        
-        /**
-         * Subrender
-         */
-        subrender: function () {
-            View.prototype.render.call(this);
-        },
-        
-        /**
-         * Highlight the code
-         */
-        highlight: function () {
-            mini_blog.toArray(this.node.querySelectorAll('pre'))
-                     .forEach(hljs.highlightBlock);
         }
     });
     
@@ -102,7 +79,6 @@
             }
         
             this.createView();
-            this.view.highlight();
         },
         
         /**
@@ -113,7 +89,7 @@
                 model: this.post
             });
         },
-
+        
         /**
          * Cancel editing
          */
@@ -121,10 +97,10 @@
             if (!this.post.isNew()) {
                 return this.post.revert();
             }
-
+            
             this.node.parentNode.removeChild(this.node);
         },
-
+        
         /**
          * Remove a post
          */
@@ -132,14 +108,14 @@
             if (this.post.isNew()) {
                 return;
             }
-
+            
             var self = this;
-
+            
             mapper.remove(this.post, function () {
                 self.cancel();
             });
         },
-
+        
         /**
          * Save a post
          */
@@ -151,9 +127,9 @@
             }
             
             this.post.merge(data);
-
+            
             mapper.save(this.post);
-
+            
             this.post.clear();
         }
     });

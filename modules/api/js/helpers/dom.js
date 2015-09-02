@@ -45,7 +45,7 @@ dom.findAll = function (selector, reference) {
 dom.node = function (html) {
     html = html.trim();
     
-    if (html[0] !== '<') {
+    if (html[0] !== '<' && html[html.length - 1] !== '>') {
         return document.createElement(html);
     }
     

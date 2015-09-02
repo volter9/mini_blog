@@ -54,3 +54,11 @@ function db_edit ($table, array $data, $id) {
 function db_remove ($table, $id) {
     return db_delete($table, array('id[=]' => $id));
 }
+
+/**
+ * @param string $value
+ * @return string
+ */
+function db_like ($value) {
+    return preg_replace('/(%|_)/', '\\$1', $value);
+}

@@ -1,4 +1,4 @@
-var events = function (proto) {
+module.exports = function (proto) {
     /**
      * Bind an event
      * 
@@ -28,12 +28,10 @@ var events = function (proto) {
             return;
         }
         
-        var args = mini_blog.toArray(arguments).slice(1);
+        var args = Array.prototype.slice.call(arguments, 1);
     
         this._events[event].forEach(function (callback) {
             callback && callback.apply(callback, args);
         });
     };
 };
-
-module.exports = events;

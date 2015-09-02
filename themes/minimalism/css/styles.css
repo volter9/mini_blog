@@ -363,6 +363,13 @@ article.error ul li {
     margin-bottom: 20px;
     overflow-x: auto;
     overflow-y: hidden;
+}
+
+.post pre code {
+    font-family: inherit;
+    font-size: inherit;
+    
+    display: block;
     padding: 10px;
 }
 

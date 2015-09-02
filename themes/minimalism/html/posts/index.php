@@ -24,4 +24,12 @@
     
     view('blocks/pagination', $pages, false); 
 ?>
+<?php endif; if (users('authorized')): ?>
+<script type="text/javascript">
+    bootstraping.push(function () {
+        mini_blog.posts.collection.bootstrap(<?php 
+            echo json($posts['items']) 
+        ?>);
+    });
+</script>
 <?php endif; ?> 

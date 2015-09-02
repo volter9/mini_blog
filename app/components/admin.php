@@ -90,27 +90,12 @@ function admin_filter ($module, array $data) {
     foreach ($filter as $key => $filters) {
         foreach ($filters as $function) {
             if (isset($data[$key])) {
-                $data[$key] = $function($data[$key]);
+                $data[$key] = $function($data[$key], $data);
             }
         }
     }
     
     return $data;
-}
-
-/**
- * Get bootstrapped JS strings (for collections)
- * 
- * @return string
- */
-function admin_js_bootstrap () {
-    $js = '';
-    
-    foreach (array_pluck(admin(), 'js_bootstrap') as $func) {
-        $js .= $func() . "\n";
-    }
-    
-    return $js;
 }
 
 /**

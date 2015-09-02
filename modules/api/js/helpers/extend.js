@@ -9,19 +9,25 @@ var utils = require('./utils');
  */
 var extend = function (proto) {
     /**
-     * Closure
-     * 
      * @param {Object} options
      * @return {Function}
      */
     return function (options) {
+        var ctor = options.constructor;
+        
         var F = function () {            
             proto.apply(this, arguments);
+            
+            ctor && ctor.apply(this, arguments);
         };
         
         F.prototype = Object.create(proto.prototype);
         
         utils.each(options, function (value, key) {
+            if (key === 'constructor') { 
+                return;
+            }
+            
             F.prototype[key] = value;
         });
         

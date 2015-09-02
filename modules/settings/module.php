@@ -21,11 +21,18 @@ function settings_module_init () {
     }
     
     admin('settings', array(
-        'js' => array(module_url('settings', 'js/module.js')),
-        'js_bootstrap' => function () {
-            $settings = json(storage('settings'));
-            
-            return "mini_blog.settings.collection.bootstrap($settings);";
-        }
+        'js' => array(module_url('settings', 'js/module.js'))
     ));
+    
+    bind('blocks:head', function () {
+        if (users('authorized')) {
+            printf('
+<script type="text/javascript">
+    bootstraping.push(function () {
+        mini_blog.settings.collection.bootstrap(%s);
+    });
+</script>
+', json(storage('settings')));
+        }
+    });
 }

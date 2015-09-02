@@ -5,3 +5,4 @@
 <link href="<?php echo module_url('api', 'css/mini_blog.css') ?>" 
       rel="stylesheet" 
       type="text/css"/>
+<script type="text/javascript">var bootstraping = [];</script>

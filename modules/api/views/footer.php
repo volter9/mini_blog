@@ -3,9 +3,11 @@
 <?php endforeach; ?>
 <script type="text/javascript">
 window.addEventListener('load', function () {
-    <?php echo admin_js_bootstrap() ?>
-    
-    mini_blog.init(<?php echo json_encode(array(
+    bootstraping.forEach(function (callback) {
+        callback();
+    });
+
+    mini_blog.init(<?php echo json(array(
         'baseurl' => router('settings.root'),
         'lang'    => lang('settings.default')
     )) ?>);

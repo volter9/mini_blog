@@ -57,7 +57,7 @@ module.exports = {
     update: function (mapper, model, callback) {
         var options = mapper.options;
         
-        ajax.post([options.baseurl, options.update, model.id], model.diff())
+        ajax.post([options.baseurl, options.update, model.id], model.all())
             .success(function () {
                 callback && callback(model);
                 

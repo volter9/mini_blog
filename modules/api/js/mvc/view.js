@@ -1,4 +1,5 @@
-var extend = require('../helpers/extend');
+var extend = require('../helpers/extend'),
+    dom    = require('../helpers/dom');
 
 /**
  * MVC view
@@ -15,7 +16,9 @@ var View = function (node, data) {
     this.initialize();
 };
 
-/** Methods that should be extended in subclasses */
+/**
+ * Method that should be extended in subclasses 
+ */
 View.prototype.initialize = function () {};
 
 /**
@@ -25,7 +28,7 @@ View.prototype.initialize = function () {};
  * @return {Node}
  */
 View.prototype.find = function (selector) {
-    var node = this.node.querySelector(selector);
+    var node = dom.find(selector, this.node);
     
     if (!node) {
         console.warn('Could not find node by selector "' + selector + '"');
@@ -44,12 +47,11 @@ View.prototype.find = function (selector) {
 View.prototype.bind = function (selector, event, callback) {
     var node = selector instanceof Node ? selector : this.find(selector);
     
-    if (node) {
-        node.addEventListener(event, callback.bind(this));
+    if (!node) {
+        return console.warn('Node is not suitable for attaching events!');
     }
-    else {
-        console.warn('Node is not suitable for attaching events!');
-    }
+    
+    dom.on(node, event, callback.bind(this));
 };
 
 View.extend = extend(View);

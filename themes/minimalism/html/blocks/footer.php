@@ -11,7 +11,7 @@
 <script type="text/javascript">
     var slice = Array.prototype.slice;
     
-    slice.call(document.querySelectorAll('#wrapper pre'))
+    slice.call(document.querySelectorAll('#wrapper pre code'))
          .forEach(hljs.highlightBlock);
 </script>
 <?php emit('blocks:footer') ?> 
