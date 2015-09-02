@@ -7,8 +7,6 @@
  * @package mini_blog
  */
 
-var utils = require('../../helpers/utils');
-
 module.exports = {
     add: require('./add')
 };

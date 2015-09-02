@@ -13,6 +13,8 @@
 function api_module_init () {
     $path = module_url('api');
     
+    load_php(module_path('api', 'functions'));
+    
     admin('api', array(
         'js' => array("{$path}js/main.js")
     ));

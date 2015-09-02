@@ -21,6 +21,11 @@ function settings_module_init () {
     }
     
     admin('settings', array(
-        'js' => array(module_url('settings', 'js/module.js'))
+        'js' => array(module_url('settings', 'js/module.js')),
+        'js_bootstrap' => function () {
+            $settings = json(storage('settings'));
+            
+            return "mini_blog.settings.collection.bootstrap($settings);";
+        }
     ));
 }

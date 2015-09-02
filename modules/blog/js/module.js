@@ -20,7 +20,9 @@
             return mini_blog.dom.node('<label class="m-field m-url-field">' 
                 + 'Заметка будет размещена по этому адресу: '
                 + '<span class="url">' + mini_blog.ajax.url('')
-                + '<input class="m-input-field m-field url-field">'
+                + '<input class="m-input-field m-field url-field" placeholder="'
+                + this.name
+                + '">'
                 + '</span></label>');
         },
         
@@ -48,9 +50,6 @@
             title: {
                 type: 'input',
                 target: '[data-name=title]'
-            },
-            description: {
-                type: 'input'
             },
             text: {
                 type: 'text',

@@ -33,6 +33,6 @@ function action_view ($url = '') {
     layout('posts/post', array(
         'title' => $post['title'],
         'post'  => $post,
-        'description' => $post['description']
+        'description' => post_description($post['text'])
     ));
 }

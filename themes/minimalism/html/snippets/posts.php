@@ -16,19 +16,19 @@
     <div class="text"
          data-name="text"
          data-type="text">
-        <?php echo $post['text'] ?> 
+<?php echo $post['text'] ?> 
     </div>
     
     <ul class="info">
         <li> 
             <?php echo date('d.m.Y', strtotime($post['date'])) ?> 
         </li>
-        <li>
-            <a href="<?php echo url('#category', array($category_url)) ?>">
+        <li data-name="category">
             <?php if ($category_url): ?> 
+            <a href="<?php echo url('#category', array($category_url)) ?>">
                 <?php echo $post['category'] ?> 
-            <?php endif; ?> 
             </a>
+            <?php endif; ?> 
         </li>
     </ul>
 </div>

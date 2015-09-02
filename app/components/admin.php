@@ -83,6 +83,21 @@ function admin_filter ($module, array $data) {
 }
 
 /**
+ * Get bootstrapped JS strings (for collections)
+ * 
+ * 
+ */
+function admin_js_bootstrap () {
+    $js = '';
+    
+    foreach (array_pluck(admin(), 'js_bootstrap') as $func) {
+        $js .= $func() . "\n";
+    }
+    
+    return $js;
+}
+
+/**
  * Get all JS scripts registered by modules
  * 
  * @return array

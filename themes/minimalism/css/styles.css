@@ -193,7 +193,7 @@ article.error ul li {
  */
 
 .posts .post {
-    margin-bottom: 3em;
+    margin-bottom: 6em;
 }
 
 .posts .post:last-child {
@@ -392,12 +392,14 @@ article.error ul li {
 }
 
 .post .url-field {
-    border-bottom: 1px solid #e8e8e8;
     font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    
     
     display: inline-block;
     margin-left: 2px;
-    padding: 0px;
+    padding: 1px 3px;
     width: auto;
 }
 

@@ -14,5 +14,4 @@
     slice.call(document.querySelectorAll('#wrapper pre'))
          .forEach(hljs.highlightBlock);
 </script>
-
 <?php emit('blocks:footer') ?> 
