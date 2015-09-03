@@ -126,11 +126,11 @@
                 return;
             }
             
-            this.post.merge(data);
+            this.post.assign(data);
             
             mapper.save(this.post);
             
-            this.post.clear();
+            this.post.apply();
         }
     });
     
@@ -138,7 +138,8 @@
     mini_blog.fields.url = Url;
     mini_blog.components.register('post', Post);
     
-    mini_blog.posts = {
-        collection: posts
+    mini_blog.posts = { 
+        collection: posts, 
+        view: PostView
     };
 })();

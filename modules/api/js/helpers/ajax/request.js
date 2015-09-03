@@ -41,10 +41,11 @@ Request.prototype = {
         request.open(method, url);
         request.onreadystatechange = function () {
             var r = this.readyState,
-                s = this.status,
-                data;
+                s = this.status;
         
             if (r === 4 && s === 200) {
+                var data;
+                
                 try {
                     data = JSON.parse(this.responseText);
                 }

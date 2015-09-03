@@ -21,7 +21,7 @@
          * @param {Node} node
          */
         initiateFields: function (node) {
-            var nodes = mini_blog.toArray(node.querySelectorAll('[data-name]')),
+            var nodes = mini_blog.utils.toArray(node.querySelectorAll('[data-name]')),
                 self  = this;
     
             nodes.forEach(function (node) {
@@ -72,11 +72,12 @@
          * Save settings to the server
          */
         save: function () {
-            this.setting.merge(this.view.collectData());
-        
+            this.setting.assign(this.view.collectData());
+            
             mapper.update(this.setting);
-        
-            this.setting.clear();
+            
+            this.setting.apply();
+            this.setting.emit('change');
         }
     });
 

@@ -9,15 +9,11 @@ var events = require('../helpers/events'),
 var Model = function (data) {
     var id = data && data.id ? data.id : -unique();
     
-    if (data && data.id) {
-        delete data.id;
-    }
+    data = data || {};
+    data.id = id;
     
-    data = utils.merge(this.data || {}, data || {});
-    
-    this.previous = utils.merge({}, data);
-    this.data     = data;
-    this.id       = id;
+    this.assign(data);
+    this.previous = utils.merge({}, this.data);
 };
 
 events(Model.prototype);
@@ -44,9 +40,34 @@ Model.prototype.set = function (key, value) {
 };
 
 /**
+ * Merge model data with new set of data
+ * 
+ * @param {Object} data
+ */
+Model.prototype.merge = function (data) {
+    this.assign(data);
+    this.emit('change');
+};
+
+/**
+ * Merge data into model without emitting change event
+ * 
+ * @param {Object} data
+ */
+Model.prototype.assign = function (data) {
+    if (data.id) {
+        this.id = data.id;
+        
+        delete data.id;
+    }
+    
+    this.data = utils.merge(this.data, data);
+};
+
+/**
  * Clear previous data cache
  */
-Model.prototype.clear = function () {
+Model.prototype.apply = function () {
     this.previous = utils.merge({}, this.data);
 };
 
@@ -93,24 +114,8 @@ Model.prototype.destroy = function () {
  * @param {Object} data
  */
 Model.prototype.reset = function (data) {
-    this.data = data;
+    this.data = utils.merge({}, data);
     
-    this.emit('change');
-};
-
-/**
- * Reset model with new set of data
- * 
- * @param {Object} data
- */
-Model.prototype.merge = function (data) {
-    if (data.id) {
-        this.id = data.id;
-        
-        delete data.id;
-    }
-    
-    this.data = utils.merge(this.data, data);
     this.emit('change');
 };
 

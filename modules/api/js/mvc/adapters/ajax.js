@@ -16,7 +16,7 @@ module.exports = {
             .success(function (_, data) {
                 var isNew  = isNaN(model),
                     result = mapper.create(mapper.parse(data), model);
-            
+                
                 if (!isNew) {
                     callback && callback(model);
                     
@@ -39,7 +39,11 @@ module.exports = {
         ajax.post([options.baseurl, options.insert], model.all())
             .success(function (_, data) {
                 model.id = data.id;
-            
+                
+                if (data.data) {
+                    model.merge(data.data);
+                }
+                
                 callback && callback(model);
                 
                 mapper.emit('add', model);
@@ -58,7 +62,11 @@ module.exports = {
         var options = mapper.options;
         
         ajax.post([options.baseurl, options.update, model.id], model.all())
-            .success(function () {
+            .success(function (_, data) {
+                if (data.data) {
+                    model.merge(data.data);
+                }
+                
                 callback && callback(model);
                 
                 mapper.emit('update', model);

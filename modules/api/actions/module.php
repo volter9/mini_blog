@@ -41,12 +41,13 @@ function action_template ($module) {
 function action_add ($module) {
     $data = admin("$module.default");
     $data = array_merge(is_array($data) ? $data : array(), input());
-    $data = admin_filter($module, $data);
+    $data = admin_filter($module, array_merge($data, array('id' => 0)));
     $result = db_insert($module, $data);
     
     echo json(array(
         'status' => $result ? 'ok' : 'error',
-        'id'     => $result
+        'id'     => $result,
+        'data'   => $data
     ));
 }
 
@@ -57,11 +58,12 @@ function action_add ($module) {
  * @param string $id
  */
 function action_edit ($module, $id) {
-    $data = admin_filter($module, input());
+    $data = admin_filter($module, array_merge(input(), compact('id')));
     $result = db_edit($module, $data, $id);
     
     echo json(array(
         'status' => $result ? 'ok' : 'error',
+        'data'   => $data
     ));
 }
 

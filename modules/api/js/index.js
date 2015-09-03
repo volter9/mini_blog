@@ -10,8 +10,6 @@
  * @package mini_blog
  */
 
-var utils = require('./helpers/utils');
-
 var mini_blog = {
     components: require('./core/components/collection'),
     component:  require('./core/components/component'),
@@ -23,12 +21,11 @@ var mini_blog = {
     init:       require('./core/init'),
     events:     require('./helpers/events'),
     unique:     require('./helpers/unique'),
+    utils:      require('./helpers/utils'),
     ajax:       require('./helpers/ajax'),
     dom:        require('./helpers/dom'),
     mvc:        require('./mvc')
 };
-
-utils.extend(mini_blog, utils);
 
 mini_blog.component.view = require('./core/components/view');
 

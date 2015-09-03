@@ -31,7 +31,7 @@ function blog_module_admin_init () {
     
     admin('posts', array(
         'keys' => array(
-            'title', 'url', 'text', 'date'
+            'id', 'title', 'url', 'text', 'date'
         ),
         'default' => array(
             'title' => '',
@@ -42,7 +42,74 @@ function blog_module_admin_init () {
         ),
         'filters' => array(
             'title' => array($strip, $trim),
-            'text'  => array($trim)
+            'text'  => array($trim),
+            'url'   => array('blog_url')
         )
     ));
+}
+
+/**
+ * Filter post URL 
+ * 
+ * @param string $url
+ * @param array $data
+ * @return string
+ */
+function blog_url ($url, $data) {
+    if ($url === '') {
+        return md5(microtime(true));
+    }
+    
+    $found = blog_matched_url($url);
+    
+    if (
+        $found && 
+        intval($found['id']) !== intval($data['id'])
+    ) {
+        $found  = $found['url'];
+        $number = blog_url_number($found, $url);
+    
+        if ($number) {
+            $url = preg_replace('/-' . ($number - 1). '/', '', $url);        
+            $url .= "-$number";
+        }
+    }
+    
+    return $url;
+}
+
+/**
+ * Get URL slug in posts which similar 
+ * 
+ * @param string $url
+ * @return array
+ */
+function blog_matched_url ($url) {
+    return db_select('
+        SELECT id, url 
+        FROM posts 
+        WHERE url LIKE ? 
+        ORDER BY LENGTH(url) DESC, url DESC 
+        LIMIT 1',
+        array(db_like($url) . '%'), true
+    );
+}
+
+/**
+ * Get the last duplicate identificator in the end of url
+ * 
+ * @param string $found
+ * @param string $url
+ * @return int
+ */
+function blog_url_number ($found, $url) {
+    if ($found === $url) {
+        return 1;
+    }
+    
+    $url = preg_quote($url, '/');
+    
+    preg_match("/$url-(\d+)/", $found, $matches);
+    
+    return isset($matches[1]) ? intval($matches[1]) + 1 : 0;
 }

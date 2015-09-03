@@ -12,7 +12,8 @@
                 ?></a>
             </h1>
         
-            <p class="site-description" data-name="sitedescription"><?php 
+            <p class="site-description" 
+               data-name="sitedescription"><?php 
                 echo storage('settings.default.sitedescription')
             ?></p>
         </div>

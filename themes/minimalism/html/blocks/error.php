@@ -1,4 +1,9 @@
 <?php
+/**
+ * Error view
+ * 
+ * @var \Exception $exception
+ */
 
 $clip = function ($string, $limit = 50) {
     $length = mb_strlen($string);
@@ -16,10 +21,8 @@ $clip = function ($string, $limit = 50) {
 </div>
 
 <div class="right">
-    <p>
-        Stack trace (hover over path to get full path):
-    </p>
-
+    <p>Stack trace (hover over path to get full path):</p>
+    
     <ul>
         <?php foreach ($exception->getTrace() as $trace): ?> 
             <?php if (isset($trace['file'], $trace['line'])): ?> 

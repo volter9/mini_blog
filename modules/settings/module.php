@@ -25,14 +25,6 @@ function settings_module_init () {
     ));
     
     bind('blocks:head', function () {
-        if (users('authorized')) {
-            printf('
-<script type="text/javascript">
-    bootstraping.push(function () {
-        mini_blog.settings.collection.bootstrap(%s);
-    });
-</script>
-', json(storage('settings')));
-        }
+        users('authorized') and view(module_path('settings', 'views/json'));
     });
 }
