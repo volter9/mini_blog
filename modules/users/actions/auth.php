@@ -25,7 +25,7 @@ function action_index () {
     session('user_id', $user['id']);
     
     if (is_ajax()) {
-        echo json_encode($user);
+        echo json($user);
     }
     else {
         redirect('#index');

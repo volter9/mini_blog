@@ -43,7 +43,9 @@ error_reporting(-defined('MB_DEBUG'));
  */
 $install = MF_BASEPATH . 'install/index.php';
 
-file_exists($install) and (require $install) and exit;
+if (file_exists($install)) {
+    return require $install;
+}
 
 unset($intall);
 

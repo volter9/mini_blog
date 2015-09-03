@@ -13,7 +13,7 @@
  * Blog module initialize
  */
 function blog_module_init () {
-    load_language('app', module_path('blog', 'i18n/site'));
+    load_language('app', module_path('blog', 'i18n'));
     
     admin('posts', array(
         'js' => array(module_url('blog', 'js/module.js'))

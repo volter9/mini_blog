@@ -1,27 +1,6 @@
 <?php 
 
 return array(
-    'main' => 'Main page',
-    
-    'header' => array(
-        'title' => 'mini_blog',
-        'home'  => 'Home',
-        'admin' => 'Admin',
-        'latests' => 'Latests blog posts'
-    ),
-    
-    'footer' => array(
-        'all_rights' => 'All right reserved'
-    ),
-    
-    'posts' => array(
-        'empty' => 'No posts',
-        'published' => 'Published',
-        'in_category' => 'in category',
-        'by' => 'by',
-        'at' => 'at'
-    ),
-    
     'messages' => array(
         /**
          * Regular plain text messages
@@ -47,5 +26,5 @@ return array(
         },
         
         'no_user' => 'User does not exists or password does not matches'
-    ),
+    )
 );
