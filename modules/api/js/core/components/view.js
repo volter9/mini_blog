@@ -11,6 +11,7 @@ module.exports = View.extend({
     initialize: function () {
         this.fields = this.fields || {};
         this.nodes  = this.nodes  || {};
+        this.lang   = this.lang   || {};
         
         this.initiateFields(this.node, this.fields);
         this.initiateForm(this.nodes);
@@ -34,7 +35,7 @@ module.exports = View.extend({
             
             field.name = name;
             
-            self.nodes[name] = new Fields[type](target, field);
+            self.nodes[name] = new Fields[type](target, field, self.lang[name]);
         });
     },
     

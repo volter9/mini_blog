@@ -1,4 +1,6 @@
 (function () {
+    var View = mini_blog.component.view;
+    
     /* Posts mapper */
     var mapper = new mini_blog.mvc.mapper({
         baseurl: 'api/settings',
@@ -14,7 +16,13 @@
     
     settings.bindTo(mapper);
     
-    var SettingsView = mini_blog.component.view.extend({
+    var SettingsView = View.extend({
+        initialize: function () {
+            this.lang = mini_blog.lang('settings');
+            
+            View.prototype.initialize.call(this);
+        },
+        
         /**
          * Setup fields
          * 
@@ -28,7 +36,9 @@
                 var name = node.dataset.name,
                     type = node.dataset.type || 'input';
             
-                self.nodes[name] = new mini_blog.fields[type](node, { name: name });
+                self.nodes[name] = new mini_blog.fields[type](node, {
+                    name: name 
+                }, self.lang[name]);
             });
         }
     });

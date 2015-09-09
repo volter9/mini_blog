@@ -5,7 +5,7 @@ module.exports = Input.extend({
     create: function (node) {
         var text = dom.node(
             '<textarea class="m-text-field m-field" ' +
-            'placeholder="' + this.name + '"></textarea>'
+            'placeholder="' + this.title + '"></textarea>'
         );
     
         if (node) {

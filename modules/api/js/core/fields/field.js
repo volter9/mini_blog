@@ -6,9 +6,10 @@ var extend = require('../../helpers/extend');
  * @param {Node} node
  * @param {String} name
  */
-var Field = function (node, options) {
+var Field = function (node, options, title) {
     this.options = options;
     
+    this.title = title || '';
     this.name  = options.name;
     this.node  = node;
     this.field = this.create(node);

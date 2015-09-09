@@ -19,6 +19,7 @@ var mini_blog = {
     field:      require('./core/fields/field'),
     panel:      require('./core/panel'),
     init:       require('./core/init'),
+    lang:       require('./core/lang'),
     events:     require('./helpers/events'),
     unique:     require('./helpers/unique'),
     utils:      require('./helpers/utils'),

@@ -5,7 +5,7 @@ module.exports = Field.extend({
     create: function (node) {
         var text = dom.node(
             '<input class="m-input-field m-field"' + 
-            ' placeholder="' + this.name + '">'
+            ' placeholder="' + this.title + '">'
         );
     
         if (node) {

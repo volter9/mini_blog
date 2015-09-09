@@ -11,6 +11,7 @@
  */
 function settings_module_init () {
     load_model('settings', module_path('settings', 'models', true));
+    load_language('app', module_path('settings', 'i18n'));
     
     if ($language = storage('settings.default.language')) {
         lang('settings.default', $language);

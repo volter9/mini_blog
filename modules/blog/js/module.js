@@ -21,8 +21,7 @@
                 + 'Заметка будет размещена по этому адресу: '
                 + '<span class="url">' + mini_blog.ajax.url('')
                 + '<input class="m-input-field m-field url-field" placeholder="'
-                + this.name
-                + '">'
+                + this.title + '">'
                 + '</span></label>');
         },
         
@@ -63,6 +62,12 @@
                 type: 'url',
                 target: '[data-name=title]'
             }
+        },
+        
+        initialize: function () {
+            this.lang = mini_blog.lang('posts');
+            
+            View.prototype.initialize.call(this);
         }
     });
     

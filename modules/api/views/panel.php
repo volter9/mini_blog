@@ -2,13 +2,13 @@
 <div id="mini_panel">
     <ul class="clearfix">
         <li class="add">
-            <a class="button" href="#" title="Create...">
+            <a class="button" href="#" title="<?php echo i18n('posts.create') ?>">
                 <i class="fa fa-fw fa-plus"></i>
             </a>
         </li>
         <li>
             <a class="button" href="<?php echo url('#signout') ?>" 
-               title="Signout out of '<?php echo users('user.username') ?>'">
+               title="<?php printf(i18n('logout')) ?>">
                 <i class="fa fa-fw fa-sign-out"></i>
             </a>
         </li>
