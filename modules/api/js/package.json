@@ -5,6 +5,8 @@
     "license": "MIT",
     
     "dependencies": {
-        "marked": ""
+        "marked": "",
+        "v-mvc": "",
+        "v-utils": ""
     }
 }

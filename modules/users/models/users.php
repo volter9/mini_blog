@@ -31,6 +31,15 @@ function users_init () {
 }
 
 /**
+ * Alias for users('authorized')
+ * 
+ * @return bool
+ */
+function is_admin () {
+    return users('authorized');
+}
+
+/**
  * Get user by id
  * 
  * @param int $id

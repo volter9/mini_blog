@@ -85,12 +85,10 @@ function settings_save ($group, array $data) {
  */
 function setting_save ($group, $name, $value, $exists) {
     if ($exists) {
-        $criteria = array(
+        return db_update('settings', compact('value'), array(
             'group[=]' => $group,
             'name[=]'  => $name
-        );
-        
-        return db_update('settings', compact('value'), $criteria);
+        ));
     }
     else {
         return db_insert('settings', compact('group', 'name', 'value'));

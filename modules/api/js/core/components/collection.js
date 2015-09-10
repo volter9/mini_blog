@@ -1,5 +1,5 @@
 var editor = require('../editor'),
-    dom    = require('../../helpers/dom');
+    dom    = require('v-utils/dom');
 
 /**
  * Components

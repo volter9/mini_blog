@@ -17,7 +17,7 @@ function actions_init () {
  */
 function action_index () {
     layout('posts/index', array(
-        'title' => i18n('main') .' — '. storage('settings.default.sitename'),
+        'title' => i18n('main'),
         'url'   => url('#posts'),
         'posts' => posts_all()
     ));

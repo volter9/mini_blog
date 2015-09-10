@@ -1,4 +1,4 @@
-var dom = require('../helpers/dom');
+var dom = require('v-utils/dom');
 
 module.exports = {
     element: null,

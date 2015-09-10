@@ -1,4 +1,4 @@
-var extend = require('../../helpers/extend');
+var extend = require('v-utils/extend');
 
 /**
  * Base field prototype

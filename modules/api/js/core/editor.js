@@ -1,5 +1,5 @@
-var View = require('../mvc/view'),
-    dom  = require('../helpers/dom');
+var View = require('v-mvc/view'),
+    dom  = require('v-utils/dom');
 
 /** HTML template */
 var html = '<div class="m-editor m-dynamic">'
@@ -111,10 +111,12 @@ var Editor = View.extend({
      * Show/hide buttons
      */
     show: function (flag) {
-        this.buttons.edit.style.display = flag ? '' : 'none';
-        this.buttons.save.style.display = flag ? 'none' : '';
-        this.buttons.cancel.style.display = flag ? 'none' : '';
+        // Do you have better idea?
+        this.buttons.edit.style.display   = flag ? '' : 'none';
         this.buttons.remove.style.display = flag ? '' : 'none';
+        
+        this.buttons.save.style.display   = flag ? 'none' : '';
+        this.buttons.cancel.style.display = flag ? 'none' : '';
         
         if (this.data.component.notRemovable) {
             this.buttons.remove.style.display = 'none';

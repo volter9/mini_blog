@@ -85,9 +85,7 @@ function admin_data ($module) {
 function admin_filter ($module, array $data) {
     $data = array_extract($data, admin("$module.keys"));
     
-    $filter = admin("$module.filters");
-    
-    foreach ($filter as $key => $filters) {
+    foreach (admin("$module.filters") as $key => $filters) {
         foreach ($filters as $function) {
             if (isset($data[$key])) {
                 $data[$key] = $function($data[$key], $data);
@@ -105,4 +103,13 @@ function admin_filter ($module, array $data) {
  */
 function admin_scripts () {
     return array_flatten(array_pluck(admin(), 'js'));
+}
+
+/**
+ * Get all CSS stylesheets registered by modules
+ * 
+ * @return array
+ */
+function admin_css () {
+    return array_flatten(array_pluck(admin(), 'css'));
 }

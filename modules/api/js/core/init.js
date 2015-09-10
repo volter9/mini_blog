@@ -1,7 +1,7 @@
 var components = require('./components/collection'),
     settings   = require('./settings'),
-    utils      = require('../helpers/utils'),
-    dom        = require('../helpers/dom');
+    utils      = require('v-utils/utils'),
+    dom        = require('v-utils/dom');
 
 /**
  * Initialize the system
@@ -10,6 +10,8 @@ var components = require('./components/collection'),
  */
 module.exports = function (meta) {
     settings.assign(meta);
+    
+    require('v-utils/ajax').base_url = settings.get('baseurl');
     
     utils.toArray(dom.findAll('[data-component]'))
          .forEach(components.createComponent);

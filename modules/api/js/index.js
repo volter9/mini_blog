@@ -20,12 +20,12 @@ var mini_blog = {
     panel:      require('./core/panel'),
     init:       require('./core/init'),
     lang:       require('./core/lang'),
-    events:     require('./helpers/events'),
-    unique:     require('./helpers/unique'),
-    utils:      require('./helpers/utils'),
-    ajax:       require('./helpers/ajax'),
-    dom:        require('./helpers/dom'),
-    mvc:        require('./mvc')
+    events:     require('v-utils/events'),
+    unique:     require('v-utils/unique'),
+    utils:      require('v-utils/utils'),
+    ajax:       require('v-utils/ajax'),
+    dom:        require('v-utils/dom'),
+    mvc:        require('v-mvc')
 };
 
 mini_blog.component.view = require('./core/components/view');

@@ -34,7 +34,7 @@ img {
 
 html,
 body {
-    font-family: Lato, sans-serif;
+    font-family: sans-serif;
     margin: 0px;
     padding: 0px;
 }
@@ -90,7 +90,7 @@ a:hover {
 }
 
 #header .header {
-    font-family: Open Sans, sans-serif;
+    font-family: sans-serif;
     font-size: 40px;
     font-weight: 100;
 }
@@ -228,7 +228,7 @@ article.error ul li {
 .post h5,
 .post h6 {
     color: #000;
-    font-family: Lato, sans-serif;
+    font-family: sans-serif;
     font-size: 20px;
     font-weight: normal;
     

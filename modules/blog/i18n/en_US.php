@@ -6,15 +6,20 @@ return array(
     'header' => array(
         'title' => 'mini_blog',
         'home'  => 'Home',
-        'admin' => 'Admin',
-        'latests' => 'Latests blog posts'
     ),
+    
+    'logout' => 'Logout',
     
     'posts' => array(
         'empty' => 'No posts',
         'published' => 'Published',
         'in_category' => 'in category',
         'by' => 'by',
-        'at' => 'at'
-    )
+        'at' => 'at',
+        'create' => 'Create post',
+        
+        'title' => 'Title',
+        'url'   => 'URL slug',
+        'text'  => 'Content'
+    ),
 );

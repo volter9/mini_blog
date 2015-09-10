@@ -57,6 +57,12 @@ function blog_module_admin_init () {
  */
 function blog_url ($url, $data) {
     if ($url === '') {
+        $title = array_get($data, 'title');
+        
+        if ($title) {
+            return urlize($title);
+        }
+        
         return md5(microtime(true));
     }
     
@@ -76,6 +82,35 @@ function blog_url ($url, $data) {
     }
     
     return $url;
+}
+
+/**
+ * Transliterate text into latin and turn it into url slug
+ * 
+ * @param string $text
+ * @return string
+ */
+function urlize ($slug) {
+    static $cyr = array(
+        'а','б','в','г','д','е','ж','з','и','й','к','л','м','н','о',
+        'п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','ю','я',
+        'А','Б','В','Г','Д','Е','Ж','З','И','Й','К','Л','М','Н','О',
+        'П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ъ','Ы','Ь','Ю','Я'
+    );
+    
+    static $lat = array(
+        'a','b','v','g','d','e','zh','z' ,'i' ,'y' ,'k'  ,'l','m','n' ,'o',
+        'p','r','s','t','u','f','h' ,'ts','ch','sh','sht','a','y','y','yu','ya',
+        'A','B','V','G','D','E','Zh','Z' ,'I' ,'Y' ,'K'  ,'L','M','N' ,'O',
+        'P','R','S','T','U','F','H' ,'Ts','Ch','Sh','Sht','A','Y','Y','Yu','Ya'
+    );
+    
+    $slug = str_replace($cyr, $lat, $slug);
+    
+    $slug = preg_replace('/[^a-zA-Z0-9]/', '-', $slug);
+    $slug = strtolower(trim($slug, '-'));
+    
+    return preg_replace('/\-{2,}/', '-', $slug);
 }
 
 /**
@@ -111,5 +146,7 @@ function blog_url_number ($found, $url) {
     
     preg_match("/$url-(\d+)/", $found, $matches);
     
-    return isset($matches[1]) ? intval($matches[1]) + 1 : 0;
+    return isset($matches[1]) 
+        ? intval($matches[1]) + 1 
+        : 0;
 }

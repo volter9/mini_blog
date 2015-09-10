@@ -16,7 +16,7 @@
     slice.call(document.querySelectorAll('#wrapper pre code'))
          .forEach(hljs.highlightBlock);
     
-<?php if (users('authorized')): ?>
+<?php if (is_admin()): ?>
     mini_blog.posts.view.prototype.render = function () {
         mini_blog.component.view.prototype.render.call(this);
         

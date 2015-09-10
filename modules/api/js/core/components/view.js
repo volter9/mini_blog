@@ -1,8 +1,8 @@
 var Fields = require('../fields'),
-    View   = require('../../mvc/view'),
-    extend = require('../../helpers/extend'),
-    utils  = require('../../helpers/utils'),
-    dom    = require('../../helpers/dom');
+    View   = require('v-mvc/view'),
+    extend = require('v-utils/extend'),
+    utils  = require('v-utils/utils'),
+    dom    = require('v-utils/dom');
 
 module.exports = View.extend({
     /**

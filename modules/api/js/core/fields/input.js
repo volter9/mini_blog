@@ -1,4 +1,4 @@
-var dom   = require('../../helpers/dom'),
+var dom   = require('v-utils/dom'),
     Field = require('./field');
 
 module.exports = Field.extend({

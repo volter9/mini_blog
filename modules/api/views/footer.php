@@ -9,8 +9,7 @@ window.addEventListener('load', function () {
     
     mini_blog.lang(<?php echo json(lang('app')) ?>);
     mini_blog.init(<?php echo json(array(
-        'baseurl' => router('settings.root'),
-        'lang'    => lang('settings.default')
+        'baseurl' => router('settings.root')
     )) ?>);
 });
 </script>

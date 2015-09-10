@@ -1,5 +1,5 @@
-var utils   = require('../../helpers/utils'),
-    extend  = require('../../helpers/extend'),
+var utils   = require('v-utils/utils'),
+    extend  = require('v-utils/extend'),
     overlay = require('../overlay');
 
 /**

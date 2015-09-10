@@ -1,8 +1,8 @@
 var components = require('../components/collection'),
     editor     = require('../editor'),
-    ajax       = require('../../helpers/ajax'),
-    view       = require('../../mvc/view'),
-    dom        = require('../../helpers/dom');
+    ajax       = require('v-utils/ajax'),
+    dom        = require('v-utils/dom'),
+    view       = require('v-mvc/view');
 
 var AddView = view.extend({
     /**

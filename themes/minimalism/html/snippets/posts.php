@@ -1,6 +1,6 @@
 <?php return function ($post) { 
-    $category_url = !empty($post['category_url']) ? $post['category_url'] : '';
-    ?> 
+    $category_url = array_get($post, 'category_url', '');
+?> 
 <div class="post" 
      data-component="post"
      data-id="<?php echo $post['id'] ?>">
@@ -16,7 +16,7 @@
     <div class="text"
          data-name="text"
          data-type="text">
-<?php echo markdown($post['text']) ?> 
+        <?php echo markdown($post['text']) ?> 
     </div>
     
     <ul class="info">

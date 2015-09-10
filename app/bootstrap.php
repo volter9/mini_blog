@@ -20,32 +20,19 @@ session_start();
 date_default_timezone_set($config('mini_blog.timezone'));
 mb_internal_encoding('UTF-8');
 
-/**
- * In case of errors, throw exception instead, if debug option is enabled.
- * 
- * Even for pesky notices and warnings.
- */
-set_error_handler(function ($type, $message, $file, $line) {
+$callback = function ($e) {
+    defined('MB_DEBUG') and show_error($e);
+    
+    die('Something went wrong!');
+};
+
+set_error_handler(function ($type, $message, $file, $line) use ($callback) {
     $file = exclude($file, MF_BASEPATH);
     
-    if (defined('MB_DEBUG')) {
-        show_error(new Exception("PHP error: '$message' in '$file' at $line"));
-    }
-    
-    die('Something went wrong!');
+    $callback(new Exception("PHP error: '$message' in '$file' at $line"));
 });
 
-/**
- * Set exception handler for showing up page with information about last
- * exception, in debug mode.
- */
-set_exception_handler(function ($e) {
-    if (defined('MB_DEBUG')) {
-        show_error($e);
-    }
-    
-    die('Something went wrong!');
-});
+set_exception_handler($callback);
 
 /**
  * Load up custom theme functions
