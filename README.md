@@ -1,5 +1,7 @@
 # mini_blog CMS
 
+[![Join the chat at https://gitter.im/volter9/mini_blog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/volter9/mini_blog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 mini_blog это простая легкая бложная CMS написанная на процедурном PHP5 на базе [mini_framework](https://github.com/Volter9/mini_framework).
 
 ## Требования
